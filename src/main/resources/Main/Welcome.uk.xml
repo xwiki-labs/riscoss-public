@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Main</web>
+  <name>Welcome</name>
+  <language>uk</language>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>1</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197395000</creationDate>
+  <parent>Main.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1297866863000</date>
+  <contentUpdateDate>1297866863000</contentUpdateDate>
+  <version>1.1</version>
+  <title>$services.localization.render('xe.dashboard.wiki.welcome')</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>Це легка для редагування місцина в мережі, що допоможе Вам краще співпрацювати. Ця Wiki складається із //сторінок// розсортованих в різних //просторах//. Зараз Ви знаходитесь в **Головному** просторі та дивитесь на його домашню сторінку (**WebHome**).
+
+{{velocity}}
+#if($hasEdit)Для апробації можливостей Вашої wiki спробуйте погратися в [[Просторі "Пісочниця">>Sandbox.WebHome]].#end
+{{/velocity}}
+
+</content>
+</xwikidoc>

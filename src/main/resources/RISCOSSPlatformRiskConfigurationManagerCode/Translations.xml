@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>Translations</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839819000</creationDate>
+  <parent>RISCOSSPlatformRiskConfigurationManagerCode.CreateRiskConfiguration</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>Translations</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>riscossPlatform.riskConfigurationManager=Risk configuration manager
+riscossPlatform.riskConfigurationManager.newRiskConfiguration=New risk configuration
+riscossPlatform.riskConfigurationManager.riskConfigurationName=Risk configuration name
+riscossPlatform.riskConfigurationManager.riskConfigurationsList.title=RISCOSS Platform Risk Configurations
+riscossPlatform.riskConfigurationManager.riskConfigurationsTable.doc.name=Risk configuration
+riscossPlatform.riskConfigurationManager.riskConfigurationsTable.description=Description
+riscossPlatform.riskConfigurationManager.newGoalModel=New goal model
+riscossPlatform.riskConfigurationManager.goalModelName=Goal model name
+riscossPlatform.riskConfigurationManager.goalModelsList.title=RISCOSS Platform Goal Models
+riscossPlatform.riskConfigurationManager.goalModelsTable.doc.name=Goal model
+riscossPlatform.riskConfigurationManager.goalModelsTable.description=Description
+riscossPlatform.riskConfigurationManager.newRiskCategory=New risk category
+riscossPlatform.riskConfigurationManager.riskCategoryName=Risk category name
+riscossPlatform.riskConfigurationManager.uploadRiskModel=Upload risk model XML
+riscossPlatform.riskConfigurationManager.uploadImpactModel=Upload impact model XML
+riscossPlatform.riskConfigurationManager.uploadGoalModel=Upload goal model XML
+riscossPlatform.riskConfigurationManager.riskCategoriesList.title=RISCOSS Platform Risk Categories
+riscossPlatform.riskConfigurationManager.riskCategoriesTable.doc.name=Risk category
+riscossPlatform.riskConfigurationManager.riskCategoriesTable.description=Description
+riscossPlatform.riskConfigurationManager.riskConfigurationIndex=Risk configuration index
+riscossPlatform.riskConfigurationManager.goalModelIndex=Goal model index
+riscossPlatform.riskConfigurationManager.riskCategoryIndex=Risk category index
+</content>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.Translations</name>
+    <number>1</number>
+    <className>XWiki.TranslationDocumentClass</className>
+    <guid>1755131d-22fd-4391-977e-f5f1df20d0d3</guid>
+    <class>
+      <name>XWiki.TranslationDocumentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>1</number>
+        <prettyName>Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <property>
+      <scope>GLOBAL</scope>
+    </property>
+  </object>
+</xwikidoc>

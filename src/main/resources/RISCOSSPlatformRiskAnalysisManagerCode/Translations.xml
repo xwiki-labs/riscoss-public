@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskAnalysisManagerCode</web>
+  <name>Translations</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>RISCOSSPlatformRiskAnalysisManagerCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>riscossPlatform.riskAnalysisManager.riskAnalysisSessionsTable.doc.title=Name
+riscossPlatform.riskAnalysisManager.riskAnalysisSessionsTable.entity=Target entity
+riscossPlatform.riskAnalysisManager.entitiesTable.doc.name=Target entity
+riscossPlatform.riskAnalysisManager.entitiesTable.description=Description
+riscossPlatform.riskAnalysisManager.entitiesTable.emptyvalue=None
+</content>
+  <object>
+    <name>RISCOSSPlatformRiskAnalysisManagerCode.Translations</name>
+    <number>1</number>
+    <className>XWiki.TranslationDocumentClass</className>
+    <guid>c5621052-3ef8-41f0-bfcd-3997e0aa3197</guid>
+    <class>
+      <name>XWiki.TranslationDocumentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>1</number>
+        <prettyName>Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <property>
+      <scope>GLOBAL</scope>
+    </property>
+  </object>
+</xwikidoc>

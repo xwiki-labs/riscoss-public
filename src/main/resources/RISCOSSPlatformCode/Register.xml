@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformCode</web>
+  <name>Register</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839816000</creationDate>
+  <parent>RISCOSSPlatformCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1357696926000</date>
+  <contentUpdateDate>1357696926000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity output="false"}}
+#macro(afterRegistration, $xwikiname)
+  #set($sql = "from doc.object(XWiki.XWikiGroups) as obj where doc.fullName = 'RISCOSSPlatformCode.ProducersGroup' and obj.member = :member")
+  #if ("$!xwikiname" == "")
+  #elseif ($services.query.xwql($sql).bindValue("member", "XWiki.${xwikiname}").execute().size() > 0)
+  #else
+    #set($userDoc = $xwiki.getDocument("XWiki.${xwikiname}"))
+    #set($group = $xwiki.getDocument('RISCOSSPlatformCode.ProducersGroup'))
+    #set($gObj = $group.newObject('XWiki.XWikiGroups'))
+    #set($discard = $gObj.set('member', $userDoc.getFullName()))
+    $group.saveWithProgrammingRights("Added user")
+  #end
+#end
+#set($doAfterRegistration = "#afterRegistration($request.get('xwikiname'))")
+{{/velocity}}
+
+Welcome to RISCOSS Platform, Register here and you will be able to submit projects for risk analysis.
+
+{{include reference="XWiki.Registration" /}}
+</content>
+</xwikidoc>

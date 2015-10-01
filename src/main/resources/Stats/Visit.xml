@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Stats</web>
+  <name>Visit</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197410000</creationDate>
+  <parent>Stats.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1196154233000</date>
+  <contentUpdateDate>1196154233000</contentUpdateDate>
+  <version>1.1</version>
+  <title>$services.localization.render("xe.statistics.visit")</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{include reference="Stats.Macros" /}}
+
+{{velocity}}
+{{html wiki="true"}}
+#if ($xwiki.statsService.enabledForCurrentWiki)
+  #displayPanelLayout(2 ['Stats.MostActiveContributors', 'Stats.LeastActiveContributors'])
+#else
+  #printStatisticsDisabled()
+#end
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>

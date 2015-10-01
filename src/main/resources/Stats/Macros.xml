@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Stats</web>
+  <name>Macros</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197410000</creationDate>
+  <parent>Stats.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1196173438000</date>
+  <contentUpdateDate>1196173438000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Statistics Macros</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{velocity}}
+#macro(printPageStats $stats)
+$!xwiki.ssx.use('Stats.Style')
+&lt;table class="stats" cellspacing="0" cellpadding="0">
+&lt;thead>
+&lt;tr>
+&lt;th class="numeric" style="width:20%">$services.localization.render('xe.statistics.hits')&lt;/th>
+&lt;th style="width:40%">$services.localization.render('xe.statistics.page')&lt;/th>
+&lt;th style="width:40%">$services.localization.render('xe.statistics.space')&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+#foreach($item in $stats)
+#set($docStats = $xwiki.getDocument($item.name))
+#if ($docStats)
+&lt;tr&gt;
+&lt;td class="numeric">$item.pageViews&lt;/td>
+&lt;td>&lt;div class="ellipsis" title="$escapetool.xml($docStats.name)">&lt;a href="$docStats.getURL()">$escapetool.xml($docStats.name)&lt;/a>&lt;/div>&lt;/td>
+&lt;td>&lt;div class="ellipsis" title="$escapetool.xml($docStats.space)">&lt;a href="$xwiki.getURL("${docStats.space}.WebHome")">$escapetool.xml($docStats.space)&lt;/a>&lt;/div>&lt;/td>
+&lt;/tr>
+#end
+#end
+&lt;/tbody>
+&lt;/table>
+#end
+#macro(printSpaceStats $stats)
+$!xwiki.ssx.use('Stats.Style')
+&lt;table class="stats" cellspacing="0" cellpadding="0">
+&lt;thead>
+&lt;tr>
+&lt;th class="numeric" style="width:20%">$services.localization.render('xe.statistics.hits')&lt;/th>
+&lt;th style="width:80%">$services.localization.render('xe.statistics.space')&lt;/th>
+&lt;/tr>&lt;/thead>
+&lt;tbody>
+#foreach($item in $stats)
+&lt;tr>
+&lt;td class="numeric">$item.pageViews&lt;/td>
+&lt;td>&lt;div class="ellipsis" title="$escapetool.xml($item.name)">&lt;a href="$xwiki.getURL("${item.name}.WebHome")">$escapetool.xml($item.name)&lt;/a>&lt;/div>&lt;/td>
+&lt;/tr>
+#end
+&lt;/tbody>
+&lt;/table>
+#end
+#macro(printContributorStats $stats)
+$!xwiki.ssx.use('Stats.Style')
+&lt;table class="stats" cellspacing="0" cellpadding="0">
+&lt;thead>
+&lt;tr>
+&lt;th class="numeric" style="width:20%">$services.localization.render('xe.statistics.changes')&lt;/th>
+&lt;th style="width:80%">$services.localization.render('xe.statistics.user')&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+#foreach($item in $stats)
+#set($userNameLink = $xwiki.getUserName($item.name))
+#set($userName = $xwiki.getUserName($item.name, false))
+#if($userNameLink)
+&lt;tr>
+&lt;td class="numeric">$item.pageSaves&lt;/td>
+&lt;td>&lt;div class="ellipsis" title="$userName">$userNameLink&lt;/div>&lt;/td>
+&lt;/tr>
+#end
+#end
+&lt;/tbody>
+&lt;/table>
+#end
+#macro(printRefererStats $stats)
+$!xwiki.ssx.use('Stats.Style')
+&lt;table class="stats" cellspacing="0" cellpadding="0">
+&lt;thead>
+&lt;tr>
+&lt;th class="numeric" style="width:20%">$services.localization.render('xe.statistics.sources')&lt;/th>
+&lt;th style="width:80%">$services.localization.render('xe.statistics.referrer')&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+#foreach($item in $stats)
+&lt;tr>
+&lt;td class="numeric">$item.pageViews&lt;/td>
+&lt;td>&lt;div class="ellipsis" title="$escapetool.xml($item.URL.host)">&lt;a href="$escapetool.xml($item.referer)">$escapetool.xml($item.URL.host)&lt;/a>&lt;/div>&lt;/td>
+&lt;/tr>
+#end
+&lt;/tbody>
+&lt;/table>
+#end
+#macro(printNoStatisticsData)
+#info($services.localization.render('xe.statistics.notrecorded'))
+#end
+#macro(printStatisticsDisabled)
+#set($statsHome = "[[$services.localization.render('xe.statistics.homepage')>>Stats.WebHome]].")
+#warning($services.localization.render('xe.statistics.disabled', [$statsHome]))
+#end
+{{/velocity}}</content>
+</xwikidoc>

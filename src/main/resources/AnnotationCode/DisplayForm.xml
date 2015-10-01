@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>AnnotationCode</web>
+  <name>DisplayForm</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197413000</creationDate>
+  <parent>AnnotationCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1277458319000</date>
+  <contentUpdateDate>1277458319000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{include reference="AnnotationCode.Macros" /}}
+
+{{velocity filter="none"}}
+{{html clean="false"}}
+#displayViewBox("$!{request.id}", "$!{request.wiki}", "$!{request.space}", "$!{request.page}")
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>

@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformCode</web>
+  <name>KPIMetrics</name>
+  <language/>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>0</translation>
+  <creator>XWiki.cjdelisle</creator>
+  <creationDate>1443099488000</creationDate>
+  <author>XWiki.cjdelisle</author>
+  <contentAuthor>XWiki.cjdelisle</contentAuthor>
+  <date>1443099929000</date>
+  <contentUpdateDate>1443099929000</contentUpdateDate>
+  <version>1.4</version>
+  <title/>
+  <comment/>
+  <minorEdit>true</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}&#xd;
+#set ($RISCOSS_GH_ACCOUNTS = [&#xd;
+    'ohernan',&#xd;
+    'cjdelisle',&#xd;
+    'albertosiena',&#xd;
+    'Mirkk',&#xd;
+    'lidix91',&#xd;
+    'fmancinelli',&#xd;
+    'mouhb',&#xd;
+    'cedricth',&#xd;
+    'clawgrip',&#xd;
+    'jormaral',&#xd;
+    'manolodd',&#xd;
+    'mcannosi',&#xd;
+    'Mirkk',&#xd;
+    'rbenjacob',&#xd;
+    'slauriere',&#xd;
+    'XavierFranch'&#xd;
+])&#xd;
+## TODO(cjd) is clawgrip a member?&#xd;
+##&#xd;
+#set ($RISCOSS_REGS = [&#xd;
+    'XWiki.cjdelisle',&#xd;
+    'XWiki.slauriere',&#xd;
+    'XWiki.XavierFranch',&#xd;
+    'XWiki.xf',&#xd;
+    'XWiki.AngeloSusi',&#xd;
+    'XWiki.angelo',&#xd;
+    'XWiki.as1',&#xd;
+    'XWiki.asiena',&#xd;
+    'XWiki.cjd',&#xd;
+    'XWiki.lidix91',&#xd;
+    'XWiki.ob',&#xd;
+    'XWiki.LudovicDubost',&#xd;
+    'XWiki.ldubost',&#xd;
+    'XWiki.llopez',&#xd;
+    'XWiki.lambdadelta',&#xd;
+    'XWiki.KirstenHaaland',&#xd;
+    'XWiki.jormaral',&#xd;
+    'XWiki.mm',&#xd;
+    'XWiki.ngalanis',&#xd;
+    'XWiki.ronb',&#xd;
+    'XWiki.ohernan',&#xd;
+    'XWiki.mouhb',&#xd;
+    'XWiki.Testct',&#xd;
+    'XWiki.Cedric',&#xd;
+    'XWiki.manolodd',&#xd;
+    'XWiki.superadmin',&#xd;
+    'XWiki.Admin'&#xd;
+])&#xd;
+##&#xd;
+#set ($allGroup = $xwiki.getDocument("XWiki.XWikiAllGroup"))&#xd;
+#set ($allMembers = $allGroup.getObjects("XWiki.XWikiGroups"))&#xd;
+#set ($allMemberNames = [])&#xd;
+#set ($adopters = [])&#xd;
+#foreach ($member in $allMembers)&#xd;
+  #set($discard = $allMemberNames.add($member.member))&#xd;
+  #if ($RISCOSS_REGS.indexOf($member.member) >= 0)&#xd;
+  #elseif ($RISCOSS_GH_ACCOUNTS.indexOf($member.member.replace("XWiki.", "")) >= 0)&#xd;
+  #else&#xd;
+    #set ($discard = $adopters.add($member.member))&#xd;
+  #end&#xd;
+#end&#xd;
+#set ($adopters= $sorttool.sort($adopters))&#xd;
+#set($projects = [])&#xd;
+#foreach($dn in $services.query.xwql("where doc.space = 'RISCOSSPlatformEntities'").execute())&#xd;
+  #set($d = $xwiki.getDocument($dn))&#xd;
+  #if ($allMemberNames.indexOf($d.getCreator()) &lt; 0)&#xd;
+  #elseif ($RISCOSS_REGS.indexOf($d.getCreator()) &lt; 0)&#xd;
+    #set($discard = $projects.add($d))&#xd;
+  #end&#xd;
+#end&#xd;
+##&#xd;
+##&#xd;
+##&#xd;
+##&#xd;
+##&#xd;
+##&#xd;
+&#xd;
+= Consortium Associated Registrations =&#xd;
+These do not count in any metrics.&#xd;
+#foreach ($u in $RISCOSS_REGS)&#xd;
+    |[[$u]]&#xd;
+#end&#xd;
+&#xd;
+= Consortium Associated Github Accounts =&#xd;
+These do not count in any metrics.&#xd;
+#foreach ($u in $RISCOSS_GH_ACCOUNTS)&#xd;
+    |[[https://github.com/$u]]&#xd;
+#end&#xd;
+&#xd;
+= Registered users ($adopters.size()) =&#xd;
+#foreach ($member in $adopters)&#xd;
+    |[[$xwiki.getLocalUserName($member, false)>>$member]]&#xd;
+#end&#xd;
+&#xd;
+= Registered projects ($projects.size()) =&#xd;
+|=Project Name|=Creator|=When Registered&#xd;
+#foreach($d in $projects)&#xd;
+    |[[$d]]|[[$d.getCreator()]]|$d.getCreationDate()&#xd;
+#end&#xd;
+&#xd;
+= Publicizing projects =&#xd;
+Needs to be collected manually by looking at project pages&#xd;
+&#xd;
+= Analysis per day =&#xd;
+The following table shows list of projects analysed in the past month, divide total by 30.&#xd;
+|=Project Name|=Creator|=Last Analysis Date&#xd;
+## Calander.MONTH = 2&#xd;
+#set ($oneMonthAgo = $datetool.getCalendar())&#xd;
+#set ($discard = $oneMonthAgo.add(2, -1))&#xd;
+#foreach ($d in $projects)&#xd;
+  #set ($evalDate = $datetool.getCalendar())&#xd;
+  $evalDate.setTime($d.getDate())##&#xd;
+  #if ($oneMonthAgo.compareTo($evalDate) &lt; 0)&#xd;
+    |[[$d]]|[[$d.getCreator()]]|$d.getDate()&#xd;
+  #end&#xd;
+#end&#xd;
+&#xd;
+&#xd;
+= Mailing list participants =&#xd;
+Needs to be collected manually&#xd;
+&#xd;
+= Number of downloads =&#xd;
+This needs to be brainstormed how it can be done&#xd;
+&#xd;
+= Community members =&#xd;
+Collect from here: https://github.com/orgs/RISCOSS/people manually remove people known to be in consortium.&#xd;
+* https://github.com/JJ&#xd;
+* https://github.com/davidediruscio&#xd;
+* https://github.com/KoalaandDodo (?)&#xd;
+* https://github.com/jrwilliams&#xd;
+* https://github.com/ashimshahi (?)&#xd;
+* https://github.com/alebagnato&#xd;
+* https://github.com/acs&#xd;
+* https://github.com/nmatra&#xd;
+&#xd;
+= Number of contributors =&#xd;
+0&#xd;
+* https://github.com/RISCOSS/riscoss-data-collector/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-risk-modeling/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-analyser/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-wiki-ui/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-wiki-config/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-platform-core/graphs/contributors&#xd;
+* https://github.com/RISCOSS/riscoss-platform-build/graphs/contributors&#xd;
+* https://github.com/RISCOSS/limesurvey-collector/graphs/contributors&#xd;
+&#xd;
+= Number of requests received =&#xd;
+0&#xd;
+* https://github.com/RISCOSS/riscoss-data-collector/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-risk-modeling/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-analyser/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-wiki-ui/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-wiki-config/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-platform-core/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/riscoss-platform-build/issues?q=is%3Aissue&#xd;
+* https://github.com/RISCOSS/limesurvey-collector/issues?q=is%3Aissue&#xd;
+&#xd;
+= Number of requests resolved =&#xd;
+0&#xd;
+&#xd;
+&#xd;
+{{/velocity}}</content>
+</xwikidoc>

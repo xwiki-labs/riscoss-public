@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>RiskCategoryTemplate</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839818000</creationDate>
+  <parent>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>RiskCategory Template</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content/>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryTemplate</name>
+    <number>1</number>
+    <className>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass</className>
+    <guid>d8d358db-df7f-4f2f-a8ed-eeac3e0a6caa</guid>
+    <class>
+      <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <description>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <editor>---</editor>
+        <name>description</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Description</prettyName>
+        <rows>5</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </description>
+    </class>
+    <property>
+      <description></description>
+    </property>
+  </object>
+</xwikidoc>

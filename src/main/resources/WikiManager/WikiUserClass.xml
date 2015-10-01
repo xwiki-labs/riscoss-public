@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>WikiManager</web>
+  <name>WikiUserClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>XWiki.superadmin</creator>
+  <creationDate>1429197385000</creationDate>
+  <parent>XWiki.XWikiClasses</parent>
+  <author>XWiki.superadmin</author>
+  <contentAuthor>XWiki.superadmin</contentAuthor>
+  <date>1429197385000</date>
+  <contentUpdateDate>1429197385000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Wiki User Class</title>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content>
+
+Class that represents the wiki configuration about users.</content>
+  <class>
+    <name>WikiManager.WikiUserClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <membershipType>
+      <cache>0</cache>
+      <disabled>0</disabled>
+      <displayType>radio</displayType>
+      <multiSelect>0</multiSelect>
+      <name>membershipType</name>
+      <number>1</number>
+      <prettyName>Membership Type</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators> ,|</separators>
+      <size>3</size>
+      <unmodifiable>0</unmodifiable>
+      <values>open|request|invite</values>
+      <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+    </membershipType>
+    <userScope>
+      <cache>0</cache>
+      <disabled>0</disabled>
+      <displayType>radio</displayType>
+      <multiSelect>0</multiSelect>
+      <name>userScope</name>
+      <number>2</number>
+      <prettyName>User scope</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators> ,|</separators>
+      <size>3</size>
+      <unmodifiable>0</unmodifiable>
+      <values>global_only|local_only|local_and_global</values>
+      <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+    </userScope>
+  </class>
+  <object>
+    <name>WikiManager.WikiUserClass</name>
+    <number>0</number>
+    <className>XWiki.DocumentSheetBinding</className>
+    <guid>bb08a393-9e54-4c05-9fcd-1b9d4c97c90d</guid>
+    <class>
+      <name>XWiki.DocumentSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>XWiki.ClassSheet</sheet>
+    </property>
+  </object>
+</xwikidoc>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Main</web>
+  <name>SolrTranslations</name>
+  <language>es</language>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>1</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197395000</creationDate>
+  <parent>Main.SolrSearch</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1385298756000</date>
+  <contentUpdateDate>1385298756000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Solr Search Translations</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content>## XWiki Translation for language es generated from http://www.l10n.xwiki.org
+solr.admin.indexing.action.label=Acción
+solr.admin.status.title=Estado
+solr.facets.collapseAll=Contraer todo
+solr.facets.expandAll=Expandir Todo
+solr.field.creator_display=Creador
+solr.filterBy.fileType.image=Imagen
+solr.filterBy.fileType.text=Texto
+solr.filterBy.type.attachment=Adjunto
+solr.filterBy.type.document=Documento
+solr.filterBy.type.object=Objeto
+solr.result.location=Ubicado en {0} » {1} » {2}
+solr.sortBy=Ordenar por\:
+solr.sortBy.author_display_sort=Último Autor
+solr.sortBy.date=Fecha
+solr.sortBy.score=Relevancia
+solr.sortBy.title_sort=Título
+</content>
+</xwikidoc>

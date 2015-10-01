@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformLayerManagerCode</web>
+  <name>EntityEditSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>RISCOSSPlatformLayerManagerCode.EntityClass</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>#if($doc.name == 'EntitySheet')Entity Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## -*- Mode:Velocity
+$xwiki.jsx.use("RISCOSSPlatformLayerManagerCode.EntityEditSheet")
+#set($layer = $doc.getObject("RISCOSSPlatformLayerManagerCode.EntityClass").getProperty("layer").value)
+#set($layerDocument = $xwiki.getDocument($layer))
+
+##; $services.localization.render("riscossPlatform.layerManager.layer")
+##: $layerDocument.title
+
+#set($class = $doc.getObject($layer).xWikiClass)
+#foreach($prop in $class.properties)
+  ; $prop.prettyName
+  : $doc.display($prop.getName())
+#end
+
+##----
+##
+##; $services.localization.render("riscossPlatform.layerManager.rdids")
+##: $doc.display("rdids")
+{{/velocity}}
+{{include document="RISCOSSPlatformDataCollectorCode.DataCollectorManager"}}
+</content>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.EntityEditSheet</name>
+    <number>1</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>6c02e047-2681-4a8d-8efe-fdb898dc715b</guid>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>var XWiki = (function(XWiki) {
+  function init() {
+    var inputs = $('inline').getElementsByTagName('input');
+    for(var i = 0; i &lt; inputs.length; i++) { 
+      if(inputs[i].type == 'text') { 
+        inputs[i].setStyle({width: '100%'}); 
+      }
+    }
+
+    var textareas = $('inline').getElementsByTagName('textarea');
+    for(var i = 0; i &lt; textareas.length; i++) { 
+      if(textareas[i].type == 'textarea') { 
+        textareas[i].setStyle({width: '100%'}); 
+      }
+    }
+  }
+  
+  //Wait for dom load
+  (XWiki.domIsLoaded &amp;&amp; init()) || document.observe("xwiki:dom:loaded", init);
+   
+  //End XWiki augmentation
+  return XWiki;
+}(XWiki || {}))</code>
+    </property>
+    <property>
+      <name></name>
+    </property>
+    <property>
+      <parse>0</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.EntityEditSheet</name>
+    <number>2</number>
+    <className>XWiki.SheetDescriptorClass</className>
+    <guid>738191f6-9b04-4ffd-bff8-461fb05ed142</guid>
+    <class>
+      <name>XWiki.SheetDescriptorClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <action>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>action</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Action</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </action>
+    </class>
+    <property>
+      <action>edit</action>
+    </property>
+  </object>
+</xwikidoc>

@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformLayerManagerCode</web>
+  <name>LayerClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839814000</creationDate>
+  <parent>XWiki.XWikiClasses</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>Layer Class</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## Replace the default space with the space where you want your documents to be created.
+## Replace the default parent with the one of your choice and save the document.
+##
+#set($defaultSpace = $doc.space)
+#set($defaultParent = $doc.fullName)
+{{/velocity}}</content>
+  <class>
+    <name>RISCOSSPlatformLayerManagerCode.LayerClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <child>
+      <cache>0</cache>
+      <classname/>
+      <customDisplay>{{velocity}}
+#set($propertyClass = $object.getxWikiClass().get($name))
+#if ($type == 'edit')
+  #set($selectName = "${prefix}${name}")
+  {{html clean="false" wiki="false"}}
+    &lt;select name="$selectName">
+    #if($!value == "")
+      &lt;option value='' selected='selected'>None&lt;/option>
+    #else
+      &lt;option value=''>None&lt;/option>
+    #end
+    #foreach($key in $propertyClass.getListValues())
+      #set($checked = '')
+      #if($value == $key)
+        #set($checked = "selected='selected'")
+      #end
+      &lt;option value="$key" $checked>$key&lt;/option>
+    #end
+    &lt;/select>
+  {{/html}}
+#else
+  $doc.displayView($propertyClass, $prefix, $object)
+#end
+{{/velocity}}</customDisplay>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <idField/>
+      <multiSelect>0</multiSelect>
+      <name>child</name>
+      <number>1</number>
+      <picker>0</picker>
+      <prettyName>child</prettyName>
+      <relationalStorage>1</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql>SELECT doc.fullName FROM XWikiDocument doc, BaseObject obj WHERE doc.fullName = obj.name AND obj.className = 'RISCOSSPlatformLayerManagerCode.LayerClass' AND doc.space = 'RISCOSSPlatformLayers' AND doc.fullName &lt;&gt; '$doc.fullName'</sql>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </child>
+    <editHeading>
+      <disabled>0</disabled>
+      <name>editHeading</name>
+      <number>3</number>
+      <prettyName>Content to place in this entity's edit UI</prettyName>
+      <size>255</size>
+      <unmodifiable>0</unmodifiable>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </editHeading>
+    <surveyURL>
+      <disabled>0</disabled>
+      <name>surveyURL</name>
+      <number>2</number>
+      <prettyName>Data collection survey URL (if applicable)</prettyName>
+      <size>255</size>
+      <unmodifiable>0</unmodifiable>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </surveyURL>
+  </class>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.LayerClass</name>
+    <number>1</number>
+    <className>XWiki.ClassSheetBinding</className>
+    <guid>e05c91f5-e037-46a1-aa7b-f45dbe831eeb</guid>
+    <class>
+      <name>XWiki.ClassSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>RISCOSSPlatformLayerManagerCode.LayerEditSheet</sheet>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.LayerClass</name>
+    <number>2</number>
+    <className>XWiki.ClassSheetBinding</className>
+    <guid>9c362110-6794-4555-8275-a3be94c33856</guid>
+    <class>
+      <name>XWiki.ClassSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>RISCOSSPlatformLayerManagerCode.LayerViewSheet</sheet>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.LayerClass</name>
+    <number>3</number>
+    <className>XWiki.DocumentSheetBinding</className>
+    <guid>f31d6540-e482-46c4-9d08-899b55c6724b</guid>
+    <class>
+      <name>XWiki.DocumentSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>XWiki.ClassSheet</sheet>
+    </property>
+  </object>
+</xwikidoc>

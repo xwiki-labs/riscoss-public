@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Main</web>
+  <name>Welcome</name>
+  <language/>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197396000</creationDate>
+  <parent>Main.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1297866863000</date>
+  <contentUpdateDate>1297866863000</contentUpdateDate>
+  <version>1.1</version>
+  <title>$services.localization.render('xe.dashboard.wiki.welcome')</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>It's an easy-to-edit website that will help you work better together. This Wiki is made of //pages// sorted by //spaces//. You're currently in the **Main** space, looking at its home page (**WebHome**).
+
+Learn how to use XWiki with the {{velocity}}[[Getting Started Guide>>http://enterprise.xwiki.org/xwiki/bin/view/GettingStarted/WebHome?version=$xwiki.version]]{{/velocity}}.
+
+{{velocity}}
+#if($hasEdit)You can then use the [[Sandbox space>>Sandbox.WebHome]] to try out your wiki's features.#end
+{{/velocity}}
+</content>
+</xwikidoc>

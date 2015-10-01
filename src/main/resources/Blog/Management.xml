@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Blog</web>
+  <name>Management</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197412000</creationDate>
+  <parent>Blog.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1227680561000</date>
+  <contentUpdateDate>1227680561000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Manage blogs on this wiki</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{include reference="Blog.BlogCode"/}}
+
+{{velocity filter="none"}}
+{{html clean="false" wiki="true"}}
+#if($hasAdmin)
+##
+##
+## List existing blogs.
+## TODO: Display the number of articles in each blog
+## TODO: Provide some management links: delete, edit title, configure...
+##
+= $services.localization.render('xe.blog.manage.existing') =
+
+#foreach($item in $xwiki.wrapDocs($services.query.hql(", BaseObject obj where obj.name = doc.fullName and obj.className = '$blogClassname'").execute()))
+  #getBlogTitle($item $title)
+  #if($title != '')
+    * [[$title>>$item.fullName]]
+  #else
+    * [[$item.displayTitle>>$item.fullName]]
+&lt;p/>
+  #end
+#end
+##
+##
+## New blog
+##
+
+= $services.localization.render('xe.blog.manage.createnew') =
+
+#set($title = "$!request.blogTitle")
+#if($title != '')
+  #set($space = "$!request.blogSpace")
+  #if($space == '')
+    #warning($services.localization.render('xe.blog.manage.nospace'))
+  #else
+    #if("$!request.blogType" == 'main')
+      #set($blogDocName = "${space}.WebHome")
+    #else
+      #set($blogDocName = "${space}.Blog")
+    #end
+    #set($parent = $services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI')))
+    $response.sendRedirect($xwiki.getURL($blogDocName, 'save', "parent=${parent}&amp;title=${escapetool.url($title)}&amp;template=${blogTemplate}&amp;${blogClassname}_0_title=${escapetool.url($title)}&amp;form_token=$!{request.getParameter('form_token')}"))
+  #end
+#end
+##
+## Show the form
+&lt;form action="${xwiki.getURL('Blog.Management')}" id="newBlog" method="post">
+&lt;div>
+  &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
+&lt;dl>
+  &lt;dt>&lt;label for="blogSpace">$services.localization.render('xe.blog.manage.space')&lt;/label>&lt;/dt>
+  &lt;dd>&lt;input type="text" name="blogSpace" id="blogSpace" value=""/>&lt;/dd>
+  &lt;dt>&lt;label for="blogTitle">$services.localization.render('xe.blog.manage.title')&lt;/label>&lt;/dt>
+  &lt;dd>&lt;input type="text" name="blogTitle" id="blogTitle" value="$services.localization.render('xe.blog.manage.blogtitle')"/>&lt;/dd>
+  &lt;dt>&lt;label for="blogType">$services.localization.render('xe.blog.manage.blogtype')&lt;/label>&lt;/dt>
+  &lt;dd>&lt;select name="blogType" id="blogType">
+    &lt;option value="inner" selected="selected">$services.localization.render('xe.blog.manage.inside')&lt;/option>
+    &lt;option value="main">$services.localization.render('xe.blog.manage.main')&lt;/option>
+  &lt;/select>&lt;/dd>
+&lt;/dl>
+  &lt;input class="button" type="submit" value="${escapetool.xml($services.localization.render('xe.blog.manage.create'))}"/>
+&lt;/div>
+&lt;/form>
+#else ## !hasAdmin
+  #xwikimessageboxstart($services.localization.render('error') $services.localization.render('notallowed'))
+  #xwikimessageboxend()
+#end
+
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>

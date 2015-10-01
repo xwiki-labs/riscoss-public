@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformModelManagerCode</web>
+  <name>GoalModelEditSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839822000</creationDate>
+  <parent>RISCOSSPlatformModelManagerCode.GoalModelClass</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>#if($doc.name == 'GoalModelSheet')GoalModel Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## You can modify this page to customize the presentation of your object.
+## At first you should keep the default presentation and just save the document.
+
+#set($class = $doc.getObject('RISCOSSPlatformModelManagerCode.GoalModelClass').xWikiClass)
+#foreach($prop in $class.properties)
+  #if($prop.name != 'goalModelData')
+; $prop.prettyName
+: $doc.display($prop.getName())
+  #end
+#end
+
+; Goal model:
+: {{attachmentSelector buttontext="$services.localization.render('riscossPlatform.modelManager.uploadGoalModel')" classname="RISCOSSPlatformModelManagerCode.GoalModelClass" property="goalModelData" filter="istarml"/}}
+
+{{/velocity}}</content>
+  <object>
+    <name>RISCOSSPlatformModelManagerCode.GoalModelEditSheet</name>
+    <number>1</number>
+    <className>XWiki.SheetDescriptorClass</className>
+    <guid>bc5299c4-a9c4-43de-97cc-4cb52a4c248a</guid>
+    <class>
+      <name>XWiki.SheetDescriptorClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <action>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>action</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Action</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </action>
+    </class>
+    <property>
+      <action>edit</action>
+    </property>
+  </object>
+</xwikidoc>

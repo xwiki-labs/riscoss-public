@@ -1,0 +1,445 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformDataCollectorCode</web>
+  <name>DataCollectorManager</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>xwiki:XWiki.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1357696926000</date>
+  <contentUpdateDate>1357696926000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity output="false"}}
+## -*- Mode:Velocity
+## Data Collector Configuration.
+##
+#set($EVAL_GROOVY_PG  = "RISCOSSPlatformRiskAnalysisManagerCode.EvaluateGroovy")
+#set($THIS_SCRIPT_PG  = "RISCOSSPlatformDataCollectorCode.DataCollectorManager")
+#set($AJAX_PG         = "RISCOSSPlatformDataCollectorCode.DataCollectorManagerAjax")
+#set($SCHEDULER_PG    = "RISCOSSPlatformDataCollectorCode.DataCollectorScheduler")
+#set($DATA_COL_CLS_PG = "RISCOSSPlatformDataCollectorCode.DataCollectorClass")
+#set($ENTITY_CLS_PG   = "RISCOSSPlatformLayerManagerCode.EntityClass")
+
+## Load the jsx which this code will send data to.
+$xwiki.jsx.use($THIS_SCRIPT_PG, {"minify":"false"})
+#set ($analyserAPI = $xwiki.parseGroovyFromPage($EVAL_GROOVY_PG))
+
+## The final output
+#set ($outConf = {})
+
+#if ("$!request.getParameter('entityDoc')" != "")
+  #set($entityDoc = $xwiki.getDocument($request.getParameter('entityDoc')))
+#else
+  #set($entityDoc = $doc)
+#end
+
+## URL for removing objects, used by the jsx
+$outConf.put("ajaxURL", $xwiki.getURL($AJAX_PG, 'get'))
+$outConf.put("displayURL", $xwiki.getURL($THIS_SCRIPT_PG, 'get'))
+$outConf.put("entityDoc", $entityDoc.getFullName())
+$outConf.put("canEdit", $xwiki.hasAccessLevel('edit', $xcontext.getUser(), $entityDoc))
+
+## List of data collectors
+#set ($collectors = [])
+$outConf.put("collectors", $collectors)
+
+#set($schedulesList = $entityDoc.getObjects($SCHEDULER_PG))
+#set($schedulesMap = {})
+#foreach($s in $schedulesList)
+  #if("$!s.getProperty('collectorName')" != "")
+    $schedulesMap.put($s.getProperty("collectorName").getValue(), $s)
+  #end
+#end
+
+#set($entityObj = $entityDoc.getObject($ENTITY_CLS_PG))
+#set($layer = $entityObj.getProperty("layer").getValue())
+
+#set($collectorDocNames =
+  $services.query.xwql("from doc.object($DATA_COL_CLS_PG) as x where x.layer = :layer").bindValue("layer", $layer).execute())
+#set($autoEnableDataCollectors = "$!request.getParameter('autoEnableDataCollectors')")
+#foreach($collectorName in $collectorDocNames)
+  #set($collectorOut = {})
+  $collectors.add($collectorOut)
+  #set($col = $xwiki.getDocument($collectorName))
+  #set($cobj = $entityDoc.getObject($collectorName))
+
+  $collectorOut.put("title", $col.getTitle())
+  $collectorOut.put("fullName", $col.getFullName())
+
+  #set($schedule = $schedulesMap.get($col.getFullName()))
+  #if ("$!schedule" == "")
+    ## We're not going to save this object at the moment, just make it ready to save later...
+    #set($schedule = $entityDoc.newObject($SCHEDULER_PG))
+    #if($autoEnableDataCollectors.indexOf($col.getFullName()))
+      $collectorOut.put('enabled', 'true')
+    #end
+  #else
+    $collectorOut.put('enabled', 'true')
+  #end
+  $collectorOut.put("frequency_edit", "$!schedule.display('frequency', 'edit')")
+  $collectorOut.put("frequency_view", "$!schedule.getProperty('frequency').getValue()")
+  $collectorOut.put("timeLastRun", "$!schedule.getProperty('timeLastRun').getValue()")
+
+  #set($props = [])
+  $collectorOut.put("properties", $props)
+
+  #set($collectorProps = $col.getxWikiClass().getEnabledProperties())
+  #foreach($cp in $collectorProps)
+    #set($prop = {})
+    $props.add($prop)
+    $prop.put("name", "$cp.getName()")
+    $prop.put("prettyName", $cp.getPrettyName())
+    $prop.put("type", $cp.getType())
+    #if ("$!cobj" != "")
+      $prop.put("value", $cobj.getProperty($cp.getName()).getValue())
+    #end
+  #end
+#end
+{{/velocity}}
+{{velocity}}## Data Collector Output, this is picked up by the jsx javascript.
+{{html clean="false"}}
+&lt;div class="data-collectors" style="display:none;">$escapetool.url($jsontool.serialize($outConf))&lt;/div>
+{{/html}}{{/velocity}}
+</content>
+  <object>
+    <name>RISCOSSPlatformDataCollectorCode.DataCollectorManager</name>
+    <number>1</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>d3a9c326-4889-43af-a066-625c5c2877fc</guid>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <property>
+      <cache>forbid</cache>
+    </property>
+    <property>
+      <code>require(['jquery'], function ($) {
+
+  var MESSAGES = {
+    dataCollectors: 'Data Collectors',
+    deletingObject: 'Deleting Object',
+    doneDeletingObject: 'Done',
+    errorDeletingObject: 'Error',
+    rerunningCollector: 'Rerunning collector',
+    doneRerunningCollector: 'Done',
+    errorRerunningCollector: 'Error',
+    frequency: 'Frequency',
+    running: 'Running...',
+    rerun: "Rerun",
+    timeLastCollected: "Time Last Collected",
+    collectorFrequency: "Collection Frequency",
+    collectorName: "Data Collector Name",
+    errFailedToRedisplayTable: "Failed to redisplay table"
+  };
+
+  var RERUN_ICON = '/' + XWiki.webapppath + 'resources/icons/silk/arrow_rotate_clockwise.png';
+
+  var uid = function () { return 'uid-' + Math.random().toString(32).substring(2); };
+  var appendElem = function ($container, type, id) {
+    id = id || uid();
+    $container.append("&lt;"+type+" id="+id+">&lt;/"+type+">");
+    return $('#'+id);
+  };
+
+  var toggleHidden = function ($elem) {
+    if ($elem.attr('style') === 'display:none;') {
+      $elem.removeAttr('style');
+      $elem.find('.post-input[data-name]').each(function (num, el) {
+        var $el = $(el);
+        $el.attr('name', $el.attr('data-name'));
+      });
+    } else {
+      $elem.attr('style', 'display:none;');
+      // stash the 'name' field in data-name and remove it so it will not create a new obj.
+      $elem.find('.post-input[name]').each(function (num, el) {
+        var $el = $(el);
+        $el.attr('data-name', $el.attr('name'));
+        $el.removeAttr('name');
+      });
+    }
+  };
+
+  var makeLabeledElement = function ($list, labelTxt, elementType) {
+    var id = uid();
+    var $labelDT = appendElem($list, 'dt');
+    var $label = appendElem($labelDT, 'label', id + '-label');
+    $label.attr('for', id);
+    $label.text(labelTxt);
+    var $inputDD = appendElem($list, 'dd');
+    return appendElem($inputDD, elementType, id);
+  };
+
+  var buildAjaxURL = function (conf, action, className) {
+    return conf.ajaxURL + '?xpage=plain&amp;entityDoc=' + conf.entityDoc +
+      '&amp;action=' + action + '&amp;collector=' + className;
+  };
+
+  var editCollector = function (col, $elem, config) {
+
+    var $checkbox = makeLabeledElement($elem, col.title, 'input');
+    $checkbox.attr('type', 'checkbox');
+    $checkbox.parent().css({"background-color": "#F0F0F0", "padding": "5px", "border-bottom" : "1px solid #A0A0A0"});
+    var $subsection = appendElem($checkbox.parent(), 'div');
+
+    var $list = appendElem($subsection, 'dl');
+    for (var i = 0; i &lt; col.properties.length; i++) {
+      var prop = col.properties[i];
+      var $input = makeLabeledElement($list, prop.prettyName, 'input');
+      switch (prop.type) {
+        case 'StringClass': $input.attr('type', 'text'); break;
+        case 'BooleanClass': $input.attr('type', 'checkbox'); break;
+        case 'NumberClass': $input.attr('type', 'text'); break;
+      }
+      $input.attr('class', 'post-input');
+      $input.attr('name', col.fullName + '_0_' + prop.name);
+      $input.attr('value', prop.value || '');
+    }
+
+    var $input = makeLabeledElement($list, MESSAGES.frequency, 'input');
+    var freqEdit = col.frequency_edit.replace(/^{{[^}]+}}/, '').replace(/{{[^}]+}}$/, '');
+    var $freqDD = $($input[0].parentNode);
+    var inputId = $input.attr('id');
+    $input.remove();
+    $freqDD.append(freqEdit);
+    var name = $freqDD.find('select').attr('name').replace(/_frequency$/, '_collectorName');
+    $freqDD.append('&lt;input type="hidden" name="' + name + '" value="' + col.fullName + '">');
+    $freqDD.find('select').attr('id', inputId).attr('class', 'post-input');
+    $freqDD.find('input').attr('class', 'post-input');
+
+    if (col.enabled) {
+      $checkbox.attr('checked', 'checked');
+    } else {
+      toggleHidden($subsection);
+    }
+
+    $checkbox.click(function () {
+      if (col.enabled) {
+        var inProgress = new XWiki.widgets.Notification(MESSAGES.deletingObject, "inprogress");
+        $.ajax({
+          url: buildAjaxURL(config, 'remove', col.fullName),
+          method: 'POST',
+          success: function () {
+            inProgress.hide();
+            new XWiki.widgets.Notification(MESSAGES.doneDeletingObject, "done");
+            col.enabled = false;
+          },
+          error: function (jqXHR, error) {
+            inProgress.hide();
+            new XWiki.widgets.Notification(MESSAGES.errorDeletingObject + ' ' + error, "error");
+          }
+        });
+      }
+      toggleHidden($subsection);
+    });
+  };
+
+  var edit = function (config, $elem) {
+    if (!config.collectors.length) { return; }
+    var $updateOrCreate = appendElem($elem, 'input');
+    $updateOrCreate.attr('type', 'hidden');
+    $updateOrCreate.attr('value', 'updateOrCreate');
+    $updateOrCreate.attr('name', 'objectPolicy');
+
+    var $dl = appendElem($elem, 'dl');
+    $dl.append('&lt;dt>'+MESSAGES.dataCollectors+'&lt;/dt>');
+    var $dd = appendElem($dl, 'dd');
+    for (var i = 0; i &lt; config.collectors.length; i++) {
+      editCollector(config.collectors[i], $dd, config);
+    }
+  };
+
+  var redisplay = function (config, $elem, callback) {
+    $.ajax({
+      url: config.displayURL + '?xpage=plain&amp;entityDoc=' + config.entityDoc,
+      method: 'POST',
+      success: function (data) {
+        try {
+            var parsed = parseData($(data));
+            $elem.empty();
+            view(parsed, $elem);
+        } catch (e) { console.log("error: [" + data + "]"); }
+        callback(null);
+      },
+      error: function (jqXHR, error) {
+        callback(error);
+      }
+    });
+  };
+
+  var viewCollector = function (col, $tbody, config, $elem) {
+    if (!col.enabled) { return; }
+    var $tr = appendElem($tbody, 'tr');
+    var $td = appendElem($tr, 'td');
+    $td.text(col.title);
+
+    $td = appendElem($tr, 'td');
+    $td.text(col.frequency_view);
+
+    var lastRun = MESSAGES.running;
+    if (col.timeLastRun) { lastRun = new Date(Number(col.timeLastRun)).toGMTString(); }
+    $td = appendElem($tr, 'td');
+    $td.text(lastRun);
+
+    if (!config.canEdit) { return (lastRun === MESSAGES.running); }
+
+    $td = appendElem($tr, 'td');
+    $td.append('&lt;center>&lt;img style="cursor: pointer;" src="'+RERUN_ICON+'">&lt;/img>&lt;/center>');
+    $td.find('img').click(function () {
+      var inProgress = new XWiki.widgets.Notification(MESSAGES.rerunningCollector, "inprogress");
+      var showError = function (error) {
+          inProgress.hide();
+          new XWiki.widgets.Notification(MESSAGES.errorRerunningCollector + ' ' + error, "error");
+      };
+      $.ajax({
+        url: buildAjaxURL(config, 'rerun', col.fullName),
+        method: 'POST',
+        success: function () {
+          redisplay(config, $elem, function (err) {
+              if (err) {
+                  showError(MESSAGES.errFailedToRedisplayTable);
+              } else {
+                  inProgress.hide();
+                  new XWiki.widgets.Notification(MESSAGES.doneRerunningCollector, "done");
+              }
+          });
+        },
+        error: function (jqXHR, error) {
+          showError(error);
+        }
+      });
+    });
+
+    return (lastRun === MESSAGES.running);
+  };
+
+  var parseData = function ($elem) {
+    return JSON.parse(decodeURIComponent($elem.text().replace(/\+/g, '%20')));
+  };
+
+  var view = function (config, $elem) {
+    if (!config.collectors.length) { return; }
+    $elem.append('&lt;h1>'+MESSAGES.dataCollectors+'&lt;/h1>');
+    var $table = appendElem($elem, 'table');
+    var $tbody = appendElem($table, 'tbody');
+    var $headerTr = appendElem($tbody, 'tr');
+    var $th = appendElem($headerTr, 'th');
+    $th.text(MESSAGES.collectorName);
+    $th = appendElem($headerTr, 'th');
+    $th.text(MESSAGES.collectorFrequency);
+    $th = appendElem($headerTr, 'th');
+    $th.text(MESSAGES.timeLastCollected);
+    if (config.canEdit) {
+      $th = appendElem($headerTr, 'th');
+      $th.text(MESSAGES.rerun);
+    }
+    var needsRecheck = 0;
+    for (var i = 0; i &lt; config.collectors.length; i++) {
+      needsRecheck |= viewCollector(config.collectors[i], $tbody, config, $elem);
+    }
+    if (needsRecheck) {
+        setTimeout(function () { redisplay(config, $elem, function () { }); }, 10000);
+    }
+  };
+
+  var $elem = $('.data-collectors');
+  var config = parseData($elem);
+  $elem.text('');
+  $elem.removeAttr('style');
+  $elem.append('&lt;hr />');
+
+  if (XWiki.contextaction === 'edit') {
+    edit(config, $elem);
+  } else {
+    view(config, $elem);
+  }
+});
+</code>
+    </property>
+    <property>
+      <name></name>
+    </property>
+    <property>
+      <parse>0</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+</xwikidoc>

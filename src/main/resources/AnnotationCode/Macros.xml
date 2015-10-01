@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>AnnotationCode</web>
+  <name>Macros</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197413000</creationDate>
+  <parent>AnnotationCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1300358056000</date>
+  <contentUpdateDate>1300358056000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>
+{{velocity filter="none" output="false"}}
+#set($restURL = "${request.contextPath}/rest")
+## Retrieve the annotation class from the configuration
+#set($config = 'AnnotationCode.AnnotationConfig')
+#set($annotationClassDocName = $xwiki.getDocument($config).getObject($config).getProperty('annotationClass').value)
+#set($annotationClass = $xwiki.getDocument("$!{annotationClassDocName}").getxWikiClass())
+##
+##
+## Do not display these 'internal' properties in the form:
+#set($hiddenProperties = ['selection', 'selectionLeftContext', 'selectionRightContext', 'originalSelection', 'target', 'date', 'author', 'state', 'replyto', 'highlight'])## TODO: 'color'
+##
+##
+#*
+ * Display a box for creating an annotation
+ *
+ * @param $space the space of the annotated document
+ * @param $page the name of the annotated document
+ * @param $annData a map containing the mandatory selection-related fields
+ * @param $docWiki the wiki of the annotated document
+ * @param $docSpace the space of the annotated document
+ * @param $docPage the page of the annotated document
+ *#
+#macro(displayCreateBox $docWiki $docSpace $docPage $annData)
+&lt;div class="annotation-box annotation-box-create">
+  #set ($fullRestURL = "${restURL}/wikis/${escapetool.url($docWiki)}/spaces/${escapetool.url($docSpace)}/pages/${escapetool.url($docPage)}/annotations?media=json")
+  &lt;form method="POST" action="$response.encodeURL($fullRestURL)">
+    &lt;div class="hidden">
+      #foreach($field in $annData.keySet())
+         &lt;input type="hidden" name="${field}" value="$!{escapetool.xml($annData.get(${field}))}"/>
+      #end
+    &lt;/div>
+    #displayAnnotation($annData, 'create')
+    #displayAnnotationBoxButtons('create')
+  &lt;/form>
+&lt;/div>
+#end
+#*
+ * Display a box for editing an annotation
+ *
+ * @param $target the annotated entity identifier
+ * @param $id the annotation identifier
+ * @param $docWiki the wiki of the annotated document
+ * @param $docSpace the space of the annotated document
+ * @param $docPage the page of the annotated document
+ *#
+#macro(displayEditBox $id $docWiki $docSpace $docPage)
+  ## TODO: unhardcode this reference generation here when document reference will be available in velo. Or build Annotation velocity API for xwiki
+  #set($ann = $services.annotations.getAnnotation("${docWiki}:${docSpace}.${docPage}", $id))
+  &lt;div class="annotation-box annotation-box-edit">
+    #if($ann)
+      #set($editURL = "${restURL}/wikis/" + $escapetool.url($docWiki) + "/spaces/" + $escapetool.url($docSpace) + "/pages/" + $escapetool.url($docPage) + "/annotation/" + $escapetool.url($ann.id) + "?method=PUT&amp;media=json")
+      &lt;form method='POST' action="${editURL}">
+        #displayAnnotation($ann, 'edit')
+        #displayAnnotationBoxButtons('edit')
+      &lt;/form>
+    #else
+      &lt;div class="box infomessage">$services.localization.render('annotations.action.edit.error.notfound')&lt;/div>
+    #end
+  &lt;/div>
+#end
+#*
+ * Display a box containing the annotation
+ *
+ * @param $target the annotated entity identifier
+ * @param $id the annotation identifier
+ * @param $docWiki the wiki of the annotated document
+ * @param $docSpace the space of the annotated document
+ * @param $docPage the page of the annotated document
+ *#
+#macro(displayViewBox $id $docWiki $docSpace $docPage)
+  ## TODO: unhardcode this reference generation here when document reference will be available in velo. Or build Annotation velocity API for xwiki
+  #set($ann = $services.annotations.getAnnotation("${docWiki}:${docSpace}.${docPage}", $id))
+  &lt;div class="annotation-box annotation-box-view">
+    #if ($ann)
+      #*&lt;div class="links">
+        &lt;a href="#" class='annotation-view-hide'>$services.localization.render('annotations.action.view.hide.text')&lt;/a>
+      &lt;/div>*#
+      ##&lt;div class="clearfloats">&lt;/div>
+      #displayAnnotation($ann $mode $docWiki $docSpace $docPage)
+    #else
+      &lt;div class="box infomessage">$services.localization.render('annotations.action.view.error.notfound')&lt;/div>
+    #end
+  &lt;/div>
+#end
+##
+##
+##
+#*
+ * Display form buttons
+ *
+ * @param $mode 'create' or 'edit'
+ *#
+#macro(displayAnnotationBoxButtons $mode)
+  &lt;div class="buttons">
+    &lt;span class='buttonwrapper'>&lt;input type="submit" class='button' value='$services.localization.render("annotations.action.${mode}.submit.text")'/>&lt;/span>
+    &lt;span class='buttonwrapper'>&lt;input type="reset" class='button secondary' value='$services.localization.render("annotations.action.${mode}.cancel.text")'/>&lt;/span>
+  &lt;/div>
+#end
+##
+##
+#**
+ * Display an annotation
+ *
+ * @param $ann the annotation object
+ * @param $mode view (default), list, create or edit
+ *#
+#macro(displayAnnotation $ann $mode $docWiki $docSpace $docPage)
+  #if(!$listtool.contains(['view', 'list', 'create', 'edit'], "$!{mode}"))
+    #set($mode = 'view')
+  #end
+  &lt;div class="annotation $!{ann.state}" id="annotation_${mode}_$!{ann.id}">
+    &lt;div class="annotationAvatar">#mediumUserAvatar($ann.author)&lt;/div>
+    &lt;div class="annotationHeader">
+      #displayAnnotationTitle($ann)
+      #displayAnnotationToolbox($ann $mode $docWiki $docSpace $docPage)
+    &lt;/div>
+    &lt;div class="annotationContent">
+      #displayAnnotationBody($ann $mode)
+      #if ($mode == 'view' &amp;&amp; $annotationClassDocName == 'XWiki.XWikiComments')
+        #set($annDocReference = $services.model.createDocumentReference($docWiki, $docSpace, $docPage))
+        #set($annoDoc = $xwiki.getDocument($annDocReference))
+        #set($repliesList = $annoDoc.getObjects('XWiki.XWikiComments', 'replyto', $ann.id))
+        #if($repliesList.size() > 0)
+          &lt;a href="#xwikicomment_${ann.id}">$services.localization.render('annotations.action.view.thread')&lt;/a>
+        #end
+      #end
+    &lt;/div>
+  &lt;/div>
+#end
+##
+##
+#**
+ * Display the annotation title, containing author and date
+ *
+ * @param $ann the annotation object
+ *#
+#macro(displayAnnotationTitle $ann)
+  &lt;div class="annotationTitle">
+    &lt;span class="annotationAuthor">$!xwiki.getUserName($ann.author)&lt;/span>##
+## Do not indent this, or the comma will be misplaced
+#if("$!{ann.date}" != '')&lt;span class="sep">, &lt;/span>&lt;span class="annotationDate">$xwiki.formatDate($ann.date, "dd/MM/yyyy")&lt;/span>#end
+  &lt;/div>
+#end
+##
+##
+#**
+ * Display the annotation toolbox:
+ * - 'verify' button for modified annotations
+ * - 'edit' button for annotation authors and other users with edit rights, unless already editing
+ * - 'delete' button for annotation authors and other users with edit rights
+ *
+ * @param $ann the annotation object
+ * @param $mode view (default), list, create or edit
+ * @param $docWiki the wiki of the annotated document
+ * @param $docSpace the space of the annotated document
+ * @param $docPage the page of the annotated document
+ *#
+#macro(displayAnnotationToolbox $ann $mode $docWiki $docSpace $docPage)
+  &lt;span class="annotationTools">
+    #if($mode != 'create' &amp;&amp; $services.annotations.canEditAnnotation($ann.id, $docWiki, $docSpace, $docPage))
+      #set($editURL = "${restURL}/wikis/" + $escapetool.url($docWiki) + "/spaces/" + $escapetool.url($docSpace) + "/pages/" + $escapetool.url($docPage) + "/annotation/" + $escapetool.url($ann.id) + "?method=PUT&amp;media=json")
+      #if ("$!{ann.state}" == 'UPDATED')
+        &lt;span class="tool accept">&lt;a class="validate" href="${editURL}" title="$services.localization.render('annotations.action.validate.tooltip')">$services.localization.render('annotations.action.validate.text')&lt;/a>&lt;/span>
+      #end
+      #if ($mode != 'edit')
+        ## Comment reply button only for default annotations.
+        #if ("$!annotationClassDocName" == 'XWiki.XWikiComments')
+          #set($annDocReference = $services.model.createDocumentReference($docWiki, $docSpace, $docPage))
+          #set($xredirect = $!escapetool.xml($request.get('xredirect')))
+          #if("$!xredirect" == '')
+            #set($xredirect = "$xwiki.getURL($annDocReference, 'view', $!{request.queryString})")
+          #end
+          ## add "comment reply" button
+          &lt;span class="tool annotationReply commenttool commentreply">&lt;a class="commentreply" href="${xredirect}#xwikicomment_${ann.id}" title="$services.localization.render('core.viewers.comments.reply')">$services.localization.render('core.viewers.comments.reply')&lt;/a>&lt;/span>
+        #end
+        ## use an edit url just for the fanciness of it, it won't really be used in this case. An edit form will be loaded
+        &lt;span class="tool annotationEdit">&lt;a class="edit" href="${editURL}" title="$services.localization.render('annotations.action.edit.tooltip')">$services.localization.render('annotations.action.edit.text')&lt;/a>&lt;/span>
+      #end
+      #set($deleteURL = "${restURL}/wikis/" + $escapetool.url($docWiki) + "/spaces/" + $escapetool.url($docSpace) + "/pages/" + $escapetool.url($docPage) + "/annotation/" + $escapetool.url($ann.id) + "?method=DELETE&amp;media=json")
+      &lt;span class="tool delete">&lt;a class="delete" href="${deleteURL}" title="$services.localization.render('annotations.action.delete.tooltip')">$services.localization.render('annotations.action.delete.text')&lt;/a>&lt;/span>
+    #end
+  &lt;/span>
+#end
+##
+##
+#**
+ * Display the annotation body, containing all but the hidden fields.
+ * For annotation lists (which are not displayed near the actual annotation text), also display
+ * in a block quote the corresponding annotated extract.
+ * Depending on the mode, display for each field label + input (edit, create) or the field value (view, list).
+ *
+ * @param $ann the annotation object
+ * @param $mode view (default), list, create or edit
+ *#
+#macro(displayAnnotationBody $ann $mode)
+  #if ($mode == 'list')
+      #if ($ann.state == 'ALTERED')
+        &lt;div class="annotationOriginalSelection">$services.localization.render('annotations.altered.text')&lt;/div>
+      #end
+    &lt;blockquote class="annotatedText">$!escapetool.xml($ann.selection)&lt;/blockquote>
+  #end
+  ## in view mode and list mode, also display the original selection of this annotation
+  #if (($mode == 'view' || $mode == 'list') &amp;&amp; $ann.state == 'UPDATED')
+    &lt;div class="annotationOriginalSelection">$services.localization.render('annotations.updated.text')&lt;/div>
+    &lt;blockquote class="annotatedText originalAnnotatedText">$!escapetool.xml($ann.originalSelection)&lt;/blockquote>
+  #end
+  ## Fake object that allows to use the API to generate the display
+  #set($fakeObj = $doc.newObject($annotationClassDocName))
+  #set($properties = $annotationClass.properties)
+  #if ($properties.size() == $hiddenProperties.size() + 1)
+    ## Do not show property labels if there's only one property to display
+    ## get the only property that is to be displayed
+    #set($onlyProperty = '')
+    #foreach($prop in $properties)
+      #if(!$listtool.contains($hiddenProperties, $prop.name))
+        #set($onlyProperty = $prop)
+        #break
+      #end
+    #end
+    #set($discard = $fakeObj.set($onlyProperty.name, "$!{ann.get($onlyProperty.name)}"))
+    &lt;div class="annotationText">
+      #if($mode == 'edit' || $mode == 'create')
+        $doc.displayEdit($onlyProperty, '', $fakeObj)
+      #else
+        $doc.displayView($onlyProperty, '', $fakeObj)
+      #end
+    &lt;/div>
+  #else
+  &lt;dl>
+  #foreach($prop in $properties)
+    #if (!$listtool.contains($hiddenProperties, $prop.name))
+      #set($discard = $fakeObj.set($prop.name, "$!{ann.get($prop.name)}"))
+      &lt;dt class="annotationLabel">&lt;label for="$prop.name">$prop.prettyName&lt;/label>&lt;/dt>
+      #if($mode == 'edit' || $mode == 'create')
+        &lt;dd>$doc.displayEdit($prop, '', $fakeObj)&lt;/dd>
+      #else
+        &lt;dd>$doc.displayView($prop, '', $fakeObj)&lt;/dd>
+      #end
+    #end
+  #end
+  &lt;/dl>
+  #end
+#end
+{{/velocity}}</content>
+</xwikidoc>

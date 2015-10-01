@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformAnalysers</web>
+  <name>NodeAnalyser</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>xwiki:XWiki.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1430839817000</date>
+  <contentUpdateDate>1430839817000</contentUpdateDate>
+  <version>2.1</version>
+  <title>a toy risk evaluator for testing and development purposes</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{info}}This is a toy evaluation engine for testing and development{{/info}}</content>
+  <attachment>
+    <filename>analyser.js</filename>
+    <author>xwiki:XWiki.Admin</author>
+    <date>1364415417000</date>
+    <version>1.1</version>
+    <comment/>
+    <content>LyoKICogTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlICJMaWNlbnNlIik7CiAqIHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS4KICogWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0CiAqCiAqICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMAogKgogKiBVbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlCiAqIGRpc3RyaWJ1dGVkIHVuZGVyIHRoZSBMaWNlbnNlIGlzIGRpc3RyaWJ1dGVkIG9uIGFuICJBUyBJUyIgQkFTSVMsCiAqIFdJVEhPVVQgV0FSUkFOVElFUyBPUiBDT05ESVRJT05TIE9GIEFOWSBLSU5ELCBlaXRoZXIgZXhwcmVzcyBvciBpbXBsaWVkLgogKiBTZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kCiAqIGxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLgogKi8KdmFyIEZzID0gcmVxdWlyZSgnZnMnKTsKCnZhciBCRUdJTl9NQVJLRVIgPSAiLS0tLS1CRUdJTiBBTkFMWVNJUyBPVVRQVVQtLS0tLSI7CnZhciBFTkRfTUFSS0VSID0gIi0tLS0tRU5EIEFOQUxZU0lTIE9VVFBVVC0tLS0tIjsKCnZhciByZWFkRmlsZSA9IGZ1bmN0aW9uIChmaWxlTmFtZSwgY2IpIHsKICAgIGlmIChmaWxlTmFtZSA9PT0gJy0nKSB7CiAgICAgICAgcHJvY2Vzcy5zdGRpbi5yZXN1bWUoKTsKICAgICAgICBwcm9jZXNzLnN0ZGluLnNldEVuY29kaW5nKCd1dGY4Jyk7CiAgICAgICAgdmFyIGRhdGEgPSAiIjsKICAgICAgICBwcm9jZXNzLnN0ZGluLm9uKCdkYXRhJywgZnVuY3Rpb24oY2h1bmspIHsgZGF0YSArPSBjaHVuazsgfSk7CiAgICAgICAgcHJvY2Vzcy5zdGRpbi5vbignZW5kJywgZnVuY3Rpb24oKSB7IGNiKGRhdGEpOyB9KTsKICAgIH0gZWxzZSB7CiAgICAgICAgRnMucmVhZEZpbGUoZmlsZU5hbWUsIGZ1bmN0aW9uIChlcnIsIHJldCkgewogICAgICAgICAgICBpZiAoZXJyKSB7IHRocm93IGVycjsgfQogICAgICAgICAgICByZXR1cm4gY2IocmV0LnRvU3RyaW5nKCd1dGY4JykpOwogICAgICAgIH0pOwogICAgfQp9OwoKdmFyIHByaW50ID0gZnVuY3Rpb24gKGpzb24pIHsKICAgIGNvbnNvbGUubG9nKCItLS0tLUJFR0lOIEFOQUxZU0lTIE9VVFBVVC0tLS0tIik7CiAgICBjb25zb2xlLmxvZyhKU09OLnN0cmluZ2lmeShqc29uLCBudWxsLCAnICAnKSk7CiAgICBjb25zb2xlLmxvZygiLS0tLS1FTkQgQU5BTFlTSVMgT1VUUFVULS0tLS0iKTsKfTsKCnZhciBnZXRJbnB1dHMgPSBmdW5jdGlvbiAobW9kZWwpIHsKICAgIHZhciBtb2RlbCA9IHJlcXVpcmUobW9kZWwpOwogICAgcHJpbnQoe3Jlc3VsdDogbW9kZWwuaW5wdXRzfSk7Cn07Cgp2YXIgZ2V0T3V0cHV0cyA9IGZ1bmN0aW9uIChtb2RlbCkgewogICAgdmFyIG1vZGVsID0gcmVxdWlyZShtb2RlbCk7CiAgICBwcmludCh7cmVzdWx0OiBtb2RlbC5vdXRwdXRzfSk7Cn07Cgp2YXIgZXZhbHVhdGUgPSBmdW5jdGlvbiAobW9kZWwsIGRhdGEpIHsKICAgIHZhciBtb2RlbCA9IHJlcXVpcmUobW9kZWwpOwogICAgcmVhZEZpbGUoZGF0YSwgZnVuY3Rpb24gKGRhdCkgewogICAgICAgIHZhciBiaSA9IGRhdC5pbmRleE9mKEJFR0lOX01BUktFUik7CiAgICAgICAgaWYgKGJpICE9PSAtMSkgeyBkYXQgPSBkYXQuc3Vic3RyaW5nKGJpICsgQkVHSU5fTUFSS0VSLmxlbmd0aCk7IH0KICAgICAgICB2YXIgZWkgPSBkYXQuaW5kZXhPZihFTkRfTUFSS0VSKTsKICAgICAgICBpZiAoZWkgIT09IC0xKSB7IGRhdCA9IGRhdC5zdWJzdHJpbmcoMCwgZWkpOyB9CiAgICAgICAgdmFyIGpzb24gPSBKU09OLnBhcnNlKGRhdCk7CiAgICAgICAgcHJpbnQoe3Jlc3VsdDogbW9kZWwuZXZhbHVhdGUoanNvbil9KTsKICAgIH0pOwp9OwoKdmFyIHVzYWdlID0gZnVuY3Rpb24gKGFyZ3YpIHsKICAgIGNvbnNvbGUubG9nKCJVc2FnZTogZXZhbHVhdG9yIGdldElucHV0cyA8bW9kZWw+ICAgICAgICAgICAgICMgcHJpbnQgdGhlIG1vZGVsJ3MgaW5wdXRzIik7CiAgICBjb25zb2xlLmxvZygiICAgICAgIGV2YWx1YXRvciBnZXRPdXRwdXRzIDxtb2RlbD4gICAgICAgICAgICAjIHByaW50IHRoZSBtb2RlbCdzIG91dHB1dHMiKTsKICAgIGNvbnNvbGUubG9nKCIgICAgICAgZXZhbHVhdG9yIGV2YWx1YXRlIDxtb2RlbD4gPGRhdGFzb3VyY2U+ICMgcnVuIGFuIGV2YWx1YXRpb24iKTsKICAgIGNvbnNvbGUubG9nKCJJbnB1dCBhbmQgb3V0cHV0IHZhbHVlcyBhcmUgc2FtcGxlIGRhdGEgd2hpY2ggY29uc3RpdHV0ZXMgYSBcInVua25vd25cIiB2YWx1ZXMiKTsKICAgIGNvbnNvbGUubG9nKCJgZXZhbHVhdG9yIGdldElucHV0cyB8IGV2YWx1YXRvciBldmFsdWF0ZWAgd2lsbCBydW4gYW4gZXZhbHVhdGlvbiBvbiAiICsKICAgICAgICAgICAgICAgICJlbnRpcmVseSBmYWtlIGRhdGEgYW5kIHRoZSByZXN1bHQgc2hvdWxkIGJlIGEgY2xlYXIgXCJJIGRvbid0IGtub3dcIiIpOwp9OwoKdmFyIG1haW4gPSBmdW5jdGlvbiAoYXJndikgewogICAgdmFyIGFyZzMgPSBhcmd2LnBvcCgpOwogICAgdmFyIGFyZzIgPSBhcmd2LnBvcCgpOwogICAgdmFyIGFyZzEgPSBhcmd2LnBvcCgpOwogICAgaWYgKGFyZzEgPT09ICdldmFsdWF0ZScpIHsgcmV0dXJuIGV2YWx1YXRlKGFyZzIsIGFyZzMpOyB9CiAgICBpZiAoYXJnMiA9PT0gJ2dldElucHV0cycpIHsgcmV0dXJuIGdldElucHV0cyhhcmczKTsgfQogICAgaWYgKGFyZzIgPT09ICdnZXRPdXRwdXRzJykgeyByZXR1cm4gZ2V0T3V0cHV0cyhhcmczKTsgfQogICAgcmV0dXJuIHVzYWdlKGFyZ3YpOwp9OwptYWluKHByb2Nlc3MuYXJndik7Cg==</content>
+    <filesize>2899</filesize>
+  </attachment>
+  <object>
+    <name>RISCOSSPlatformAnalysers.NodeAnalyser</name>
+    <number>1</number>
+    <className>RISCOSSPlatformCode.AnalyserClass</className>
+    <guid>59f99bee-c563-43bf-9ba4-9f0b9bd194b5</guid>
+    <class>
+      <name>RISCOSSPlatformCode.AnalyserClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <command>
+        <disabled>0</disabled>
+        <name>command</name>
+        <number>1</number>
+        <prettyName>Analyser execution command</prettyName>
+        <size>255</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </command>
+    </class>
+    <property>
+      <command>node analyser.js</command>
+    </property>
+  </object>
+</xwikidoc>

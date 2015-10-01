@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Stats</web>
+  <name>BestReferrers</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197410000</creationDate>
+  <parent>Stats.Referrer</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1196159621000</date>
+  <contentUpdateDate>1196159621000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Best Referrers Panel</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content/>
+  <object>
+    <name>Stats.BestReferrers</name>
+    <number>0</number>
+    <className>Panels.PanelClass</className>
+    <guid>cf7c5523-cdd7-4d89-bdf9-24901c583488</guid>
+    <class>
+      <name>Panels.PanelClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <category>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>category</name>
+        <number>5</number>
+        <prettyName>Category</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>Information|Navigation|Tools|Administration|Other</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </category>
+      <content>
+        <disabled>0</disabled>
+        <editor>Text</editor>
+        <name>content</name>
+        <number>4</number>
+        <prettyName>Content</prettyName>
+        <rows>25</rows>
+        <size>120</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </content>
+      <description>
+        <disabled>0</disabled>
+        <editor>Text</editor>
+        <name>description</name>
+        <number>3</number>
+        <prettyName>Description</prettyName>
+        <rows>5</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </description>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <type>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>type</name>
+        <number>2</number>
+        <prettyName>Panel type</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>view|edit</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </type>
+    </class>
+    <property>
+      <category>Information</category>
+    </property>
+    <property>
+      <content>{{include reference="Stats.Macros" /}}((({{velocity}}
+#panelheader($services.localization.render('xe.statistics.bestreferrers'))
+{{html wiki="true"}}
+#if ($xwiki.statsService.enabledForCurrentWiki)
+  #set ($scope = $xwiki.criteriaService.scopeFactory.ALL_PAGES)
+  #set ($period = $xwiki.criteriaService.periodFactory.ALL_TIME)
+  #set ($interval = $xwiki.criteriaService.rangeFactory.createHeadRange(5))
+  #set ($stats = $xwiki.statsService.getRefererStatistics('', $scope, $period, $interval))
+  #if ($stats.size() > 0)
+    #printRefererStats($stats)
+  #else
+    #printNoStatisticsData()
+  #end
+#else
+  #printStatisticsDisabled()
+#end
+{{/html}}
+#panelfooter()
+{{/velocity}})))</content>
+    </property>
+    <property>
+      <description>Displays the best referrers</description>
+    </property>
+    <property>
+      <name>Best Referrers</name>
+    </property>
+    <property>
+      <type>view</type>
+    </property>
+  </object>
+</xwikidoc>

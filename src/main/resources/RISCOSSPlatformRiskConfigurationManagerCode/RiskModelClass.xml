@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>RiskModelClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839814000</creationDate>
+  <parent>XWiki.XWikiClasses</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>RiskModel Class</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## Replace the default space with the space where you want your documents to be created.
+## Replace the default parent with the one of your choice and save the document.
+##
+#set($defaultSpace = $doc.space)
+#set($defaultParent = $doc.fullName)
+{{/velocity}}</content>
+  <class>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskModelClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <layer>
+      <cache>0</cache>
+      <classname>RISCOSSPlatformLayerManagerCode.LayerClass</classname>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <idField/>
+      <multiSelect>0</multiSelect>
+      <name>layer</name>
+      <number>1</number>
+      <picker>0</picker>
+      <prettyName>layer</prettyName>
+      <relationalStorage>1</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql/>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </layer>
+    <riskModel>
+      <cache>0</cache>
+      <classname>RISCOSSPlatformModelManagerCode.RiskModelClass</classname>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <idField/>
+      <multiSelect>0</multiSelect>
+      <name>riskModel</name>
+      <number>2</number>
+      <picker>0</picker>
+      <prettyName>riskModel</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql/>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </riskModel>
+  </class>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskModelClass</name>
+    <number>1</number>
+    <className>XWiki.DocumentSheetBinding</className>
+    <guid>dd9135e3-f168-4003-bb11-82669a044eac</guid>
+    <class>
+      <name>XWiki.DocumentSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>XWiki.ClassSheet</sheet>
+    </property>
+  </object>
+</xwikidoc>

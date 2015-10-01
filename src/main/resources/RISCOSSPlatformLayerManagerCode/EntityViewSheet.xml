@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformLayerManagerCode</web>
+  <name>EntityViewSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>RISCOSSPlatformLayerManagerCode.EntityClass</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <date>1441213351000</date>
+  <contentUpdateDate>1441213351000</contentUpdateDate>
+  <version>1.8</version>
+  <title>#if($doc.name == 'EntitySheet')Entity Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>true</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}&#xd;
+## -*- Mode:Velocity&#xd;
+#set($layer = $doc.getObject("RISCOSSPlatformLayerManagerCode.EntityClass").getProperty("layer").value)&#xd;
+#set($layerDocument = $xwiki.getDocument($layer))&#xd;
+$xwiki.ssx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})&#xd;
+&#xd;
+#set($class = $doc.getObject($layer).xWikiClass)&#xd;
+#foreach($prop in $class.properties)&#xd;
+  ; $prop.prettyName&#xd;
+  : $doc.display($prop.getName())&#xd;
+#end&#xd;
+&#xd;
+#if($layer != "RISCOSSPlatformLayers.UseCase")&#xd;
+----&#xd;
+&#xd;
+= Basic Risk Analysis =&#xd;
+A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern but is less thorough than an Advanced Risk Analysis based on a project //and// a use case.&#xd;
+&#xd;
+#set($EVAL_CLS = "RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass")&#xd;
+#set($query = "from doc.object(" + $EVAL_CLS + ") as ras where ras.entity = :docName")&#xd;
+#set($rasdn = $services.query.xwql($query).bindValue("docName", $doc.getFullName()).execute())&#xd;
+#set($foundEval = false)&#xd;
+#foreach($dn in $rasdn)&#xd;
+  #set($rad = $xwiki.getDocument($dn))&#xd;
+  #set($res = $rad.getObject($EVAL_CLS))&#xd;
+  #if ("$!res.getProperty('useCase')" == "")&#xd;
+      #set($RiskEvaluationViewSheet_analisysSessionDoc = $rad)&#xd;
+      #set($RiskEvaluationViewSheet_xredirect = $doc.getExternalURL())&#xd;
+      {{include reference="RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet" /}}&#xd;
+      #set($foundEval = true)&#xd;
+      #break&#xd;
+  #end&#xd;
+#end&#xd;
+#set($analysisArgs =&#xd;
+    "entity=${doc.getFullName()}&amp;" +&#xd;
+    "riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration&amp;" +&#xd;
+    "xredirect=${doc.getURL()}"&#xd;
+)&#xd;
+#set($runAnalysis = $xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', $analysisArgs))&#xd;
+#if($foundEval == false)&#xd;
+    (% class="buttonwrapper" %)((( {{html clean=false}}&lt;a href="$runAnalysis">Run Simple Analysis&lt;/a>{{/html}} )))&#xd;
+#end&#xd;
+#end&#xd;
+&#xd;
+#if ($hasEdit &amp;&amp; $layer != "RISCOSSPlatformLayers.UseCase")&#xd;
+    {{include document="RISCOSSPlatformDataCollectorCode.DataCollectorManager"/}}&#xd;
+#end&#xd;
+&#xd;
+----&#xd;
+&#xd;
+#if ($layer == "RISCOSSPlatformLayers.UseCase")&#xd;
+    {{include document="RISCOSSPlatformCode.UseCaseManager"/}}&#xd;
+#else&#xd;
+    == Collected data about this project ==&#xd;
+&#xd;
+    (% id="collected-data" data-id="${doc.name}" %)((( )))&#xd;
+    {{include reference="RISCOSSPlatformCode.DisplayCollectedData" /}}&#xd;
+#end&#xd;
+#if($hasEdit)&#xd;
+#set($xredirect = $xwiki.getDocument("Main.WebHome").getURL())&#xd;
+#set($deleteEntityURL = $xwiki.getURL("RISCOSSPlatformLayerManagerCode.DeleteEntity","view","entity=${doc.getFullName()}"))&#xd;
+{{html clean="false"}}&#xd;
+&lt;div class="buttonwrapper">&#xd;
+&lt;span class="wikiexternallink">&#xd;
+&lt;a href="$doc.getExternalURL('edit')">Edit entity&lt;/a>&#xd;
+&lt;/span> | &#xd;
+&lt;span class="wikiexternallink">&#xd;
+&lt;a href="$deleteEntityURL">Delete entity&lt;/a>&#xd;
+&lt;/span>&#xd;
+&lt;/div>&#xd;
+{{/html}}&#xd;
+#end&#xd;
+{{/velocity}}&#xd;
+</content>
+  <object>
+    <name>RISCOSSPlatformLayerManagerCode.EntityViewSheet</name>
+    <number>1</number>
+    <className>XWiki.SheetDescriptorClass</className>
+    <guid>0e364f70-42a5-4937-9006-aafc2eaaaa6d</guid>
+    <class>
+      <name>XWiki.SheetDescriptorClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <action>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>action</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Action</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </action>
+    </class>
+    <property>
+      <action>view</action>
+    </property>
+  </object>
+</xwikidoc>

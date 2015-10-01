@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformCode</web>
+  <name>DataInterpreterAssociationClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839813000</creationDate>
+  <parent>xwiki:XWiki.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1357696926000</date>
+  <contentUpdateDate>1357696926000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{info}}
+This class associates a DataInterpreter with the RiskConfiguration, objects of this class
+should be attached to the RiskConfiguration document
+{{/info}}
+</content>
+  <class>
+    <name>RISCOSSPlatformCode.DataInterpreterAssociationClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <interpreterName>
+      <disabled>0</disabled>
+      <name>interpreterName</name>
+      <number>1</number>
+      <prettyName>Document name of Data Interpreter</prettyName>
+      <size>255</size>
+      <unmodifiable>0</unmodifiable>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </interpreterName>
+  </class>
+</xwikidoc>

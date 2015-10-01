@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>Main</web>
+  <name>RssFeeds</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197396000</creationDate>
+  <parent>Main.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1364570945000</date>
+  <contentUpdateDate>1364570945000</contentUpdateDate>
+  <version>1.1</version>
+  <title>$services.localization.render('xe.rss.feeds')</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+{{translation key="xe.rss.feeds.description"/}}
+#set($search = "[[Main.Search]]")
+#set($tags = "[[Main.Tags]]")
+
+* {{html}}&lt;strong>&lt;a href="$xwiki.getURL('Main.WebRss', 'view', 'xpage=plain')">&lt;img src="$xwiki.getSkinFile('icons/xwiki/rss-mini.png')" title="$services.localization.render('xe.rss.pages.modified')" alt=""/>&lt;/a> &lt;a href="$xwiki.getURL('Main.WebRss', 'view', 'xpage=plain')">$services.localization.render('xe.rss.global')&lt;/a>&lt;/strong> $services.localization.render('xe.rss.global.description'){{/html}}
+* {{html}}&lt;strong>&lt;a href="$xwiki.getURL('Blog.GlobalBlogRss', 'view', 'xpage=plain')">&lt;img src="$xwiki.getSkinFile('icons/xwiki/rss-mini.png')" title="$services.localization.render('xe.rss.blog.feed')" alt=""/>&lt;/a> &lt;a href="$xwiki.getURL('Blog.GlobalBlogRss', 'view', 'xpage=plain')">$services.localization.render('xe.rss.blog')&lt;/a>&lt;/strong> $services.localization.render('xe.rss.blog.description'){{/html}}
+* **[[{{translation key="xe.rss.search"/}}>>Main.Search]]** $services.localization.render('xe.rss.search.description', [$search])
+* **[[{{translation key="xe.rss.tags"/}}>>Main.Tags]]** $services.localization.render('xe.rss.tags.description', [$tags])
+{{/velocity}}</content>
+</xwikidoc>

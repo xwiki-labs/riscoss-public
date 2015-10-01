@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>XWiki</web>
+  <name>AdminTemplatesSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197399000</creationDate>
+  <parent>XWiki.XWikiPreferences</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1364566487000</date>
+  <contentUpdateDate>1364566487000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Admin Templates Sheet</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{velocity}}
+(% class="xform half" %)(((
+== {{translation key="admin.templates.createprovider"/}} ==
+
+{{html}}
+  &lt;form action="$doc.getURL('create')" method="post">
+    &lt;dl>
+      &lt;dt>&lt;label for="space">$services.localization.render('admin.templates.createprovider.space')&lt;/label>&lt;/dt>
+      &lt;dd>&lt;input type="text" id="space" name="space" value="XWiki" size="8"/>&lt;/dd>
+      &lt;dt>&lt;label for="page">$services.localization.render('admin.templates.createprovider.page')&lt;/label>&lt;/dt>
+      &lt;dd>&lt;input type="text" id="page" name="page" value="$services.localization.render('admin.templates.createprovider.defaultdocname')" class="withTip"'/>&lt;/dd>
+    &lt;/dl>
+    &lt;div class="buttons">
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
+      &lt;input type="hidden" name="parent" value="XWiki.TemplateProviderClass"/>
+      &lt;input type="hidden" name="template" value="XWiki.TemplateProviderTemplate"/>
+      &lt;span class="buttonwrapper">&lt;input id="createTemplateProvider" type="submit" value="$services.localization.render('admin.templates.createprovider.create')" class="button"/>&lt;/span>
+    &lt;/div>
+  &lt;/form>
+{{/html}}
+#set($availableProviders = $services.query.hql(", BaseObject obj where doc.fullName=obj.name and obj.className='XWiki.TemplateProviderClass' and doc.fullName!='XWiki.TemplateProviderTemplate'").execute())
+#if($availableProviders.size() > 0)
+
+== {{translation key="admin.templates.providerslist"/}} ==
+
+  #foreach($providerFullname in $availableProviders)
+    * [[$xwiki.getDocument($providerFullname).getTitle()>>$providerFullname]]
+  #end
+#end
+)))
+{{/velocity}}</content>
+</xwikidoc>

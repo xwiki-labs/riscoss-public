@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>RiskCategoryEditSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839818000</creationDate>
+  <parent>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>#if($doc.name == 'RiskCategorySheet')RiskCategory Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## You can modify this page to customize the presentation of your object.
+## At first you should keep the default presentation and just save the document.
+
+#set($class = $doc.getObject('RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass').xWikiClass)
+#foreach($prop in $class.properties)
+  ; $prop.prettyName
+  : $doc.display($prop.getName())
+#end
+{{/velocity}}</content>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryEditSheet</name>
+    <number>1</number>
+    <className>XWiki.SheetDescriptorClass</className>
+    <guid>65d81789-a65e-408b-a72c-08e99849e07f</guid>
+    <class>
+      <name>XWiki.SheetDescriptorClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <action>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>action</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Action</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </action>
+    </class>
+    <property>
+      <action>edit</action>
+    </property>
+  </object>
+</xwikidoc>

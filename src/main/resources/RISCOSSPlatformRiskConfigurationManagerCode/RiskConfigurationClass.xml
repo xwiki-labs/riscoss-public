@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>RiskConfigurationClass</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839814000</creationDate>
+  <parent>XWiki.XWikiClasses</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>RiskConfiguration Class</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+## Replace the default space with the space where you want your documents to be created.
+## Replace the default parent with the one of your choice and save the document.
+##
+#set($defaultSpace = $doc.space)
+#set($defaultParent = $doc.fullName)
+{{/velocity}}</content>
+  <class>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationClass</name>
+    <customClass/>
+    <customMapping/>
+    <defaultViewSheet/>
+    <defaultEditSheet/>
+    <defaultWeb/>
+    <nameField/>
+    <validationScript/>
+    <autoEvaluate>
+      <disabled>0</disabled>
+      <displayFormType>select</displayFormType>
+      <displayType>checkbox</displayType>
+      <name>autoEvaluate</name>
+      <number>4</number>
+      <prettyName>Automatically run risk evaluation for all compatible entities</prettyName>
+      <unmodifiable>0</unmodifiable>
+      <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+    </autoEvaluate>
+    <description>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <editor>Text</editor>
+      <name>description</name>
+      <number>1</number>
+      <picker>0</picker>
+      <prettyName>Description</prettyName>
+      <rows>5</rows>
+      <size>40</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+    </description>
+    <goalModel>
+      <cache>0</cache>
+      <classname/>
+      <customDisplay>{{velocity}}
+#set($propertyClass = $object.getxWikiClass().get($name))
+#if ($type == 'edit')
+  #set($selectName = "${prefix}${name}")
+  {{html clean="false" wiki="false"}}
+    &lt;select name="$selectName">
+    #if($!value == "")
+      &lt;option value='' selected='selected'>None&lt;/option>
+    #else
+      &lt;option value=''>None&lt;/option>
+    #end
+    #foreach($key in $propertyClass.getListValues())
+      #set($checked = '')
+      #if($value == $key)
+        #set($checked = "selected='selected'")
+      #end
+      &lt;option value="$key" $checked>$key&lt;/option>
+    #end
+    &lt;/select>
+  {{/html}}
+#else
+  $doc.displayView($propertyClass, $prefix, $object)
+#end
+{{/velocity}}</customDisplay>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <idField/>
+      <multiSelect>0</multiSelect>
+      <name>goalModel</name>
+      <number>2</number>
+      <picker>0</picker>
+      <prettyName>Goal model</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql>SELECT doc.fullName FROM XWikiDocument doc, BaseObject obj WHERE doc.fullName=obj.name AND doc.space='RISCOSSPlatformGoalModels' AND obj.className='RISCOSSPlatformModelManagerCode.GoalModelClass'</sql>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </goalModel>
+    <riskCategories>
+      <cache>0</cache>
+      <classname/>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>checkbox</displayType>
+      <idField/>
+      <multiSelect>1</multiSelect>
+      <name>riskCategories</name>
+      <number>3</number>
+      <picker>0</picker>
+      <prettyName>Risk categories</prettyName>
+      <relationalStorage>1</relationalStorage>
+      <separator> </separator>
+      <separators/>
+      <size>1</size>
+      <sort>none</sort>
+      <sql>SELECT doc.fullName FROM XWikiDocument doc, BaseObject obj WHERE doc.fullName=obj.name AND doc.space='RISCOSSPlatformRiskCategories' AND obj.className='RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryClass'</sql>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <valueField/>
+      <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
+    </riskCategories>
+  </class>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationClass</name>
+    <number>1</number>
+    <className>XWiki.ClassSheetBinding</className>
+    <guid>e019627a-3a20-46c0-a2a6-8437aedc2ca5</guid>
+    <class>
+      <name>XWiki.ClassSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationViewSheet</sheet>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationClass</name>
+    <number>2</number>
+    <className>XWiki.ClassSheetBinding</className>
+    <guid>39410483-ddcc-4327-a4c3-072ad4f194e8</guid>
+    <class>
+      <name>XWiki.ClassSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationEditSheet</sheet>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationClass</name>
+    <number>3</number>
+    <className>XWiki.DocumentSheetBinding</className>
+    <guid>509ece77-3ab7-44b1-b2c4-d246de3f2305</guid>
+    <class>
+      <name>XWiki.DocumentSheetBinding</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <sheet>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>sheet</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Sheet</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </sheet>
+    </class>
+    <property>
+      <sheet>XWiki.ClassSheet</sheet>
+    </property>
+  </object>
+</xwikidoc>

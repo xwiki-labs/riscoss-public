@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformCode</web>
+  <name>NavigationMenu</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839818000</creationDate>
+  <parent>RISCOSSPlatformCode.WebHome</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <date>1443689408000</date>
+  <contentUpdateDate>1443689408000</contentUpdateDate>
+  <version>2.173</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>true</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{include document="RISCOSSPlatformCode.Macros"/}}{{velocity}}&#xd;
+## -*- Mode:Velocity&#xd;
+$xwiki.jsx.use("RISCOSSPlatformCode.Create", {"minify" : false}) ##&#xd;
+$xwiki.ssx.use("RISCOSSPlatformCode.NavigationMenu") ##&#xd;
+## Needed for the XWiki.RISCOSSPlatform.initializeCreateDialog callback&#xd;
+$xwiki.jsx.use("RISCOSSPlatformCode.ShowInDialog") ##&#xd;
+#set($mainWikiId = $services.wiki.mainWikiId) ##&#xd;
+#set($currentWikiId = $services.wiki.currentWikiId) ##&#xd;
+##&#xd;
+## Get RISCOSS platform configuration information&#xd;
+#set($confDoc = $xwiki.getDocument("RISCOSSPlatformCode.RISCOSSConfiguration"))&#xd;
+#set($superConf = $confDoc.getObject("RISCOSSPlatformCode.RISCOSSConfiguration"))&#xd;
+#set($feedbackURL = $superConf.getProperty("feedbackURL").getValue())&#xd;
+#set($expertFeedbackURL = $superConf.getProperty("expertFeedbackURL").getValue())&#xd;
+#set($privatePageURL = $xwiki.getURL('RISCOSSPlatformCode.PrivatePage'))&#xd;
+##&#xd;
+#if($isGuest)&#xd;
+##* **[[$services.localization.render("login")>>$doc.getExternalURL("login")]]**&#xd;
+## JS/CSS of the Github login functionality&#xd;
+#set($oauthPublicKey = $superConf.getProperty("oauthPublicKey").getValue())&#xd;
+#if ("$!oauthPublicKey" != '')&#xd;
+   #set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.GithubLogin"))&#xd;
+   #set($discard = $xwiki.ssx.use("RISCOSSPlatformCode.GithubLogin"))&#xd;
+   [[Connect with Github>>||id="connectGithub"]] | [[$services.localization.render("login")>>$doc.getExternalURL("login")||id="loginlink"]] | [[Register>>RISCOSSPlatformCode.Register||id="registerlink"]]#if("$!feedbackURL" != '') | [[Feedback>>$feedbackURL||class="guestmenuitem"]]#end&#xd;
+#end&#xd;
+#else## isGuest&#xd;
+#if($currentWikiId == 'xwiki' || ($mainWikiId != $currentWikiId))&#xd;
+  #set($wikiName = $services.wiki.getById($services.wiki.getCurrentWikiId()).prettyName)&#xd;
+  #if($hasAdmin) &#xd;
+* $services.localization.render("riscossPlatform.domain") **$!wikiName**&#xd;
+** [[$services.localization.render("riscossPlatform.adminUsers")>>RISCOSSPlatformCode.AdminUsers]]&#xd;
+** $services.localization.render("riscossPlatform.adminRoles")&#xd;
+** ----&#xd;
+** [[$services.localization.render("logout")>>$xwiki.getDocument("XWiki.XWikiLogout").getExternalURL("logout")]]   &#xd;
+#else&#xd;
+* **[[$services.localization.render("logout")>>$xwiki.getDocument("XWiki.XWikiLogout").getExternalURL("logout")]]&#xd;
+#if("$!feedbackURL" != '')&#xd;
+* ** {{html}}&lt;a href="$feedbackURL" class="riscoss-feedback">Feedback&lt;/a>{{/html}}&#xd;
+#end&#xd;
+* **[[$services.localization.render("riscossPlatform.githubprojects.projectpage.allprojects")>>Main.WebHome]]&#xd;
+* **[[$services.localization.render("riscossPlatform.githubprojects.privatepage.myprojects")>>RISCOSSPlatformCode.PrivatePage]]&#xd;
+* **{{html}}&lt;span class="riscoss-user">$xwiki.getUserName($context.user)&lt;/span>{{/html}}&#xd;
+#if("$!feedbackURL" != "" &amp;&amp; 1!=1)&#xd;
+* ** {{html}}&lt;a href="$feedbackURL" class="riscoss-feedback">User feedback&lt;/a>{{/html}}&#xd;
+#end&#xd;
+#if("$!expertFeedbackURL" != "")&#xd;
+{{html}}&lt;a href="$expertFeedbackURL" class="riscoss-feedback">Expert feedback&lt;/a>{{/html}}&#xd;
+#end&#xd;
+#end&#xd;
+#else&#xd;
+* **$services.localization.render("riscossPlatform.domainManager")**&#xd;
+#end&#xd;
+##&#xd;
+#if($hasAdmin)&#xd;
+  #if($currentWikiId == 'xwiki' || ($mainWikiId != $currentWikiId))&#xd;
+    #set($layers = $services.query.xwql("SELECT doc.fullName, doc.title FROM Document doc, doc.object(RISCOSSPlatformLayerManagerCode.LayerClass) as layer WHERE doc.space = 'RISCOSSPlatformLayers'").execute())&#xd;
+* $services.localization.render("riscossPlatform.layerManager")&#xd;
+** #generateCreateDialogLink({&#xd;
+     "space": "RISCOSSPlatformLayers",&#xd;
+     "template": "RISCOSSPlatformLayerManagerCode.LayerTemplate",&#xd;
+     "linkLabel": $services.localization.render("riscossPlatform.layerManager.newLayer"),&#xd;
+     "dialogTitle": $services.localization.render("riscossPlatform.layerManager.newLayer"),&#xd;
+     "fieldLabel": $services.localization.render("riscossPlatform.layerManager.layerName")&#xd;
+   })&#xd;
+** $services.localization.render("riscossPlatform.layerManager.newEntity")&#xd;
+    #foreach($layer in $layers)&#xd;
+*** #generateCreateDialogLink({&#xd;
+      "space": "RISCOSSPlatformEntities", &#xd;
+      "template": "${layer[0]}Template", &#xd;
+      "linkLabel": $layer[1], &#xd;
+      "dialogTitle": "$services.localization.render('riscossPlatform.layerManager.createEntity.title') $layer[1]", &#xd;
+      "fieldLabel": "$services.localization.render('riscossPlatform.layerManager.createEntity.entityName', $layer[1])"&#xd;
+    })&#xd;
+    #end&#xd;
+** ----&#xd;
+** [[$services.localization.render("riscossPlatform.layerManager.layerIndex")>>RISCOSSPlatformLayers.WebHome]]&#xd;
+** [[$services.localization.render("riscossPlatform.layerManager.entityIndex")>>RISCOSSPlatformEntities.WebHome]]&#xd;
+* $services.localization.render("riscossPlatform.riskConfigurationManager")&#xd;
+** #generateCreateDialogLink({&#xd;
+      "space": "RISCOSSPlatformRiskConfigurations",&#xd;
+      "template": "RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationTemplate",&#xd;
+      "linkLabel": $services.localization.render("riscossPlatform.riskConfigurationManager.newRiskConfiguration"),&#xd;
+      "dialogTitle": $services.localization.render("riscossPlatform.riskConfigurationManager.newRiskConfiguration"),&#xd;
+      "fieldLabel": $services.localization.render("riscossPlatform.riskConfigurationManager.riskConfigurationName")&#xd;
+    })&#xd;
+** #generateCreateDialogLink({&#xd;
+      "space": "RISCOSSPlatformRiskCategories",&#xd;
+      "template": "RISCOSSPlatformRiskConfigurationManagerCode.RiskCategoryTemplate",&#xd;
+      "linkLabel": $services.localization.render("riscossPlatform.riskConfigurationManager.newRiskCategory"),&#xd;
+      "dialogTitle": $services.localization.render("riscossPlatform.riskConfigurationManager.newRiskCategory"),&#xd;
+      "fieldLabel": $services.localization.render("riscossPlatform.riskConfigurationManager.riskCategoryName")&#xd;
+    })&#xd;
+** ----&#xd;
+** [[$services.localization.render("riscossPlatform.riskConfigurationManager.riskConfigurationIndex")>>RISCOSSPlatformRiskConfigurations.WebHome]]&#xd;
+** [[$services.localization.render("riscossPlatform.riskConfigurationManager.riskCategoryIndex")>>RISCOSSPlatformRiskCategories.WebHome]]&#xd;
+* Risk Analysis&#xd;
+** [[New risk analysis session>>RISCOSSPlatformRiskAnalysisManagerCode.ConfigureAnalysis]]&#xd;
+## ** #generateCustomCreateDialogLink({     &#xd;
+##     "action": "$xwiki.getURL('RISCOSSPlatformRiskAnalysisManagerCode.SetRiskAnalysisSessionData')",&#xd;
+##     "space": "RISCOSSPlatformRiskAnalysisSessions",&#xd;
+##     "linkLabel": "New risk analysis session",&#xd;
+##     "dialogTitle": "New risk analysis session",&#xd;
+##     "fieldLabel": "Session name"&#xd;
+##   })&#xd;
+** ----&#xd;
+** [[Risk analysis sessions>>RISCOSSPlatformRiskAnalysisSessions.WebHome]]&#xd;
+* Model manager&#xd;
+** #generateCreateDialogLink({&#xd;
+      "space": "RISCOSSPlatformRiskModels",&#xd;
+      "template": "RISCOSSPlatformModelManagerCode.RiskModelTemplate",&#xd;
+      "linkLabel": $services.localization.render("riscossPlatform.modelManager.newRiskModel"),&#xd;
+      "dialogTitle": $services.localization.render("riscossPlatform.modelManager.newRiskModel"),&#xd;
+      "fieldLabel": $services.localization.render("riscossPlatform.modelManager.riskModelName")&#xd;
+    })&#xd;
+** #generateCreateDialogLink({&#xd;
+      "space": "RISCOSSPlatformGoalModels",&#xd;
+      "template": "RISCOSSPlatformModelManagerCode.GoalModelTemplate",&#xd;
+      "linkLabel": $services.localization.render("riscossPlatform.modelManager.newGoalModel"),&#xd;
+      "dialogTitle": $services.localization.render("riscossPlatform.modelManager.newGoalModel"),&#xd;
+      "fieldLabel": $services.localization.render("riscossPlatform.modelManager.goalModelName")&#xd;
+    })&#xd;
+** ----&#xd;
+** [[$services.localization.render("riscossPlatform.modelManager.riskModelIndex")>>RISCOSSPlatformRiskModels.WebHome]]&#xd;
+** [[$services.localization.render("riscossPlatform.modelManager.goalModelIndex")>>RISCOSSPlatformGoalModels.WebHome]]&#xd;
+  #end  &#xd;
+#end&#xd;
+#end&#xd;
+{{/velocity}}&#xd;
+&#xd;
+(((&#xd;
+</content>
+  <attachment>
+    <filename>feedback.png</filename>
+    <author>xwiki:XWiki.Admin</author>
+    <date>1364415417000</date>
+    <version>1.1</version>
+    <comment/>
+    <content>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAYdJREFUeNqkk8FKHEEQhr/q7hmdXVaiRjGKikgQPIS8gHmCnAJ5mNwSQi55ibxA9OAxJ08ePWkgRgVDTEDUsMvsqjPdXTnMuskSwy5sQV+KLvqv7/9bVJVRyjBiuTyU9ZNOc+28uJ4zImGYIUVNw6atlWzi0H2/bS+//bz7Zutg73nmkqFeLUPg6dLK/usnz145I6KZGK1HyOJwssuo1DBqRdRVLQHpnjuZVkBBFNSAhL9gi4AMgDj36ZSJL1fUvrVY2D7GFLE3NNAFFUGC4vKSmFpcXgL32+3u7Vrh5lGdzmIDtUL+eJJQSxAfh1MgPtJZbHD7MAOF5vp0P4OBCoBiahzxkfLBWKX+P4l1XfYGoR9S1Gowas+oPxLvvBBxN95fFM5sJvOzR87YsnvFA6v+svlSS08yO7WDkV0gBdAYrWZjZ7kvjt3X9q/zk+vWh8QlfTlAIJ2ZfG+VtcKaF6Lai7kYwQM/izZOq2z/yyBENqbn382ktezjj8MwbvtxVRsLMup3/j0A9A+UE0Sf4D8AAAAASUVORK5CYII=</content>
+    <filesize>3164</filesize>
+  </attachment>
+  <object>
+    <name>RISCOSSPlatformCode.NavigationMenu</name>
+    <number>1</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>d365e2df-d49a-415f-9982-9c4efe1352b2</guid>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.riscoss-feedback {&#xd;
+    background-image: url("$doc.getAttachmentURL('feedback.png')");&#xd;
+    background-position: right center;&#xd;
+    background-repeat: no-repeat;&#xd;
+    padding-right: 20px;&#xd;
+}&#xd;
+.riscoss-user {&#xd;
+    background-image: url("$xwiki.getSkinFile('icons/silk/user.png')");&#xd;
+    background-position: left center;&#xd;
+    background-repeat: no-repeat;&#xd;
+    padding-left: 18px;&#xd;
+}&#xd;
+.menu.menu-horizontal ul li:last-child {&#xd;
+  float: right;&#xd;
+  margin-right: 12px;&#xd;
+}</code>
+    </property>
+    <property>
+      <name></name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>always</use>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformCode.NavigationMenu</name>
+    <number>2</number>
+    <className>XWiki.UIExtensionClass</className>
+    <guid>a5942aeb-0eb7-4bd9-bde4-738488ee0ffb</guid>
+    <class>
+      <name>XWiki.UIExtensionClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <content>
+        <disabled>0</disabled>
+        <name>content</name>
+        <number>3</number>
+        <prettyName>Extension Content</prettyName>
+        <rows>10</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </content>
+      <extensionPointId>
+        <disabled>0</disabled>
+        <name>extensionPointId</name>
+        <number>1</number>
+        <prettyName>Extension Point ID</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </extensionPointId>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>2</number>
+        <prettyName>Extension ID</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parameters>
+        <disabled>0</disabled>
+        <name>parameters</name>
+        <number>4</number>
+        <prettyName>Extension Parameters</prettyName>
+        <rows>10</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </parameters>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>5</number>
+        <prettyName>Extension Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>wiki=Current Wiki|user=Current User|global=Global</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <property>
+      <content>{{menu type="horizontal fixedWidth"}}{{include reference="RISCOSSPlatformCode.NavigationMenu" /}}{{/menu}}</content>
+    </property>
+    <property>
+      <extensionPointId>org.xwiki.platform.template.header.after</extensionPointId>
+    </property>
+    <property>
+      <name>RISCOSSPlatformCode.NavigationMenu</name>
+    </property>
+    <property>
+      <parameters></parameters>
+    </property>
+    <property>
+      <scope>wiki</scope>
+    </property>
+  </object>
+</xwikidoc>

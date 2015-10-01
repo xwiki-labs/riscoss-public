@@ -1,0 +1,599 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskAnalysisManagerCode</web>
+  <name>RiskEvaluationViewSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839817000</creationDate>
+  <parent>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <date>1441208743000</date>
+  <contentUpdateDate>1440772517000</contentUpdateDate>
+  <version>2.148</version>
+  <title>#if($doc.name == 'RiskAnalysisSessionSheet')RiskAnalysisSession Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <comment/>
+  <minorEdit>true</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}&#xd;
+## -*- Mode:Velocity&#xd;
+$xwiki.jsx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})&#xd;
+$xwiki.ssx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})&#xd;
+#if("$!RiskEvaluationViewSheet_analisysSessionDoc" != "")&#xd;
+  #set($asDoc = $RiskEvaluationViewSheet_analisysSessionDoc)&#xd;
+#else&#xd;
+  #set($asDoc = $doc)&#xd;
+#end&#xd;
+#set($riskAnalysisSessionObject = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))&#xd;
+#set($targetEntity = $xwiki.getDocument($riskAnalysisSessionObject.getProperty('entity').value))&#xd;
+#set($riskEvaluation = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))&#xd;
+#set($riskConfiguration = $xwiki.getDocument($riskEvaluation.getProperty('riskConfiguration').value))&#xd;
+&#xd;
+#if($riskEvaluation.getProperty('result').value == '')&#xd;
+  {{info}}This risk configuration has not yet been evaluated{{/info}}&#xd;
+#else&#xd;
+  (% class="resultData" style="display:none;" %)(((&#xd;
+    $escapetool.url($riskEvaluation.getProperty('result').getValue())&#xd;
+  )))&#xd;
+&#xd;
+  (% id="resultCharts" %)(((&#xd;
+  ))) &#xd;
+&#xd;
+  == Input Values ==&#xd;
+  (% class="resultInput" style="display:none;" %)(((&#xd;
+    $escapetool.url($riskEvaluation.getProperty('inputData').value)&#xd;
+  )))&#xd;
+  (% class="interpretedInput" style="display:none;" %)(((&#xd;
+    $escapetool.url($riskEvaluation.getProperty('interpretedInput').value)&#xd;
+  )))&#xd;
+#end&#xd;
+&#xd;
+----&#xd;
+#if($hasEdit &amp;&amp; !$displayInProjectPage)&#xd;
+(% class="entity-btns" %)(((&#xd;
+| (% class="buttonwrapper" %)(((&#xd;
+    {{html clean=false}}&lt;a href="$asDoc.getExternalURL('delete', "xredirect=$RiskEvaluationViewSheet_xredirect")">Delete Analysis&lt;/a>{{/html}}&#xd;
+))) | (% class="buttonwrapper" %)(((&#xd;
+    {{html clean=false}}&lt;a href="$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', "riskAnalysisSession=${asDoc.getFullName()}&amp;xredirect=$RiskEvaluationViewSheet_xredirect")">Rerun Analyse&lt;/a>{{/html}}&#xd;
+)))&#xd;
+)))&#xd;
+#end&#xd;
+{{/velocity}}&#xd;
+</content>
+  <object>
+    <name>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet</name>
+    <number>1</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>0b3bfab1-17ee-4a2f-b100-aa2a28799587</guid>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <property>
+      <cache>forbid</cache>
+    </property>
+    <property>
+      <code>require(['jquery'], function ($) {&#xd;
+&#xd;
+  var EVIDENCE_GAUGE_URL = new XWiki.Document('EvidenceGauge', 'RISCOSSPlatformCode').getURL('get');&#xd;
+  var displayResultsChartsURL =  new XWiki.Document('GithubAjaxActions', 'RISCOSSPlatformCode').getURL('view') + "?" + "xpage=plain";&#xd;
+&#xd;
+  var DISTRIBUTION_COLORS = ["#298a08", "#86b404", "#ffbf00", "#fa5858", "#ff0000", "#cccccc"];&#xd;
+  var DISTRIBUTION_NAMES = [&#xd;
+    "Very Low Risk",&#xd;
+    "Low Risk",&#xd;
+    "Medium Risk",&#xd;
+    "High Risk",&#xd;
+    "Very High Risk",&#xd;
+    "Unknown"&#xd;
+  ];&#xd;
+  var INPUTS_LABELS = {&#xd;
+     "OSSComp:github:repo:contributors": "Contributors",&#xd;
+     "OSSComp:github:repo:size" : "Size",&#xd;
+     "OSSComp:github:repo:watchers" : "Watchers",&#xd;
+     "OSSComp:github:repo:open_issues_count" : "Number of open issues",&#xd;
+     "OSSComp:github:repo:has_wiki" : "Has wiki",&#xd;
+     "OSSComp:github:repo:stargazers_count" : "Number of stargazers",&#xd;
+     "OSSComp:github:repo:subscribers_count" : "Number of subscribers",&#xd;
+     "OSSComp:github:repo:created_at" : "Created at",&#xd;
+     "OSSComp:github:repo:license" : "License",&#xd;
+     "OSSComp:github:repo:updated_at" : "Updated at",&#xd;
+     "OSSComp:github:repo:forks_count" : "Number of forks",&#xd;
+     "OSSComp:github:repo:closed_issues" : "Number of closed issues",&#xd;
+     "OSSComp:github:repo:ci_link" : "Ci link"&#xd;
+  }&#xd;
+&#xd;
+  var RISK_DEFINITIONS = {"Obsolescence Risk":"This type of risk mainly refers to the lack of activeness of the development  community, which causes the risk of the  software component being out-of-date.", "Bug Risk":"This type of risk refers to possible presence of bugs in the code due to either the size of the repository (difficult to be kept under control), or to a high open/closed issue ratio, which may mean low effectiveness in closing bugs.", "Analysability Risk": "This type of risk refers to the lack of quality of the software, which could make it difficult to understand it from the adopter.", "Maintenance Risk":"In a nutshell, Maintenance risk refers to the existence of one or more of the above risks."};&#xd;
+&#xd;
+  var createTextElement = function(value) {&#xd;
+    var element = document.createElement('div');&#xd;
+    element.innerHTML = JSON.stringify(value);&#xd;
+    return element;&#xd;
+  }&#xd;
+&#xd;
+  var createDateElement = function(value) {&#xd;
+    var element = document.createElement('div');&#xd;
+    element.innerHTML = value;&#xd;
+    return element;&#xd;
+  }&#xd;
+&#xd;
+  var toPercent = function(value) {&#xd;
+    return Math.round( value * 100) +'%';&#xd;
+  };&#xd;
+&#xd;
+  var createEvidenceElement = function(evidence) {&#xd;
+    var div = new Element('div');&#xd;
+    &#xd;
+    var gauge = new Element('img', {&#xd;
+      src: EVIDENCE_GAUGE_URL + '?positive=' + evidence.positive + '&amp;negative=' + evidence.negative});&#xd;
+    &#xd;
+    var textDiv = new Element('div');&#xd;
+    textDiv.setStyle({float: 'right'});&#xd;
+    textDiv.innerHTML = '&lt;ul>&lt;li>Positive: ' + toPercent(evidence.positive) + '&lt;/li>&lt;li>Negative: ' + toPercent(evidence.negative) + '&lt;/li>&lt;/ul>';&#xd;
+    &#xd;
+    div.insert({top: gauge});&#xd;
+    div.insert({bottom: textDiv});&#xd;
+    &#xd;
+    return div;&#xd;
+  };&#xd;
+&#xd;
+  var createDeterminentDistributionElement = function (dist) {&#xd;
+    var i = 5;&#xd;
+    if (dist) {&#xd;
+        for (i = 0; i &lt; dist.length &amp;&amp; (dist[i] &lt; 0.9); i++) ;&#xd;
+    }&#xd;
+    var out = document.createElement('div');&#xd;
+    out.setAttribute('style', 'width:120px;height:30px;background-color:'+DISTRIBUTION_COLORS[i]);&#xd;
+    out.innerHTML = '&lt;center>&lt;p style="color:#000;font-weight:bold;padding-top:5px">'+DISTRIBUTION_NAMES[i]+'&lt;/p>&lt;/center>';&#xd;
+    return out;&#xd;
+  };&#xd;
+&#xd;
+  var createDistributionElement = function(distribution) {&#xd;
+    var canvas = new Element('canvas', {width: 200, height: 15 * distribution.values.length});&#xd;
+    var context = canvas.getContext("2d")&#xd;
+    var width = canvas.width;&#xd;
+    var height = canvas.height;&#xd;
+&#xd;
+    context.beginPath();&#xd;
+    context.rect(0, 0, canvas.width, canvas.height);&#xd;
+    context.stroke();&#xd;
+    &#xd;
+    var barHeight = Math.floor(canvas.height / distribution.values.length);&#xd;
+    var fontSize = Math.min(barHeight, 10) ;&#xd;
+    context.font = "bold " + fontSize + "px sans-serif"&#xd;
+    var maxTextWidth = context.measureText('999.99%').width;&#xd;
+        &#xd;
+    for(i = 0; i &lt; distribution.values.length; i++) {&#xd;
+      context.beginPath();&#xd;
+      context.rect(0, i * barHeight, Math.floor(canvas.width  * distribution.values[i]), barHeight);&#xd;
+      context.fillStyle = DISTRIBUTION_COLORS[i];      &#xd;
+      context.fill();&#xd;
+      context.fillStyle = '#303030';&#xd;
+      context.textBaseline = "top";&#xd;
+      &#xd;
+      context.fillText('' + Math.floor(10000 * distribution.values[i]) / 100 + "%",&#xd;
+          Math.min((canvas.width * distribution.values[i]) + 5, canvas.width - maxTextWidth - 5),&#xd;
+          (barHeight * i) + (barHeight - fontSize) / 2);&#xd;
+    }&#xd;
+    &#xd;
+    return canvas;&#xd;
+  };&#xd;
+    &#xd;
+  /* We expect data to be a map from a category to a map of results, where each&#xd;
+   * result is a map of an id to a map with 3 elements (description, type, value)&#xd;
+   */&#xd;
+  var displayData = function(element, data) {&#xd;
+    var html = '&lt;table class="analysis-res-table">';&#xd;
+    for(var category in data) {&#xd;
+      //html = html + '&lt;tr>&lt;th colspan="2">' + category + '&lt;/th>&lt;/tr>';&#xd;
+      var description = data[category].description || category;&#xd;
+      // TODO: Stop requiring unused inputs!&#xd;
+      if (description === 'unused') { continue; }&#xd;
+      description = INPUTS_LABELS[description] ? INPUTS_LABELS[description] : description;&#xd;
+      html = html + '&lt;tr>&lt;th>' + description + '&lt;/th>&lt;td class="td1">&lt;div class="result" data-category="' +&#xd;
+          category + '" style="display: none">&lt;/div>&lt;/td>';&#xd;
+      if (category.indexOf("Risk")>=0)&#xd;
+        html += '&lt;td class="td2">'+ RISK_DEFINITIONS[category] +'&lt;/td>';&#xd;
+      html += '&lt;/tr>';&#xd;
+    }&#xd;
+    html = html + '&lt;/table>';&#xd;
+    &#xd;
+    element.innerHTML = html;&#xd;
+    element.setAttribute('style', '');&#xd;
+    &#xd;
+    var resultElements = $('.result');&#xd;
+    for(var i = 0; i &lt; resultElements.length; i++) {&#xd;
+      var resultElement = resultElements[i];&#xd;
+      var category = resultElement.getAttribute("data-category");&#xd;
+      var type = data[category].type;&#xd;
+      var value = data[category].value;&#xd;
+      var isDate = false;&#xd;
+      if(category == "OSSComp:github:repo:created_at" || category == "OSSComp:github:repo:updated_at"){&#xd;
+         value = formatDate(value);&#xd;
+         isDate = true;&#xd;
+      }&#xd;
+      if(type === "EVIDENCE") {&#xd;
+        Element.replace(resultElement, createEvidenceElement(value));&#xd;
+      } else if(type === "DISTRIBUTION") {&#xd;
+        Element.replace(resultElement, createDistributionElement(value));&#xd;
+      } else {&#xd;
+        if(!isDate){&#xd;
+           Element.replace(resultElement, createTextElement(value));&#xd;
+        }&#xd;
+        else&#xd;
+        {&#xd;
+           Element.replace(resultElement, createDateElement(value));&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  };&#xd;
+&#xd;
+  /* &#xd;
+   * Display results barcharts&#xd;
+   */&#xd;
+  var displayCharts = function(data) {&#xd;
+    $.ajax({&#xd;
+       url: displayResultsChartsURL + "&amp;action=displayProjectResultsCharts",&#xd;
+       method: "POST",&#xd;
+       dataType: "html",&#xd;
+       data: {"data": JSON.stringify(data)}&#xd;
+    }).done(function(rep){&#xd;
+       var html = '&lt;table class="charts-table">';&#xd;
+           html += '&lt;tr>&lt;td rowspan="4" class="charts-td">' + rep + '&lt;/td>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title">&amp;nbsp;Obsolescence Risk&lt;/span>' + RISK_DEFINITIONS["Obsolescence Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
+           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title blue">&amp;nbsp;Bug Risk&lt;/span>' + RISK_DEFINITIONS["Bug Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
+           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title green">&amp;nbsp;Analysability Risk&lt;/span>' + RISK_DEFINITIONS["Analysability Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
+           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title yellow">&amp;nbsp;Maintenance Risk&lt;/span>' + RISK_DEFINITIONS["Maintenance Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
+           html += '&lt;/table>';&#xd;
+       $("#resultCharts").html(html);&#xd;
+    });&#xd;
+  };&#xd;
+&#xd;
+/*&#xd;
+* Create a new javascript Date object based on the timestamp and return the date in string format&#xd;
+*/&#xd;
+formatDate = function(time) {&#xd;
+   // multiplied by 1000 so that the argument is in milliseconds, not seconds&#xd;
+   var date = new Date(time*1000);&#xd;
+   return date.toString();&#xd;
+   //return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();&#xd;
+};&#xd;
+&#xd;
+  // Copied from DataCollectorManager, TODO: fix&#xd;
+  var uid = function () { return 'uid-' + Math.random().toString(32).substring(2); };&#xd;
+  var appendElem = function ($container, type, id) {&#xd;
+    id = id || uid();&#xd;
+    $container.append("&lt;"+type+" id="+id+">&lt;/"+type+">");&#xd;
+    return $('#'+id);&#xd;
+  };&#xd;
+&#xd;
+  var showInput = function ($div, interpretedInput) {&#xd;
+    $div.html('');&#xd;
+    $div.attr('style', '');&#xd;
+    var $table = appendElem($div, 'table');&#xd;
+    var $tbody = appendElem($table, 'tbody');&#xd;
+&#xd;
+    var $headerTr = appendElem($tbody, 'tr');&#xd;
+    var $th = appendElem($headerTr, 'th');&#xd;
+    $th.text("Risk Data Point");&#xd;
+    $th = appendElem($headerTr, 'th');&#xd;
+    $th.text("Collected Value");&#xd;
+    $th = appendElem($headerTr, 'th');&#xd;
+    $th.text("Interpreted Risk");&#xd;
+&#xd;
+    var keys = Object.keys(interpretedInput);&#xd;
+    for (var i = 0; i &lt; keys.length; i++) {&#xd;
+      var entry = interpretedInput[keys[i]];&#xd;
+      // hax&#xd;
+      if (entry.description === 'unused') { continue; }&#xd;
+&#xd;
+      var $tr = appendElem($tbody, 'tr');&#xd;
+      var $td = appendElem($tr, 'td');&#xd;
+      $td.text(entry.description || keys[i]);&#xd;
+&#xd;
+      $td = appendElem($tr, 'td');&#xd;
+      if (entry.rawValue) {&#xd;
+          $td.append(entry.rawValue);&#xd;
+      } else if (["NUMBER","INTEGER","REAL"].indexOf(entry.type) > -1) {&#xd;
+          $td.append(entry.value);&#xd;
+      } else {&#xd;
+          $td.append(-1);&#xd;
+      }&#xd;
+&#xd;
+      $td = appendElem($tr, 'td');&#xd;
+      $td.append(createDeterminentDistributionElement(interpretedInput[keys[i]].value.values));&#xd;
+    }&#xd;
+  };&#xd;
+&#xd;
+  var getData = function (elem) {&#xd;
+    return JSON.parse(decodeURIComponent(elem.text()).replace(/\+/g, ' '));&#xd;
+  };&#xd;
+&#xd;
+  var main = function () {&#xd;
+    var dat = getData($('.resultData'));&#xd;
+    //displayData($('.resultData')[0], dat);&#xd;
+    displayCharts(dat);&#xd;
+    var input = getData($('.resultInput'));&#xd;
+    displayData($('.resultInput')[0], input.output.result);&#xd;
+  };&#xd;
+  main();&#xd;
+});&#xd;
+</code>
+    </property>
+    <property>
+      <name></name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet</name>
+    <number>2</number>
+    <className>XWiki.SheetDescriptorClass</className>
+    <guid>f0b1593e-c83f-4a74-b305-dc451a7e0763</guid>
+    <class>
+      <name>XWiki.SheetDescriptorClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <action>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>action</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>Action</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </action>
+    </class>
+    <property>
+      <action>view</action>
+    </property>
+  </object>
+  <object>
+    <name>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>b0b7e74b-3229-4aba-a13e-6074ab37c507</guid>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.analysis-res-table{&#xd;
+   width: 70%;&#xd;
+}&#xd;
+.analysis-res-table th, .analysis-res-table td{&#xd;
+   padding: 1em;&#xd;
+}&#xd;
+.analysis-res-table th{&#xd;
+   width: 20%;&#xd;
+}&#xd;
+.analysis-res-table td.td1{&#xd;
+   width: 35%;&#xd;
+}&#xd;
+.analysis-res-table td.td2{&#xd;
+   width: 45%;&#xd;
+}&#xd;
+.charts-table{&#xd;
+   width: 70%;&#xd;
+}&#xd;
+.charts-td{&#xd;
+   width: 60%;&#xd;
+   padding: 5px;&#xd;
+   background-color: #eeeeee;&#xd;
+}&#xd;
+.risk-def{&#xd;
+   padding: 1em;&#xd;
+}&#xd;
+.analysis-risk-title{&#xd;
+   display: block;&#xd;
+   font-weight: bold;&#xd;
+}&#xd;
+.analysis-risk-title::before {&#xd;
+    content: " c ";&#xd;
+    background-color: red;&#xd;
+    color: red;&#xd;
+}&#xd;
+.analysis-risk-title.blue::before {&#xd;
+    background-color: blue;&#xd;
+    color: blue;&#xd;
+}&#xd;
+.analysis-risk-title.green::before {&#xd;
+    background-color: green;&#xd;
+    color: green;&#xd;
+}&#xd;
+.analysis-risk-title.yellow::before {&#xd;
+    background-color: yellow;&#xd;
+    color: yellow;&#xd;
+}&#xd;
+#collected-data{&#xd;
+   width: 70%;   &#xd;
+}&#xd;
+#collected-data table{&#xd;
+   width: 100%;   &#xd;
+}&#xd;
+#collected-data table th, #collected-data table td{&#xd;
+   padding: 1em;&#xd;
+}&#xd;
+#collected-data table th{&#xd;
+   width: 20%;   &#xd;
+}&#xd;
+.data-collectors{&#xd;
+   width: 70%;   &#xd;
+}&#xd;
+.data-collectors table{&#xd;
+   width: 100%;   &#xd;
+}&#xd;
+.data-collectors table th, .data-collectors table td{&#xd;
+   padding: 1em;&#xd;
+}&#xd;
+.data-collectors table th{&#xd;
+   width: 20%;   &#xd;
+}&#xd;
+.entity-btns table th, .entity-btns table td{&#xd;
+   border: 0;&#xd;
+}</code>
+    </property>
+    <property>
+      <name></name>
+    </property>
+    <property>
+      <parse/>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+</xwikidoc>

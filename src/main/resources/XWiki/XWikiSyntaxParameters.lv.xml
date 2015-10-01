@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>XWiki</web>
+  <name>XWikiSyntaxParameters</name>
+  <language>lv</language>
+  <defaultLanguage>en</defaultLanguage>
+  <translation>1</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197410000</creationDate>
+  <parent>XWiki.XWikiSyntax</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1301497957000</date>
+  <contentUpdateDate>1301497957000</contentUpdateDate>
+  <version>1.1</version>
+  <title>XWikiSyntaxParameters</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content>= Advanced =
+
+== Parametri ==
+
+{{comment}}please do not translate the sub headlines{{/comment}}
+=== 1.0 Parameters ===
+
+ XWiki 1.0 sintaksē īpaša parametru norādīšanas veida nebija, un priekš tam bija jāizmanto tieši norādīts HTML saturs.
+
+|=XWiki 1.0 sintakse|=Izveidotais XHTML
+|(((
+{{{
+&lt;h1 class="manaKlase" style="mansStils" id="mansId">header&lt;/h1>
+}}}
+)))|(((
+{{{
+&lt;h1 class="manaKlase" style="mansStils" id="mansId">header&lt;/h1>
+}}}
+)))
+
+=== 2.0 Parameters ===
+
+XWiki {{velocity}}$crtSyntaxVer{{/velocity}} sintaksē iespējams norādīt parametrus, dažādiem sintakses elementiem un teksta daļām. Piemēram, ar parametriem var mainīt teksta stilu (noformējumu). Iespējams norādīt jebkuru parametru nosaukuma un vērtības pāri. Šie parametri un to vērtības tiek nodoti XHTML dzinējam, kas no tiem izveidos atbilstošus XHTML atribūtus, kas, ievērojot norādīto stilu, tiks ņemti vērā pārlūkprogrammā.
+
+|=(% style="width="60%" %)XWiki {{velocity}}$crtSyntaxVer{{/velocity}} sintakse|=Izveidotais XHTML
+|(((
+{{{
+(% class="manaKlase" style="mansStils" id="mansId" %)
+= header =
+}}}
+)))|(((
+{{{
+&lt;h1 class="manaKlase" style="mansStils" id="mansId">header&lt;/h1>
+}}}
+)))</content>
+</xwikidoc>

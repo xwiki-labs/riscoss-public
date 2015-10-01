@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>SuggestRiskConfigurations</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839816000</creationDate>
+  <parent>RISCOSSPlatformLayerManagerCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>SuggestRiskConfigurations</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity output="false"}}
+#if($request.riskConfigurationName) 
+  #set($hql = "SELECT doc.fullName, doc.title 
+               FROM XWikiDocument doc, BaseObject obj
+               WHERE doc.space = 'RISCOSSPlatformRiskConfigurations' AND
+                     doc.fullName = obj.name AND
+                     upper(doc.title) LIKE upper(:riskConfigurationName) AND
+                     obj.className = 'RISCOSSPlatformRiskConfigurationManagerCode.RiskConfigurationClass'")
+  #set($query = $services.query.hql($hql))    
+  $query.bindValue("riskConfigurationName", "%$request.riskConfigurationName%")
+  
+  #set($results = $query.execute())
+#end
+{{/velocity}}
+{{velocity}}
+$response.setContentType("text/xml")
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;results>
+#foreach($result in $results)
+  &lt;rs id="$result[0]">$result[1]&lt;/rs>
+#end
+&lt;/results>
+{{velocity}}</content>
+</xwikidoc>

@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformLayerManagerCode</web>
+  <name>EntitiesLiveTableResults</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839815000</creationDate>
+  <parent>RISCOSSPlatformLayerManagerCode.WebHome</parent>
+  <author>xwiki:XWiki.superadmin</author>
+  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <date>1442971971000</date>
+  <contentUpdateDate>1442971971000</contentUpdateDate>
+  <version>8.265</version>
+  <title/>
+  <comment>Rollback to version 6.67</comment>
+  <minorEdit>true</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{include document="RISCOSSPlatformCode.githubProjectMacros" /}}&#xd;
+&#xd;
+{{velocity wiki="false"}}&#xd;
+## -*- Mode:Velocity&#xd;
+## Output fields:&#xd;
+##   entity&#xd;
+##   layer&#xd;
+## Filterable fields:&#xd;
+##   entity&#xd;
+##   layer&#xd;
+## Orderable fields:&#xd;
+##   entity&#xd;
+##   layer&#xd;
+&#xd;
+#set($offset = $mathtool.toInteger($request.get('offset')))&#xd;
+## offset starts from 0 in velocity and 1 in javascript&#xd;
+#set($offset = $offset - 1)&#xd;
+#if (!$offset || $offset &lt; 0)##>## syntax highligher bug&#xd;
+  #set($offset = 0)&#xd;
+#end&#xd;
+#set($limit = $mathtool.toInteger($request.get('limit')))&#xd;
+#if (!$limit)&#xd;
+  #set ($limit = 15)&#xd;
+#end&#xd;
+&#xd;
+## Add filter clauses&#xd;
+#if($request.entity)&#xd;
+  #set($filter = " AND doc.title like :entityFilter")&#xd;
+#end&#xd;
+&#xd;
+#if($request.layer)&#xd;
+  #set($filter = "$!{filter} AND entity.layer = :layerFilter")&#xd;
+#end&#xd;
+&#xd;
+#if($request.creator)&#xd;
+  #set($filter = "$!{filter} AND doc.creator = :creatorFilter")&#xd;
+#end&#xd;
+&#xd;
+## Add order by clauses&#xd;
+#if($request.sort == "entity")&#xd;
+  #set($orderBy = "ORDER BY doc.title")&#xd;
+#elseif($request.sort == "layer")&#xd;
+  #set($orderBy = "ORDER BY entity.layer")&#xd;
+#end&#xd;
+&#xd;
+#if($orderBy)&#xd;
+  #if($request.dir == "desc")&#xd;
+    #set($orderBy = "${orderBy} DESC")&#xd;
+  #else&#xd;
+    #set($orderBy = "${orderBy} ASC")&#xd;
+  #end&#xd;
+#end&#xd;
+&#xd;
+#if($request.collist.contains('ranking'))&#xd;
+   #set($isPublicPage = true)&#xd;
+#end&#xd;
+&#xd;
+#if($isPublicPage)&#xd;
+   #set($filter = "$!{filter} AND entity.layer = 'RISCOSSPlatformLayers.OSSComponent'")&#xd;
+#end&#xd;
+&#xd;
+## Build the query&#xd;
+#if(("$!request.layer" != "" &amp;&amp; $request.layer == "RISCOSSPlatformLayers.OSSComponent" &amp;&amp; $isGuest) || $isPublicPage)&#xd;
+#set($scoreOrderDir = "ASC")&#xd;
+#if("$!request.sort" != '' &amp;&amp; $request.sort == 'ranking' &amp;&amp; "$!request.dir" != '')&#xd;
+   #set($scoreOrderDir = $request.dir)&#xd;
+#else&#xd;
+   #set($scoreOrderDir = "DESC")&#xd;
+#end&#xd;
+&#xd;
+#if ("$!orderBy" != "")&#xd;
+   #set($orderBy = $orderBy.replaceFirst("ORDER BY","ORDER BY session.score ${scoreOrderDir}, "))&#xd;
+#else&#xd;
+   #set($orderBy = "ORDER BY session.score ${scoreOrderDir}")&#xd;
+#end&#xd;
+#set($xwql = "SELECT DISTINCT doc.fullName, doc.title, entity.layer, session.score FROM Document doc, " +&#xd;
+    "doc.object(RISCOSSPlatformLayerManagerCode.EntityClass) AS entity " + &#xd;
+    " , Document doc2, doc2.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) as session" +&#xd;
+    " WHERE " +&#xd;
+    " session.entity=doc.fullName and session.riskConfiguration='RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration' and " +  &#xd;
+    " doc.fullName IN (:evaluatedOssComponents) AND doc.space like 'RISCOSSPlatformEntities%' and doc.space &lt;&gt;'RISCOSSPlatformEntities' $!{filter} $!{orderBy}")&#xd;
+#else&#xd;
+#set($xwql = "SELECT doc.fullName, doc.title, entity.layer FROM Document doc, " +&#xd;
+    "doc.object(RISCOSSPlatformLayerManagerCode.EntityClass) AS entity WHERE " +&#xd;
+    "doc.space like 'RISCOSSPlatformEntities%' and doc.space &lt;&gt;'RISCOSSPlatformEntities' $!{filter} $!{orderBy}")&#xd;
+#end&#xd;
+#set($query = $services.query.xwql($xwql))&#xd;
+#if($request.entity &amp;&amp; $query.bindValue("entityFilter", "%${request.entity}%"))#end&#xd;
+#if($request.layer &amp;&amp; $query.bindValue("layerFilter", "${request.layer}"))#end&#xd;
+#if($request.creator &amp;&amp; $query.bindValue("creatorFilter", "${request.creator}"))#end&#xd;
+&#xd;
+#if(("$!request.layer" != "" &amp;&amp; $request.layer == "RISCOSSPlatformLayers.OSSComponent" &amp;&amp; $isGuest) || $isPublicPage)&#xd;
+   #set($xwql2 = "SELECT DISTINCT session.entity from Document doc, doc.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) as session")&#xd;
+   #set($evaluatedOssComponents = $services.query.xwql($xwql2).execute())&#xd;
+   #if($evaluatedOssComponentsResults.size() == 0)&#xd;
+     #set($evaluatedOssComponents = [''])&#xd;
+   #end&#xd;
+   #set($discard = $query.bindValue('evaluatedOssComponents',$evaluatedOssComponents))&#xd;
+#end&#xd;
+&#xd;
+#if($isPublicPage)&#xd;
+   #set($results = $query.setOffset($offset).setLimit($limit).execute())&#xd;
+#else&#xd;
+   #set($results = $query.execute())&#xd;
+#end&#xd;
+&#xd;
+## Count total results&#xd;
+#if($isPublicPage)&#xd;
+   #set($hql = "SELECT count(doc) FROM XWikiDocument doc, BaseObject obj, StringProperty as prop WHERE doc.fullName=obj.name and obj.className='RISCOSSPlatformLayerManagerCode.EntityClass' and obj.id=prop.id.id and prop.id.name='layer' and prop.value='RISCOSSPlatformLayers.OSSComponent' and doc.space like 'RISCOSSPlatformEntities%' and doc.space &lt;&gt;'RISCOSSPlatformEntities'")&#xd;
+#else&#xd;
+   #set($hql = "SELECT count(doc) FROM XWikiDocument doc, BaseObject obj WHERE doc.fullName=obj.name and obj.className='RISCOSSPlatformLayerManagerCode.EntityClass'")&#xd;
+#end&#xd;
+#set($countResult = $services.query.hql($hql).execute())&#xd;
+&#xd;
+## Build the result JSON&#xd;
+#set($resultMap = {})&#xd;
+#set($discard = $resultMap.put("totalrows", $util.parseInt($countResult[0])))&#xd;
+#set($discard = $resultMap.put("returnedrows", $mathtool.min($results.size(), $limit)))&#xd;
+#set($discard = $resultMap.put("offset", $mathtool.add($offset, 1)))&#xd;
+#set($discard = $resultMap.put("reqNo", $util.parseInt($request.reqNo)))&#xd;
+#set($rows = [])&#xd;
+#if($isPublicPage)&#xd;
+   #calculateTopTenProjectsAverageScore()&#xd;
+#end&#xd;
+#foreach($result in $results)&#xd;
+  #set($row = {})&#xd;
+  #set($discard = $row.put("doc_viewable", true))&#xd;
+  #if(!$isPublicPage)&#xd;
+     #set($discard = $row.put("entity", $result[1]))&#xd;
+  #end&#xd;
+  #if($isPublicPage)&#xd;
+     #set($entityDocRef = $result[0])&#xd;
+     #set($projectPageURL = $xwiki.getURL("RISCOSSPlatformCode.ProjectPage", "view", "project=${escapetool.url($entityDocRef)}"))&#xd;
+     #set($projectName = $result[1])&#xd;
+     #set($projectName = $projectName.replaceFirst('_','/'))&#xd;
+     ##set($projectName = $projectName.split('###')[1])&#xd;
+     #set($projectName = $projectName.replace('%255F','_'))&#xd;
+     #set($entityDoc = $xwiki.getDocument($entityDocRef))&#xd;
+     #set($projectAuthor = $xwiki.getDocument($entityDoc.author).name)&#xd;
+     #set($discard = $row.put("author",$projectAuthor))&#xd;
+     #set($discard = $row.put("entity", "&lt;a href='$projectPageURL' class='projectLink'>$projectName&lt;/a>"))&#xd;
+     #set($entityDoc = $xwiki.getDocument($entityDocRef))&#xd;
+     #set($osscObj = $entityDoc.getObject("RISCOSSPlatformLayers.OSSComponent"))&#xd;
+     ## Get associated session&#xd;
+     #set($query = "from doc.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) as session where session.entity=:entityDocRef and session.riskConfiguration='RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration' and doc.space like 'RISCOSSPlatformRiskAnalysisSessions%' and doc.space&lt;&gt;'RISCOSSPlatformRiskAnalysisSessions'")&#xd;
+     #set($riskAnlysisSessions = $services.query.xwql($query).bindValue("entityDocRef","${entityDocRef}").setLimit(1).execute())&#xd;
+     #if ($riskAnlysisSessions.size() > 0)&#xd;
+         #set($analisysSessionDoc = $xwiki.getDocument($riskAnlysisSessions[0]))&#xd;
+         ## Calculate project score&#xd;
+         #getProjectScore($analisysSessionDoc)&#xd;
+         ## Calculate the project ranking value&#xd;
+         #set($projectRanking = $mathtool.div($mathtool.mul($projectScore,100),$topTenProjectsScoresAverage))&#xd;
+         #set($projectRanking = $mathtool.roundTo(2,$projectRanking))&#xd;
+         #set($projectRanking = $mathtool.toInteger($projectRanking))&#xd;
+         #set($mod = $mathtool.mod($projectRanking, 10))&#xd;
+         #if($mod > 5)&#xd;
+            #set($projectRanking = $mathtool.add($projectRanking, $mathtool.sub(10, $mod)))&#xd;
+         #else&#xd;
+            #set($projectRanking = $mathtool.sub($projectRanking, $mod))&#xd;
+         #end&#xd;
+         #if($projectRanking >= 50)&#xd;
+            #if($projectRanking >= 100)&#xd;
+               #set($projectRanking = 1)&#xd;
+            #else&#xd;
+               #set($projectRanking = $mathtool.sub(100, $projectRanking))&#xd;
+            #end&#xd;
+            #set($projectRanking = "This project is in the top &lt;strong>${projectRanking}%&lt;/strong> of the best projects")   &#xd;
+         #else&#xd;
+            ##set($projectRanking = $mathtool.sub(100, $projectRanking))&#xd;
+            #set($projectRanking = "This project is in the bottom &lt;strong>${projectRanking}%&lt;/strong> of the best projects")  &#xd;
+         #end&#xd;
+     #end&#xd;
+     #set($discard = $row.put("score", "$!projectScore"))&#xd;
+     #set($discard = $row.put("ranking", "$!{projectRanking}"))&#xd;
+     #set($description = "") &#xd;
+     #if($osscObj)&#xd;
+        #set($description = $osscObj.getProperty("description").value)&#xd;
+     #end&#xd;
+     #set($discard = $row.put("description", $!description))&#xd;
+  #end&#xd;
+  #if("$!request.getParameter('callPage')" != "")&#xd;
+    #set($discard = $row.put("entity_url", "$request.getParameter('callPage')$result[0]"))&#xd;
+  #else&#xd;
+    #set($discard = $row.put("entity_url", $xwiki.getURL($result[0])))&#xd;
+  #end&#xd;
+  #if($result[2])&#xd;
+    #set($discard = $row.put("layer", $xwiki.getDocument($result[2]).title))&#xd;
+    #set($discard = $row.put("layer_url", $xwiki.getURL($result[2])))&#xd;
+  #end&#xd;
+  #set($discard = $rows.add($row))&#xd;
+#end&#xd;
+#set($discard = $resultMap.put("rows", $rows))&#xd;
+&#xd;
+$jsontool.serialize($resultMap)&#xd;
+&#xd;
+{{/velocity}}</content>
+</xwikidoc>

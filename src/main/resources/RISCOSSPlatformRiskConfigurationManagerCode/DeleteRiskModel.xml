@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>RISCOSSPlatformRiskConfigurationManagerCode</web>
+  <name>DeleteRiskModel</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1430839816000</creationDate>
+  <parent>RISCOSSPlatformRiskConfigurationManagerCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>0</date>
+  <contentUpdateDate>0</contentUpdateDate>
+  <version>1.1</version>
+  <title>DeleteRiskModel</title>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+
+#if($request.method == "POST")
+  #set($riskConfiguration = $xwiki.getDocument($request.riskConfiguration))
+  
+  #set($existingRiskModels = $riskConfiguration.getObjects("RISCOSSPlatformRiskConfigurationManagerCode.RiskModelClass", "riskModel", $request.riskModel))
+  #set($found = false)
+  #foreach($existingRiskModel in $existingRiskModels)
+    #if($existingRiskModel.getProperty("layer").value == $request.layer)
+      #set($riskModelToDelete = $existingRiskModel)
+    #end
+  #end
+  
+  #if($riskModelToDelete)
+    $riskConfiguration.removeObject($riskModelToDelete)
+    $riskConfiguration.save();
+  #end
+  
+  $response.sendRedirect($riskConfiguration.getURL())
+#else
+  {{error}}Use POST{{/error}}
+#end
+
+{{/velocity}}</content>
+</xwikidoc>

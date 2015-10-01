@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xwikidoc version="1.1">
+  <web>AnnotationCode</web>
+  <name>Tab</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <creator>xwiki:XWiki.Admin</creator>
+  <creationDate>1429197413000</creationDate>
+  <parent>AnnotationCode.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1277458506000</date>
+  <contentUpdateDate>1277458506000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <comment>Imported from XAR</comment>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.0</syntaxId>
+  <hidden>true</hidden>
+  <content>{{include reference="AnnotationCode.Macros" /}}
+
+{{velocity filter="none"}}
+{{html wiki="false" clean="false"}}
+## clean=false because otherwise the html macro fails on blockquote
+  #set($annotationsList = $services.annotations.getAnnotations($doc.prefixedFullName))
+  #if($annotationsList.size() > 0)
+    &lt;div id="allAnnotations">
+    #foreach($ann in $annotationsList)
+    &lt;div>  ## anonymous annotation container
+      #displayAnnotation($ann, 'list', $doc.wiki, $doc.space, $doc.name)
+    &lt;/div>
+    #end
+    &lt;/div>
+  #else
+    &lt;p class="noitems">$services.localization.render('annotations.tab.info.noannotations')&lt;/p>
+  #end
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>
