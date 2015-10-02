@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformCode</web>
   <name>Create</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1357696926000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
@@ -52,10 +72,10 @@
 #set($discard = $response.addCookie("riscoss_nextPage", "$redirect", 3600))
 #set($discard = $response.addCookie("riscoss_entityName", "$request.name", 3600))
 {{html}}
-&lt;iframe src="$surveyURL" id="surveyIframe" frameborder="0" scrolling="" width="100%" height="600px">&lt;/iframe>
-&lt;div style="width:100%; text-align:center">
-&lt;/div>
-&lt;a href="$redirect">Skip this step&lt;/a>
+&lt;iframe src="$surveyURL" id="surveyIframe" frameborder="0" scrolling="" width="100%" height="600px"&gt;&lt;/iframe&gt;
+&lt;div style="width:100%; text-align:center"&gt;
+&lt;/div&gt;
+&lt;a href="$redirect"&gt;Skip this step&lt;/a&gt;
 {{/html}}
 
 #else
@@ -66,24 +86,24 @@
   {{error}}Missing parameter{{/error}}
 #else
 {{html}}
-&lt;form action="$doc.getURL()" method="POST" class="xform third createForm">
-  &lt;input type="hidden" name="create" value="true"/>
-  &lt;input type="hidden" name="parent" value="${request.space}.WebHome"/>
-  &lt;input type="hidden" name="space" class="targetSpace" value="${request.space}"/>
-  &lt;input type="hidden" name="template" value="${request.template}"/>
-  &lt;dl>
-    &lt;dt>&lt;label for="page">$request.fieldLabel&lt;/label>&lt;dt>
-    &lt;dd>&lt;input type="text" name="name" class="targetName"/>&lt;/dd>
-  &lt;/dl>
-  &lt;div class="buttons">
-    &lt;span class="buttonwrapper">
-      &lt;input type="submit" value="$services.localization.render("create")" class="button"/>
-    &lt;/span>
-    &lt;span class="buttonwrapper">
-      &lt;a class="secondary button" href="#">$services.localization.render("cancel")&lt;/a>
-    &lt;/span>
-  &lt;/div>
-&lt;/form>
+&lt;form action="$doc.getURL()" method="POST" class="xform third createForm"&gt;
+  &lt;input type="hidden" name="create" value="true"/&gt;
+  &lt;input type="hidden" name="parent" value="${request.space}.WebHome"/&gt;
+  &lt;input type="hidden" name="space" class="targetSpace" value="${request.space}"/&gt;
+  &lt;input type="hidden" name="template" value="${request.template}"/&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;&lt;label for="page"&gt;$request.fieldLabel&lt;/label&gt;&lt;dt&gt;
+    &lt;dd&gt;&lt;input type="text" name="name" class="targetName"/&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;div class="buttons"&gt;
+    &lt;span class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$services.localization.render("create")" class="button"/&gt;
+    &lt;/span&gt;
+    &lt;span class="buttonwrapper"&gt;
+      &lt;a class="secondary button" href="#"&gt;$services.localization.render("cancel")&lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 #end
 {{/velocity}}
@@ -183,7 +203,7 @@
     var showErrorMessage = function(element, message) {
       if(!element.classList.contains('xErrorField')) {
         element.addClassName('xErrorField');
-        element.insert({'after' : '&lt;div class="xErrorMsg">' + message + '&lt;/div>'});
+        element.insert({'after' : '&lt;div class="xErrorMsg"&gt;' + message + '&lt;/div&gt;'});
       }
     };
     
@@ -256,7 +276,7 @@
 </code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>AppWithinMinutes</web>
   <name>LiveTableViewSheet</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197397000</date>
   <contentUpdateDate>1429197397000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title>#if($doc.fullName=='AppWithinMinutes.LiveTableViewSheet')LiveTable View Sheet#{else}#evaluate($doc.title)#end</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -30,26 +50,26 @@
     (((
       = $services.localization.render('platform.appwithinminutes.appHomePageActionsHeading') =
       #if($hasCreatePage)
-        * [[$services.localization.render('platform.appwithinminutes.appHomePageAddEntryHint')>>||anchor="AddNewEntry" class="action add"]]##
+        * [[$services.localization.render('platform.appwithinminutes.appHomePageAddEntryHint')&gt;&gt;||anchor="AddNewEntry" class="action add"]]##
           #set($templateName = $escapetool.url("${className}Template"))
           #set($entryDoc = $services.model.createDocumentReference($doc.wiki, $doc.space, '__entryName__'))
-          {{html}}&lt;input type="hidden" value="$xwiki.getURL($entryDoc, 'edit', "editor=inline&amp;template=$!templateName&amp;parent=WebHome")" />{{/html}}
+          {{html}}&lt;input type="hidden" value="$xwiki.getURL($entryDoc, 'edit', "editor=inline&amp;template=$!templateName&amp;parent=WebHome")" /&gt;{{/html}}
       #end
       #if($hasEdit &amp;&amp; !$isReadOnly)
-        * [[$services.localization.render('platform.appwithinminutes.appHomePageEditAppLabel')>>AppWithinMinutes.CreateApplication||queryString="appName=$escapetool.url($doc.space)" class="action edit"]]
+        * [[$services.localization.render('platform.appwithinminutes.appHomePageEditAppLabel')&gt;&gt;AppWithinMinutes.CreateApplication||queryString="appName=$escapetool.url($doc.space)" class="action edit"]]
       #end
       #set($translationsDoc = $xwiki.getDocument("${className}Translations"))
       #if($xwiki.isMultiLingual() &amp;&amp; !$translationsDoc.isNew() &amp;&amp; $translationsDoc.hasAccessLevel('edit'))
-        * [[$services.localization.render('platform.appwithinminutes.appHomePageTranslateAppLabel')>>path:$translationsDoc.getURL('edit', 'editor=wiki')||class="action translate"]]
+        * [[$services.localization.render('platform.appwithinminutes.appHomePageTranslateAppLabel')&gt;&gt;path:$translationsDoc.getURL('edit', 'editor=wiki')||class="action translate"]]
       #end
       #if($hasSpaceAdmin)
-        * [[$services.localization.render('platform.appwithinminutes.appHomePageDeleteAppLabel')>>path:$doc.getURL('deletespace')||class="action delete"]]
+        * [[$services.localization.render('platform.appwithinminutes.appHomePageDeleteAppLabel')&gt;&gt;path:$doc.getURL('deletespace')||class="action delete"]]
       #end
     )))
   #end
   $doc.display('description')
   ## Display the live table only if it was generated.
-  #if($doc.content.length() > 0)
+  #if($doc.content.length() &gt; 0)
     = $services.localization.render('platform.appwithinminutes.appLiveTableHeading') =
     ## Escape {{ in the rendered content to be sure that the HTML macro is not closed unintentionally.
     {{html}}$doc.getRenderedContent($doc.content, $doc.syntax.toIdString()).replace('{{', '&amp;#123;&amp;#123;'){{/html}}
@@ -58,7 +78,7 @@
 {{/velocity}}</content>
   <attachment>
     <filename>locate.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1357830784000</date>
     <version>1.1</version>
     <comment/>

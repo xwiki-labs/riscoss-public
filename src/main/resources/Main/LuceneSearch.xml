@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>LuceneSearch</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1298680350000</contentUpdateDate>
   <version>1.1</version>
   <title>#if("$!{request.text}"=='')$services.localization.render('search.page.lucene.title.noquery')#else$services.localization.render('search.page.lucene.title.query', [$request.text])#end</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -71,17 +91,17 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
 ## Space macros
 ## ---------------
 #macro(spaceoption $space $selectedSpace)
-  &lt;option value="${space}" #if($selectedSpace == $space)selected="selected"#end>$space&lt;/option>
+  &lt;option value="${space}" #if($selectedSpace == $space)selected="selected"#end&gt;$space&lt;/option&gt;
 #end
 #macro(spaceselect $selectedSpace $spaces)
-  &lt;select name="space" title="$services.localization.render('search.page.bar.spaces.title')">
-    &lt;option value="" #if($selectedSpace == '')selected="selected"#end>$services.localization.render('search.page.bar.spaces.all')&lt;/option>
+  &lt;select name="space" title="$services.localization.render('search.page.bar.spaces.title')"&gt;
+    &lt;option value="" #if($selectedSpace == '')selected="selected"#end&gt;$services.localization.render('search.page.bar.spaces.all')&lt;/option&gt;
     #foreach($space in $spaces)
       #if (!$blacklistedSpaces.contains($space) &amp;&amp; $xwiki.hasAccessLevel('view', "${space}.DocumentReservedForInternalXWikiUsage${mathtool.random(0, 999)}"))
         #spaceoption($space $selectedSpace)
       #end
     #end
-  &lt;/select>
+  &lt;/select&gt;
 #end
 ## ---------------
 ## Wikis filtering
@@ -120,16 +140,16 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
   ## Wikis macros
   ## ---------------
   #macro(wikioption $wikiname $wikinamelist)
-    &lt;option value="$wikiname" #if($wikinamelist.contains($wikiname))selected="selected"#end>$wikiname&lt;/option>
+    &lt;option value="$wikiname" #if($wikinamelist.contains($wikiname))selected="selected"#end&gt;$wikiname&lt;/option&gt;
   #end
   #macro(wikisselect $wikinamelist $allwikinamelist)
     ## TODO: find a scaling way to handle wikis multiselect, does not use multiple="multiple" for now because it does not looks nice
-    &lt;select name="wikinames">
-      &lt;option value="" selected="selected">$services.localization.render('search.page.bar.wikis.all')&lt;/option>
+    &lt;select name="wikinames"&gt;
+      &lt;option value="" selected="selected"&gt;$services.localization.render('search.page.bar.wikis.all')&lt;/option&gt;
       #foreach($wikiname in $allwikinamelist)
         #wikioption($wikiname $wikinamelist)
       #end
-    &lt;/select>
+    &lt;/select&gt;
   #end
 #else
   #if($wikinames == '')
@@ -152,20 +172,20 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
 ## ---------------
 #if(!$rssmode)
 {{html}}
-&lt;form action="" id="searchBar">
-  &lt;div class="centered">
-    &lt;label for="text" class="hidden">$services.localization.render('search.page.query.label')&lt;/label>
-    &lt;input type="text" id="text" name="text" class="searchQuery #if($text == '') withTip#end" #if($text == '') value="$services.localization.render('search.page.bar.query.tip')" #else value="${escapetool.xml($text)}" #end title="$services.localization.render('search.page.bar.query.title')"/>
+&lt;form action="" id="searchBar"&gt;
+  &lt;div class="centered"&gt;
+    &lt;label for="text" class="hidden"&gt;$services.localization.render('search.page.query.label')&lt;/label&gt;
+    &lt;input type="text" id="text" name="text" class="searchQuery #if($text == '') withTip#end" #if($text == '') value="$services.localization.render('search.page.bar.query.tip')" #else value="${escapetool.xml($text)}" #end title="$services.localization.render('search.page.bar.query.title')"/&gt;
     #if ($xcontext.isMainWiki())
       #wikisselect($request.wikinames $allwikinamelist)
     #end
     #spaceselect($selectedSpace $spaces)
-    &lt;span class='buttonwrapper'>
-      &lt;input type="submit" class="button searchButton" value="$services.localization.render('search.page.bar.submit')" title="$services.localization.render('search.page.bar.submit.title')"/>
-    &lt;/span>
-    &lt;div class="searchHelp">$services.localization.render('search.page.bar.querytip')&lt;/div>
-  &lt;/div>
-&lt;/form>
+    &lt;span class='buttonwrapper'&gt;
+      &lt;input type="submit" class="button searchButton" value="$services.localization.render('search.page.bar.submit')" title="$services.localization.render('search.page.bar.submit.title')"/&gt;
+    &lt;/span&gt;
+    &lt;div class="searchHelp"&gt;$services.localization.render('search.page.bar.querytip')&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 #end
 ## ---------------
@@ -184,7 +204,7 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
     ## Lucene search
     ## ---------------
     #set($searchresults = $lucene.getSearchResults("+(${query})${extraClause}${hiddenClause}", '', $wikinames, $!languages))
-    #if($searchresults &amp;&amp; $searchresults.getHitcount() > 0)
+    #if($searchresults &amp;&amp; $searchresults.getHitcount() &gt; 0)
       ## -----------------
       ## Pagination (top)
       ## -----------------
@@ -250,7 +270,7 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
         #end
 
         {{html}}
-          &lt;a href="${rssURL}" class='hasIcon iconRSS'>$services.localization.render('search.rss', ["[$escapetool.xml($query)]"])&lt;/a>
+          &lt;a href="${rssURL}" class='hasIcon iconRSS'&gt;$services.localization.render('search.rss', ["[$escapetool.xml($query)]"])&lt;/a&gt;
         {{/html}}
       #end
     #else
@@ -272,7 +292,7 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
     ## Queue
     ## ---------------
     #set ($queuesize = $xwiki.lucene.getQueueSize())
-    #if ($queuesize > 0)
+    #if ($queuesize &gt; 0)
 
       {{info}}$services.localization.render('search.page.lucene.rebuilding', [${queuesize}]){{/info}}
     #end

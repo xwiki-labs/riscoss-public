@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Dashboard</web>
   <name>XWikiUserDashboardSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1321289334000</contentUpdateDate>
   <version>1.1</version>
   <title>XWikiUserDashboardSheet</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -32,7 +52,7 @@
     #set($displayOnMainPageProp = $dbPrefsClass.get('displayOnMainPage'))
     #set($defaultValue = $displayOnMainPageProp.getProperty('defaultValue').value)
     ## this default value is of type long, for some reason, so I'll have to compare here instead of just set
-    #if ($defaultValue > 0) 
+    #if ($defaultValue &gt; 0) 
       #set($ok = $dashboardPrefs.set('displayOnMainPage', 1))
     #else
       #set($ok = $dashboardPrefs.set('displayOnMainPage', 0))
@@ -40,18 +60,18 @@
     #set($ok = $doc.save())
   #end
   {{html clean="false" wiki="true"}}
-  &lt;div class="full column xform">
-    &lt;div class="userDashboard">
+  &lt;div class="full column xform"&gt;
+    &lt;div class="userDashboard"&gt;
       #if($xcontext.action == 'view' &amp;&amp; $hasEdit)
-        &lt;div class="editProfileCategory">&lt;a href="$doc.getURL('edit', 'category=dashboard')">&lt;span class="hidden">$services.localization.render('platform.core.profile.category.dashboard.edit')&lt;/span>&lt;/a>&lt;/div>
+        &lt;div class="editProfileCategory"&gt;&lt;a href="$doc.getURL('edit', 'category=dashboard')"&gt;&lt;span class="hidden"&gt;$services.localization.render('platform.core.profile.category.dashboard.edit')&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
       #end  
-      &lt;h1>$services.localization.render('platform.dashboard.user.preferences')&lt;/h1>
-      &lt;dl>
-        &lt;dt class="label">&lt;label>$services.localization.render('platform.dashboard.user.displayOnMainPage')&lt;/label>&lt;/dt>
-        &lt;dd>$doc.display('displayOnMainPage', $dashboardPrefs)&lt;/dd>
-      &lt;/dl>
-    &lt;/div>
-  &lt;/div>
+      &lt;h1&gt;$services.localization.render('platform.dashboard.user.preferences')&lt;/h1&gt;
+      &lt;dl&gt;
+        &lt;dt class="label"&gt;&lt;label&gt;$services.localization.render('platform.dashboard.user.displayOnMainPage')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;$doc.display('displayOnMainPage', $dashboardPrefs)&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
   {{/html}}
   #if ("$!{request.xpage}" != 'edituser')
 

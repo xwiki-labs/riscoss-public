@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>SolrSearch</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197397000</date>
   <contentUpdateDate>1429197397000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title>Solr Search</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -26,34 +46,34 @@
 
 #macro (displaySearchForm)
   {{html}}
-  &lt;form class="search-form half" action="">
-    &lt;div class="hidden">
-      &lt;input type="hidden" name="sort" value="$!escapetool.xml($sort)"/>
-      &lt;input type="hidden" name="sortOrder" value="$!escapetool.xml($sortOrder)"/>
+  &lt;form class="search-form half" action=""&gt;
+    &lt;div class="hidden"&gt;
+      &lt;input type="hidden" name="sort" value="$!escapetool.xml($sort)"/&gt;
+      &lt;input type="hidden" name="sortOrder" value="$!escapetool.xml($sortOrder)"/&gt;
       ## The parameter used to determine if the request has been redirected with default search filters.
-      &lt;input type="hidden" name="r" value="$!escapetool.xml($request.r)"/>
+      &lt;input type="hidden" name="r" value="$!escapetool.xml($request.r)"/&gt;
       #if ("$!request.debug" != '')
-        &lt;input type="hidden" name="debug" value="$escapetool.xml($request.debug)"/>
+        &lt;input type="hidden" name="debug" value="$escapetool.xml($request.debug)"/&gt;
       #end
       ## Preserve the current facet values when submitting a new search query.
       #foreach ($entry in $request.parameterMap.entrySet())
         #if ($entry.key.startsWith('f_') || $entry.key.startsWith('l_'))
           #foreach ($value in $entry.value)
-            &lt;input type="hidden" name="$escapetool.xml($entry.key)" value="$escapetool.xml($value)"/>
+            &lt;input type="hidden" name="$escapetool.xml($entry.key)" value="$escapetool.xml($value)"/&gt;
           #end
         #end
       #end
-    &lt;/div>
-    &lt;div class="search-bar">
-      &lt;label class="hidden" for="searchQuery">$services.localization.render('search.page.bar.query.label')&lt;/label>
+    &lt;/div&gt;
+    &lt;div class="search-bar"&gt;
+      &lt;label class="hidden" for="searchQuery"&gt;$services.localization.render('search.page.bar.query.label')&lt;/label&gt;
       &lt;input type="text" id="searchQuery" name="text" class="search-query withTip useTitleAsTip"
-        title="$services.localization.render('search.page.bar.query.title')" value="$escapetool.xml($text)"/>##
-      &lt;span class="buttonwrapper">##
+        title="$services.localization.render('search.page.bar.query.title')" value="$escapetool.xml($text)"/&gt;##
+      &lt;span class="buttonwrapper"&gt;##
         &lt;input type="submit" value="$services.localization.render('search.page.bar.submit')"
-          class="button" title="$services.localization.render('search.page.bar.submit.title')" />
-      &lt;/span>
-    &lt;/div>
-  &lt;/form>
+          class="button" title="$services.localization.render('search.page.bar.submit.title')" /&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
   {{/html}}
 #end
 
@@ -64,43 +84,43 @@
     #if ($debugMap)
 
       {{html}}
-      &lt;dl>
-        &lt;dt>Query Parser&lt;/dt>
-        &lt;dd>$!escapetool.xml($debugMap.get('QParser'))&lt;/dd>
-        &lt;dt>Parsed Query&lt;/dt>
-        &lt;dd>$!escapetool.xml($debugMap.get('parsedquery_toString'))&lt;/dd>
-        &lt;dt>Filter Queries&lt;/dt>
-        &lt;dd>
-          &lt;ul>
+      &lt;dl&gt;
+        &lt;dt&gt;Query Parser&lt;/dt&gt;
+        &lt;dd&gt;$!escapetool.xml($debugMap.get('QParser'))&lt;/dd&gt;
+        &lt;dt&gt;Parsed Query&lt;/dt&gt;
+        &lt;dd&gt;$!escapetool.xml($debugMap.get('parsedquery_toString'))&lt;/dd&gt;
+        &lt;dt&gt;Filter Queries&lt;/dt&gt;
+        &lt;dd&gt;
+          &lt;ul&gt;
             #foreach ($filterQuery in $debugMap.get('filter_queries'))
-              &lt;li>$!escapetool.xml($filterQuery)&lt;/li>
+              &lt;li&gt;$!escapetool.xml($filterQuery)&lt;/li&gt;
             #end
-          &lt;/ul>
-        &lt;/dd>
-        &lt;dt>Processing Time&lt;/dt>
-        &lt;dd>
+          &lt;/ul&gt;
+        &lt;/dd&gt;
+        &lt;dt&gt;Processing Time&lt;/dt&gt;
+        &lt;dd&gt;
           #displayProcessingTime($debugMap.get('timing'))
-        &lt;/dd>
-      &lt;/dl>
+        &lt;/dd&gt;
+      &lt;/dl&gt;
       {{/html}}
     #end
   )))
 #end
 
 #macro (displayProcessingTime $timing)
-  &lt;ul>
+  &lt;ul&gt;
     ## The timing is not a Map but a NamedList.
     #foreach ($entry in $timing)
-      &lt;li>
+      &lt;li&gt;
         $!escapetool.xml($entry.key):
-        #if ($entry.value.time &amp;&amp; $entry.value.size() > 1)
+        #if ($entry.value.time &amp;&amp; $entry.value.size() &gt; 1)
           #displayProcessingTime($entry.value)
         #else
           $!escapetool.xml($entry.value)
         #end
-      &lt;/li>
+      &lt;/li&gt;
     #end
-  &lt;/ul>
+  &lt;/ul&gt;
 #end
 
 #macro (displaySearchFacets $searchResponse)
@@ -119,7 +139,7 @@
         #end
       #end
       #extendQueryString($url $resetParameters)
-      [[{{translation key="solr.facets.resetAll"}}>>path:$url]]
+      [[{{translation key="solr.facets.resetAll"}}&gt;&gt;path:$url]]
     )))
     #foreach ($facetField in $searchResponse.facetFields)
       #displaySearchFacet($facetField)
@@ -131,7 +151,7 @@
   #set ($facetValues = $facetField.values)
   ## Keep only the values that have at least one match.
   #set ($discard = $facetValues.removeAll($facetField.getLimitingFields(1).values))
-  #if ($facetValues.size() > 0)
+  #if ($facetValues.size() &gt; 0)
     ## Show active facets (that have selected values or that have an explicit limit on the number of values, i.e.
     ## pagination) as expanded. Collapse the rest, otherwise you have to scroll to see all the available facets.
     #set ($facetRequestParameter = "f_$facetField.name")
@@ -172,11 +192,11 @@
   #else
     #set ($facetPrettyName = $facetField.name)
   #end
-  &lt;div class="search-facet-header">$escapetool.xml($facetPrettyName)&lt;/div> 
+  &lt;div class="search-facet-header"&gt;$escapetool.xml($facetPrettyName)&lt;/div&gt; 
 #end
 
 #macro (displaySearchFacetBody $facetField)
-  &lt;div class="search-facet-body">
+  &lt;div class="search-facet-body"&gt;
     #set ($facetDisplayer = $solrConfig.facetDisplayers.get($facetField.name))
     #if (!$facetDisplayer &amp;&amp; $facetField.name.startsWith('property.'))
       ## Choose a facet displayer based on the property type.
@@ -195,13 +215,13 @@
     #else
       #displaySearchFacetValues($facetValues)
     #end
-  &lt;/div>
+  &lt;/div&gt;
 #end
 
 #macro (displaySearchFacetValues $facetValues $customQueryStringParameters $customValueDisplayer)
-  &lt;ul>
+  &lt;ul&gt;
     #displaySearchFacetValuesLimited($facetValues $customQueryStringParameters $customValueDisplayer)
-  &lt;/ul>
+  &lt;/ul&gt;
 #end
 
 #macro (displaySearchFacetValuesLimited $facetValues $customQueryStringParameters $customValueDisplayer)
@@ -213,11 +233,11 @@
   #set ($limit = $mathtool.max($mathtool.min($limit, $facetValues.size()), 0))
   #foreach ($facetValue in $facetValues)
     #if ($foreach.index &lt; $limit)
-      &lt;li>#displaySearchFacetValue($facetValue $customQueryStringParameters $customValueDisplayer)&lt;/li>
+      &lt;li&gt;#displaySearchFacetValue($facetValue $customQueryStringParameters $customValueDisplayer)&lt;/li&gt;
     #else
       #extendQueryString($url {$limitRequestParameter: [$mathtool.add($limit, $solrConfig.facetPaginationStep)]})
-      &lt;li>&lt;a href="$url" class="more">&amp;hellip; $escapetool.xml($services.localization.render(
-        'solr.facets.moreValues', [$mathtool.sub($facetValues.size(), $limit)]))&lt;/a>&lt;/li>
+      &lt;li&gt;&lt;a href="$url" class="more"&gt;&amp;hellip; $escapetool.xml($services.localization.render(
+        'solr.facets.moreValues', [$mathtool.sub($facetValues.size(), $limit)]))&lt;/a&gt;&lt;/li&gt;
       #break
     #end
   #end
@@ -238,8 +258,8 @@
     #set ($discard = $queryStringParameters.putAll($customQueryStringParameters))
   #end
   #extendQueryString($url $queryStringParameters)
-  &lt;div class="itemCount">$facetValue.count&lt;/div>
-  &lt;a href="$url" class="itemName#if ($selected) selected#end#if ($facetValue.name == '') empty#end">
+  &lt;div class="itemCount"&gt;$facetValue.count&lt;/div&gt;
+  &lt;a href="$url" class="itemName#if ($selected) selected#end#if ($facetValue.name == '') empty#end"&gt;
     #if ($facetValue.name == '')
       #set ($facetPrettyValueKey = "solr.field.${facetField.name}.emptyValue")
       #if (!$services.localization.get($facetPrettyValueKey))
@@ -254,8 +274,8 @@
     #else
       $escapetool.xml($facetPrettyValue)
     #end
-  &lt;/a>
-  &lt;div class="clearfloats">&lt;/div>
+  &lt;/a&gt;
+  &lt;div class="clearfloats"&gt;&lt;/div&gt;
 #end
 
 #**
@@ -300,7 +320,7 @@
       #set ($targetSortOrder = "#if ($sortOrder == 'asc')desc#{else}asc#end")
     #end
     #extendQueryString($url {'sort': [$entry.key], 'sortOrder': [$targetSortOrder]})
-    * [[{{translation key="solr.sortBy.$entry.key"/}}$!sortOrderIndicator>>path:$url||class="$class"]]
+    * [[{{translation key="solr.sortBy.$entry.key"/}}$!sortOrderIndicator&gt;&gt;path:$url||class="$class"]]
   #end
 #end
 
@@ -346,9 +366,9 @@
   ## Add the parameters required to output the RSS feed instead of the search UI.
   #set ($discard = $parameters.put('outputSyntax', 'plain'))
   #set ($discard = $parameters.put('media', 'rss'))
-  &lt;a href="$doc.getURL('get', $escapetool.url($parameters))" class="hasIcon iconRSS">
+  &lt;a href="$doc.getURL('get', $escapetool.url($parameters))" class="hasIcon iconRSS"&gt;
     $services.localization.render('search.rss', ["[$escapetool.xml($text)]"])
-  &lt;/a>
+  &lt;/a&gt;
   {{/html}}
 #end
 
@@ -369,7 +389,7 @@
       ## characters that are considered invalid by JDOM library which is used for parsing the HTML when cleaning is on.
       ## E.g. "0x0 is not a legal XML character" (org.jdom.IllegalDataException).
       {{html clean="false"}}
-      &lt;div class="search-result-debug">$!escapetool.xml($searchResponse.explainMap.get($searchResult.id))&lt;/div>
+      &lt;div class="search-result-debug"&gt;$!escapetool.xml($searchResponse.explainMap.get($searchResult.id))&lt;/div&gt;
       {{/html}}
     #end
   )))
@@ -379,48 +399,48 @@
   #set ($searchResultTranslatedDocument = $searchResultDocument.getTranslatedDocument($searchResult.locale))
   #displaySearchResultTitle()
   #displaySearchResultLocation()
-  &lt;div class="search-result-author">
+  &lt;div class="search-result-author"&gt;
     $services.localization.render('core.footer.modification', [
       $xwiki.getUserName($searchResultTranslatedDocument.author),
       $xwiki.formatDate($searchResultTranslatedDocument.date)
     ])
-  &lt;/div>
+  &lt;/div&gt;
 #end
 
 #macro (displaySearchResult_attachment $searchResult)
-  &lt;h2 class="search-result-title">
+  &lt;h2 class="search-result-title"&gt;
     #set ($fileName = $searchResult.filename.get(0))
     #set ($attachmentURL = $searchResultDocument.getAttachmentURL($fileName))
     #set ($downloadHint = $services.localization.render('core.viewers.attachments.download'))
-    &lt;a href="$attachmentURL" title="$escapetool.xml($downloadHint)">$escapetool.xml($fileName)&lt;/a>
+    &lt;a href="$attachmentURL" title="$escapetool.xml($downloadHint)"&gt;$escapetool.xml($fileName)&lt;/a&gt;
     #set ($attachmentHistoryURL = $searchResultDocument.getAttachmentURL($fileName, 'viewattachrev'))
     #set ($historyHint = $services.localization.render('core.viewers.attachments.showHistory'))
-    &lt;a href="$attachmentHistoryURL" title="$escapetool.xml($historyHint)" class="search-result-version">
+    &lt;a href="$attachmentHistoryURL" title="$escapetool.xml($historyHint)" class="search-result-version"&gt;
       $escapetool.xml($searchResult.attversion)
-    &lt;/a>
-  &lt;/h2>
+    &lt;/a&gt;
+  &lt;/h2&gt;
   #displaySearchResultLocation($searchResult)
-  &lt;div class="search-result-uploader">
+  &lt;div class="search-result-uploader"&gt;
     #set ($uploader = $xwiki.getUserName($searchResult.attauthor.get(0)))
     #set ($uploadDate = $xwiki.formatDate($searchResult.attdate.get(0)))
     #set ($fileSize = "#dynamicsize($searchResult.attsize.get(0))")
     $services.localization.render('solr.result.uploadedBy', [$uploader, $uploadDate, $fileSize])
-  &lt;/div>
-  &lt;div class="search-result-mediaType">$services.localization.render('solr.result.mediaType',
-    [$escapetool.xml($searchResult.mimetype.get(0))])&lt;/div>
+  &lt;/div&gt;
+  &lt;div class="search-result-mediaType"&gt;$services.localization.render('solr.result.mediaType',
+    [$escapetool.xml($searchResult.mimetype.get(0))])&lt;/div&gt;
 #end
 
 #macro (displaySearchResult_object $searchResult)
-  &lt;h2 class="search-result-title">
+  &lt;h2 class="search-result-title"&gt;
     #displaySearchResultXClassLink($searchResult)
-  &lt;/h2>
+  &lt;/h2&gt;
   #displaySearchResultLocation($searchResult)
 #end
 
 #macro (displaySearchResult_object_property $searchResult)
-  &lt;h2 class="search-result-title">
+  &lt;h2 class="search-result-title"&gt;
     #displaySearchResultXClassLink($searchResult)^$searchResult.propertyname
-  &lt;/h2>
+  &lt;/h2&gt;
   #displaySearchResultLocation($searchResult)
 #end
 
@@ -428,7 +448,7 @@
   #set ($classFullName = $searchResult.get('class').get(0))
   #set ($classReference = $services.model.resolveDocument($classFullName,
     $services.model.createWikiReference($searchResult.wiki)))
-  &lt;a href="$xwiki.getURL($classReference)">$escapetool.xml($classFullName)&lt;/a>##
+  &lt;a href="$xwiki.getURL($classReference)"&gt;$escapetool.xml($classFullName)&lt;/a&gt;##
 #end
 
 #macro (displaySearchResultTitle)
@@ -437,13 +457,13 @@
   #if ($showLocale)
     #set ($titleURL = $searchResultDocument.getURL('view', "language=$searchResult.locale"))
   #end
-  &lt;h2 class="search-result-title">
-    &lt;a href="$titleURL">$escapetool.xml($searchResultTranslatedDocument.plainTitle)&lt;/a>
+  &lt;h2 class="search-result-title"&gt;
+    &lt;a href="$titleURL"&gt;$escapetool.xml($searchResultTranslatedDocument.plainTitle)&lt;/a&gt;
     #if ($showLocale)
       &lt;span title="$escapetool.xml($services.localization.render('solr.result.language'))"
-        class="search-result-language" >($escapetool.xml($searchResult.locale))&lt;/span>
+        class="search-result-language" &gt;($escapetool.xml($searchResult.locale))&lt;/span&gt;
     #end
-  &lt;/h2>
+  &lt;/h2&gt;
 #end
 
 #macro (displaySearchResultLocation $searchResult)
@@ -453,23 +473,23 @@
   #end
   #set ($wikiReference = $services.model.createWikiReference($searchResult.wiki))
   #set ($wikiHomeDocRef = $services.model.resolveDocument('', 'default', $wikiReference))
-  #set ($wikiLink = "&lt;a href=""$xwiki.getURL($wikiHomeDocRef)"">$escapetool.xml($wikiPrettyName)&lt;/a>")
+  #set ($wikiLink = "&lt;a href=""$xwiki.getURL($wikiHomeDocRef)""&gt;$escapetool.xml($wikiPrettyName)&lt;/a&gt;")
   ##
   #set ($spaceReference = $services.model.createSpaceReference($searchResult.space, $wikiReference))
   #set ($spaceHomeDocRef = $services.model.resolveDocument('', 'default', $spaceReference))
-  #set ($spaceLink = "&lt;a href=""$xwiki.getURL($spaceHomeDocRef)"">$escapetool.xml($searchResult.space)&lt;/a>")
+  #set ($spaceLink = "&lt;a href=""$xwiki.getURL($spaceHomeDocRef)""&gt;$escapetool.xml($searchResult.space)&lt;/a&gt;")
   ##
-  #set ($documentLink = "&lt;a href=""$searchResultDocument.getURL()"">$escapetool.xml($searchResult.name)&lt;/a>")
-  &lt;div class="search-result-location">$services.localization.render('solr.result.location',
-    [$wikiLink, $spaceLink, $documentLink])&lt;/div>
+  #set ($documentLink = "&lt;a href=""$searchResultDocument.getURL()""&gt;$escapetool.xml($searchResult.name)&lt;/a&gt;")
+  &lt;div class="search-result-location"&gt;$services.localization.render('solr.result.location',
+    [$wikiLink, $spaceLink, $documentLink])&lt;/div&gt;
 #end
 
 #macro (displaySearchResultHighlighting $searchResult)
   #getSearchResultHighlighting($searchResult $highlighting)
-  #if ($highlighting.size() > 0)
-    &lt;dl class="search-result-highlights">
+  #if ($highlighting.size() &gt; 0)
+    &lt;dl class="search-result-highlights"&gt;
       #foreach ($entry in $highlighting)
-        &lt;dt>
+        &lt;dt&gt;
           #if ($services.localization.get("solr.field.$entry.field"))
             $services.localization.render("solr.field.$entry.field")
           #elseif ($entry.field.startsWith('property.'))
@@ -482,19 +502,19 @@
           #else
             $entry.field
           #end
-        &lt;/dt>
-        &lt;dd>#displaySearchResultMatches($entry.matches)&lt;/dd>
+        &lt;/dt&gt;
+        &lt;dd&gt;#displaySearchResultMatches($entry.matches)&lt;/dd&gt;
       #end
-    &lt;/dl>
+    &lt;/dl&gt;
   #end
 #end
 
 #macro (displaySearchResultMatches $matches)
   #foreach ($match in $matches)
-    #if ($foreach.count > 1)
-      &lt;span class="separator">&amp;hellip;&lt;/span>
+    #if ($foreach.count &gt; 1)
+      &lt;span class="separator"&gt;&amp;hellip;&lt;/span&gt;
     #end
-    &lt;blockquote class="search-result-highlight">$match&lt;/blockquote>
+    &lt;blockquote class="search-result-highlight"&gt;$match&lt;/blockquote&gt;
   #end
 #end
 
@@ -529,11 +549,11 @@
     #end
     ## Sanitize the matches.
     #foreach ($match in $matches)
-      #set ($match = $match.replace('&lt;span class="search-text-highlight">', "\u0011"))
-      #set ($match = $match.replace('&lt;span class="search-text-highlight-stop">&lt;/span>&lt;/span>', "\u0013"))
+      #set ($match = $match.replace('&lt;span class="search-text-highlight"&gt;', "\u0011"))
+      #set ($match = $match.replace('&lt;span class="search-text-highlight-stop"&gt;&lt;/span&gt;&lt;/span&gt;', "\u0013"))
       #set ($match = $escapetool.xml($match))
-      #set ($match = $match.replace("\u0011", '&lt;span class="search-text-highlight">'))
-      #set ($match = $match.replace("\u0013", '&lt;/span>'))
+      #set ($match = $match.replace("\u0011", '&lt;span class="search-text-highlight"&gt;'))
+      #set ($match = $match.replace("\u0013", '&lt;/span&gt;'))
       #set ($discard = $matches.set($mathtool.sub($foreach.count, 1), $match))
     #end
     #set ($discard = $highlighting.add({
@@ -977,7 +997,7 @@ $value##
     _updateGlobalToggleState: function() {
       var facetCount = this.container.select('.search-facet').length;
       var expandedFacetCount = this.container.select('.search-facet.expanded').length;
-      this.globalToggle._collapse = expandedFacetCount > facetCount/2;
+      this.globalToggle._collapse = expandedFacetCount &gt; facetCount/2;
       if (this.globalToggle._collapse) {
         this.globalToggle.update("$escapetool.javascript($services.localization.render('solr.facets.collapseAll'))");
       } else {
@@ -990,7 +1010,7 @@ $value##
     initialize: function(container) {
       this.container = container;
       var highlights = container.down('.search-result-highlights');
-      if (highlights &amp;&amp; highlights.select('.search-result-highlight').size() > 1) {
+      if (highlights &amp;&amp; highlights.select('.search-result-highlight').size() &gt; 1) {
         highlights.addClassName('preview');
         // Workaround for IE8 which doesn't support :first-of-type CSS selector.
         highlights.down('.search-result-highlight').addClassName('first').up('dd')
@@ -1023,7 +1043,7 @@ $value##
 })();</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -1266,14 +1286,14 @@ blockquote.search-result-highlight {
   font-weight: bold;
 }
 
-dl.search-result-highlights > dt {
+dl.search-result-highlights &gt; dt {
   color: $theme.textSecondaryColor;
   font-weight: normal;
   text-transform: capitalize;
 }
 
 dl.search-result-highlights.preview dt,
-dl.search-result-highlights.preview dd > * {
+dl.search-result-highlights.preview dd &gt; * {
   display: none;
 }
 
@@ -1328,7 +1348,7 @@ a.search-result-highlightAll:after {
   border-top: none;
 }
 
-.search-facets-actions > p {
+.search-facets-actions &gt; p {
   font-size: .8em;
   margin: 0;
 }
@@ -1466,7 +1486,7 @@ a.search-result-highlightAll:after {
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

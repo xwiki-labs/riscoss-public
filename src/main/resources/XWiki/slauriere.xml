@@ -1,20 +1,40 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>slauriere</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <creator>XWiki.slauriere</creator>
+  <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1440677402000</creationDate>
   <parent>XWiki.XWikiUsers</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443523148000</date>
   <contentUpdateDate>1440677433000</contentUpdateDate>
-  <version>3.1</version>
+  <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
@@ -400,14 +420,14 @@
 #if ($xcontext.action == 'inline' || $xcontext.action == 'edit')
   {{html}}
     #if($xwiki.jodatime)
-      &lt;select id='$prefix$name' name='$prefix$name'>
-        &lt;option value="" #if($value == $tz)selected="selected"#end>$services.localization.render('XWiki.XWikiPreferences_timezone_default')&lt;/option>
+      &lt;select id='$prefix$name' name='$prefix$name'&gt;
+        &lt;option value="" #if($value == $tz)selected="selected"#end&gt;$services.localization.render('XWiki.XWikiPreferences_timezone_default')&lt;/option&gt;
         #foreach($tz in $xwiki.jodatime.getServerTimezone().getAvailableIDs())
-          &lt;option value="$tz" #if($value == $tz)selected="selected"#end>$tz&lt;/option>
+          &lt;option value="$tz" #if($value == $tz)selected="selected"#end&gt;$tz&lt;/option&gt;
         #end
-      &lt;/select>
+      &lt;/select&gt;
     #else
-      &lt;input id='$prefix$name' name='$prefix$name' type="text" value="$!value"/>
+      &lt;input id='$prefix$name' name='$prefix$name' type="text" value="$!value"/&gt;
     #end
   {{/html}}
 #else
@@ -453,7 +473,7 @@
       <active>0</active>
     </property>
     <property>
-      <email></email>
+      <email/>
     </property>
     <property>
       <first_name>Stéphane</first_name>

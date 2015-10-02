@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>Applications</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1346768961000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -109,7 +129,7 @@
   #set($params = $uix.getParameters())
   #if("$!params.icon" != '' &amp;&amp; "$!params.label" != '' &amp;&amp; "$!params.target" != '' &amp;&amp; $xwiki.hasAccessLevel('view', $xcontext.user, $params.target))
 (% class="applicationsPanel" %)
-* [[image:$params.icon $params.label>>$params.target]]
+* [[image:$params.icon $params.label&gt;&gt;$params.target]]
   #end
 #end
 #if($xwiki.hasWikiAdminRights())
@@ -118,7 +138,7 @@
 
 
 (% class="applicationsPanel" %)
-* [[image:icon:add $services.localization.render('panels.applications.more')>>XWiki.XWikiPreferences||class="applicationPanelMoreButton" queryString="editor=globaladmin&amp;section=XWiki.AddExtensions"]]
+* [[image:icon:add $services.localization.render('panels.applications.more')&gt;&gt;XWiki.XWikiPreferences||class="applicationPanelMoreButton" queryString="editor=globaladmin&amp;section=XWiki.AddExtensions"]]
 
 (% class="applicationPanelMoreContainer hidden" %)(((
 (% class="applicationsPanel" %)
@@ -126,7 +146,7 @@
   #set($params = $uix.getParameters())
   #if("$!params.icon" != '' &amp;&amp; "$!params.label" != '' &amp;&amp; "$!params.target" != '')
 (% class="applicationsPanel" %)
-* [[image:$params.icon $params.label>>$params.target]]
+* [[image:$params.icon $params.label&gt;&gt;$params.target]]
   #end
 #end
 )))

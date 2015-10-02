@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>WikiManager</web>
   <name>WikisMacro</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1303908408000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -282,36 +302,36 @@ ul.xlist li.xitem div.xshowonhover img {
 
 #end
 {{html wiki='true'}}
-&lt;ul class='xlist'>
+&lt;ul class='xlist'&gt;
   ##
   ## List wikis.
   ##
   #foreach($wiki in $wikis)
-      &lt;li class='xitem xunderline xhighlight workspace spWorkspaceItem'>
-        &lt;div class='xitemcontainer'>
-          &lt;div class='spWorkspaceName'>{{html}}&lt;a href="${xwiki.getURL($wiki.mainPageReference)}">${wiki.prettyName}&lt;/a>{{/html}}&lt;/div>  
-          &lt;div class='xspacer'>&amp;nbsp;&lt;/div>
-        &lt;/div>
-      &lt;/li>
+      &lt;li class='xitem xunderline xhighlight workspace spWorkspaceItem'&gt;
+        &lt;div class='xitemcontainer'&gt;
+          &lt;div class='spWorkspaceName'&gt;{{html}}&lt;a href="${xwiki.getURL($wiki.mainPageReference)}"&gt;${wiki.prettyName}&lt;/a&gt;{{/html}}&lt;/div&gt;  
+          &lt;div class='xspacer'&gt;&amp;nbsp;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
   #end
   ## Wiki creation.
   ##
   ## Only if the current action is not inline. If it's inline, then there is already a form, and if we render the second, nested one, the DOM is messed up in IE.
   #if(!$isGuest &amp;&amp; "$!xcontext.action" != 'inline')
-    &lt;li id='spWorkspaceCreateItem' class='xitem workspace'>
-      &lt;div class='xitemcontainer'>
+    &lt;li id='spWorkspaceCreateItem' class='xitem workspace'&gt;
+      &lt;div class='xitemcontainer'&gt;
         #set ($createWikiDocumentReference = $services.model.createDocumentReference($xcontext.mainWikiName, 'WikiManager', 'CreateWiki'))
-        &lt;div id='spWorkspaceCreateLabel' class='spWorkspaceName'>&lt;a href="$xwiki.getURL($createWikiDocumentReference)">{{translation key="platform.wiki.create.title"/}}&lt;/a>&lt;/div>
-        &lt;div class='spacer'>&amp;nbsp;&lt;/div>
-      &lt;/div>
-    &lt;/li>
+        &lt;div id='spWorkspaceCreateLabel' class='spWorkspaceName'&gt;&lt;a href="$xwiki.getURL($createWikiDocumentReference)"&gt;{{translation key="platform.wiki.create.title"/}}&lt;/a&gt;&lt;/div&gt;
+        &lt;div class='spacer'&gt;&amp;nbsp;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
   #end
-&lt;/ul>
+&lt;/ul&gt;
 {{/html}}
 {{/velocity}}</code>
     </property>
     <property>
-      <contentDescription></contentDescription>
+      <contentDescription/>
     </property>
     <property>
       <contentType>No content</contentType>

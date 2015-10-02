@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiSyntaxLists</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1301497917000</contentUpdateDate>
   <version>1.1</version>
   <title>XWikiSyntaxLists</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -25,7 +45,7 @@
 {{comment}}please do not translate the sub headlines{{/comment}}
 === 1.0 Lists ===
 
-{{info}}Alcuni degli stili mostrati non funzionano con tutti i browser. Per un elenco completo seguire [[questo link>>http://www.quirksmode.org/css/lists.html]].{{/info}}
+{{info}}Alcuni degli stili mostrati non funzionano con tutti i browser. Per un elenco completo seguire [[questo link&gt;&gt;http://www.quirksmode.org/css/lists.html]].{{/info}}
 
 |=Feature|=XWiki Syntax 1.0|=Result
 |Elenco puntato|((({{{
@@ -70,10 +90,10 @@
 * voce 2
 )))
 |Elenco puntato con punto pieno|(((
-&lt;ul style="list-style-type: disc">
-  &lt;li>voce 1&lt;/li>
-  &lt;li>voce 2&lt;/li>
-&lt;/ul>
+&lt;ul style="list-style-type: disc"&gt;
+  &lt;li&gt;voce 1&lt;/li&gt;
+  &lt;li&gt;voce 2&lt;/li&gt;
+&lt;/ul&gt;
 )))|(((
 (% style="list-style-type: disc" %)
 * voce 1
@@ -160,10 +180,10 @@ K. voce 2
 * voce 2
 )))
 |Elenco lettere Armene|((({{{
-&lt;ul style="list-style-type: armenian">
-  &lt;li>voce 1&lt;/li>
-  &lt;li>voce 2&lt;/li>
-&lt;/ul>
+&lt;ul style="list-style-type: armenian"&gt;
+  &lt;li&gt;voce 1&lt;/li&gt;
+  &lt;li&gt;voce 2&lt;/li&gt;
+&lt;/ul&gt;
 }}})))|(((
 (% style="list-style-type: armenian" %)
 * voce 1
@@ -178,20 +198,20 @@ j. voce 2
 * voce 2
 )))
 |Elenco lettere Georgiane|((({{{
-&lt;ul style="list-style-type: georgian">
-  &lt;li>voce 1&lt;/li>
-  &lt;li>voce 2&lt;/li>
-&lt;/ul>
+&lt;ul style="list-style-type: georgian"&gt;
+  &lt;li&gt;voce 1&lt;/li&gt;
+  &lt;li&gt;voce 2&lt;/li&gt;
+&lt;/ul&gt;
 }}})))|(((
 (% style="list-style-type: georgian" %)
 * voce 1
 * voce 2
 )))
 |Elenco ideogrammi Cinesi CJK|((({{{
-&lt;ul style="list-style-type: cjk-ideographic">
-  &lt;li>voce 1&lt;/li>
-  &lt;li>voce 2&lt;/li>
-&lt;/ul>
+&lt;ul style="list-style-type: cjk-ideographic"&gt;
+  &lt;li&gt;voce 1&lt;/li&gt;
+  &lt;li&gt;voce 2&lt;/li&gt;
+&lt;/ul&gt;
 }}})))|(((
 (% style="list-style-type: cjk-ideographic" %)
 * voce 1
@@ -200,7 +220,7 @@ j. voce 2
 
 === 2.0 Lists ===
 
-{{info}}Alcuni degli stili mostrati non funzionano con tutti i browser. Per un elenco completo seguire [[questo link>>http://www.quirksmode.org/css/lists.html]].{{/info}}
+{{info}}Alcuni degli stili mostrati non funzionano con tutti i browser. Per un elenco completo seguire [[questo link&gt;&gt;http://www.quirksmode.org/css/lists.html]].{{/info}}
 
 |=Caratteristica|=Sintassi XWiki {{velocity}}$crtSyntaxVer{{/velocity}}|=Risultato
 |Elenco puntato|((({{{

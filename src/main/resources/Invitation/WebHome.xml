@@ -1,9 +1,29 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Invitation</web>
   <name>WebHome</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1429197395000</creationDate>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197395000</date>
   <contentUpdateDate>1429197395000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -159,7 +179,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Generate and send an email message.
  *
- * $messages (List&lt;XObject>) a list of invitation email messages.
+ * $messages (List&lt;XObject&gt;) a list of invitation email messages.
  *
  * $config (XObject) configuration for the inviter.
  *
@@ -178,7 +198,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
                             $messages,
                             $emailContainer)
   ##
-  #if($messages.size() > 0)
+  #if($messages.size() &gt; 0)
     #sendMail($messages, $config, $emailContainer)
     #set($errors = [])
     #foreach($message in $messages)
@@ -190,7 +210,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
     (%class="invitation"%)(((
 
       (%id="invitation-action-message"%)(((##
-      #if($errors.size() > 0)
+      #if($errors.size() &gt; 0)
         ## An error has occured while sending the message.
         {{error}}$services.localization.render('xe.invitation.errorWhileSending'){{/error}}##
       #else
@@ -212,7 +232,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Send an email message.
  *
- * $messages (List&lt;XObject>) a list of invitation email messages.
+ * $messages (List&lt;XObject&gt;) a list of invitation email messages.
  *
  * $config (XObject) configuration for the inviter.
  *
@@ -258,7 +278,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
     ## If text part is not set then we get an NPE when trying to craft a multipart message.
     $mailObj.setTextPart('')##
     ## Put all in email div so that we can apply CSS only to the email and not to the preview.
-    $mailObj.setHtmlPart("&lt;div style='font-size:87.5%;'>$message.getProperty('messageBody').getValue()&lt;/div>")##
+    $mailObj.setHtmlPart("&lt;div style='font-size:87.5%;'&gt;$message.getProperty('messageBody').getValue()&lt;/div&gt;")##
     ##
     ## Send the message
     #if("$sender.sendMail($mailObj, $senderConfig)" != 0)
@@ -283,7 +303,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  *
  * $emailClass (String) the document name of the XClass representing email messages.
  *
- * $recipients (List&lt;String>) email addresses to send this message to.
+ * $recipients (List&lt;String&gt;) email addresses to send this message to.
  *
  * $emailRegex (String) the regular expression to validate the email addresses against. Undefined behavior will result
  *                      from an invalid expression.
@@ -292,13 +312,13 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  *
  * $userSuppliedContent (String) the message content. This can be modified or ignored by the template.
  *
- * $messages (List&lt;XObject>) this list will be populated with mail objects for each recipient.
+ * $messages (List&lt;XObject&gt;) this list will be populated with mail objects for each recipient.
  *
  * $emailContainer (Document) the document where the mail object will be stored for later review.
  *###
 #macro(generateMailFromTemplate, $subjectLineTemplate, $messageBodyTemplate, $emailClass, $recipients, $emailRegex, 
                                  $userSuppliedSubject, $userSuppliedContent, $messages, $emailContainer)
-  #if($recipients &amp;&amp; $recipients.size() > 0)
+  #if($recipients &amp;&amp; $recipients.size() &gt; 0)
     #set($sendTo = [])
     #set($discard = $sendTo.addAll($recipients))
     #set($invalid = [])
@@ -340,17 +360,17 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Check the format of an email address against a regular expression.
  *
- * $allAddresses (List&lt;String>) The list of addresses to validate.
+ * $allAddresses (List&lt;String&gt;) The list of addresses to validate.
  *
  * $emailRegex (String) The regular expression to validate the email addresses agains. Undefined behavior will result
  *                      from an invalid expression.
  *
- * $invalidAddresses (List&lt;String>) this List will be populated with addresses from $allAddresses which are invalid.
+ * $invalidAddresses (List&lt;String&gt;) this List will be populated with addresses from $allAddresses which are invalid.
  *###
 #macro(validateAddressFormat, $allAddresses, $emailRegex, $invalidAddresses)
   ## Perl/javascript regexes look like /^.*/
   ## java does not like the / at beginning and end.
-  #if($emailRegex.length() > 1)
+  #if($emailRegex.length() &gt; 1)
     #set($emailRegexInternal = $emailRegex.substring(1, $mathtool.add($emailRegex.length(), -1)))
   #else
     ## I don't expect this but want to maintain compatibility.
@@ -381,49 +401,49 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #macro(displayForm, $recipientString, $subjectLine, $messageBody, $userMaySendToMultiple, $userMayPersonalizeMessage)
 
   {{html clean="false" wiki="false"}}
-  &lt;form id="invitation-sender-form" action="$doc.getURL('view')" method="post" class="invitation">
-   &lt;div class="hidden">&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;&lt;/div>
-   &lt;dl>
+  &lt;form id="invitation-sender-form" action="$doc.getURL('view')" method="post" class="invitation"&gt;
+   &lt;div class="hidden"&gt;&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;&lt;/div&gt;
+   &lt;dl&gt;
     ## Who you are inviting:
-    &lt;dt>&lt;label for="recipients">$services.localization.render('xe.invitation.toLabel')&lt;/label>&lt;/dt>
+    &lt;dt&gt;&lt;label for="recipients"&gt;$services.localization.render('xe.invitation.toLabel')&lt;/label&gt;&lt;/dt&gt;
     ## If the user has edit access on this document, then we should allow them to send to multiple email addresses.
     #if($userMaySendToMultiple)
-      &lt;dd>
-       &lt;textarea cols="75" name="recipients" rows="3" id="recipients">##
+      &lt;dd&gt;
+       &lt;textarea cols="75" name="recipients" rows="3" id="recipients"&gt;##
         $!recipientString##
-       &lt;/textarea>
-      &lt;/dd>
+       &lt;/textarea&gt;
+      &lt;/dd&gt;
     #else
-      &lt;dd>&lt;input type="text" size="54" name="recipients" id="recipients" value="$!recipientString" />&lt;/dd>
+      &lt;dd&gt;&lt;input type="text" size="54" name="recipients" id="recipients" value="$!recipientString" /&gt;&lt;/dd&gt;
     #end
     #if($userMayPersonalizeMessage)
        ## Subject line:
-       &lt;dt>&lt;label for="subjectLine">$services.localization.render('xe.invitation.subjectLabel')&lt;/label>&lt;/dt>
-       &lt;dd>
-        &lt;input type="text" size="54" name="subjectLine" id="subjectLine" value="$!escapetool.xml($!subjectLine)" />
-       &lt;/dd>
+       &lt;dt&gt;&lt;label for="subjectLine"&gt;$services.localization.render('xe.invitation.subjectLabel')&lt;/label&gt;&lt;/dt&gt;
+       &lt;dd&gt;
+        &lt;input type="text" size="54" name="subjectLine" id="subjectLine" value="$!escapetool.xml($!subjectLine)" /&gt;
+       &lt;/dd&gt;
        ## Invitation message:
-       &lt;dt>&lt;label for="messageBody">$services.localization.render('xe.invitation.contentLabel')&lt;/label>&lt;/dt>
-       &lt;dd>
-        &lt;textarea cols="75" name="messageBody" rows="10" id="messageBody">##
+       &lt;dt&gt;&lt;label for="messageBody"&gt;$services.localization.render('xe.invitation.contentLabel')&lt;/label&gt;&lt;/dt&gt;
+       &lt;dd&gt;
+        &lt;textarea cols="75" name="messageBody" rows="10" id="messageBody"&gt;##
          $!escapetool.xml($!messageBody)##
-        &lt;/textarea>
-       &lt;/dd>
+        &lt;/textarea&gt;
+       &lt;/dd&gt;
     #end
-   &lt;/dl>
-   &lt;div class="bottombuttons">
-    &lt;div class="buttons">
-     &lt;span class="buttonwrapper">
+   &lt;/dl&gt;
+   &lt;div class="bottombuttons"&gt;
+    &lt;div class="buttons"&gt;
+     &lt;span class="buttonwrapper"&gt;
       ## Preview
-      &lt;input type="submit" class="button" name="preview" value="$services.localization.render('xe.invitation.displayForm.preview')" />
-     &lt;/span>
-     &lt;span class="buttonwrapper">
+      &lt;input type="submit" class="button" name="preview" value="$services.localization.render('xe.invitation.displayForm.preview')" /&gt;
+     &lt;/span&gt;
+     &lt;span class="buttonwrapper"&gt;
       ## Send Mail
-      &lt;input type="submit" class="button" name="sendMail" value="$services.localization.render('xe.invitation.displayForm.sendMail')" />
-     &lt;/span>
-    &lt;/div>
-   &lt;/div>
-  &lt;/form>
+      &lt;input type="submit" class="button" name="sendMail" value="$services.localization.render('xe.invitation.displayForm.sendMail')" /&gt;
+     &lt;/span&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/form&gt;
   {{/html}}
 
 #end
@@ -434,7 +454,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  * if a message was reported as spam but an admin has marked the situation
  * as handled then this macro will return 'false'
  *
- * $messages (Collection&lt;XObject>) objects representing all email messages.
+ * $messages (Collection&lt;XObject&gt;) objects representing all email messages.
  *###
 #macro(isUserReportedSpammer, $messages)
   #set($out = 'false')
@@ -457,7 +477,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  *
  * $userMaySendToMultiple (Boolean) is the user allowed to send to multiple addresses at once?
  *
- * $recipientsOut (List&lt;String>) is populated with one or more email addresses.
+ * $recipientsOut (List&lt;String&gt;) is populated with one or more email addresses.
  *###
 #macro(getRecipients, $recipientString, $userMaySendToMultiple, $recipientsOut)
   #if($userMaySendToMultiple)
@@ -475,7 +495,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 {{/velocity}}</content>
   <attachment>
     <filename>InvitationSectionIcon.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1284985893000</date>
     <version>1.1</version>
     <comment/>
@@ -864,10 +884,10 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       </propertiesToShow>
     </class>
     <property>
-      <codeToExecute></codeToExecute>
+      <codeToExecute/>
     </property>
     <property>
-      <configurationClass></configurationClass>
+      <configurationClass/>
     </property>
     <property>
       <configureGlobally>1</configureGlobally>
@@ -876,13 +896,13 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       <displayInSection>Invitation</displayInSection>
     </property>
     <property>
-      <heading></heading>
+      <heading/>
     </property>
     <property>
       <iconAttachment>InvitationSectionIcon.png</iconAttachment>
     </property>
     <property>
-      <linkPrefix></linkPrefix>
+      <linkPrefix/>
     </property>
     <property>
       <propertiesToShow/>
@@ -968,7 +988,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       <levels>view</levels>
     </property>
     <property>
-      <users></users>
+      <users/>
     </property>
   </object>
 </xwikidoc>

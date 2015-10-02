@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>DeletedAttachments</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1297363233000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('platform.index.attachmentsTrash')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -44,13 +64,13 @@ $xwiki.jsx.use('XWiki.DeletedAttachments', {'minify' : 'false'})##
 ##
 ##
 {{html wiki="true" clean="false"}}
-&lt;div class="hidden">
+&lt;div class="hidden"&gt;
 #livetable('attachmentTrash' $columns $columnProperties $options)
-&lt;/div>
+&lt;/div&gt;
 {{/html}}
 
 {{html wiki="true" clean="false"}}
-&lt;noscript>
+&lt;noscript&gt;
 
   #set($deletedAttachments = $services.query.hql('select count(datt.id) from DeletedAttachment as datt').execute().get(0))
   #if($deletedAttachments == 0)
@@ -62,17 +82,17 @@ $xwiki.jsx.use('XWiki.DeletedAttachments', {'minify' : 'false'})##
     #set($datt = $xwiki.getDeletedAttachment("$id"))
     #set($originalAttachment = $datt.getAttachment())
     #set($originalDocument = $xwiki.getDocument($datt.docName))
-    &lt;tr>
-      &lt;td>&lt;a href="$originalDocument.getAttachmentRevisionURL($originalAttachment.filename, $originalAttachment.version, "rid=${datt.id}").replaceAll('&amp;', '&amp;amp;')">$escapetool.xml($datt.filename)&lt;/a>&lt;/td>
-      &lt;td>&lt;a href="$originalDocument.getURL()">$escapetool.xml($originalDocument.plainTitle) ($escapetool.xml(${originalDocument.fullName}))&lt;/a>&lt;/td>
-      &lt;td>$xwiki.formatDate($datt.getDate(), $dateFormat)&lt;/td>
-      &lt;td>$xwiki.getUserName($datt.getDeleter())&lt;/td>
-      &lt;td class="itemActions">
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="$originalDocument.getAttachmentRevisionURL($originalAttachment.filename, $originalAttachment.version, "rid=${datt.id}").replaceAll('&amp;', '&amp;amp;')"&gt;$escapetool.xml($datt.filename)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href="$originalDocument.getURL()"&gt;$escapetool.xml($originalDocument.plainTitle) ($escapetool.xml(${originalDocument.fullName}))&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;$xwiki.formatDate($datt.getDate(), $dateFormat)&lt;/td&gt;
+      &lt;td&gt;$xwiki.getUserName($datt.getDeleter())&lt;/td&gt;
+      &lt;td class="itemActions"&gt;
         #if($datt.canDelete())
-          &lt;a href="${originalDocument.getAttachmentURL($datt.filename, 'delattachment', "trashId=${datt.id}&amp;amp;xredirect=$escapetool.url($!request.getRequestURI())?$escapetool.url($!request.getQueryString())")}" class="tool delete" title="$services.localization.render('platform.index.trashAttachmentsActionsDeleteTooltip')">$services.localization.render('platform.index.trashAttachmentsDeleteText')&lt;/a>
+          &lt;a href="${originalDocument.getAttachmentURL($datt.filename, 'delattachment', "trashId=${datt.id}&amp;amp;xredirect=$escapetool.url($!request.getRequestURI())?$escapetool.url($!request.getQueryString())")}" class="tool delete" title="$services.localization.render('platform.index.trashAttachmentsActionsDeleteTooltip')"&gt;$services.localization.render('platform.index.trashAttachmentsDeleteText')&lt;/a&gt;
         #end
-      &lt;/td>
-    &lt;/tr>
+      &lt;/td&gt;
+    &lt;/tr&gt;
   #end
 ##
   #if("$!{request.view}" == '')
@@ -86,25 +106,25 @@ $xwiki.jsx.use('XWiki.DeletedAttachments', {'minify' : 'false'})##
     'url' : $doc.getURL('view', $queryParams)
   })
   #pagination($paginationParameters)
-  &lt;table id="searchResults" class="xwiki-livetable xwiki-livetable-display">
-    &lt;thead class="xwiki-livetable-display-header">&lt;tr>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text selected asc">$services.localization.render('platform.index.trashAttachments.datt.filename')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashAttachments.datt.docName')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashAttachments.datt.date')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashAttachments.datt.deleter')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashAttachments.actions')&lt;/th>
-    &lt;/tr>&lt;/thead>
-    &lt;tbody class="xwiki-livetable-display-body">
+  &lt;table id="searchResults" class="xwiki-livetable xwiki-livetable-display"&gt;
+    &lt;thead class="xwiki-livetable-display-header"&gt;&lt;tr&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text selected asc"&gt;$services.localization.render('platform.index.trashAttachments.datt.filename')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashAttachments.datt.docName')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashAttachments.datt.date')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashAttachments.datt.deleter')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashAttachments.actions')&lt;/th&gt;
+    &lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody class="xwiki-livetable-display-body"&gt;
     #set ($query = $services.query.hql('select datt.id from DeletedAttachment as datt order by datt.filename asc'))
     #foreach($item in $query.setLimit($paginationParameters.itemsPerPage).setOffset($paginationParameters.firstItem).execute())
       #displayDeletedAttachment($item)
     #end
-    &lt;/tbody>
-  &lt;/table>
+    &lt;/tbody&gt;
+  &lt;/table&gt;
   #set($discard = $paginationParameters.put('position', 'bottom'))
   #pagination($paginationParameters)
   #end ## deletedAttachments != 0
-&lt;/noscript>
+&lt;/noscript&gt;
 {{/html}}##
 #else ## request.list
 ## ============================================================================================
@@ -165,7 +185,7 @@ $response.setContentType('application/json')
 "rows": [
 #foreach($item in $items)
   #set($datt = $xwiki.getDeletedAttachment("$item.get(0)"))
-  #if($velocityCount > 1) , #end
+  #if($velocityCount &gt; 1) , #end
   {
     #set($originalAttachment = $datt.getAttachment())
     #set($originalDocument = $xwiki.getDocument($datt.docName))
@@ -365,7 +385,7 @@ XWiki.index.trash.attachments.confirmDelete = function(event, table, rowIdx) {
   }
 }
 /*
- * The livetable is hidden when javascript is disabled, so that an alternative &lt;noscript> table is displayed.
+ * The livetable is hidden when javascript is disabled, so that an alternative &lt;noscript&gt; table is displayed.
  * Re-display it when the document loads and Javascript is available.
  */
 document.observe('xwiki:dom:loaded', function() {
@@ -375,7 +395,7 @@ document.observe('xwiki:dom:loaded', function() {
 });</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -523,7 +543,7 @@ document.observe('xwiki:dom:loaded', function() {
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

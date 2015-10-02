@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>ColorThemes</web>
   <name>ColorThemeSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1251108485000</contentUpdateDate>
   <version>1.1</version>
   <title>#sheetTitle('xe.themes.colors.sheet.title' $doc.name.equals('ColorThemeSheet'))</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -55,7 +75,7 @@ $xwiki.ssx.use('ColorThemes.ColorThemeSheet')##
 ##
 ##
 ##
-## Hashmap: property number -> property name
+## Hashmap: property number -&gt; property name
 ## In the request string, the ids are used because they are much shorter,
 ## thus allowing more parameters to fit in the restricted size of the query string.
 #set($propNumberNameMap = {})
@@ -67,9 +87,9 @@ $xwiki.ssx.use('ColorThemes.ColorThemeSheet')##
 #set($requestDefinedValues = {})
 #foreach($propID in $request.getParameterNames())
   #set($propname = "$!{propNumberNameMap.get($mathtool.toInteger($propID))}")
-  #if($propname.indexOf('Color') >= 0)
+  #if($propname.indexOf('Color') &gt;= 0)
     #set($colorID  = $mathtool.toInteger("$!{request.get($propID)}"))
-    #if($colorID >= 0 &amp;&amp; $colorID &lt; $webColors.size())
+    #if($colorID &gt;= 0 &amp;&amp; $colorID &lt; $webColors.size())
       #set($color    = "$!{webColors.get($colorID)}")
       #if("$!{propname}" != '' &amp;&amp; "$!{color}" != '')
         #set($discard = $requestDefinedValues.put($propname, $color))
@@ -129,29 +149,29 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
   #if($propValue != '')
     $obj.set($propname, $propValue)
   #end
-  &lt;div class="colorthemewizard-picker-section colorthemewizard-palette">
+  &lt;div class="colorthemewizard-picker-section colorthemewizard-palette"&gt;
     #printPropertyLabel($propname)
     ## Not using $doc.display($propname) because it generates an annoying
-    ## &lt;pre> around the input (among other problems)
+    ## &lt;pre&gt; around the input (among other problems)
     ## Also, set the class 'procolor', to be recognized by the color picker
-    &lt;input type="text" size="9" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}" class="procolor"/>
-    &lt;table class="colorthemewizard-picker-noscript" summary="35 Color Palette">
-      &lt;tbody>
+    &lt;input type="text" size="9" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}" class="procolor"/&gt;
+    &lt;table class="colorthemewizard-picker-noscript" summary="35 Color Palette"&gt;
+      &lt;tbody&gt;
         #foreach ($row in [0..$lastRow])
-          &lt;tr>
+          &lt;tr&gt;
           #foreach ($cell in [0..$lastColumn])
              #set($colorID = $mathtool.mul($row, $columns) + $cell)
              #set($params = "$!{request.queryString}")
              #set($params = $params.replaceAll("(^|&amp;)${propID}=[^&amp;]*", ""))
              #set($params = $params.replaceAll("&amp;", "&amp;amp;"))
              #set($params = "${params}&amp;amp;${propID}=${colorID}")
-             &lt;td>&lt;a href="$doc.getURL('edit', $params)" class="color${colorID}#if("$!{obj.getProperty($propname).value}" == "$!{webColors.get($colorID)}") current#end">&lt;/a>&lt;/td>
+             &lt;td&gt;&lt;a href="$doc.getURL('edit', $params)" class="color${colorID}#if("$!{obj.getProperty($propname).value}" == "$!{webColors.get($colorID)}") current#end"&gt;&lt;/a&gt;&lt;/td&gt;
           #end
-         &lt;/tr>
+         &lt;/tr&gt;
         #end
-      &lt;/tbody>
-    &lt;/table>
-  &lt;/div>
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
 #end
 ##
 ##
@@ -165,11 +185,11 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
  * TODO write me!
  *#
 #macro(printImageSelector $propname)
-   &lt;div class="colorthemewizard-picker-section">
+   &lt;div class="colorthemewizard-picker-section"&gt;
      #printPropertyLabel($propname)
-     &lt;input type="text" size="15" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}" class="colorthemewizard-backgroundImage"/>
-##     &lt;div style="color: red;">TODO: display friendly selector&lt;/div>
-   &lt;/div>
+     &lt;input type="text" size="15" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}" class="colorthemewizard-backgroundImage"/&gt;
+##     &lt;div style="color: red;"&gt;TODO: display friendly selector&lt;/div&gt;
+   &lt;/div&gt;
 #end
 ##
 ##
@@ -196,11 +216,11 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
  * TODO write me!
  *#
 #macro(printPositionSelector $propname)
-   &lt;div class="colorthemewizard-picker-section">
+   &lt;div class="colorthemewizard-picker-section"&gt;
      #printPropertyLabel($propname)
-     &lt;input type="text" size="15" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}"/>
-##     &lt;div style="color: red;">TODO: display friendly selector&lt;/div>
-   &lt;/div>
+     &lt;input type="text" size="15" name="${propPrefix}${propname}" id="${propPrefix}${propname}" value="$!{obj.getProperty($propname).value}"/&gt;
+##     &lt;div style="color: red;"&gt;TODO: display friendly selector&lt;/div&gt;
+   &lt;/div&gt;
 #end
 ##
 ##
@@ -230,14 +250,14 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
  *
  * @param propname The name of the color theme property
  *#
-#macro(printPropertyPrettyname $propname)$doc.displayPrettyName($propname).replaceAll("\((.*)\)", "&lt;span class='more-details'>($1)&lt;/span>")#end
+#macro(printPropertyPrettyname $propname)$doc.displayPrettyName($propname).replaceAll("\((.*)\)", "&lt;span class='more-details'&gt;($1)&lt;/span&gt;")#end
 #**
  * Generates the label for the input correspinding to a given property
  *
  * @param propname The name of the color theme property
  *#
 #macro(printPropertyLabel $propname)
-   &lt;label for="${propPrefix}${propname}">#printPropertyPrettyname($propname)&lt;/label>
+   &lt;label for="${propPrefix}${propname}"&gt;#printPropertyPrettyname($propname)&lt;/label&gt;
 #end
 ##
 ##
@@ -252,25 +272,25 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
   #if ($sheetMode == 'edit')
     #set($propnames = '')
     #set($propnames = $!elementPropertyMap.get($element))
-    #if("$!{propnames}" != '' &amp;&amp; $propnames.size() > 0)
-    &lt;div id="colorthemewizard-${element}-trigger" class="colorthemewizard-trigger">
-      &lt;div class="colorthemewizard-tip">
+    #if("$!{propnames}" != '' &amp;&amp; $propnames.size() &gt; 0)
+    &lt;div id="colorthemewizard-${element}-trigger" class="colorthemewizard-trigger"&gt;
+      &lt;div class="colorthemewizard-tip"&gt;
         $services.localization.render('xe.themes.colors.wizard.choose'):
-        &lt;ul>
+        &lt;ul&gt;
           #foreach($propname in $propnames)
-            &lt;li>#printPropertyPrettyname($propname)&lt;/li>
+            &lt;li&gt;#printPropertyPrettyname($propname)&lt;/li&gt;
           #end
-        &lt;/ul>
-      &lt;/div>
-      &lt;div id="colorthemewizard-${element}-picker" class="colorthemewizard-picker">
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div id="colorthemewizard-${element}-picker" class="colorthemewizard-picker"&gt;
         &lt;fieldset&gt;
-          ##&lt;legend>$!{element}&lt;/legend>
+          ##&lt;legend&gt;$!{element}&lt;/legend&gt;
           #foreach($propname in $propnames)
             #printPropertyPicker($propname)
           #end
-        &lt;/fieldset>
-      &lt;/div>
-    &lt;/div>
+        &lt;/fieldset&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
     #end
   #end
 #end
@@ -310,7 +330,7 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
         ## Old colorthemes (before 3.4) don t have values set for GradientColor variables - don t fallback on these values
         #set($themeValue = "${theme.get($themeProp)}")
       #end
-      #if($themeValue != '' &amp;&amp; $themeProp.indexOf('Image') >= 0)
+      #if($themeValue != '' &amp;&amp; $themeProp.indexOf('Image') &gt;= 0)
         #set($themeValue = "url($doc.getAttachmentURL($themeValue))")
       #end
       #set($cssValue = "${cssValue} $!{themeValue}")
@@ -321,7 +341,7 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
       #else
         ## 'background-image' css properties need to be specially constructed in order to add the gradient definition 
         #set ($gradientValues = $cssValue.trim().split(' '))
-        #if ($gradientValues.size() >= 2)
+        #if ($gradientValues.size() &gt;= 2)
           #if ($gradientValues[0] != '' &amp;&amp; $gradientValues[1] != '')
             ## #css3_backgroundLinearGradient macro (defined in macros.vm) used for the majority of browsers (FF, Chrome, Opera, IE10) that support CSS3 properties
             #set($style = "$!{style} #css3_backgroundLinearGradient({
@@ -360,7 +380,7 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
   #set($classes = "colorthemewizard-${element}")
   #set($attachedProps = '')
   #set($attachedProps = $elementPropertyMap.get($element))
-  #if("$!{attachedProps}" != '' &amp;&amp; $attachedProps.size() > 0)
+  #if("$!{attachedProps}" != '' &amp;&amp; $attachedProps.size() &gt; 0)
     #set($classes = "${classes} colorthemewizard-editable-group")
   #end
   #foreach($themeProps in $elementStylingPropertyMap.get($element))
@@ -397,22 +417,22 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
 {{html clean="false" wiki="false"}}
 ##
 ##
-#if($sheetMode == 'edit')&lt;div class="colorthemewizard-reset">&lt;input type="reset" value="$services.localization.render('xe.themes.colors.wizard.reset')"/>&lt;/div>#end
-&lt;div #elementMetaData('page')>
+#if($sheetMode == 'edit')&lt;div class="colorthemewizard-reset"&gt;&lt;input type="reset" value="$services.localization.render('xe.themes.colors.wizard.reset')"/&gt;&lt;/div&gt;#end
+&lt;div #elementMetaData('page')&gt;
   #printColorThemeWizard('page')
   ## Main menu
-  &lt;div #elementMetaData('mainmenu')>
-   &lt;div>
+  &lt;div #elementMetaData('mainmenu')&gt;
+   &lt;div&gt;
     $services.localization.render('xe.themes.colors.wizard.mainMenu')
-    &lt;span #elementMetaData('menuaddentry')>$services.localization.render('xe.themes.colors.wizard.menuEntry')#$services.localization.render('core.menu.create')&lt;/span>
-    &lt;span #elementMetaData('menuentry')>$services.localization.render('xe.themes.colors.wizard.menuEntry')#1&lt;/span>
-    &lt;span #elementMetaData('menuentry')>$services.localization.render('xe.themes.colors.wizard.menuEntry')#2&lt;/span>
-   &lt;/div>
+    &lt;span #elementMetaData('menuaddentry')&gt;$services.localization.render('xe.themes.colors.wizard.menuEntry')#$services.localization.render('core.menu.create')&lt;/span&gt;
+    &lt;span #elementMetaData('menuentry')&gt;$services.localization.render('xe.themes.colors.wizard.menuEntry')#1&lt;/span&gt;
+    &lt;span #elementMetaData('menuentry')&gt;$services.localization.render('xe.themes.colors.wizard.menuEntry')#2&lt;/span&gt;
+   &lt;/div&gt;
    #printColorThemeWizard('mainmenu')
-  &lt;/div>
+  &lt;/div&gt;
   ## Page header
-  &lt;div #elementMetaData('headerbox')>
-    &lt;div #elementMetaData('header')>
+  &lt;div #elementMetaData('headerbox')&gt;
+    &lt;div #elementMetaData('header')&gt;
       ## Page Header
       #set($themeLogoImage = $doc.getAttachment("$!{obj.getProperty('logoImage').value}"))
       #if ("$!{themeLogoImage}" != '')
@@ -422,98 +442,98 @@ $xwiki.jsx.use('ColorThemes.ColorThemeSheet', {
         ## For this $logoname is already set in global.vm
         #set($themeLogoImage = "$xwiki.getSkinFile($logoname)")
       #end
-      &lt;img id="colorthemewizard-logo" src="$themeLogoImage" alt="$services.localization.render('xe.themes.colors.wizard.logo')"/>
-    &lt;/div>
+      &lt;img id="colorthemewizard-logo" src="$themeLogoImage" alt="$services.localization.render('xe.themes.colors.wizard.logo')"/&gt;
+    &lt;/div&gt;
     #printColorThemeWizard('headerbox')
-  &lt;/div>
+  &lt;/div&gt;
   ## Panels
-  &lt;div #elementMetaData('panels')>
+  &lt;div #elementMetaData('panels')&gt;
     ## Expanded panel
-    &lt;div #elementMetaData('panel')>
+    &lt;div #elementMetaData('panel')&gt;
       ## Expanded panel header
-      &lt;div #elementMetaData('panelheader')>
-        &lt;div>$services.localization.render('xe.themes.colors.wizard.panel')&lt;/div>
+      &lt;div #elementMetaData('panelheader')&gt;
+        &lt;div&gt;$services.localization.render('xe.themes.colors.wizard.panel')&lt;/div&gt;
         #printColorThemeWizard('panelheader')
-      &lt;/div>
+      &lt;/div&gt;
       ## Expanded panel contents
-      &lt;div #elementMetaData('panelcontents')>
-        &lt;div>&lt;span #elementMetaData('text')>$services.localization.render('xe.themes.colors.wizard.panel.text')&lt;/span> | &lt;span  #elementMetaData('link')>$services.localization.render('xe.themes.colors.wizard.panel.link')&lt;/span>&lt;/div>
+      &lt;div #elementMetaData('panelcontents')&gt;
+        &lt;div&gt;&lt;span #elementMetaData('text')&gt;$services.localization.render('xe.themes.colors.wizard.panel.text')&lt;/span&gt; | &lt;span  #elementMetaData('link')&gt;$services.localization.render('xe.themes.colors.wizard.panel.link')&lt;/span&gt;&lt;/div&gt;
         #printColorThemeWizard('panelcontents')
-      &lt;/div>
-    &lt;/div>
+      &lt;/div&gt;
+    &lt;/div&gt;
     ## Collapsed panel
-    &lt;div #elementMetaData('collapsedpanel')>
-      &lt;div>$services.localization.render('xe.themes.colors.wizard.panel.collapsed')&lt;/div>
+    &lt;div #elementMetaData('collapsedpanel')&gt;
+      &lt;div&gt;$services.localization.render('xe.themes.colors.wizard.panel.collapsed')&lt;/div&gt;
       #printColorThemeWizard('collapsedpanel')
-    &lt;/div>
-  &lt;/div> ##panels
-  &lt;div #elementMetaData('maincolumn')>
+    &lt;/div&gt;
+  &lt;/div&gt; ##panels
+  &lt;div #elementMetaData('maincolumn')&gt;
     ## XWiki Content
-    &lt;div #elementMetaData('content')>
-      &lt;div #elementMetaData('contentmenu')>
+    &lt;div #elementMetaData('content')&gt;
+      &lt;div #elementMetaData('contentmenu')&gt;
        $services.localization.render('xe.themes.colors.wizard.menu')
-       &lt;span #elementMetaData('menuentry')>$services.localization.render('xe.themes.colors.wizard.menuEntry')#1&lt;/span>
-       &lt;span #elementMetaData('menuentry')>$services.localization.render('xe.themes.colors.wizard.menuEntry')#2&lt;/span>
+       &lt;span #elementMetaData('menuentry')&gt;$services.localization.render('xe.themes.colors.wizard.menuEntry')#1&lt;/span&gt;
+       &lt;span #elementMetaData('menuentry')&gt;$services.localization.render('xe.themes.colors.wizard.menuEntry')#2&lt;/span&gt;
        #printColorThemeWizard('contentmenu')
-      &lt;/div>
-      &lt;div #elementMetaData('xwikicontent')>
-        &lt;div #elementMetaData('titlebox')>
-          &lt;h2 #elementMetaData('title')>$services.localization.render('xe.themes.colors.wizard.title')&lt;/h2>
+      &lt;/div&gt;
+      &lt;div #elementMetaData('xwikicontent')&gt;
+        &lt;div #elementMetaData('titlebox')&gt;
+          &lt;h2 #elementMetaData('title')&gt;$services.localization.render('xe.themes.colors.wizard.title')&lt;/h2&gt;
           #printColorThemeWizard('titlebox')
-        &lt;/div>
-        &lt;div #elementMetaData('info')>
-          &lt;div>$services.localization.render('xe.themes.colors.wizard.informativeText')&lt;/div>
+        &lt;/div&gt;
+        &lt;div #elementMetaData('info')&gt;
+          &lt;div&gt;$services.localization.render('xe.themes.colors.wizard.informativeText')&lt;/div&gt;
           #printColorThemeWizard('info')
-        &lt;/div>
-        &lt;div #elementMetaData('details')>
-          &lt;div>$services.localization.render('xe.themes.colors.wizard.detailsText')&lt;/div>
+        &lt;/div&gt;
+        &lt;div #elementMetaData('details')&gt;
+          &lt;div&gt;$services.localization.render('xe.themes.colors.wizard.detailsText')&lt;/div&gt;
           #printColorThemeWizard('details')
-        &lt;/div>
-        &lt;div class="clearfloats" >&lt;/div>
-        &lt;div #elementMetaData('textlink')>
-          &lt;div>
-            &lt;span #elementMetaData('text')>$services.localization.render('xe.themes.colors.wizard.text')&lt;/span> |
-            &lt;span #elementMetaData('link')>$services.localization.render('xe.themes.colors.wizard.link')&lt;/span>
-          &lt;/div>
+        &lt;/div&gt;
+        &lt;div class="clearfloats" &gt;&lt;/div&gt;
+        &lt;div #elementMetaData('textlink')&gt;
+          &lt;div&gt;
+            &lt;span #elementMetaData('text')&gt;$services.localization.render('xe.themes.colors.wizard.text')&lt;/span&gt; |
+            &lt;span #elementMetaData('link')&gt;$services.localization.render('xe.themes.colors.wizard.link')&lt;/span&gt;
+          &lt;/div&gt;
           #printColorThemeWizard('textlink')
-        &lt;/div>
-        &lt;div #elementMetaData('highlight')>
-          &lt;div>$services.localization.render('xe.themes.colors.wizard.highlightedText')&lt;/div>
+        &lt;/div&gt;
+        &lt;div #elementMetaData('highlight')&gt;
+          &lt;div&gt;$services.localization.render('xe.themes.colors.wizard.highlightedText')&lt;/div&gt;
           #printColorThemeWizard('highlight')
-        &lt;/div>
-        &lt;div #elementMetaData('boxes')>
-          &lt;div #elementMetaData('message')>$services.localization.render('xe.themes.colors.wizard.messageBox')&lt;/div>
-          &lt;table #elementMetaData('table')>
-            &lt;thead>&lt;tr>&lt;th colspan="2" scope="col" #elementMetaData('th')>$services.localization.render('xe.themes.colors.wizard.table')&lt;/th>&lt;/tr>&lt;/thead>
-            &lt;tbody>&lt;tr>&lt;td #elementMetaData('td')>$services.localization.render('xe.themes.colors.wizard.table.data')#1&lt;/td>&lt;td #elementMetaData('td')>$services.localization.render('xe.themes.colors.wizard.table.data')#2&lt;/td>&lt;/tr>&lt;/tbody>
-          &lt;/table>
+        &lt;/div&gt;
+        &lt;div #elementMetaData('boxes')&gt;
+          &lt;div #elementMetaData('message')&gt;$services.localization.render('xe.themes.colors.wizard.messageBox')&lt;/div&gt;
+          &lt;table #elementMetaData('table')&gt;
+            &lt;thead&gt;&lt;tr&gt;&lt;th colspan="2" scope="col" #elementMetaData('th')&gt;$services.localization.render('xe.themes.colors.wizard.table')&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+            &lt;tbody&gt;&lt;tr&gt;&lt;td #elementMetaData('td')&gt;$services.localization.render('xe.themes.colors.wizard.table.data')#1&lt;/td&gt;&lt;td #elementMetaData('td')&gt;$services.localization.render('xe.themes.colors.wizard.table.data')#2&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+          &lt;/table&gt;
           #printColorThemeWizard('boxes')
-        &lt;/div>
-        &lt;div class="clearfloats" >&lt;/div>
-        &lt;div #elementMetaData('buttonbox')>
-          &lt;div>&lt;input #elementMetaData('button') type="button" value="$services.localization.render('xe.themes.colors.wizard.button')" />&lt;/div>
+        &lt;/div&gt;
+        &lt;div class="clearfloats" &gt;&lt;/div&gt;
+        &lt;div #elementMetaData('buttonbox')&gt;
+          &lt;div&gt;&lt;input #elementMetaData('button') type="button" value="$services.localization.render('xe.themes.colors.wizard.button')" /&gt;&lt;/div&gt;
           #printColorThemeWizard('buttonbox')
-        &lt;/div>
-        &lt;div #elementMetaData('secondaryButtonbox')>
-          &lt;div>&lt;input #elementMetaData('secondaryButton') type="button" value="$services.localization.render('xe.themes.colors.wizard.secondaryButton')" />&lt;/div>
+        &lt;/div&gt;
+        &lt;div #elementMetaData('secondaryButtonbox')&gt;
+          &lt;div&gt;&lt;input #elementMetaData('secondaryButton') type="button" value="$services.localization.render('xe.themes.colors.wizard.secondaryButton')" /&gt;&lt;/div&gt;
           #printColorThemeWizard('secondaryButtonbox')
-        &lt;/div>
-        &lt;div class="clearfloats" >&lt;/div>
-      &lt;/div> ## xwikicontent
+        &lt;/div&gt;
+        &lt;div class="clearfloats" &gt;&lt;/div&gt;
+      &lt;/div&gt; ## xwikicontent
       #printColorThemeWizard('content')
-    &lt;/div> ## content
+    &lt;/div&gt; ## content
     ## Extra tabs - comments/attachments/history/information
-    &lt;div  #elementMetaData('extratabs')>
-      &lt;div  #elementMetaData('tabshead')>
-        &lt;span #elementMetaData('tabentryactive')>$services.localization.render('xe.themes.colors.wizard.tab') &lt;span #elementMetaData('tabdetails')>#1&lt;/span>&lt;/span>
-        &lt;span #elementMetaData('tabentry')>$services.localization.render('xe.themes.colors.wizard.tab') &lt;span #elementMetaData('tabdetails')>#2&lt;/span>&lt;/span>
-      &lt;/div>
-      &lt;div #elementMetaData('tabscontent')>$services.localization.render('xe.themes.colors.wizard.tab.text')&lt;/div>
+    &lt;div  #elementMetaData('extratabs')&gt;
+      &lt;div  #elementMetaData('tabshead')&gt;
+        &lt;span #elementMetaData('tabentryactive')&gt;$services.localization.render('xe.themes.colors.wizard.tab') &lt;span #elementMetaData('tabdetails')&gt;#1&lt;/span&gt;&lt;/span&gt;
+        &lt;span #elementMetaData('tabentry')&gt;$services.localization.render('xe.themes.colors.wizard.tab') &lt;span #elementMetaData('tabdetails')&gt;#2&lt;/span&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div #elementMetaData('tabscontent')&gt;$services.localization.render('xe.themes.colors.wizard.tab.text')&lt;/div&gt;
       #printColorThemeWizard('extratabs')
-    &lt;/div>
-  &lt;/div> ## main column
-  &lt;div class="clearfloats" >&lt;/div>
-&lt;/div>
+    &lt;/div&gt;
+  &lt;/div&gt; ## main column
+  &lt;div class="clearfloats" &gt;&lt;/div&gt;
+&lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>
   <object>
@@ -887,7 +907,7 @@ XWiki.editors.ColorThemeWizard = Class.create({
           if (!propvalue || propvalue == ''){
             propvalue = this.defaultValues[themeProp];
             // Old themes don't have values for gradients. Also images are theme dependant, so gradient colors and images are not inherited from DefaultColorTheme
-            if ((themeProp.indexOf('Gradient') >= 0) || (themeProp.indexOf('Image') >= 0)) {
+            if ((themeProp.indexOf('Gradient') &gt;= 0) || (themeProp.indexOf('Image') &gt;= 0)) {
               propvalue = '';
             }
           }
@@ -932,7 +952,7 @@ XWiki.editors.ColorThemeWizard = Class.create({
     var filterGradient = "$escapetool.javascript($filterGradientRaw)";
     ## Gradients are using 2 values that are passed to the suggested macros
     var gradientValues = value.split(' ');
-    if (gradientValues.size() >= 2) {
+    if (gradientValues.size() &gt;= 2) {
       if (gradientValues[0] != '' &amp;&amp; gradientValues[1] != '') {
         var constructedStyle = backgroundLinearGradient.replace(gradient1PlaceholderRegEx,gradientValues[1]).replace(gradient2PlaceholderRegEx,gradientValues[0]);
         ## for IE browsers
@@ -945,7 +965,7 @@ XWiki.editors.ColorThemeWizard = Class.create({
   },
   wrapCSSPropertyValue : function(propName, value) {
     // Images need to be referenced using 'url()' and their full path
-    if (propName.indexOf('Image') >= 0) {
+    if (propName.indexOf('Image') &gt;= 0) {
       return 'url(' + this.wrapImagePropertyValue(propName, value) + ')';
     }
     // Other values remain unchanged
@@ -953,7 +973,7 @@ XWiki.editors.ColorThemeWizard = Class.create({
   },
   wrapImagePropertyValue : function(propName, value) {
     // Images need to be referenced using their full path
-    if (propName.indexOf('Image') >= 0) {
+    if (propName.indexOf('Image') &gt;= 0) {
       // An url template is generated from velocity;
       // in js, replace the attachmentNamePlaceholder with the actual attachment name given as a parameter
       #set($attachmentNamePlaceholder = '__attachment__name__placeholder__')
@@ -1177,7 +1197,7 @@ $ie .colorthemewizard-trigger {
   margin: -18px 0 0 !important;
 }
 #foreach($i in $paddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end$ie #colorthemewizard-${i}-trigger#end {
   margin-top: -15px !important;
 }
@@ -1302,12 +1322,12 @@ $ie .colorthemewizard-editable-group {
 
 /* Set the padding and border for padded elements. */
 #foreach($i in $paddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end.colorthemewizard-$i#end {
   padding: 3px 10px;
 }
 #foreach($i in $paddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end.inlinebody .colorthemewizard-$i:hover, .editbody .colorthemewizard-$i:hover#end {
   padding: 1px 8px;
   border: 2px dotted $widgetsColors.selectedBorder !important;
@@ -1315,26 +1335,26 @@ $ie .colorthemewizard-editable-group {
 /* For IE6/7, where the trigger is not absolutely positioned, we must shift it to overlap the padding. */
 #foreach($ie in [$ie6, $ie7])
 #foreach($i in $paddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end$ie #colorthemewizard-${i}-trigger#end {
   margin-left: -10px !important;
 }
 #end
 /* Set the margin and border for not padded elements. */
 #foreach($i in $notPaddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end.colorthemewizard-$i#end {
   padding: 2px;
 }
 #foreach($i in $notPaddedElements)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end.inlinebody .colorthemewizard-$i:hover, .editbody .colorthemewizard-$i:hover#end {
   padding: 0;
   border: 2px dotted $widgetsColors.selectedBorder;
 }
 /* Set the border for large containers. */
 #foreach($i in $largeContainers)
-#if($velocityCount > 1),
+#if($velocityCount &gt; 1),
 #end.inlinebody .colorthemewizard-$i:hover, .editbody .colorthemewizard-$i:hover#end {
   border: 2px dotted $widgetsColors.selectedBorder;
 }

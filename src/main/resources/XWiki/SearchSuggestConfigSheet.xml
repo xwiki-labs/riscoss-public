@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>SearchSuggestConfigSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1378790670000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -33,9 +53,9 @@
 #set($discard = $doc.use($doc.fullName))
 (% class="xform" %)(((
 ; {{html}}
-  &lt;label#if ($editing) for="${doc.fullName}_0_activated"#end>
+  &lt;label#if ($editing) for="${doc.fullName}_0_activated"#end&gt;
     $doc.displayPrettyName('activated', false, false)
-  &lt;/label>
+  &lt;/label&gt;
   {{/html}}
 : $doc.display('activated', $mode)
 )))
@@ -59,15 +79,15 @@
 #end
 ## Display the list of search engines.
 ## We use HTML here just because we can't set the class name of a list item using wiki syntax.
-#if ($sources.size() > 0)
+#if ($sources.size() &gt; 0)
   {{html}}
-  &lt;ul class="xwikitabbar searchEngines">
+  &lt;ul class="xwikitabbar searchEngines"&gt;
   #foreach ($engine in $sorttool.sort($sources.keySet()))
-    &lt;li#if ($engine == $searchEngine) class="active"#end>
-      &lt;a href="#${engine}SearchSuggestSources">$engine&lt;/a>
-    &lt;/li>
+    &lt;li#if ($engine == $searchEngine) class="active"#end&gt;
+      &lt;a href="#${engine}SearchSuggestSources"&gt;$engine&lt;/a&gt;
+    &lt;/li&gt;
   #end
-  &lt;/ul>
+  &lt;/ul&gt;
   {{/html}}
 
 #end
@@ -119,7 +139,7 @@
 #end
 
 #if ($editing)
-  [[{{translation key="platform.search.suggestAddNewSource" /}}>>path:$doc.getURL('objectadd', $escapetool.url({
+  [[{{translation key="platform.search.suggestAddNewSource" /}}&gt;&gt;path:$doc.getURL('objectadd', $escapetool.url({
     'form_token': $services.csrf.token,
     'classname': $searchSuggestSourceClassName,
     'xredirect': $xwiki.relativeRequestURL
@@ -279,9 +299,9 @@
   };
   var createSourceUI = function(sourceFormHTML) {
     var container = document.createElement('li');
-    $(container).html('&lt;div class="source">&lt;div class="source-header">&lt;span class="name">'
+    $(container).html('&lt;div class="source"&gt;&lt;div class="source-header"&gt;&lt;span class="name"&gt;'
       + "$escapetool.javascript($escapetool.xml($services.localization.render('platform.search.suggestNewSourceName')))"
-      + '&lt;/span>&lt;div class="actions"/>&lt;/div>&lt;div class="source-body"/>&lt;/div>');
+      + '&lt;/span&gt;&lt;div class="actions"/&gt;&lt;/div&gt;&lt;div class="source-body"/&gt;&lt;/div&gt;');
     $(container).find('.source-body').html(sourceFormHTML);
     var objectNumber = parseInt($(container).find('input[type="text"]')
       .attr('name').substr('XWiki.SearchSuggestSourceClass_'.length));
@@ -328,7 +348,7 @@
 })</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -446,8 +466,8 @@ ul.searchSuggestSources {
 .searchSuggestSources .source-header.highlighted .limit {
   background-color: yellow;
 }
-.searchSuggestSources .source-header > p,
-.searchSuggestSources .source-header .actions > p {
+.searchSuggestSources .source-header &gt; p,
+.searchSuggestSources .source-header .actions &gt; p {
   margin: 0;
 }
 .searchSuggestSources .source-header .actions {
@@ -478,7 +498,7 @@ ul.searchSuggestSources {
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

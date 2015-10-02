@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Invitation</web>
   <name>InvitationConfig</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1287996668000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -305,7 +325,7 @@
       <guestsActionsPage>Invitation.InvitationGuestActions</guestsActionsPage>
     </property>
     <property>
-      <javamail_extra_props></javamail_extra_props>
+      <javamail_extra_props/>
     </property>
     <property>
       <mainPage>Invitation.WebHome</mainPage>
@@ -334,19 +354,19 @@ $services.localization.render('xe.invitation.emailContent.userHasInvitedYouToJoi
 
 {{html clean=false}}
 #if("$!messageBody" != "")
-  &lt;p style="$bigText">
+  &lt;p style="$bigText"&gt;
   $!escapetool.xml($!messageBody)
-  &lt;/p>
+  &lt;/p&gt;
 #end
-&lt;p style="margin-top:30px">
-&lt;a href="${guestActionsURL}?doAction_accept=y&amp;amp;messageID=$messageID" style="$bigText$joinLink$linkStyle">
+&lt;p style="margin-top:30px"&gt;
+&lt;a href="${guestActionsURL}?doAction_accept=y&amp;amp;messageID=$messageID" style="$bigText$joinLink$linkStyle"&gt;
 $services.localization.render('xe.invitation.emailContent.joinLink')
-&lt;/a>
-&lt;a href="${guestActionsURL}?doAction_decline=y&amp;amp;messageID=$messageID" style="$bigText$declineLink">
+&lt;/a&gt;
+&lt;a href="${guestActionsURL}?doAction_decline=y&amp;amp;messageID=$messageID" style="$bigText$declineLink"&gt;
  $services.localization.render('xe.invitation.emailContent.declineLink')
-&lt;/a>&lt;/p>
-&lt;hr style="clear:both" />
-$services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;a href=$escapetool.getQ()${guestActionsURL}?doAction_report=y&amp;amp;messageID=$messageID$escapetool.getQ() style=$escapetool.getQ()$linkStyle$escapetool.getQ()>", "&lt;/a>"])
+&lt;/a&gt;&lt;/p&gt;
+&lt;hr style="clear:both" /&gt;
+$services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;a href=$escapetool.getQ()${guestActionsURL}?doAction_report=y&amp;amp;messageID=$messageID$escapetool.getQ() style=$escapetool.getQ()$linkStyle$escapetool.getQ()&gt;", "&lt;/a&gt;"])
 {{/html}}
 {{/velocity}}</messageBodyTemplate>
     </property>
@@ -361,10 +381,10 @@ $services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;
       <smtp_server>localhost</smtp_server>
     </property>
     <property>
-      <smtp_server_password></smtp_server_password>
+      <smtp_server_password/>
     </property>
     <property>
-      <smtp_server_username></smtp_server_username>
+      <smtp_server_username/>
     </property>
     <property>
       <subjectLineTemplate>{{velocity}}$services.localization.render('xe.invitation.emailContent.subjectLine', [$xcontext.getUser().replaceAll("^[^\.]*.", ""), $xwiki.getRequestURL().replaceAll("https?://([^/:]*).*$", "$1"), $!subjectLine]){{/velocity}}</subjectLineTemplate>

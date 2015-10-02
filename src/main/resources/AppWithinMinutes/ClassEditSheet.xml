@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>AppWithinMinutes</web>
   <name>ClassEditSheet</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197398000</date>
   <contentUpdateDate>1429197398000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title>#if(!$doc.name.endsWith('Sheet'))Class: #end$stringtool.removeEnd($doc.name, 'Class')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -43,7 +63,7 @@ class PropertyCustomDisplayer
 
     public String display(PropertyClass property, String prefix, com.xpn.xwiki.api.Object object)
     {
-        HashMap&lt;String, Object> backup = new HashMap&lt;String, Object>();
+        HashMap&lt;String, Object&gt; backup = new HashMap&lt;String, Object&gt;();
         try {
             XWikiDocument.backupContext(backup, this.context);
             return this.displayInternal(property.getPropertyClass(), prefix, object.getXWikiObject());
@@ -93,13 +113,13 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
             #set($formFieldIconURL = $formFieldDoc.getAttachmentURL($formFieldIcon))
           #end
           ** (% class="field" %){{html}}
-              &lt;img src="$formFieldIconURL" alt="$escapetool.xml($formFieldDoc.title)" class="icon" />
+              &lt;img src="$formFieldIconURL" alt="$escapetool.xml($formFieldDoc.title)" class="icon" /&gt;
               $escapetool.xml($formFieldDoc.plainTitle)
               ## FIXME: We should use the 'get' action instead to prevent the stats module from recording this AJAX request.
               ## The 'edit' action is a temporary solution until the sheet module is modified to allow a sheet to be enforced through
               ## the query string even if it doesn't match the action (e.g. the 'get' action).
               ## The sheet parameter is required when editing a new class because the request will be made to a document that doesn't exist.
-              &lt;input type="hidden" value="$doc.getURL('edit', "xpage=plain&amp;sheet=AppWithinMinutes.ClassEditSheet&amp;field=$escapetool.url($formFieldDoc.fullName)")" class="data"/>
+              &lt;input type="hidden" value="$doc.getURL('edit', "xpage=plain&amp;sheet=AppWithinMinutes.ClassEditSheet&amp;field=$escapetool.url($formFieldDoc.fullName)")" class="data"/&gt;
             {{/html}}
         #end
     #end
@@ -163,15 +183,15 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
   {{html wiki="true"}}
   ## Hide the options if neither the sheet nor the template nor the translation bundle exists. They don't have to be updated, they have to be created.
   (% id="options" #if(!$xwiki.exists($sheetName) &amp;&amp; !$xwiki.exists($templateName) &amp;&amp; !$xwiki.exists($translationsName))class="hidden" #end%)
-  ; &lt;label for="updateClassTemplate">&lt;input type="checkbox" id="updateClassTemplate" name="updateClassTemplate" checked="checked" />$services.localization.render('platform.appwithinminutes.classEditorUpdateTemplateLabel')&lt;/label>
+  ; &lt;label for="updateClassTemplate"&gt;&lt;input type="checkbox" id="updateClassTemplate" name="updateClassTemplate" checked="checked" /&gt;$services.localization.render('platform.appwithinminutes.classEditorUpdateTemplateLabel')&lt;/label&gt;
   : (% class="xHint" %)$services.localization.render('platform.appwithinminutes.classEditorUpdateTemplateHint', "[[$templateName]]")
-  ; &lt;label for="updateClassSheet">&lt;input type="checkbox" id="updateClassSheet" name="updateClassSheet" #if($sheetName)checked="checked" #{else}disabled="disabled" #end/>$services.localization.render('platform.appwithinminutes.classEditorUpdateSheetLabel')&lt;/label>
+  ; &lt;label for="updateClassSheet"&gt;&lt;input type="checkbox" id="updateClassSheet" name="updateClassSheet" #if($sheetName)checked="checked" #{else}disabled="disabled" #end/&gt;$services.localization.render('platform.appwithinminutes.classEditorUpdateSheetLabel')&lt;/label&gt;
   : #if($sheetName)
       (% class="xHint" %)$services.localization.render('platform.appwithinminutes.classEditorUpdateSheetHint', "[[$sheetName]]")
     #else
       (% class="warningmessage" %)$services.localization.render('platform.appwithinminutes.classEditorMultipleSheetsWarning')
     #end
-  ; &lt;label for="updateClassTranslations">&lt;input type="checkbox" id="updateClassTranslations" name="updateClassTranslations" checked="checked" />$services.localization.render('platform.appwithinminutes.classEditorUpdateTranslationsLabel')&lt;/label>
+  ; &lt;label for="updateClassTranslations"&gt;&lt;input type="checkbox" id="updateClassTranslations" name="updateClassTranslations" checked="checked" /&gt;$services.localization.render('platform.appwithinminutes.classEditorUpdateTranslationsLabel')&lt;/label&gt;
   : (% class="xHint" %)$services.localization.render('platform.appwithinminutes.classEditorUpdateTranslationsHint', "[[$translationsName]]")
   {{/html}}
 #end
@@ -191,7 +211,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
     #displayFieldMetaData($field)
     ## We need this information to avoid querying and loading all FormField documents twice.
     ## NOTE: We use a different ID format to avoid collisions with the field meta properties.
-    &lt;input type="hidden" id="template-$field.name" name="template-$field.name" value="$escapetool.xml($formFieldDoc.fullName)" />
+    &lt;input type="hidden" id="template-$field.name" name="template-$field.name" value="$escapetool.xml($formFieldDoc.fullName)" /&gt;
   {{/html}}
 
   #set($className = $stringtool.removeEnd($doc.name, 'Class'))
@@ -221,7 +241,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
  * Display the field meta data. This is needed to preserve the field when its type is not supported by the editor.
  *#
 #macro(displayFieldMetaData $field)
-  &lt;input type="hidden" id="type-$field.name" name="type-$field.name" value="$field.classType" />
+  &lt;input type="hidden" id="type-$field.name" name="type-$field.name" value="$field.classType" /&gt;
 #end
 
 #**
@@ -230,9 +250,9 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
 #macro(displayFieldProperty $property $prefix $field)
   #set($displayFormType = $property.getProperty('displayFormType'))
   #if($property.classType == 'Boolean' &amp;&amp; (!$displayFormType || $displayFormType.value == 'checkbox'))
-    ; {{html clean="false"}}&lt;label for="$!{prefix}$property.name">#displayPropertyEditInput($property, $prefix, $field)$escapetool.xml($property.prettyName)&lt;/label>{{/html}}
+    ; {{html clean="false"}}&lt;label for="$!{prefix}$property.name"&gt;#displayPropertyEditInput($property, $prefix, $field)$escapetool.xml($property.prettyName)&lt;/label&gt;{{/html}}
   #else
-    ; {{html}}&lt;label for="${prefix}$property.name">$escapetool.xml($property.prettyName)&lt;/label>{{/html}}
+    ; {{html}}&lt;label for="${prefix}$property.name"&gt;$escapetool.xml($property.prettyName)&lt;/label&gt;{{/html}}
     : {{html clean="false"}}#displayPropertyEditInput($property, $prefix, $field){{/html}}
   #end
 #end
@@ -263,7 +283,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
 
   #set($formFieldDoc = $xwiki.getDocument($request.field))
   #set($formFieldDocClassFields = $formFieldDoc.getxWikiClass().getXWikiClass().properties)
-  #if($formFieldDocClassFields.size() > 0)
+  #if($formFieldDocClassFields.size() &gt; 0)
     ## Clone the field template.
     #set($field = $formFieldDocClassFields.get(0).clone())
     #if("$!field.prettyName" == '')
@@ -314,7 +334,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
       #set($discard = $values.add($value))
     #end
   #end
-  #if($values.size() > 0)
+  #if($values.size() &gt; 0)
     #set($stringArray = $request.getParameterValues("template-$fieldName"))
     #set($discard = $xclass.fromMap({$fieldName: $values.toArray($stringArray)}, $object.getXWikiObject()))
   #end
@@ -357,7 +377,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
   #else
     ## Make sure that only the sheet content is rendered when the class is saved using AJAX.
     (% class="hidden" %)
-    {{html}}&lt;input type="hidden" name="xpage" value="plain" />{{/html}}
+    {{html}}&lt;input type="hidden" name="xpage" value="plain" /&gt;{{/html}}
 
     #displayEditForm()
   #end
@@ -598,7 +618,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
 {{/velocity}}</content>
   <attachment>
     <filename>arrow-move.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1319487186000</date>
     <version>1.1</version>
     <comment/>
@@ -607,7 +627,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
   </attachment>
   <attachment>
     <filename>bulletcross.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1319487186000</date>
     <version>1.1</version>
     <comment/>
@@ -616,7 +636,7 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
   </attachment>
   <attachment>
     <filename>bullettick.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1319487186000</date>
     <version>1.1</version>
     <comment/>
@@ -1072,7 +1092,7 @@ XWiki.FormField = Class.create({
       }
     }.bind(this));
     var modifiedKeys = data.keys();
-    if (modifiedKeys.length > 1 || (modifiedKeys.length == 1 &amp;&amp; !modifiedKeys[0].endsWith('_0_' + this.getName()))) {
+    if (modifiedKeys.length &gt; 1 || (modifiedKeys.length == 1 &amp;&amp; !modifiedKeys[0].endsWith('_0_' + this.getName()))) {
       this._preview(this.previewData.clone().update(data));
     }
   },
@@ -1179,7 +1199,7 @@ XWiki.FormFieldNameManager = Class.create({
       } else {
         // This is for field meta properties.
         var nameIndex = value.indexOf('-') + 1;
-        if (nameIndex > 0 &amp;&amp; (value.substring(nameIndex) == oldName || value.substring(nameIndex).startsWith(oldName + '_'))) {
+        if (nameIndex &gt; 0 &amp;&amp; (value.substring(nameIndex) == oldName || value.substring(nameIndex).startsWith(oldName + '_'))) {
           value = value.substring(0, nameIndex) + newName + value.substring(nameIndex + oldName.length);
         }
       }
@@ -1302,7 +1322,7 @@ XWiki.FormFieldRequiredManager = Class.create({
       var wrapper = new Element('div', {'class': 'labelLine'});
       prettyNameLabel.insert({before: wrapper});
       wrapper.insert(prettyNameLabel);
-      wrapper.insert('&lt;label>&lt;select class="xRequired" title="Click to toggle between (Optional) and (Required)">&lt;option>(Optional)&lt;/option>&lt;option>(Required)&lt;/option>&lt;/select>&lt;/label>');
+      wrapper.insert('&lt;label&gt;&lt;select class="xRequired" title="Click to toggle between (Optional) and (Required)"&gt;&lt;option&gt;(Optional)&lt;/option&gt;&lt;option&gt;(Required)&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;');
       new XWiki.ToggleSelect(prettyNameLabel.next().down('select'));
     }
   }
@@ -1664,7 +1684,7 @@ return XWiki;
   padding: 0;
 }
 
-#fields > li {
+#fields &gt; li {
   border: 1px dotted $theme.pageContentBackgroundColor;
   list-style: none;
   /* Make sure the loading animation is properly displayed. */
@@ -1672,7 +1692,7 @@ return XWiki;
   padding: 0 0.5em 0.5em;
 }
 
-#fields > li .toolBox {
+#fields &gt; li .toolBox {
   display: none;
   position: absolute;
   right: 0.5em;
@@ -1684,11 +1704,11 @@ return XWiki;
   margin: 2px;
 }
 
-#fields > li:hover {
+#fields &gt; li:hover {
   border: 1px dotted $theme.borderColor;
 }
 
-#fields > li:hover .toolBox {
+#fields &gt; li:hover .toolBox {
   display: block;
 }
 

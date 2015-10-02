@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>ClassSwitcher</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1169801141000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -106,10 +126,10 @@
 $xwiki.jsx.use('Panels.ClassSwitcher')##
 (((
 {{html}}
-&lt;form id="changeclass" method="post" action="$doc.getURL('redirect')">
-&lt;div>
-&lt;select id="classname" name="xredirect" size="1">
-&lt;option value="-">Edit another class&lt;/option>
+&lt;form id="changeclass" method="post" action="$doc.getURL('redirect')"&gt;
+&lt;div&gt;
+&lt;select id="classname" name="xredirect" size="1"&gt;
+&lt;option value="-"&gt;Edit another class&lt;/option&gt;
 ##
 ## Existing classes are enumerated, grouped by space name.
 ## The list is already sorted alphabetically
@@ -121,22 +141,22 @@ $xwiki.jsx.use('Panels.ClassSwitcher')##
     #set($classdoc = $xwiki.getDocument($classname))
     #if($classdoc.space != $prevSpace)
       #if($optGroupOpen)
-        &lt;/optgroup>
+        &lt;/optgroup&gt;
       #else
         #set($optGroupOpen = true)
       #end
-          &lt;optgroup label="$classdoc.space">
+          &lt;optgroup label="$classdoc.space"&gt;
       #set($prevSpace = $classdoc.space)
     #end
-    &lt;option value="$classdoc.getURL("edit", "editor=class")">$classdoc.name&lt;/option>
+    &lt;option value="$classdoc.getURL("edit", "editor=class")"&gt;$classdoc.name&lt;/option&gt;
   #end
 #end
 #if($optGroupOpen)
-  &lt;/optgroup>
+  &lt;/optgroup&gt;
 #end
-&lt;/select>
-&lt;span class="buttonwrapper">&lt;input class="button" type="submit" value="$services.localization.render('changeclass')"/>&lt;/span>&lt;/div>
-&lt;/form>
+&lt;/select&gt;
+&lt;span class="buttonwrapper"&gt;&lt;input class="button" type="submit" value="$services.localization.render('changeclass')"/&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 
 {{warning}}$services.localization.render('xe.panels.classedit.unsavedchanges'){{/warning}}

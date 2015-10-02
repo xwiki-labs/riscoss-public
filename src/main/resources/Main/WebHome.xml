@@ -1,48 +1,68 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>WebHome</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1430839816000</creationDate>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443604756000</date>
   <contentUpdateDate>1441016412000</contentUpdateDate>
-  <version>3.58</version>
+  <version>1.1</version>
   <title>$services.localization.render('riscossPlatform.title') : $!services.wiki.getById($services.wiki.getCurrentWikiId()).prettyName $services.localization.render("riscossPlatform.domain")</title>
   <comment/>
-  <minorEdit>true</minorEdit>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
-  <content>{{html}}&#xd;
-&lt;div style="background-color:#f6f6f6; padding: 1em;">&#xd;
-Thank you for your interest in RISCOSS. The GitHubAnalyzer is an easy way to test the platform. Go for it!  And let us know what you think, we'd love to hear about you.&#xd;
-&lt;/div>&#xd;
-{{/html}}&#xd;
-&#xd;
-{{velocity}}&#xd;
-&#xd;
-#if ($hasAdmin)&#xd;
-{{include reference="RISCOSSPlatformCode.AdminPage" /}}&#xd;
-##&#xd;
-## TODO: understand why this doesn't work&#xd;
-## #elseif ($xwiki.getUser().isUserInGroup("RISCOSSPlatformCode.ProducersGroup"))&#xd;
-##&#xd;
-#elseif ($services.query.xwql("from doc.object(XWiki.XWikiGroups) as g where g.member = :mem and doc.fullName = 'RISCOSSPlatformCode.ProducersGroup'").bindValue('mem', $xcontext.getUser()).execute() == "[RISCOSSPlatformCode.ProducersGroup]")&#xd;
-{{include reference="RISCOSSPlatformCode.ProducerPage" /}}&#xd;
-#else&#xd;
-{{include reference="RISCOSSPlatformCode.ConsumerPage" /}}&#xd;
-#end&#xd;
-&#xd;
-== DISCLAIMER&#xd;
-&#xd;
-{{box}}&#xd;
-DISCLAIMER. THIS ONLINE SERVICE IS PROVIDED FOR RESEARCH PURPOSE ONLY. IT DOES NOT CONSTITUTE AN OPINION OF THE PROJECTS THAT ARE ANALYSED NOR AN ADVICE TO USE OR NOT A PROJECT. THIS ONLINE SERVICE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE SERVICE PROVIDER NOR ANY CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS ONLINE SERVICE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&#xd;
-{{/box}}&#xd;
-&#xd;
+  <content>{{html}}
+&lt;div style="background-color:#f6f6f6; padding: 1em;"&gt;
+Thank you for your interest in RISCOSS. The GitHubAnalyzer is an easy way to test the platform. Go for it!  And let us know what you think, we'd love to hear about you.
+&lt;/div&gt;
+{{/html}}
+
+{{velocity}}
+
+#if ($hasAdmin)
+{{include reference="RISCOSSPlatformCode.AdminPage" /}}
+##
+## TODO: understand why this doesn't work
+## #elseif ($xwiki.getUser().isUserInGroup("RISCOSSPlatformCode.ProducersGroup"))
+##
+#elseif ($services.query.xwql("from doc.object(XWiki.XWikiGroups) as g where g.member = :mem and doc.fullName = 'RISCOSSPlatformCode.ProducersGroup'").bindValue('mem', $xcontext.getUser()).execute() == "[RISCOSSPlatformCode.ProducersGroup]")
+{{include reference="RISCOSSPlatformCode.ProducerPage" /}}
+#else
+{{include reference="RISCOSSPlatformCode.ConsumerPage" /}}
+#end
+
+== DISCLAIMER
+
+{{box}}
+DISCLAIMER. THIS ONLINE SERVICE IS PROVIDED FOR RESEARCH PURPOSE ONLY. IT DOES NOT CONSTITUTE AN OPINION OF THE PROJECTS THAT ARE ANALYSED NOR AN ADVICE TO USE OR NOT A PROJECT. THIS ONLINE SERVICE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE SERVICE PROVIDER NOR ANY CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS ONLINE SERVICE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+{{/box}}
+
 {{/velocity}}</content>
   <attachment>
     <filename>riscoss-logo.png</filename>
@@ -161,43 +181,43 @@ DISCLAIMER. THIS ONLINE SERVICE IS PROVIDED FOR RESEARCH PURPOSE ONLY. IT DOES N
       <cache>long</cache>
     </property>
     <property>
-      <code>.projectLink {&#xd;
-   float: left;&#xd;
-}&#xd;
-.projectNameFilter {&#xd;
-   width: 100%;&#xd;
-}&#xd;
-.project.link {&#xd;
-   float: left !important;&#xd;
-}&#xd;
-ul.xwikitabbar {&#xd;
-  padding: 10px 0 10px 15px;&#xd;
-}&#xd;
-.xwikitabbar li a, .xwikitabbar li a:visited, .xwikitabbar li a:active {&#xd;
-  padding: 3px 10px 10px 10px;&#xd;
-}&#xd;
-#document-title{&#xd;
-   display: none;&#xd;
-}&#xd;
-tbody.xwiki-livetable-display-body td.ranking {&#xd;
-  text-align: left !important;&#xd;
-}&#xd;
-#entities.xwiki-livetable td, #entities.xwiki-livetable th, &#xd;
-#projects.xwiki-livetable td, #projects.xwiki-livetable th {&#xd;
-   padding: 1em;&#xd;
-}&#xd;
-.box.infomessage{&#xd;
-   line-height: 1.5em;&#xd;
-}&#xd;
-tbody.xwiki-livetable-display-body a {&#xd;
-    text-align: left !important;&#xd;
-}&#xd;
-#entities.xwiki-livetable td.description{&#xd;
-   width: 45%;&#xd;
+      <code>.projectLink {
+   float: left;
+}
+.projectNameFilter {
+   width: 100%;
+}
+.project.link {
+   float: left !important;
+}
+ul.xwikitabbar {
+  padding: 10px 0 10px 15px;
+}
+.xwikitabbar li a, .xwikitabbar li a:visited, .xwikitabbar li a:active {
+  padding: 3px 10px 10px 10px;
+}
+#document-title{
+   display: none;
+}
+tbody.xwiki-livetable-display-body td.ranking {
+  text-align: left !important;
+}
+#entities.xwiki-livetable td, #entities.xwiki-livetable th, 
+#projects.xwiki-livetable td, #projects.xwiki-livetable th {
+   padding: 1em;
+}
+.box.infomessage{
+   line-height: 1.5em;
+}
+tbody.xwiki-livetable-display-body a {
+    text-align: left !important;
+}
+#entities.xwiki-livetable td.description{
+   width: 45%;
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse/>

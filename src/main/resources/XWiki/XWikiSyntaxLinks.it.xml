@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiSyntaxLinks</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1301497904000</contentUpdateDate>
   <version>1.1</version>
   <title>XWikiSyntaxLinks</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -26,30 +46,30 @@
 === 1.0 Links ===
 
 |=(% style="width:20%" %)Caratteristica|=Sintassi XWiki 1.0|=(% style="width:20%" %)Risultato
-|Link ad una pagina nello Spazio corrente|{{{[WebHome]}}}|[[Web Home>>WebHome]]
-|Link con etichetta|{{{[etichetta>WebHome]}}}|[[etichetta>>WebHome]]
-|Link con sintassi XWiki nell'etichetta|{{{&lt;a href="$xwiki.getURL("WebHome")">&lt;strong>etichetta in grassetto&lt;/strong>&lt;/a>}}}|[[**etichetta in grassetto**>>WebHome]]
-|Link ad una pagina di uno spazio specificato|{{{[[Main.WebHome]]}}}|[[Web Home>>Main.WebHome]]
-|Link ad un subwiki|{{{[subwiki:Main.WebHome]}}}|[[Web Home>>xwiki:Main.WebHome]]
-|Link che si apre in una nuova pagina|{{{[etichetta>WebHome>_blank]}}}|[[etichetta>>WebHome||rel="__blank"]]
+|Link ad una pagina nello Spazio corrente|{{{[WebHome]}}}|[[Web Home&gt;&gt;WebHome]]
+|Link con etichetta|{{{[etichetta&gt;WebHome]}}}|[[etichetta&gt;&gt;WebHome]]
+|Link con sintassi XWiki nell'etichetta|{{{&lt;a href="$xwiki.getURL("WebHome")"&gt;&lt;strong&gt;etichetta in grassetto&lt;/strong&gt;&lt;/a&gt;}}}|[[**etichetta in grassetto**&gt;&gt;WebHome]]
+|Link ad una pagina di uno spazio specificato|{{{[[Main.WebHome]]}}}|[[Web Home&gt;&gt;Main.WebHome]]
+|Link ad un subwiki|{{{[subwiki:Main.WebHome]}}}|[[Web Home&gt;&gt;xwiki:Main.WebHome]]
+|Link che si apre in una nuova pagina|{{{[etichetta&gt;WebHome&gt;_blank]}}}|[[etichetta&gt;&gt;WebHome||rel="__blank"]]
 |Link ad un URL direttamente nel testo|{{{Questo è un URL: http://xwiki.org}}}|Questo è un URL: http://xwiki.org
 |Link ad un URL|{{{[http://xwiki.org]}}}|[[http://xwiki.org]]
-|Link ad un URL con etichetta|{{{[XWiki>http://xwiki.org]}}}|[[XWiki>>http://xwiki.org]]
-|Link ad un indirizzo email|{{{[john@smith.net>mailto:john@smith.net]}}}|[[john@smith.net>>mailto:john@smith.net]]
-|Link ad un'immagine|{{{&lt;a href="$xwiki.getURL("Space1.Page1")">{image:img.png|document=Space2.Page2}&lt;/a>}}}|[[image:XWiki.XWikiSyntaxLinks@img.png>>Main.WebHome]]
-|Link ad un'immagine con parametri|{{{&lt;a href="$xwiki.getURL("Space1.Page1")">{image:img.png|document=Space2.Page2|width=26|height=26}&lt;/a>}}}|[[[[image:XWiki.XWikiSyntaxLinks@img.png||width="26" height="26"]]&gt;&gt;Main.WebHome]]
+|Link ad un URL con etichetta|{{{[XWiki&gt;http://xwiki.org]}}}|[[XWiki&gt;&gt;http://xwiki.org]]
+|Link ad un indirizzo email|{{{[john@smith.net&gt;mailto:john@smith.net]}}}|[[john@smith.net&gt;&gt;mailto:john@smith.net]]
+|Link ad un'immagine|{{{&lt;a href="$xwiki.getURL("Space1.Page1")"&gt;{image:img.png|document=Space2.Page2}&lt;/a&gt;}}}|[[image:XWiki.XWikiSyntaxLinks@img.png&gt;&gt;Main.WebHome]]
+|Link ad un'immagine con parametri|{{{&lt;a href="$xwiki.getURL("Space1.Page1")"&gt;{image:img.png|document=Space2.Page2|width=26|height=26}&lt;/a&gt;}}}|[[[[image:XWiki.XWikiSyntaxLinks@img.png||width="26" height="26"]]&gt;&gt;Main.WebHome]]
 |Link ad un allegato nella pagina corrente|(((
-{{info}}Vedere [[Attach Macro>>http://extensions.xwiki.org/xwiki/bin/view/Extension/Attach+Macro+%28Radeox%29]] per ulteriori dettagli{{/info}}
+{{info}}Vedere [[Attach Macro&gt;&gt;http://extensions.xwiki.org/xwiki/bin/view/Extension/Attach+Macro+%28Radeox%29]] per ulteriori dettagli{{/info}}
 {{{{attach:text|file=img.png}}}}
-)))|[[text>>attach:XWiki.XWikiSyntaxLinks@img.png]]
+)))|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
 |Link ad un allegato in una pagina diversa|(((
-{{info}}Vedere [[Attach Macro>>http://extensions.xwiki.org/xwiki/bin/view/Extension/Attach+Macro+%28Radeox%29]] per ulteriori dettagli{{/info}}
+{{info}}Vedere [[Attach Macro&gt;&gt;http://extensions.xwiki.org/xwiki/bin/view/Extension/Attach+Macro+%28Radeox%29]] per ulteriori dettagli{{/info}}
 {{{{attach:text|document=Space.Page|file=img.png}}}}
-)))|[[text>>attach:XWiki.XWikiSyntaxLinks@img.png]]
-|Link ad una Ancora in una pagina|{{{[label>Space.Page#anchor]}}}|[[label>>XWiki.XWikiSyntax||anchor=HLinks]]
+)))|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
+|Link ad una Ancora in una pagina|{{{[label&gt;Space.Page#anchor]}}}|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=HLinks]]
 |Link ad un Titolo in una pagina|(((
-{{{[label>Space.Page#HMyheading]}}}
-)))|[[label>>XWiki.XWikiSyntax||anchor=HMyheading]]
+{{{[label&gt;Space.Page#HMyheading]}}}
+)))|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=HMyheading]]
 
 {{info}}Quando s'inserisce un Titolo, si crea un'ancora di nome "H" seguita dal testo dell'intestazione di sole lettere. Per esempio, per Titolo "My heading", l'ancora generata sarà "HMyheading".{{/info}}
 
@@ -60,7 +80,7 @@
 Le parti tra ##( )## sono richieste, le parti tra ##[ ]## sono opzionali e si deve aggiungere uno dei due caratteri in ##{ }## se si usano parti opzionali.
 {{/info}}
 
-Il formato completo di un link è **##[etichetta {> o |}] (risorsa) [@interWikiAlias] [{> o |} obbiettivo]##**
+Il formato completo di un link è **##[etichetta {&gt; o |}] (risorsa) [@interWikiAlias] [{&gt; o |} obbiettivo]##**
 
 * **##etichetta##**: Una stringa opzionale che viene mostrata all'utente come nome del link quando è renderizzata. Esempio: ##Pagina personale##
 * **##risorsa##**: Il riferimento completo al link usando la seguente sintassi: **##(riferimento) [?Stringaquery] [#ancora]##**
@@ -72,7 +92,7 @@ Il formato completo di un link è **##[etichetta {> o |}] (risorsa) [@interWikiA
 **** **##pagina##**: Stringa obbligatoria che contiene il nome della pagina del wiki da collegare. Esempio: ##WebHome##
 ** **##Stringaquery##**: Stringa opzionale di query per specificare dei parametri che saranno usati nel rendering dell'URL. Esempio: ##mydata1=5&amp;mydata2=Hello##
 ** **##ancora##**: Nome opzionale di un'ancora che punta ad un'altra ancora definita nel link in oggetto. Notare che in XWiki le ancore sono create automaticamente per i titoli. Esempio: ##HTableOfContents##
-* **##interWikiAlias##**: Un alias opzionale [[Inter Wiki>>http://en.wikipedia.org/wiki/InterWiki]] come definito nella InterWiki Map (vedere la  [[Admin Guide>>http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]).Questo vale solo per i nomi delle pagine wiki. Esempio: ##wikipedia##
+* **##interWikiAlias##**: Un alias opzionale [[Inter Wiki&gt;&gt;http://en.wikipedia.org/wiki/InterWiki]] come definito nella InterWiki Map (vedere la  [[Admin Guide&gt;&gt;http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]).Questo vale solo per i nomi delle pagine wiki. Esempio: ##wikipedia##
 * **##obbiettivo##**: Stringa opzionale che corrisponde all'atttributo HTML ##target## per un elemento link HTML ##A## . Questo elemento viene usato quando si fa il render del link. Di default apre il link nella pagina corrente. Esempi: ##_self##, ##_blank##
 
 === 2.0 Links ===
@@ -80,23 +100,23 @@ Il formato completo di un link è **##[etichetta {> o |}] (risorsa) [@interWikiA
 |=(% style="width:20%" %)Caratteristica|=Sintassi XWiki 2.0|=(% style="width:20%" %)Risultato
 |Link ad una pagina nello Spazio corrente|{{{[[WebHome]]}}}|[[WebHome]]
 |Link con etichetta|(((
-{{{[[etichetta>>WebHome]]}}}
+{{{[[etichetta&gt;&gt;WebHome]]}}}
 {{info}}La sintassi XWiki è supportata anche all'interno delle etichette{{/info}}
-)))|[[etichetta>>WebHome]]
-|Link con sintassi XWiki nell'etichetta|{{{[[**etichetta in grassetto**>>WebHome]]}}}|[[**etichetta in grassetto**>>WebHome]]
+)))|[[etichetta&gt;&gt;WebHome]]
+|Link con sintassi XWiki nell'etichetta|{{{[[**etichetta in grassetto**&gt;&gt;WebHome]]}}}|[[**etichetta in grassetto**&gt;&gt;WebHome]]
 |Link ad una pagina di uno spazio specificato|{{{[[Main.WebHome]]}}}|[[Main.WebHome]]
 |Link ad un subwiki|{{{[[subwiki:Main.WebHome]]}}}|[[xwiki:Main.WebHome]]
-|Link che si apre in una nuova pagina|{{{[[etichetta>>WebHome||rel="__blank"]]}}}|[[etichetta>>WebHome||rel="__blank"]]
+|Link che si apre in una nuova pagina|{{{[[etichetta&gt;&gt;WebHome||rel="__blank"]]}}}|[[etichetta&gt;&gt;WebHome||rel="__blank"]]
 |Link ad un URL direttamente nel testo|{{{Questo è un URL: http://xwiki.org}}}|Questo è un URL: http://xwiki.org
 |Link ad un URL|{{{[[http://xwiki.org]]}}}|[[http://xwiki.org]]
-|Link ad un URL con etichetta|{{{[[XWiki>>http://xwiki.org]]}}}|[[XWiki>>http://xwiki.org]]
-|Link ad un indirizzo email|{{{[[john@smith.net>>mailto:john@smith.net]]}}}|[[john@smith.net>>mailto:john@smith.net]]
-|Link ad un'immagine|{{{[[image:Space2.Page2@img.png>>Space1.Page1]]}}}|[[image:XWiki.XWikiSyntaxLinks@img.png>>Main.WebHome]]
+|Link ad un URL con etichetta|{{{[[XWiki&gt;&gt;http://xwiki.org]]}}}|[[XWiki&gt;&gt;http://xwiki.org]]
+|Link ad un indirizzo email|{{{[[john@smith.net&gt;&gt;mailto:john@smith.net]]}}}|[[john@smith.net&gt;&gt;mailto:john@smith.net]]
+|Link ad un'immagine|{{{[[image:Space2.Page2@img.png&gt;&gt;Space1.Page1]]}}}|[[image:XWiki.XWikiSyntaxLinks@img.png&gt;&gt;Main.WebHome]]
 |Link ad un'immagine con parametri|{{{[[[[image:Space2.Page2@img.png||width="26" height="26"]]&gt;&gt;Space1.Page1]]}}}|[[[[image:XWiki.XWikiSyntaxLinks@img.png||width="26" height="26"]]&gt;&gt;Main.WebHome]]
-|Link ad un allegato nella pagina corrente|{{{[[text>>attach:img.png]]}}}|[[text>>attach:XWiki.XWikiSyntaxLinks@img.png]]
-|Link ad un allegato in una pagina diversa|{{{[[text>>attach:Space.Page@img.png]]}}}|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
-|Link ad una Ancora in una pagina|{{{[[label>>Space.Page#anchor]]}}}|[[label>>XWiki.XWikiSyntax||anchor=anchor]]
-|Link ad un Titolo in una pagina|{{{[[label>>Space.Page#HMyheading]]}}}|[[label>>XWiki.XWikiSyntax||anchor=HMyheading]]
+|Link ad un allegato nella pagina corrente|{{{[[text&gt;&gt;attach:img.png]]}}}|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
+|Link ad un allegato in una pagina diversa|{{{[[text&gt;&gt;attach:Space.Page@img.png]]}}}|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
+|Link ad una Ancora in una pagina|{{{[[label&gt;&gt;Space.Page#anchor]]}}}|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=anchor]]
+|Link ad un Titolo in una pagina|{{{[[label&gt;&gt;Space.Page#HMyheading]]}}}|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=HMyheading]]
 
 {{info}}Quando s'inserisce un Titolo, si crea un'ancora di nome "H" seguita dal testo dell'intestazione di sole lettere. Per esempio, per Titolo "My heading", l'ancora generata sarà "HMyheading".{{/info}}
 
@@ -111,9 +131,9 @@ The part in ##( )## is required, while the parts in ##[ ]## are optional.
 Le parti tra ##( )## sono richieste, le parti tra ##[ ]## sono opzionali.
 {{/info}}
 
-Il formato completo di un link è **##[etichetta>>] (risorsa) [@interWikiAlias] [||parametri]##**
+Il formato completo di un link è **##[etichetta&gt;&gt;] (risorsa) [@interWikiAlias] [||parametri]##**
 
-* **##etichetta##**: Stringa opzionale che sarà mostrata all'utente dopo il render del link. L'etichetta può contenere della sintassi XWiki. Se non viene specificata un'etichetta sarà generata un'etichetta predefinita. Il modello di generazione può essere cambiato, vedere la [[Admin Guide>>http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]. Esempio: ##My Page##
+* **##etichetta##**: Stringa opzionale che sarà mostrata all'utente dopo il render del link. L'etichetta può contenere della sintassi XWiki. Se non viene specificata un'etichetta sarà generata un'etichetta predefinita. Il modello di generazione può essere cambiato, vedere la [[Admin Guide&gt;&gt;http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]. Esempio: ##My Page##
 * **##risorsa##**: Il riferimento completo al link con la sintassi seguente: **##(riferimento) [?Stringaquery] [#ancora]##**
 ** **##riferimento##**: Il riferimento al collegamento in una delle forme seguenti:
 *** **URL**: qualsiasi URL nella forma **##protocollo:~/~/percorso##**. Esempi: ##http:~/~/xwiki.org##, ##https:~/~/svn.xwiki.org/##
@@ -130,7 +150,7 @@ Il formato completo di un link è **##[etichetta>>] (risorsa) [@interWikiAlias] 
 **** **##emailAddress##**: Indirizzo del destinatario dell'email. Esempio: "##john@smith.com##"
 ** **##Stringaquery##**: Stringa opzionale di query per specificare parametri che saranno usati nel rendering dell'URL. Esempio: ##mydata1=5&amp;mydata2=Hello##
 ** **##anchra##**: Nome di un'ancora opzionale che punta ad un'ancora definita nel link cui si fa riferimento. Notare che in XWiki le ancore sono create automaticamente per i titoli. Esempio: ##HTableOfContents##
-* **##interWikiAlias##**: Alias opzionale [[Inter Wiki>>http://en.wikipedia.org/wiki/InterWiki]] come definito nella InterWiki Map (vedere la [[Admin Guide>>http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]). Questo vale solo per i nomi delle pagine wiki. Esempio: ##wikipedia##
+* **##interWikiAlias##**: Alias opzionale [[Inter Wiki&gt;&gt;http://en.wikipedia.org/wiki/InterWiki]] come definito nella InterWiki Map (vedere la [[Admin Guide&gt;&gt;http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]). Questo vale solo per i nomi delle pagine wiki. Esempio: ##wikipedia##
 * **##parametri##**: elenco opzionale di parametri che si possono passare al link. Esempio: ##rel="~_~_blank"## (apri in una nuova finestra)
 
 
@@ -139,23 +159,23 @@ Il formato completo di un link è **##[etichetta>>] (risorsa) [@interWikiAlias] 
 |=Caratteristica|=Sintassi XWiki 2.1|=Risultato
 |Link ad una pagina nello Spazio corrente|{{{[[WebHome]]}}}|[[WebHome]]
 |Link con etichetta|(((
-{{{[[etichetta>>WebHome]]}}}
+{{{[[etichetta&gt;&gt;WebHome]]}}}
 {{info}}La sintassi XWiki è supportata anche all'interno delle etichette{{/info}}
-)))|[[etichetta>>WebHome]]
-|Link con sintassi XWiki nell'etichetta|{{{[[**etichetta in grassetto**>>WebHome]]}}}|[[**etichetta in grassetto**>>WebHome]]
+)))|[[etichetta&gt;&gt;WebHome]]
+|Link con sintassi XWiki nell'etichetta|{{{[[**etichetta in grassetto**&gt;&gt;WebHome]]}}}|[[**etichetta in grassetto**&gt;&gt;WebHome]]
 |Link ad una pagina di uno spazio specificato|{{{[[Main.WebHome]]}}}|[[Main.WebHome]]
 |Link ad un subwiki|{{{[[subwiki:Main.WebHome]]}}}|[[xwiki:Main.WebHome]]
-|Link che si apre in una nuova pagina|{{{[[etichetta>>WebHome||rel="__blank"]]}}}|[[etichetta>>WebHome||rel="__blank"]]
+|Link che si apre in una nuova pagina|{{{[[etichetta&gt;&gt;WebHome||rel="__blank"]]}}}|[[etichetta&gt;&gt;WebHome||rel="__blank"]]
 |Link ad un URL direttamente nel testo|{{{Questo è un URL: http://xwiki.org}}}|Questo è un URL: http://xwiki.org
 |Link ad un URL|{{{[[http://xwiki.org]]}}}|[[http://xwiki.org]]
-|Link ad un URL con etichetta|{{{[[XWiki>>http://xwiki.org]]}}}|[[XWiki>>http://xwiki.org]]
-|Link ad un indirizzo email|{{{[[john@smith.net>>mailto:john@smith.net]]}}}|[[john@smith.net>>mailto:john@smith.net]]
-|Link ad un'immagine|{{{[[image:Space2.Page2@img.png>>Space1.Page1]]}}}|[[image:XWiki.XWikiSyntaxLinks@img.png>>Main.WebHome]]
+|Link ad un URL con etichetta|{{{[[XWiki&gt;&gt;http://xwiki.org]]}}}|[[XWiki&gt;&gt;http://xwiki.org]]
+|Link ad un indirizzo email|{{{[[john@smith.net&gt;&gt;mailto:john@smith.net]]}}}|[[john@smith.net&gt;&gt;mailto:john@smith.net]]
+|Link ad un'immagine|{{{[[image:Space2.Page2@img.png&gt;&gt;Space1.Page1]]}}}|[[image:XWiki.XWikiSyntaxLinks@img.png&gt;&gt;Main.WebHome]]
 |Link ad un'immagine con parametri|{{{[[[[image:Space2.Page2@img.png||width="26" height="26"]]&gt;&gt;Space1.Page1]]}}}|[[[[image:XWiki.XWikiSyntaxLinks@img.png||width="26" height="26"]]&gt;&gt;Main.WebHome]]
-|Link ad un allegato nella pagina corrente|{{{[[text>>attach:img.png]]}}}|[[text>>attach:XWiki.XWikiSyntaxLinks@img.png]]
-|Link ad un allegato in una pagina diversa|{{{[[text>>attach:Space.Page@img.png]]}}}|[[text>>attach:XWiki.XWikiSyntaxLinks@img.png]]
-|Link ad una Ancora in una pagina|{{{[[label>>Space.Page||anchor=anchor]]}}}|[[label>>XWiki.XWikiSyntax||anchor=anchor]]
-|Link ad un Titolo in una pagina|{{{[[label>>Space.Page||anchor=HMyheading]]}}}|[[label>>XWiki.XWikiSyntax||anchor=HMyheading]]
+|Link ad un allegato nella pagina corrente|{{{[[text&gt;&gt;attach:img.png]]}}}|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
+|Link ad un allegato in una pagina diversa|{{{[[text&gt;&gt;attach:Space.Page@img.png]]}}}|[[text&gt;&gt;attach:XWiki.XWikiSyntaxLinks@img.png]]
+|Link ad una Ancora in una pagina|{{{[[label&gt;&gt;Space.Page||anchor=anchor]]}}}|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=anchor]]
+|Link ad un Titolo in una pagina|{{{[[label&gt;&gt;Space.Page||anchor=HMyheading]]}}}|[[label&gt;&gt;XWiki.XWikiSyntax||anchor=HMyheading]]
 
 {{info}}Quando s'inserisce un Titolo, si crea un'ancora di nome "H" seguita dal testo dell'intestazione di sole lettere. Per esempio, per Titolo "My heading", l'ancora generata sarà "HMyheading".{{/info}}
 
@@ -166,9 +186,9 @@ Il formato completo di un link è **##[etichetta>>] (risorsa) [@interWikiAlias] 
 Le parti tra ##( )## sono richieste, le parti tra ##[ ]## sono opzionali.
 {{/info}}
 
-Il formato completo di un link è **##[etichetta>>] (risorsa) [||parametri]##**
+Il formato completo di un link è **##[etichetta&gt;&gt;] (risorsa) [||parametri]##**
 
-* **##etichetta##**: Stringa opzionale che sarà mostrata all'utente dopo il render del link. L'etichetta può contenere della sintassi XWiki. Se non viene specificata un'etichetta sarà generata un'etichetta predefinita. Il modello di generazione può essere cambiato, vedere la [[Admin Guide>>http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]. Esempio: ##My Page##
+* **##etichetta##**: Stringa opzionale che sarà mostrata all'utente dopo il render del link. L'etichetta può contenere della sintassi XWiki. Se non viene specificata un'etichetta sarà generata un'etichetta predefinita. Il modello di generazione può essere cambiato, vedere la [[Admin Guide&gt;&gt;http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]. Esempio: ##My Page##
 * **##risorsa##**: Stringa richiesta con il riferimento al link in una delle forma seguenti
 ** **URL**: qualsiasi URL nella forma **##[url:] (protocollo:~/~/percorso)##**. Esempi: ##http:~/~/xwiki.org##, ##url:https:~/~/svn.xwiki.org/##
 *** **##url:##** Stringa opzionale che identifica la risorsa come un URL.
@@ -179,7 +199,7 @@ Il formato completo di un link è **##[etichetta>>] (risorsa) [||parametri]##**
 *** **##pagina##**: Stringa richiesta con il nome della pagina wiki cui punta il link. Esempio: ##WebHome##
 ** **InterWiki page name** Nome pagina Interwiki, riferimento nella forma **##interwiki: {{{(interWikiAlias:)}}} (page)##**. Esempio: ##interwiki:wikipedia:XWiki##
 *** **##interwiki:##** Stringa richiesta che identifica la risorsa come un link InterWiki.
-*** **##interWikiAlias##**: Alias opzionale dell'[[Inter Wiki>>http://en.wikipedia.org/wiki/InterWiki]] come definito dall'InterWiki Map (vedere la [[Admin Guide>>http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]). Esempio: ##wikipedia##
+*** **##interWikiAlias##**: Alias opzionale dell'[[Inter Wiki&gt;&gt;http://en.wikipedia.org/wiki/InterWiki]] come definito dall'InterWiki Map (vedere la [[Admin Guide&gt;&gt;http://platform.xwiki.org/xwiki/bin/view/AdminGuide/]]). Esempio: ##wikipedia##
 *** **##pagina##**: Stringa richiesta con il nome della pagina wiki cui punta il link. Esempio:: ##XWiki##
 ** **Allegato** Allegato, riferimento nella forma **##attach~: [wikiPageName@] (attachmentName)##**. Esempi: ##attach~:img.png##, ##attach~:mywiki:Main.WebHome@img.png##
 *** **##attach~:##**: Stringa richiesta che identifica la risorsa come un allegato.

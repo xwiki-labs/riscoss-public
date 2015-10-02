@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>ClassSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1375447727000</contentUpdateDate>
   <version>1.1</version>
   <title>#sheetTitle('Default Class Sheet')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -90,36 +110,36 @@
   #end
 
   #if($doc.getxWikiClass().properties.size() == 0)
-    {{warning}}The class does not have any properties yet. You can use the {{html}}&lt;a href="$doc.getURL('edit', 'editor=class')">class editor&lt;/a>{{/html}} to define them.{{/warning}}
+    {{warning}}The class does not have any properties yet. You can use the {{html}}&lt;a href="$doc.getURL('edit', 'editor=class')"&gt;class editor&lt;/a&gt;{{/html}} to define them.{{/warning}}
   #else
     = Class properties =
     #foreach($property in $doc.getxWikiClass().properties)
       * $property.prettyName (${property.name}: $xwiki.metaclass.get($property.classType).prettyName)
     #end
-    * //You can use the class editor to {{html}}&lt;a href="$doc.getURL('edit', 'editor=class')">add or modify the class properties&lt;/a>{{/html}}.//
+    * //You can use the class editor to {{html}}&lt;a href="$doc.getURL('edit', 'editor=class')"&gt;add or modify the class properties&lt;/a&gt;{{/html}}.//
 
   #end
   #if ($hasClassSheets &amp;&amp; $hasClassTemplate)
     = Create a new document =
 
     #if("$!targetDocName" != '' &amp;&amp; $xwiki.exists($targetDocName))
-      {{warning}}The target document already exists. Please choose a different name, or [[view the existing document>>$targetDocName]]{{/warning}}
+      {{warning}}The target document already exists. Please choose a different name, or [[view the existing document&gt;&gt;$targetDocName]]{{/warning}}
     #elseif("$!targetDocName" != '')
       {{warning}}You don't have permission to create that document{{/warning}}
     #end
 
     {{html}}
-      &lt;form action="" id="newdoc" method="post">
-        &lt;div>
-          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-          &lt;input type="hidden" name="parent" value="${defaultParent}"/>
-          &lt;input type="hidden" name="template" value="${classTemplateDoc}"/>
-          &lt;input type="hidden" name="sheet" value="1"/>
-          &lt;label for="spaceName">Space: &lt;/label>&lt;input type="text" id="spaceName" name="spaceName" value="${defaultSpace}" size="8"/>
-          &lt;label for="docName">Document: &lt;/label>&lt;input type="text" id="docName" name="docName" value="Document name" class="withTip"'/>         
-          &lt;span class="buttonwrapper">&lt;input type="submit" value="Create this document" class="button"/>&lt;/span>
-        &lt;/div>
-      &lt;/form>
+      &lt;form action="" id="newdoc" method="post"&gt;
+        &lt;div&gt;
+          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+          &lt;input type="hidden" name="parent" value="${defaultParent}"/&gt;
+          &lt;input type="hidden" name="template" value="${classTemplateDoc}"/&gt;
+          &lt;input type="hidden" name="sheet" value="1"/&gt;
+          &lt;label for="spaceName"&gt;Space: &lt;/label&gt;&lt;input type="text" id="spaceName" name="spaceName" value="${defaultSpace}" size="8"/&gt;
+          &lt;label for="docName"&gt;Document: &lt;/label&gt;&lt;input type="text" id="docName" name="docName" value="Document name" class="withTip"'/&gt;         
+          &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="Create this document" class="button"/&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
     {{/html}}
 
     = Existing documents =
@@ -139,21 +159,21 @@
 
   #if(!$hasClassSheets)
     {{html}}
-      &lt;form action="$xwiki.getURL($defaultClassSheetReference, 'save', 'editor=wiki')" method="post">
-        &lt;div>
-          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-          &lt;input type="hidden" name="parent" value="${doc.fullName}"/>
-          &lt;input type="hidden" name="xredirect" value="${doc.URL}"/>
+      &lt;form action="$xwiki.getURL($defaultClassSheetReference, 'save', 'editor=wiki')" method="post"&gt;
+        &lt;div&gt;
+          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+          &lt;input type="hidden" name="parent" value="${doc.fullName}"/&gt;
+          &lt;input type="hidden" name="xredirect" value="${doc.URL}"/&gt;
           #set ($sheetContent = $xwiki.getDocument('XWiki.ObjectSheet').getContent().replace('XWiki.MyClass', $doc.fullName))
           ## We have to encode the new line characters in order to preserve them, otherwise they are replace with a
           ## space when the HTML is cleaned.
           ## FIXME: Use a dedicated escape tool method when XCOMMONS-405 is implemented.
           #set ($sheetContent = $escapetool.xml($sheetContent).replaceAll("\n", '&amp;#10;'))
-          &lt;input type="hidden" name="content" value="$sheetContent"/>
-          &lt;input type="hidden" name="title" value="${escapetool.h}if(${escapetool.d}doc.name == '$escapetool.xml($defaultClassSheetReference.name)')$escapetool.xml($className) Sheet${escapetool.h}{else}${escapetool.d}services.display.title(${escapetool.d}doc, {'displayerHint': 'default'})${escapetool.h}end"/>
-          &lt;span class="buttonwrapper">&lt;input type="submit" value="Create the document sheet" class="button"/>&lt;/span>
-        &lt;/div>
-      &lt;/form>
+          &lt;input type="hidden" name="content" value="$sheetContent"/&gt;
+          &lt;input type="hidden" name="title" value="${escapetool.h}if(${escapetool.d}doc.name == '$escapetool.xml($defaultClassSheetReference.name)')$escapetool.xml($className) Sheet${escapetool.h}{else}${escapetool.d}services.display.title(${escapetool.d}doc, {'displayerHint': 'default'})${escapetool.h}end"/&gt;
+          &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="Create the document sheet" class="button"/&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
     {{/html}}
   #else
     #set($defaultClassSheetDoc = $xwiki.getDocument($defaultClassSheetReference))
@@ -163,7 +183,7 @@
       #set($defaultClassSheetStringReference = $services.model.serialize($defaultClassSheetReference, "default"))
       #set($bindURL = $doc.getURL('view', "bindSheet=${escapetool.url($defaultClassSheetStringReference)}&amp;xredirect=${escapetool.url($xredirect)}&amp;form_token=$!{services.csrf.getToken()}"))
       {{warning}}
-        The sheet is not bound to the class so it won't be applied automatically when a document that has an object of this class is displayed.#if ($hasEdit) {{html}}&lt;a href="$bindURL">Bind the sheet to the class »&lt;/a>.{{/html}}#end
+        The sheet is not bound to the class so it won't be applied automatically when a document that has an object of this class is displayed.#if ($hasEdit) {{html}}&lt;a href="$bindURL"&gt;Bind the sheet to the class »&lt;/a&gt;.{{/html}}#end
       {{/warning}}
 
     #end
@@ -172,7 +192,7 @@
       #if(!$classSheetReferences.isEmpty())
         #set($classSheetDoc = $xwiki.getDocument($classSheetReferences.get(0)))
       #end
-      [[View the sheet document (${classSheetDoc.fullName}) »>>${classSheetDoc.fullName}]]
+      [[View the sheet document (${classSheetDoc.fullName}) »&gt;&gt;${classSheetDoc.fullName}]]
     #else
       The following class sheets are bound to this class:
 
@@ -188,26 +208,26 @@
 
   #if (!$hasClassTemplate)
     {{html}}
-      &lt;form action="$classTemplateDoc.getURL('save', 'editor=wiki')" method="post">
-        &lt;div>
-          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-          &lt;input type="hidden" name="parent" value="${doc.fullName}"/>
-          &lt;input type="hidden" name="xredirect" value="${doc.URL}"/>
-          &lt;input type="hidden" name="title" value="$className Template"/>
-          &lt;span class="buttonwrapper">&lt;input type="submit" value="Create the document template" class="button"/>&lt;/span>
-        &lt;/div>
-      &lt;/form>
+      &lt;form action="$classTemplateDoc.getURL('save', 'editor=wiki')" method="post"&gt;
+        &lt;div&gt;
+          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+          &lt;input type="hidden" name="parent" value="${doc.fullName}"/&gt;
+          &lt;input type="hidden" name="xredirect" value="${doc.URL}"/&gt;
+          &lt;input type="hidden" name="title" value="$className Template"/&gt;
+          &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="Create the document template" class="button"/&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
     {{/html}}
   #else
     #if(!$classTemplateDoc.getObject(${doc.fullName}))
       #set($xredirect = $xwiki.relativeRequestURL)
       #set($createUrl = $classTemplateDoc.getURL('objectadd', "classname=${doc.fullName}&amp;amp;xredirect=${escapetool.url($xredirect)}&amp;amp;form_token=$!{services.csrf.getToken()}"))
       {{warning}}
-        The template does not contain an object of type //$doc.fullName//. {{html}}&lt;a href="$createUrl">Add a ${className} object to the template »&lt;/a>.{{/html}}
+        The template does not contain an object of type //$doc.fullName//. {{html}}&lt;a href="$createUrl"&gt;Add a ${className} object to the template »&lt;/a&gt;.{{/html}}
       {{/warning}}
 
     #end
-    [[View the template document (${classTemplateDoc.fullName}) »>>${classTemplateDoc.fullName}]]
+    [[View the template document (${classTemplateDoc.fullName}) »&gt;&gt;${classTemplateDoc.fullName}]]
   #end
 
 #end ## !$isSheet

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Sandbox</web>
   <name>WebHome</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1252454400000</contentUpdateDate>
   <version>1.1</version>
   <title>Sandbox</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
@@ -22,15 +42,15 @@
 
 {{info}}Non preoccupatevi di sovrascrivere o cancellare qualcosa nella pagina, è sempre possibile tornare indietro alla versione originale della pagina attraverso la scheda "Cronologia" in fondo alla pagina.{{/info}}
 
-Se si vuole dare un'occhiata alla [[Sintassi di XWiki>>XWiki.XWikiSyntax]] che sta al di sotto del contenuto visualizzato, cliccare "Codice Wiki" nel menu "Mostra" o cliccare la scheda "Sorgente" quando si sta modificando la pagina.
+Se si vuole dare un'occhiata alla [[Sintassi di XWiki&gt;&gt;XWiki.XWikiSyntax]] che sta al di sotto del contenuto visualizzato, cliccare "Codice Wiki" nel menu "Mostra" o cliccare la scheda "Sorgente" quando si sta modificando la pagina.
 
 Ecco un elenco di pagine liberamente modificabili con cui esercitarsi:
 
-* [[Sandbox Test Page 1>>Sandbox.TestPage1]]
-* [[Sandbox Test Page 2>>Sandbox.TestPage2]]
-* [[Sandbox Test Page 3>>Sandbox.TestPage3]]
+* [[Sandbox Test Page 1&gt;&gt;Sandbox.TestPage1]]
+* [[Sandbox Test Page 2&gt;&gt;Sandbox.TestPage2]]
+* [[Sandbox Test Page 3&gt;&gt;Sandbox.TestPage3]]
 
-Di seguito una dimostrazione della [[Sintassi di XWiki>>XWiki.XWikiSyntax]] che è possibile usare nelle pagine wiki (titoli, immagini, tabelle).
+Di seguito una dimostrazione della [[Sintassi di XWiki&gt;&gt;XWiki.XWikiSyntax]] che è possibile usare nelle pagine wiki (titoli, immagini, tabelle).
 
 = Titolo 1 =
 XWiki dispone di sei livelli di titoli. È possibile usarli per strutturare le pagine.
@@ -100,11 +120,11 @@ Si possono creare delle semplici tabelle direttamente nelle pagine del wiki:
 = Link o Collegamenti =
 XWIki permette di inserire dei link ad altre pagine del wiki o collegamenti a pagine nel web:
 
-* [[WebHome]] -> è un link alla homepage dello spazio corrente
-* [[Sandbox Home>>WebHome]] -> i link possono avere delle etichette
-* [[Wiki Home>>Main.WebHome]] -> un link può usare il formato SpaceName.PageName per collegarsi ad una pagina che si trova in un altro spazio
-* [[http://www.xwiki.org]] -> ci si può collegare a pagine del wiki o a siti web esterni
-* [[XWiki.org Website>>http://www.xwiki.org]] -> le etichette sui collegamenti funzionano anche per i collegamenti esterni
+* [[WebHome]] -&gt; è un link alla homepage dello spazio corrente
+* [[Sandbox Home&gt;&gt;WebHome]] -&gt; i link possono avere delle etichette
+* [[Wiki Home&gt;&gt;Main.WebHome]] -&gt; un link può usare il formato SpaceName.PageName per collegarsi ad una pagina che si trova in un altro spazio
+* [[http://www.xwiki.org]] -&gt; ci si può collegare a pagine del wiki o a siti web esterni
+* [[XWiki.org Website&gt;&gt;http://www.xwiki.org]] -&gt; le etichette sui collegamenti funzionano anche per i collegamenti esterni
 
 = Immagini =
 Nelle pagine del wiki si possono inserire delle immagini:

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformRiskAnalysisManagerCode</web>
   <name>RiskEvaluationViewSheet</name>
@@ -8,60 +28,60 @@
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1430839817000</creationDate>
   <parent>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1441208743000</date>
   <contentUpdateDate>1440772517000</contentUpdateDate>
-  <version>2.148</version>
+  <version>1.1</version>
   <title>#if($doc.name == 'RiskAnalysisSessionSheet')RiskAnalysisSession Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
   <comment/>
-  <minorEdit>true</minorEdit>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
-  <content>{{velocity}}&#xd;
-## -*- Mode:Velocity&#xd;
-$xwiki.jsx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})&#xd;
-$xwiki.ssx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})&#xd;
-#if("$!RiskEvaluationViewSheet_analisysSessionDoc" != "")&#xd;
-  #set($asDoc = $RiskEvaluationViewSheet_analisysSessionDoc)&#xd;
-#else&#xd;
-  #set($asDoc = $doc)&#xd;
-#end&#xd;
-#set($riskAnalysisSessionObject = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))&#xd;
-#set($targetEntity = $xwiki.getDocument($riskAnalysisSessionObject.getProperty('entity').value))&#xd;
-#set($riskEvaluation = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))&#xd;
-#set($riskConfiguration = $xwiki.getDocument($riskEvaluation.getProperty('riskConfiguration').value))&#xd;
-&#xd;
-#if($riskEvaluation.getProperty('result').value == '')&#xd;
-  {{info}}This risk configuration has not yet been evaluated{{/info}}&#xd;
-#else&#xd;
-  (% class="resultData" style="display:none;" %)(((&#xd;
-    $escapetool.url($riskEvaluation.getProperty('result').getValue())&#xd;
-  )))&#xd;
-&#xd;
-  (% id="resultCharts" %)(((&#xd;
-  ))) &#xd;
-&#xd;
-  == Input Values ==&#xd;
-  (% class="resultInput" style="display:none;" %)(((&#xd;
-    $escapetool.url($riskEvaluation.getProperty('inputData').value)&#xd;
-  )))&#xd;
-  (% class="interpretedInput" style="display:none;" %)(((&#xd;
-    $escapetool.url($riskEvaluation.getProperty('interpretedInput').value)&#xd;
-  )))&#xd;
-#end&#xd;
-&#xd;
-----&#xd;
-#if($hasEdit &amp;&amp; !$displayInProjectPage)&#xd;
-(% class="entity-btns" %)(((&#xd;
-| (% class="buttonwrapper" %)(((&#xd;
-    {{html clean=false}}&lt;a href="$asDoc.getExternalURL('delete', "xredirect=$RiskEvaluationViewSheet_xredirect")">Delete Analysis&lt;/a>{{/html}}&#xd;
-))) | (% class="buttonwrapper" %)(((&#xd;
-    {{html clean=false}}&lt;a href="$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', "riskAnalysisSession=${asDoc.getFullName()}&amp;xredirect=$RiskEvaluationViewSheet_xredirect")">Rerun Analyse&lt;/a>{{/html}}&#xd;
-)))&#xd;
-)))&#xd;
-#end&#xd;
-{{/velocity}}&#xd;
+  <content>{{velocity}}
+## -*- Mode:Velocity
+$xwiki.jsx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})
+$xwiki.ssx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet", {"minify":"false"})
+#if("$!RiskEvaluationViewSheet_analisysSessionDoc" != "")
+  #set($asDoc = $RiskEvaluationViewSheet_analisysSessionDoc)
+#else
+  #set($asDoc = $doc)
+#end
+#set($riskAnalysisSessionObject = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))
+#set($targetEntity = $xwiki.getDocument($riskAnalysisSessionObject.getProperty('entity').value))
+#set($riskEvaluation = $asDoc.getObject('RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass'))
+#set($riskConfiguration = $xwiki.getDocument($riskEvaluation.getProperty('riskConfiguration').value))
+
+#if($riskEvaluation.getProperty('result').value == '')
+  {{info}}This risk configuration has not yet been evaluated{{/info}}
+#else
+  (% class="resultData" style="display:none;" %)(((
+    $escapetool.url($riskEvaluation.getProperty('result').getValue())
+  )))
+
+  (% id="resultCharts" %)(((
+  ))) 
+
+  == Input Values ==
+  (% class="resultInput" style="display:none;" %)(((
+    $escapetool.url($riskEvaluation.getProperty('inputData').value)
+  )))
+  (% class="interpretedInput" style="display:none;" %)(((
+    $escapetool.url($riskEvaluation.getProperty('interpretedInput').value)
+  )))
+#end
+
+----
+#if($hasEdit &amp;&amp; !$displayInProjectPage)
+(% class="entity-btns" %)(((
+| (% class="buttonwrapper" %)(((
+    {{html clean=false}}&lt;a href="$asDoc.getExternalURL('delete', "xredirect=$RiskEvaluationViewSheet_xredirect")"&gt;Delete Analysis&lt;/a&gt;{{/html}}
+))) | (% class="buttonwrapper" %)(((
+    {{html clean=false}}&lt;a href="$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', "riskAnalysisSession=${asDoc.getFullName()}&amp;xredirect=$RiskEvaluationViewSheet_xredirect")"&gt;Rerun Analyse&lt;/a&gt;{{/html}}
+)))
+)))
+#end
+{{/velocity}}
 </content>
   <object>
     <name>RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet</name>
@@ -143,254 +163,254 @@ $xwiki.ssx.use("RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet",
       <cache>forbid</cache>
     </property>
     <property>
-      <code>require(['jquery'], function ($) {&#xd;
-&#xd;
-  var EVIDENCE_GAUGE_URL = new XWiki.Document('EvidenceGauge', 'RISCOSSPlatformCode').getURL('get');&#xd;
-  var displayResultsChartsURL =  new XWiki.Document('GithubAjaxActions', 'RISCOSSPlatformCode').getURL('view') + "?" + "xpage=plain";&#xd;
-&#xd;
-  var DISTRIBUTION_COLORS = ["#298a08", "#86b404", "#ffbf00", "#fa5858", "#ff0000", "#cccccc"];&#xd;
-  var DISTRIBUTION_NAMES = [&#xd;
-    "Very Low Risk",&#xd;
-    "Low Risk",&#xd;
-    "Medium Risk",&#xd;
-    "High Risk",&#xd;
-    "Very High Risk",&#xd;
-    "Unknown"&#xd;
-  ];&#xd;
-  var INPUTS_LABELS = {&#xd;
-     "OSSComp:github:repo:contributors": "Contributors",&#xd;
-     "OSSComp:github:repo:size" : "Size",&#xd;
-     "OSSComp:github:repo:watchers" : "Watchers",&#xd;
-     "OSSComp:github:repo:open_issues_count" : "Number of open issues",&#xd;
-     "OSSComp:github:repo:has_wiki" : "Has wiki",&#xd;
-     "OSSComp:github:repo:stargazers_count" : "Number of stargazers",&#xd;
-     "OSSComp:github:repo:subscribers_count" : "Number of subscribers",&#xd;
-     "OSSComp:github:repo:created_at" : "Created at",&#xd;
-     "OSSComp:github:repo:license" : "License",&#xd;
-     "OSSComp:github:repo:updated_at" : "Updated at",&#xd;
-     "OSSComp:github:repo:forks_count" : "Number of forks",&#xd;
-     "OSSComp:github:repo:closed_issues" : "Number of closed issues",&#xd;
-     "OSSComp:github:repo:ci_link" : "Ci link"&#xd;
-  }&#xd;
-&#xd;
-  var RISK_DEFINITIONS = {"Obsolescence Risk":"This type of risk mainly refers to the lack of activeness of the development  community, which causes the risk of the  software component being out-of-date.", "Bug Risk":"This type of risk refers to possible presence of bugs in the code due to either the size of the repository (difficult to be kept under control), or to a high open/closed issue ratio, which may mean low effectiveness in closing bugs.", "Analysability Risk": "This type of risk refers to the lack of quality of the software, which could make it difficult to understand it from the adopter.", "Maintenance Risk":"In a nutshell, Maintenance risk refers to the existence of one or more of the above risks."};&#xd;
-&#xd;
-  var createTextElement = function(value) {&#xd;
-    var element = document.createElement('div');&#xd;
-    element.innerHTML = JSON.stringify(value);&#xd;
-    return element;&#xd;
-  }&#xd;
-&#xd;
-  var createDateElement = function(value) {&#xd;
-    var element = document.createElement('div');&#xd;
-    element.innerHTML = value;&#xd;
-    return element;&#xd;
-  }&#xd;
-&#xd;
-  var toPercent = function(value) {&#xd;
-    return Math.round( value * 100) +'%';&#xd;
-  };&#xd;
-&#xd;
-  var createEvidenceElement = function(evidence) {&#xd;
-    var div = new Element('div');&#xd;
-    &#xd;
-    var gauge = new Element('img', {&#xd;
-      src: EVIDENCE_GAUGE_URL + '?positive=' + evidence.positive + '&amp;negative=' + evidence.negative});&#xd;
-    &#xd;
-    var textDiv = new Element('div');&#xd;
-    textDiv.setStyle({float: 'right'});&#xd;
-    textDiv.innerHTML = '&lt;ul>&lt;li>Positive: ' + toPercent(evidence.positive) + '&lt;/li>&lt;li>Negative: ' + toPercent(evidence.negative) + '&lt;/li>&lt;/ul>';&#xd;
-    &#xd;
-    div.insert({top: gauge});&#xd;
-    div.insert({bottom: textDiv});&#xd;
-    &#xd;
-    return div;&#xd;
-  };&#xd;
-&#xd;
-  var createDeterminentDistributionElement = function (dist) {&#xd;
-    var i = 5;&#xd;
-    if (dist) {&#xd;
-        for (i = 0; i &lt; dist.length &amp;&amp; (dist[i] &lt; 0.9); i++) ;&#xd;
-    }&#xd;
-    var out = document.createElement('div');&#xd;
-    out.setAttribute('style', 'width:120px;height:30px;background-color:'+DISTRIBUTION_COLORS[i]);&#xd;
-    out.innerHTML = '&lt;center>&lt;p style="color:#000;font-weight:bold;padding-top:5px">'+DISTRIBUTION_NAMES[i]+'&lt;/p>&lt;/center>';&#xd;
-    return out;&#xd;
-  };&#xd;
-&#xd;
-  var createDistributionElement = function(distribution) {&#xd;
-    var canvas = new Element('canvas', {width: 200, height: 15 * distribution.values.length});&#xd;
-    var context = canvas.getContext("2d")&#xd;
-    var width = canvas.width;&#xd;
-    var height = canvas.height;&#xd;
-&#xd;
-    context.beginPath();&#xd;
-    context.rect(0, 0, canvas.width, canvas.height);&#xd;
-    context.stroke();&#xd;
-    &#xd;
-    var barHeight = Math.floor(canvas.height / distribution.values.length);&#xd;
-    var fontSize = Math.min(barHeight, 10) ;&#xd;
-    context.font = "bold " + fontSize + "px sans-serif"&#xd;
-    var maxTextWidth = context.measureText('999.99%').width;&#xd;
-        &#xd;
-    for(i = 0; i &lt; distribution.values.length; i++) {&#xd;
-      context.beginPath();&#xd;
-      context.rect(0, i * barHeight, Math.floor(canvas.width  * distribution.values[i]), barHeight);&#xd;
-      context.fillStyle = DISTRIBUTION_COLORS[i];      &#xd;
-      context.fill();&#xd;
-      context.fillStyle = '#303030';&#xd;
-      context.textBaseline = "top";&#xd;
-      &#xd;
-      context.fillText('' + Math.floor(10000 * distribution.values[i]) / 100 + "%",&#xd;
-          Math.min((canvas.width * distribution.values[i]) + 5, canvas.width - maxTextWidth - 5),&#xd;
-          (barHeight * i) + (barHeight - fontSize) / 2);&#xd;
-    }&#xd;
-    &#xd;
-    return canvas;&#xd;
-  };&#xd;
-    &#xd;
-  /* We expect data to be a map from a category to a map of results, where each&#xd;
-   * result is a map of an id to a map with 3 elements (description, type, value)&#xd;
-   */&#xd;
-  var displayData = function(element, data) {&#xd;
-    var html = '&lt;table class="analysis-res-table">';&#xd;
-    for(var category in data) {&#xd;
-      //html = html + '&lt;tr>&lt;th colspan="2">' + category + '&lt;/th>&lt;/tr>';&#xd;
-      var description = data[category].description || category;&#xd;
-      // TODO: Stop requiring unused inputs!&#xd;
-      if (description === 'unused') { continue; }&#xd;
-      description = INPUTS_LABELS[description] ? INPUTS_LABELS[description] : description;&#xd;
-      html = html + '&lt;tr>&lt;th>' + description + '&lt;/th>&lt;td class="td1">&lt;div class="result" data-category="' +&#xd;
-          category + '" style="display: none">&lt;/div>&lt;/td>';&#xd;
-      if (category.indexOf("Risk")>=0)&#xd;
-        html += '&lt;td class="td2">'+ RISK_DEFINITIONS[category] +'&lt;/td>';&#xd;
-      html += '&lt;/tr>';&#xd;
-    }&#xd;
-    html = html + '&lt;/table>';&#xd;
-    &#xd;
-    element.innerHTML = html;&#xd;
-    element.setAttribute('style', '');&#xd;
-    &#xd;
-    var resultElements = $('.result');&#xd;
-    for(var i = 0; i &lt; resultElements.length; i++) {&#xd;
-      var resultElement = resultElements[i];&#xd;
-      var category = resultElement.getAttribute("data-category");&#xd;
-      var type = data[category].type;&#xd;
-      var value = data[category].value;&#xd;
-      var isDate = false;&#xd;
-      if(category == "OSSComp:github:repo:created_at" || category == "OSSComp:github:repo:updated_at"){&#xd;
-         value = formatDate(value);&#xd;
-         isDate = true;&#xd;
-      }&#xd;
-      if(type === "EVIDENCE") {&#xd;
-        Element.replace(resultElement, createEvidenceElement(value));&#xd;
-      } else if(type === "DISTRIBUTION") {&#xd;
-        Element.replace(resultElement, createDistributionElement(value));&#xd;
-      } else {&#xd;
-        if(!isDate){&#xd;
-           Element.replace(resultElement, createTextElement(value));&#xd;
-        }&#xd;
-        else&#xd;
-        {&#xd;
-           Element.replace(resultElement, createDateElement(value));&#xd;
-        }&#xd;
-      }&#xd;
-    }&#xd;
-  };&#xd;
-&#xd;
-  /* &#xd;
-   * Display results barcharts&#xd;
-   */&#xd;
-  var displayCharts = function(data) {&#xd;
-    $.ajax({&#xd;
-       url: displayResultsChartsURL + "&amp;action=displayProjectResultsCharts",&#xd;
-       method: "POST",&#xd;
-       dataType: "html",&#xd;
-       data: {"data": JSON.stringify(data)}&#xd;
-    }).done(function(rep){&#xd;
-       var html = '&lt;table class="charts-table">';&#xd;
-           html += '&lt;tr>&lt;td rowspan="4" class="charts-td">' + rep + '&lt;/td>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title">&amp;nbsp;Obsolescence Risk&lt;/span>' + RISK_DEFINITIONS["Obsolescence Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
-           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title blue">&amp;nbsp;Bug Risk&lt;/span>' + RISK_DEFINITIONS["Bug Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
-           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title green">&amp;nbsp;Analysability Risk&lt;/span>' + RISK_DEFINITIONS["Analysability Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
-           html += '&lt;tr>&lt;td>&lt;p class="risk-def">&lt;span class="analysis-risk-title yellow">&amp;nbsp;Maintenance Risk&lt;/span>' + RISK_DEFINITIONS["Maintenance Risk"] + '&lt;/p>&lt;/td>&lt;/tr>';&#xd;
-           html += '&lt;/table>';&#xd;
-       $("#resultCharts").html(html);&#xd;
-    });&#xd;
-  };&#xd;
-&#xd;
-/*&#xd;
-* Create a new javascript Date object based on the timestamp and return the date in string format&#xd;
-*/&#xd;
-formatDate = function(time) {&#xd;
-   // multiplied by 1000 so that the argument is in milliseconds, not seconds&#xd;
-   var date = new Date(time*1000);&#xd;
-   return date.toString();&#xd;
-   //return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();&#xd;
-};&#xd;
-&#xd;
-  // Copied from DataCollectorManager, TODO: fix&#xd;
-  var uid = function () { return 'uid-' + Math.random().toString(32).substring(2); };&#xd;
-  var appendElem = function ($container, type, id) {&#xd;
-    id = id || uid();&#xd;
-    $container.append("&lt;"+type+" id="+id+">&lt;/"+type+">");&#xd;
-    return $('#'+id);&#xd;
-  };&#xd;
-&#xd;
-  var showInput = function ($div, interpretedInput) {&#xd;
-    $div.html('');&#xd;
-    $div.attr('style', '');&#xd;
-    var $table = appendElem($div, 'table');&#xd;
-    var $tbody = appendElem($table, 'tbody');&#xd;
-&#xd;
-    var $headerTr = appendElem($tbody, 'tr');&#xd;
-    var $th = appendElem($headerTr, 'th');&#xd;
-    $th.text("Risk Data Point");&#xd;
-    $th = appendElem($headerTr, 'th');&#xd;
-    $th.text("Collected Value");&#xd;
-    $th = appendElem($headerTr, 'th');&#xd;
-    $th.text("Interpreted Risk");&#xd;
-&#xd;
-    var keys = Object.keys(interpretedInput);&#xd;
-    for (var i = 0; i &lt; keys.length; i++) {&#xd;
-      var entry = interpretedInput[keys[i]];&#xd;
-      // hax&#xd;
-      if (entry.description === 'unused') { continue; }&#xd;
-&#xd;
-      var $tr = appendElem($tbody, 'tr');&#xd;
-      var $td = appendElem($tr, 'td');&#xd;
-      $td.text(entry.description || keys[i]);&#xd;
-&#xd;
-      $td = appendElem($tr, 'td');&#xd;
-      if (entry.rawValue) {&#xd;
-          $td.append(entry.rawValue);&#xd;
-      } else if (["NUMBER","INTEGER","REAL"].indexOf(entry.type) > -1) {&#xd;
-          $td.append(entry.value);&#xd;
-      } else {&#xd;
-          $td.append(-1);&#xd;
-      }&#xd;
-&#xd;
-      $td = appendElem($tr, 'td');&#xd;
-      $td.append(createDeterminentDistributionElement(interpretedInput[keys[i]].value.values));&#xd;
-    }&#xd;
-  };&#xd;
-&#xd;
-  var getData = function (elem) {&#xd;
-    return JSON.parse(decodeURIComponent(elem.text()).replace(/\+/g, ' '));&#xd;
-  };&#xd;
-&#xd;
-  var main = function () {&#xd;
-    var dat = getData($('.resultData'));&#xd;
-    //displayData($('.resultData')[0], dat);&#xd;
-    displayCharts(dat);&#xd;
-    var input = getData($('.resultInput'));&#xd;
-    displayData($('.resultInput')[0], input.output.result);&#xd;
-  };&#xd;
-  main();&#xd;
-});&#xd;
+      <code>require(['jquery'], function ($) {
+
+  var EVIDENCE_GAUGE_URL = new XWiki.Document('EvidenceGauge', 'RISCOSSPlatformCode').getURL('get');
+  var displayResultsChartsURL =  new XWiki.Document('GithubAjaxActions', 'RISCOSSPlatformCode').getURL('view') + "?" + "xpage=plain";
+
+  var DISTRIBUTION_COLORS = ["#298a08", "#86b404", "#ffbf00", "#fa5858", "#ff0000", "#cccccc"];
+  var DISTRIBUTION_NAMES = [
+    "Very Low Risk",
+    "Low Risk",
+    "Medium Risk",
+    "High Risk",
+    "Very High Risk",
+    "Unknown"
+  ];
+  var INPUTS_LABELS = {
+     "OSSComp:github:repo:contributors": "Contributors",
+     "OSSComp:github:repo:size" : "Size",
+     "OSSComp:github:repo:watchers" : "Watchers",
+     "OSSComp:github:repo:open_issues_count" : "Number of open issues",
+     "OSSComp:github:repo:has_wiki" : "Has wiki",
+     "OSSComp:github:repo:stargazers_count" : "Number of stargazers",
+     "OSSComp:github:repo:subscribers_count" : "Number of subscribers",
+     "OSSComp:github:repo:created_at" : "Created at",
+     "OSSComp:github:repo:license" : "License",
+     "OSSComp:github:repo:updated_at" : "Updated at",
+     "OSSComp:github:repo:forks_count" : "Number of forks",
+     "OSSComp:github:repo:closed_issues" : "Number of closed issues",
+     "OSSComp:github:repo:ci_link" : "Ci link"
+  }
+
+  var RISK_DEFINITIONS = {"Obsolescence Risk":"This type of risk mainly refers to the lack of activeness of the development  community, which causes the risk of the  software component being out-of-date.", "Bug Risk":"This type of risk refers to possible presence of bugs in the code due to either the size of the repository (difficult to be kept under control), or to a high open/closed issue ratio, which may mean low effectiveness in closing bugs.", "Analysability Risk": "This type of risk refers to the lack of quality of the software, which could make it difficult to understand it from the adopter.", "Maintenance Risk":"In a nutshell, Maintenance risk refers to the existence of one or more of the above risks."};
+
+  var createTextElement = function(value) {
+    var element = document.createElement('div');
+    element.innerHTML = JSON.stringify(value);
+    return element;
+  }
+
+  var createDateElement = function(value) {
+    var element = document.createElement('div');
+    element.innerHTML = value;
+    return element;
+  }
+
+  var toPercent = function(value) {
+    return Math.round( value * 100) +'%';
+  };
+
+  var createEvidenceElement = function(evidence) {
+    var div = new Element('div');
+    
+    var gauge = new Element('img', {
+      src: EVIDENCE_GAUGE_URL + '?positive=' + evidence.positive + '&amp;negative=' + evidence.negative});
+    
+    var textDiv = new Element('div');
+    textDiv.setStyle({float: 'right'});
+    textDiv.innerHTML = '&lt;ul&gt;&lt;li&gt;Positive: ' + toPercent(evidence.positive) + '&lt;/li&gt;&lt;li&gt;Negative: ' + toPercent(evidence.negative) + '&lt;/li&gt;&lt;/ul&gt;';
+    
+    div.insert({top: gauge});
+    div.insert({bottom: textDiv});
+    
+    return div;
+  };
+
+  var createDeterminentDistributionElement = function (dist) {
+    var i = 5;
+    if (dist) {
+        for (i = 0; i &lt; dist.length &amp;&amp; (dist[i] &lt; 0.9); i++) ;
+    }
+    var out = document.createElement('div');
+    out.setAttribute('style', 'width:120px;height:30px;background-color:'+DISTRIBUTION_COLORS[i]);
+    out.innerHTML = '&lt;center&gt;&lt;p style="color:#000;font-weight:bold;padding-top:5px"&gt;'+DISTRIBUTION_NAMES[i]+'&lt;/p&gt;&lt;/center&gt;';
+    return out;
+  };
+
+  var createDistributionElement = function(distribution) {
+    var canvas = new Element('canvas', {width: 200, height: 15 * distribution.values.length});
+    var context = canvas.getContext("2d")
+    var width = canvas.width;
+    var height = canvas.height;
+
+    context.beginPath();
+    context.rect(0, 0, canvas.width, canvas.height);
+    context.stroke();
+    
+    var barHeight = Math.floor(canvas.height / distribution.values.length);
+    var fontSize = Math.min(barHeight, 10) ;
+    context.font = "bold " + fontSize + "px sans-serif"
+    var maxTextWidth = context.measureText('999.99%').width;
+        
+    for(i = 0; i &lt; distribution.values.length; i++) {
+      context.beginPath();
+      context.rect(0, i * barHeight, Math.floor(canvas.width  * distribution.values[i]), barHeight);
+      context.fillStyle = DISTRIBUTION_COLORS[i];      
+      context.fill();
+      context.fillStyle = '#303030';
+      context.textBaseline = "top";
+      
+      context.fillText('' + Math.floor(10000 * distribution.values[i]) / 100 + "%",
+          Math.min((canvas.width * distribution.values[i]) + 5, canvas.width - maxTextWidth - 5),
+          (barHeight * i) + (barHeight - fontSize) / 2);
+    }
+    
+    return canvas;
+  };
+    
+  /* We expect data to be a map from a category to a map of results, where each
+   * result is a map of an id to a map with 3 elements (description, type, value)
+   */
+  var displayData = function(element, data) {
+    var html = '&lt;table class="analysis-res-table"&gt;';
+    for(var category in data) {
+      //html = html + '&lt;tr&gt;&lt;th colspan="2"&gt;' + category + '&lt;/th&gt;&lt;/tr&gt;';
+      var description = data[category].description || category;
+      // TODO: Stop requiring unused inputs!
+      if (description === 'unused') { continue; }
+      description = INPUTS_LABELS[description] ? INPUTS_LABELS[description] : description;
+      html = html + '&lt;tr&gt;&lt;th&gt;' + description + '&lt;/th&gt;&lt;td class="td1"&gt;&lt;div class="result" data-category="' +
+          category + '" style="display: none"&gt;&lt;/div&gt;&lt;/td&gt;';
+      if (category.indexOf("Risk")&gt;=0)
+        html += '&lt;td class="td2"&gt;'+ RISK_DEFINITIONS[category] +'&lt;/td&gt;';
+      html += '&lt;/tr&gt;';
+    }
+    html = html + '&lt;/table&gt;';
+    
+    element.innerHTML = html;
+    element.setAttribute('style', '');
+    
+    var resultElements = $('.result');
+    for(var i = 0; i &lt; resultElements.length; i++) {
+      var resultElement = resultElements[i];
+      var category = resultElement.getAttribute("data-category");
+      var type = data[category].type;
+      var value = data[category].value;
+      var isDate = false;
+      if(category == "OSSComp:github:repo:created_at" || category == "OSSComp:github:repo:updated_at"){
+         value = formatDate(value);
+         isDate = true;
+      }
+      if(type === "EVIDENCE") {
+        Element.replace(resultElement, createEvidenceElement(value));
+      } else if(type === "DISTRIBUTION") {
+        Element.replace(resultElement, createDistributionElement(value));
+      } else {
+        if(!isDate){
+           Element.replace(resultElement, createTextElement(value));
+        }
+        else
+        {
+           Element.replace(resultElement, createDateElement(value));
+        }
+      }
+    }
+  };
+
+  /* 
+   * Display results barcharts
+   */
+  var displayCharts = function(data) {
+    $.ajax({
+       url: displayResultsChartsURL + "&amp;action=displayProjectResultsCharts",
+       method: "POST",
+       dataType: "html",
+       data: {"data": JSON.stringify(data)}
+    }).done(function(rep){
+       var html = '&lt;table class="charts-table"&gt;';
+           html += '&lt;tr&gt;&lt;td rowspan="4" class="charts-td"&gt;' + rep + '&lt;/td&gt;&lt;td&gt;&lt;p class="risk-def"&gt;&lt;span class="analysis-risk-title"&gt;&amp;nbsp;Obsolescence Risk&lt;/span&gt;' + RISK_DEFINITIONS["Obsolescence Risk"] + '&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;';
+           html += '&lt;tr&gt;&lt;td&gt;&lt;p class="risk-def"&gt;&lt;span class="analysis-risk-title blue"&gt;&amp;nbsp;Bug Risk&lt;/span&gt;' + RISK_DEFINITIONS["Bug Risk"] + '&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;';
+           html += '&lt;tr&gt;&lt;td&gt;&lt;p class="risk-def"&gt;&lt;span class="analysis-risk-title green"&gt;&amp;nbsp;Analysability Risk&lt;/span&gt;' + RISK_DEFINITIONS["Analysability Risk"] + '&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;';
+           html += '&lt;tr&gt;&lt;td&gt;&lt;p class="risk-def"&gt;&lt;span class="analysis-risk-title yellow"&gt;&amp;nbsp;Maintenance Risk&lt;/span&gt;' + RISK_DEFINITIONS["Maintenance Risk"] + '&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;';
+           html += '&lt;/table&gt;';
+       $("#resultCharts").html(html);
+    });
+  };
+
+/*
+* Create a new javascript Date object based on the timestamp and return the date in string format
+*/
+formatDate = function(time) {
+   // multiplied by 1000 so that the argument is in milliseconds, not seconds
+   var date = new Date(time*1000);
+   return date.toString();
+   //return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+};
+
+  // Copied from DataCollectorManager, TODO: fix
+  var uid = function () { return 'uid-' + Math.random().toString(32).substring(2); };
+  var appendElem = function ($container, type, id) {
+    id = id || uid();
+    $container.append("&lt;"+type+" id="+id+"&gt;&lt;/"+type+"&gt;");
+    return $('#'+id);
+  };
+
+  var showInput = function ($div, interpretedInput) {
+    $div.html('');
+    $div.attr('style', '');
+    var $table = appendElem($div, 'table');
+    var $tbody = appendElem($table, 'tbody');
+
+    var $headerTr = appendElem($tbody, 'tr');
+    var $th = appendElem($headerTr, 'th');
+    $th.text("Risk Data Point");
+    $th = appendElem($headerTr, 'th');
+    $th.text("Collected Value");
+    $th = appendElem($headerTr, 'th');
+    $th.text("Interpreted Risk");
+
+    var keys = Object.keys(interpretedInput);
+    for (var i = 0; i &lt; keys.length; i++) {
+      var entry = interpretedInput[keys[i]];
+      // hax
+      if (entry.description === 'unused') { continue; }
+
+      var $tr = appendElem($tbody, 'tr');
+      var $td = appendElem($tr, 'td');
+      $td.text(entry.description || keys[i]);
+
+      $td = appendElem($tr, 'td');
+      if (entry.rawValue) {
+          $td.append(entry.rawValue);
+      } else if (["NUMBER","INTEGER","REAL"].indexOf(entry.type) &gt; -1) {
+          $td.append(entry.value);
+      } else {
+          $td.append(-1);
+      }
+
+      $td = appendElem($tr, 'td');
+      $td.append(createDeterminentDistributionElement(interpretedInput[keys[i]].value.values));
+    }
+  };
+
+  var getData = function (elem) {
+    return JSON.parse(decodeURIComponent(elem.text()).replace(/\+/g, ' '));
+  };
+
+  var main = function () {
+    var dat = getData($('.resultData'));
+    //displayData($('.resultData')[0], dat);
+    displayCharts(dat);
+    var input = getData($('.resultInput'));
+    displayData($('.resultInput')[0], input.output.result);
+  };
+  main();
+});
 </code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -511,83 +531,83 @@ formatDate = function(time) {&#xd;
       <cache>long</cache>
     </property>
     <property>
-      <code>.analysis-res-table{&#xd;
-   width: 70%;&#xd;
-}&#xd;
-.analysis-res-table th, .analysis-res-table td{&#xd;
-   padding: 1em;&#xd;
-}&#xd;
-.analysis-res-table th{&#xd;
-   width: 20%;&#xd;
-}&#xd;
-.analysis-res-table td.td1{&#xd;
-   width: 35%;&#xd;
-}&#xd;
-.analysis-res-table td.td2{&#xd;
-   width: 45%;&#xd;
-}&#xd;
-.charts-table{&#xd;
-   width: 70%;&#xd;
-}&#xd;
-.charts-td{&#xd;
-   width: 60%;&#xd;
-   padding: 5px;&#xd;
-   background-color: #eeeeee;&#xd;
-}&#xd;
-.risk-def{&#xd;
-   padding: 1em;&#xd;
-}&#xd;
-.analysis-risk-title{&#xd;
-   display: block;&#xd;
-   font-weight: bold;&#xd;
-}&#xd;
-.analysis-risk-title::before {&#xd;
-    content: " c ";&#xd;
-    background-color: red;&#xd;
-    color: red;&#xd;
-}&#xd;
-.analysis-risk-title.blue::before {&#xd;
-    background-color: blue;&#xd;
-    color: blue;&#xd;
-}&#xd;
-.analysis-risk-title.green::before {&#xd;
-    background-color: green;&#xd;
-    color: green;&#xd;
-}&#xd;
-.analysis-risk-title.yellow::before {&#xd;
-    background-color: yellow;&#xd;
-    color: yellow;&#xd;
-}&#xd;
-#collected-data{&#xd;
-   width: 70%;   &#xd;
-}&#xd;
-#collected-data table{&#xd;
-   width: 100%;   &#xd;
-}&#xd;
-#collected-data table th, #collected-data table td{&#xd;
-   padding: 1em;&#xd;
-}&#xd;
-#collected-data table th{&#xd;
-   width: 20%;   &#xd;
-}&#xd;
-.data-collectors{&#xd;
-   width: 70%;   &#xd;
-}&#xd;
-.data-collectors table{&#xd;
-   width: 100%;   &#xd;
-}&#xd;
-.data-collectors table th, .data-collectors table td{&#xd;
-   padding: 1em;&#xd;
-}&#xd;
-.data-collectors table th{&#xd;
-   width: 20%;   &#xd;
-}&#xd;
-.entity-btns table th, .entity-btns table td{&#xd;
-   border: 0;&#xd;
+      <code>.analysis-res-table{
+   width: 70%;
+}
+.analysis-res-table th, .analysis-res-table td{
+   padding: 1em;
+}
+.analysis-res-table th{
+   width: 20%;
+}
+.analysis-res-table td.td1{
+   width: 35%;
+}
+.analysis-res-table td.td2{
+   width: 45%;
+}
+.charts-table{
+   width: 70%;
+}
+.charts-td{
+   width: 60%;
+   padding: 5px;
+   background-color: #eeeeee;
+}
+.risk-def{
+   padding: 1em;
+}
+.analysis-risk-title{
+   display: block;
+   font-weight: bold;
+}
+.analysis-risk-title::before {
+    content: " c ";
+    background-color: red;
+    color: red;
+}
+.analysis-risk-title.blue::before {
+    background-color: blue;
+    color: blue;
+}
+.analysis-risk-title.green::before {
+    background-color: green;
+    color: green;
+}
+.analysis-risk-title.yellow::before {
+    background-color: yellow;
+    color: yellow;
+}
+#collected-data{
+   width: 70%;   
+}
+#collected-data table{
+   width: 100%;   
+}
+#collected-data table th, #collected-data table td{
+   padding: 1em;
+}
+#collected-data table th{
+   width: 20%;   
+}
+.data-collectors{
+   width: 70%;   
+}
+.data-collectors table{
+   width: 100%;   
+}
+.data-collectors table th, .data-collectors table td{
+   padding: 1em;
+}
+.data-collectors table th{
+   width: 20%;   
+}
+.entity-btns table th, .entity-btns table td{
+   border: 0;
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse/>

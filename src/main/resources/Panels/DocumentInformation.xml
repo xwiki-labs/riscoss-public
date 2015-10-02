@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>DocumentInformation</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1394550017000</contentUpdateDate>
   <version>1.1</version>
   <title>Document Information</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -160,18 +180,18 @@ $xwiki.ssx.use('Panels.DocumentInformation')##
 #set ($pages = $tdoc.includedPages)
 #largepanelheader($services.localization.render('panels.documentInformation.title'))
 #if ($tdoc.language == '' &amp;&amp; $xwiki.isMultiLingual())
-; {{html}}&lt;label for="xwikidoclanguageinput2">$services.localization.render('panels.documentInformation.defaultLanguage')&lt;/label>{{/html}}
-: {{html}}&lt;input type="text" id="xwikidoclanguageinput2" name="defaultLanguage" value="$!tdoc.defaultLanguage" size="30"/>{{/html}}
+; {{html}}&lt;label for="xwikidoclanguageinput2"&gt;$services.localization.render('panels.documentInformation.defaultLanguage')&lt;/label&gt;{{/html}}
+: {{html}}&lt;input type="text" id="xwikidoclanguageinput2" name="defaultLanguage" value="$!tdoc.defaultLanguage" size="30"/&gt;{{/html}}
 #end
 ##--------------------------------------------------------------------------
 ## Display wiki syntax combo box if there's more than one configured syntax.
 ##--------------------------------------------------------------------------
 $xwiki.jsx.use($paneldoc.fullName)##
 #set ($configuredSyntaxes = $xwiki.getConfiguredSyntaxes())
-#if ($configuredSyntaxes.size() > 1)
-  ; {{html}}&lt;label for="xwikidocsyntaxinput2">$services.localization.render('panels.documentInformation.syntax')&lt;/label>{{/html}}
+#if ($configuredSyntaxes.size() &gt; 1)
+  ; {{html}}&lt;label for="xwikidocsyntaxinput2"&gt;$services.localization.render('panels.documentInformation.syntax')&lt;/label&gt;{{/html}}
   : {{html}}
-    &lt;select name="syntaxId" id="xwikidocsyntaxinput2">
+    &lt;select name="syntaxId" id="xwikidocsyntaxinput2"&gt;
       #set ($docSyntax = $tdoc.getSyntax())
       ## Starting with XE 2.3 the $syntaxFactory binding has been removed and the new $services binding added.
       ## To make sure this Panel application still work with versions less than 2.3 we verify the availability of bindings.
@@ -182,27 +202,27 @@ $xwiki.jsx.use($paneldoc.fullName)##
       ##
       #foreach ($syntax in $availableParserSyntaxes)
         #if ($configuredSyntaxes.contains($syntax.toIdString()) &amp;&amp; !$syntax.toIdString().equalsIgnoreCase('xwiki/1.0'))
-          &lt;option value="$syntax.toIdString()"#if($docSyntax.toIdString().equalsIgnoreCase($syntax.toIdString())) selected="selected"#end>$syntax.toString()&lt;/option>
+          &lt;option value="$syntax.toIdString()"#if($docSyntax.toIdString().equalsIgnoreCase($syntax.toIdString())) selected="selected"#end&gt;$syntax.toString()&lt;/option&gt;
         #end
       #end
       ## If the current document's syntax is not in the list of configured syntax, add it to the Select so that the user sees the Document's Syntax.
       #if (!$configuredSyntaxes.contains($docSyntax.toIdString()) || $docSyntax.toIdString().equalsIgnoreCase('xwiki/1.0'))
-        &lt;option value="$docSyntax.toIdString()" selected="selected">$docSyntax.toString()&lt;/option>
+        &lt;option value="$docSyntax.toIdString()" selected="selected"&gt;$docSyntax.toString()&lt;/option&gt;
       #end
-    &lt;/select>
+    &lt;/select&gt;
   {{/html}}
 #end
 ##--------------------------------------------------------------------------
 
 {{html}}
-&lt;input id="xhidden" type="checkbox" name="xhidden" #if($tdoc.isHidden()) checked="checked"#end value="1"/>&lt;label for="xhidden">$services.localization.render('panels.documentInformation.hiddenDocument')&lt;/label>
-&lt;input name="xhidden" type="hidden" value="0" />
+&lt;input id="xhidden" type="checkbox" name="xhidden" #if($tdoc.isHidden()) checked="checked"#end value="1"/&gt;&lt;label for="xhidden"&gt;$services.localization.render('panels.documentInformation.hiddenDocument')&lt;/label&gt;
+&lt;input name="xhidden" type="hidden" value="0" /&gt;
 {{/html}}
 ##--------------------------------------------------------------------------
 #if($pages.size() != 0)
   ; $services.localization.render('panels.documentInformation.includesCount', [$pages.size()])
   #foreach ($page in $pages)
-  : [[$page>>$page]] [[[[image:icon:page_white_edit||alt="$services.localization.render('panels.documentInformation.editIncluded', [$page])"]]&gt;&gt;path:$xwiki.getURL($page, 'edit')]]
+  : [[$page&gt;&gt;$page]] [[[[image:icon:page_white_edit||alt="$services.localization.render('panels.documentInformation.editIncluded', [$page])"]]&gt;&gt;path:$xwiki.getURL($page, 'edit')]]
   #end
 #end
 #panelfooter()
@@ -339,12 +359,12 @@ XWiki.SyntaxConverter = Class.create({
     this.syntaxField = $('xwikidocsyntaxinput2');
     this.storeNewSyntax();
     var name = $$("meta[name='document']");
-    if (name.length > 0) {
+    if (name.length &gt; 0) {
       // The meta element holding the document name is present. Use it.
       this.name = name[0].content;
     } else {
       // The metadata is missing, probably an old or custom skin. Try to obtain the document name from the URL.
-      if (document.location.pathname.indexOf('/edit/') >= 0) {
+      if (document.location.pathname.indexOf('/edit/') &gt;= 0) {
         this.name = document.location.pathname.substring(document.location.pathname.indexOf('/edit/') + 6).replace("/", ".");
       } else {
         // Use the default name, as this is not a critical part.

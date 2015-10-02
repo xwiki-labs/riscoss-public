@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>Activity</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1385551024000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('xe.activity')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -494,7 +514,7 @@ ul.activityList {
   width: 16px;
 }
 
-/** &lt;start> Inside activityContent **/
+/** &lt;start&gt; Inside activityContent **/
 .activityApplication .activityContent,
 .activityUser .activityContent,
 .activityList .annotated,
@@ -527,10 +547,10 @@ ul.activityList {
   /* Preserve the white-space because messages are written in plain text. */
   white-space: pre;
 }
-/** &lt;end> **/
+/** &lt;end&gt; **/
 
-/** &lt;start> Tools **/
-/** &lt;start> Expand Tool **/
+/** &lt;start&gt; Tools **/
+/** &lt;start&gt; Expand Tool **/
 .toolExpand{
   color: $theme.textColor;
   cursor: pointer;
@@ -549,8 +569,8 @@ ul.activityList {
 .activityList:hover .toolExpand  {
   visibility: visible;
 }
-/** &lt;/end> Expand Tool **/
-/** &lt;start> Filter Tool **/
+/** &lt;/end&gt; Expand Tool **/
+/** &lt;start&gt; Filter Tool **/
 .toolFilter {
   cursor: pointer;
   float: right;
@@ -571,8 +591,8 @@ h1:hover .toolFilter .toolExpand {
   line-height: 4em;
   top: 5px;
 }
-/** &lt;/end> Filter Tool **/
-/** &lt;start> Delete Tool **/
+/** &lt;/end&gt; Filter Tool **/
+/** &lt;start&gt; Delete Tool **/
 .toolDelete {
   color: $theme.notificationErrorColor !important;
   cursor: pointer;
@@ -593,10 +613,10 @@ h1:hover .toolFilter .toolExpand {
 .toolDelete:hover {
   text-decoration: none;
 }
-/** &lt;/end> Delete Tool **/
-/** &lt;/end> Tools **/
+/** &lt;/end&gt; Delete Tool **/
+/** &lt;/end&gt; Tools **/
 
-/** &lt;start> Action Types **/
+/** &lt;start&gt; Action Types **/
 .type {
   background: none no-repeat scroll 4px 0 transparent;
   padding-left: 25px;
@@ -606,7 +626,7 @@ h1:hover .toolFilter .toolExpand {
   background-image:url("$xwiki.getSkinFile('icons/silk/page_white_text.png')");
 }
 
-/** &lt;/end> Action Types **/
+/** &lt;/end&gt; Action Types **/
 
 /** CSS 3**/
 .activitySnapshot .activityActionAvatar {
@@ -907,7 +927,7 @@ $xwiki.ssx.use('Main.Activity')##
 ## Filter by
 ## ------------------------------------------------------------
 ## Authors
-#if ($aAuthors.size() > 0)
+#if ($aAuthors.size() &gt; 0)
   #set ($toUsersParameters = [])
   #set ($fromUsersParameters = [])
   #set ($usersQuery = '')
@@ -922,7 +942,7 @@ $xwiki.ssx.use('Main.Activity')##
       #end
     #end
   #end
-  #if ($usersQuery.length() > 1)
+  #if ($usersQuery.length() &gt; 1)
     ## Remove the first comma
     #set ($usersQuery = $usersQuery.substring(1))
     #if (!$isGuest)
@@ -945,7 +965,7 @@ $xwiki.ssx.use('Main.Activity')##
 ## Spaces
 #updateFilterClause('space' $aSpaces false)
 ## BLACKLISTED SPACES - exclude them
-#if ($blacklistedSpaces &amp;&amp; $blacklistedSpaces.size() > 0)
+#if ($blacklistedSpaces &amp;&amp; $blacklistedSpaces.size() &gt; 0)
   #set ($filterClause = $filterClause + ' and (act.application = ''MessageStream'' or 1=1 ')
   #updateFilterClause('space' $blacklistedSpaces true)
   #set ($filterClause = $filterClause + ')')
@@ -953,7 +973,7 @@ $xwiki.ssx.use('Main.Activity')##
 ## Wikis
 #updateFilterClause('wiki' $aWikis false)
 ## Tags
-#if ($xwiki.getPlugin('tag') &amp;&amp; $aTags.size() > 0)
+#if ($xwiki.getPlugin('tag') &amp;&amp; $aTags.size() &gt; 0)
   #set ($docsWithTag = [])
   #foreach ($item in $aTags)
     #set ($discard = $docsWithTag.addAll($xwiki.tag.getDocumentsWithTag($item)))
@@ -987,10 +1007,10 @@ $xwiki.ssx.use('Main.Activity')##
     #set ($discard = $filterParameters.add("${currentUser}^XWiki.XWikiUsers"))
     ##
     ## A user should see personal messages from followed users
-    #if ($xwiki.watchlist.getWatchedUsers().size() > 0)
+    #if ($xwiki.watchlist.getWatchedUsers().size() &gt; 0)
       #set ($messageFilter = "$messageFilter or (act.type = 'personalMessage' and act.user in (")
       #foreach ($u in $xwiki.watchlist.getWatchedUsers())
-        #if ($velocityCount > 1)
+        #if ($velocityCount &gt; 1)
           #set ($messageFilter = $messageFilter.concat(','))
         #end
         #set ($messageFilter = $messageFilter.concat('?'))
@@ -1001,10 +1021,10 @@ $xwiki.ssx.use('Main.Activity')##
     ##
     ## A user should see messages for his groups
     #set ($usersGroups = $xwiki.rightsmanager.getAllGroupsNamesForMember($xcontext.user))
-    #if ($usersGroups.size() > 0)
+    #if ($usersGroups.size() &gt; 0)
       #set ($messageFilter = "$messageFilter or (act.type = 'groupMessage' and act.param2 in (")
       #foreach ($g in $usersGroups)
-        #if ($velocityCount > 1)
+        #if ($velocityCount &gt; 1)
           #set ($messageFilter = $messageFilter.concat(','))
         #end
         #set ($messageFilter = $messageFilter.concat('?'))
@@ -1065,7 +1085,7 @@ $xwiki.ssx.use('Main.Activity')##
         #set ($filterClause = $filterClause + " and act.${colName} ${filterCondition} (")
       #end
       #if ("$!colValue" != '')
-        #if ($velocityCount > 1)
+        #if ($velocityCount &gt; 1)
           #set ($filterClause = $filterClause + ',')
         #end
         #set ($filterClause = $filterClause + '?')
@@ -1095,13 +1115,13 @@ $xwiki.ssx.use('Main.Activity')##
   *#
 #macro(isPageEntryExpandable)
   #set ($isPageEntryExpandable = false)
-  #if ($events.size() > 1)
+  #if ($events.size() &gt; 1)
     #set ($isPageEntryExpandable = true)
   #end
 #end
 #**
   * Get unique page event users
-  * -> used to display the message: 'X changes by Y user(s)'
+  * -&gt; used to display the message: 'X changes by Y user(s)'
   *#
 #macro (getUniqueEventUsers)
   #set ($eventUsers = [])
@@ -1230,7 +1250,7 @@ $xwiki.ssx.use('Main.Activity')##
     #set ($isConsecutiveUpdateEvent = false)
     #set ($isCreateOrDeleteRelatedEvent = false)
     ##
-    ## Get consecutive 'update' events having the same user (-> only the latest such event will be taken in account)
+    ## Get consecutive 'update' events having the same user (-&gt; only the latest such event will be taken in account)
     ## ---------------------------------------------------------------
     #if ($event.type == 'update'
         &amp;&amp; $event.requestId != $previousEventInNewList.requestId
@@ -1249,7 +1269,7 @@ $xwiki.ssx.use('Main.Activity')##
         #set ($discard = $newList.add($event))
         #set ($previousEventInNewList = $event)
       #end
-      #if ($newList.size() >= $aSubEntries)
+      #if ($newList.size() &gt;= $aSubEntries)
         ## number of subentries reached
         #break
       #end
@@ -1265,7 +1285,7 @@ $xwiki.ssx.use('Main.Activity')##
 #macro(checkRelatedEvents)
   ## load related events
   #set ($relatedEvents = $xwiki.activitystream.getRelatedEvents($event))
-  #if ($relatedEvents.size() > 1)
+  #if ($relatedEvents.size() &gt; 1)
     #if ($event.type == 'update')
       #foreach ($relatedEvent in $relatedEvents)
         #if ($relatedEvent.type != 'update')
@@ -1274,7 +1294,7 @@ $xwiki.ssx.use('Main.Activity')##
         #end
       #end
     #end
-    ## Get 'create' and 'delete' related event (-> in order to remove duplicated events in the case of import, rename, delete page)
+    ## Get 'create' and 'delete' related event (-&gt; in order to remove duplicated events in the case of import, rename, delete page)
     ## ---------------------------------------------------------------
     #if ($event.type != 'create' &amp;&amp; $event.type != 'delete')
       #foreach ($relatedEvent in $relatedEvents)
@@ -1313,13 +1333,13 @@ $xwiki.ssx.use('Main.Activity')##
   * Display the arrow used to expand the event list
   *#
 #macro(toolExpand)
-  &lt;a class='toolExpand'>&amp;#9660;&lt;/a>
+  &lt;a class='toolExpand'&gt;&amp;#9660;&lt;/a&gt;
 #end
 #**
   * Display the delete tool for own event messages
   *#
 #macro(toolDelete $eventID)
-  &lt;a class='toolDelete' href="$doc.getURL($xcontext.action, "$!{request.queryString}&amp;amp;xaction=deleteMessage&amp;amp;id=$eventID&amp;amp;xredirect=$escapetool.url($doc.getURL($xcontext.action, $request.queryString))")" title="$services.localization.render('xe.activity.messages.delete')">x&lt;/a>
+  &lt;a class='toolDelete' href="$doc.getURL($xcontext.action, "$!{request.queryString}&amp;amp;xaction=deleteMessage&amp;amp;id=$eventID&amp;amp;xredirect=$escapetool.url($doc.getURL($xcontext.action, $request.queryString))")" title="$services.localization.render('xe.activity.messages.delete')"&gt;x&lt;/a&gt;
 #end
 #**
   * Display RSS URL
@@ -1334,9 +1354,9 @@ $xwiki.ssx.use('Main.Activity')##
     #set ($parameters = "${parameters}&amp;space=$space")
   #end
   #set ($rssURL = $xwiki.getURL('Main.WebRss', 'view', $parameters))
-  &lt;div class="rssURL">
-    &lt;a href="${rssURL}">&lt;img src="$xwiki.getSkinFile('icons/silk/feed.png')" alt="RSS icon"/>$services.localization.render('xe.activity.rssfeed')&lt;/a>
-  &lt;/div>
+  &lt;div class="rssURL"&gt;
+    &lt;a href="${rssURL}"&gt;&lt;img src="$xwiki.getSkinFile('icons/silk/feed.png')" alt="RSS icon"/&gt;$services.localization.render('xe.activity.rssfeed')&lt;/a&gt;
+  &lt;/div&gt;
 #end
 #**
   * Display mimetype and name for the given event of type attachment
@@ -1344,20 +1364,20 @@ $xwiki.ssx.use('Main.Activity')##
 #macro(displayAttachment $event)
   #set ($pageDoc = $xwiki.getDocument($event.page))
   #set ($attach = $pageDoc.getAttachment($event.param2))
-  &lt;div class="attachment">
+  &lt;div class="attachment"&gt;
     #mimetypeimg($attach.getMimeType().toLowerCase() $event.param2)
     #if ($attach.version)
-      &lt;a href="$pageDoc.getAttachmentURL($event.param2)">$!{escapetool.xml($event.param2)}&lt;/a>
+      &lt;a href="$pageDoc.getAttachmentURL($event.param2)"&gt;$!{escapetool.xml($event.param2)}&lt;/a&gt;
     #else
       $!{escapetool.xml($event.param2)}
     #end
-  &lt;/div>
+  &lt;/div&gt;
 #end
 #**
   * Display a user message
   *#
 #macro(displayMessage $event)
-  &lt;div class="message">$!{escapetool.xml($event.getBody())}&lt;/div>
+  &lt;div class="message"&gt;$!{escapetool.xml($event.getBody())}&lt;/div&gt;
 #end
 #**
   * Display comment
@@ -1365,9 +1385,9 @@ $xwiki.ssx.use('Main.Activity')##
 #macro(displayComment $event)
   #getCommentContent($event $commentContent)
   #if ("$!commentContent" != '')
-    &lt;div class="comment">
+    &lt;div class="comment"&gt;
      $doc.getRenderedContentRestricted($commentContent, $doc.getSyntax().toIdString())
-    &lt;/div>
+    &lt;/div&gt;
   #end
 #end
 #**
@@ -1376,33 +1396,33 @@ $xwiki.ssx.use('Main.Activity')##
 #macro(displayAnnotation $event)
   #getAnnotation($event $annotationText $annotationSelection)
   #if ("$!annotationText" != '' || "$!annotationSelection" != '')
-    &lt;div class="annotated">$!{escapetool.xml($annotationSelection)}&lt;/div>
-    &lt;div class="annotation">$!{doc.getRenderedContentRestricted($annotationText, $annotationTextSyntaxId)}&lt;/div>
+    &lt;div class="annotated"&gt;$!{escapetool.xml($annotationSelection)}&lt;/div&gt;
+    &lt;div class="annotation"&gt;$!{doc.getRenderedContentRestricted($annotationText, $annotationTextSyntaxId)}&lt;/div&gt;
   #end
 #end
 #**
   * Display user avatar and action message
   *#
 #macro(activitySnapshot $eventUser $eventType)
-  &lt;span class="activitySnapshot">
+  &lt;span class="activitySnapshot"&gt;
     #if ($eventUser != 'XWiki.XWikiGuest')
-      &lt;a href="$xwiki.getURL($eventUser)">#smallUserAvatar("$!eventUser")&lt;/a>
+      &lt;a href="$xwiki.getURL($eventUser)"&gt;#smallUserAvatar("$!eventUser")&lt;/a&gt;
     #else
       #smallUserAvatar("$!eventUser")
     #end
-    &lt;img class="activityActionAvatar" src="$xwiki.getSkinFile($activityActionsMap.get($eventType), true)" alt="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" title="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" />
-  &lt;/span>
+    &lt;img class="activityActionAvatar" src="$xwiki.getSkinFile($activityActionsMap.get($eventType), true)" alt="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" title="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" /&gt;
+  &lt;/span&gt;
 #end
 #**
   * Display the summary (avatars with action icon) for the current entry
   *#
 #macro(displayActivityListItemSummary)
-  &lt;div class="activitySummary">
+  &lt;div class="activitySummary"&gt;
     #foreach ($event in $events)
       #set ($relatedEventsNo = $xwiki.activitystream.getRelatedEvents($event).size() / 2)
       #activitySnapshot($event.user $event.type)
     #end
-  &lt;/div>
+  &lt;/div&gt;
 #end
 #**
   * Check if the current subentry is expandable
@@ -1430,10 +1450,10 @@ $xwiki.ssx.use('Main.Activity')##
   #set ($isEventEntryExpandable = false)
   #isAttachmentEvent($event)
   #isEventEntryExpandable($event)
-  &lt;li class="activityItem #if($isEventEntryExpandable) collapsed #end">
+  &lt;li class="activityItem #if($isEventEntryExpandable) collapsed #end"&gt;
     #displayActivityListItemHeader(false false $isEventEntryExpandable)
     #if ($isEventEntryExpandable || $isMessageEvent)
-      &lt;div class="activityContent">
+      &lt;div class="activityContent"&gt;
         #if ($isAttachmentEvent)
           #foreach ($event in $xwiki.activitystream.getRelatedEvents($event))
             #isAttachmentEvent($event)
@@ -1449,24 +1469,24 @@ $xwiki.ssx.use('Main.Activity')##
         #elseif ($isAnnotationEvent &amp;&amp; $isEventEntryExpandable)
           #displayAnnotation($event)
         #end
-      &lt;/div>
+      &lt;/div&gt;
     #end
-  &lt;/li>
+  &lt;/li&gt;
   #set ($previousEventType = $event.type)
   #set ($previousEventUser = $event.user)
 #end
 #**
   * Display the header structure for the given event
   * @param isPageEntryExpandable if true, the curent item is expandable
-  * @param isFirstEntry if true, the current item is the first entry of a list formed by a single event -> do not display user avatar
+  * @param isFirstEntry if true, the current item is the first entry of a list formed by a single event -&gt; do not display user avatar
   *#
 #macro(displayActivityListItemHeader $isPageEntryExpandable $isFirstEntry $isEventEntryExpandable)
   #set ($relatedEventsNo = $xwiki.activitystream.getRelatedEvents($event).size() / 2)
-  &lt;div class="activityHeader">
+  &lt;div class="activityHeader"&gt;
     #if (!$isPageEntryExpandable &amp;&amp; !$isFirstEntry)
       #activitySnapshot($event.user $event.type)
     #end
-    &lt;span class="activityAuthor">
+    &lt;span class="activityAuthor"&gt;
       #if ($isFirstEntry)
         #if ($event.application != 'MessageStream')
           #set ($pageFullName = "$!{event.wiki}:$!{pageName}")
@@ -1475,18 +1495,18 @@ $xwiki.ssx.use('Main.Activity')##
           #if ($pageTitle == '')
             #set ($pageTitle = $pageName)
           #end
-          &lt;a href="$xwiki.getURL(${pageFullName})" class="typePage type" title="$!{escapetool.xml($services.localization.render('activity.link.title', [$services.wiki.getById("$!event.wiki").defaultAlias, $document.space, $document.name]))}">$!{escapetool.xml($pageTitle)}&lt;/a>
+          &lt;a href="$xwiki.getURL(${pageFullName})" class="typePage type" title="$!{escapetool.xml($services.localization.render('activity.link.title', [$services.wiki.getById("$!event.wiki").defaultAlias, $document.space, $document.name]))}"&gt;$!{escapetool.xml($pageTitle)}&lt;/a&gt;
           #if ($event.wiki != $services.wiki.currentWikiId)
             #set($wikiPrettyName = $services.wiki.getById($event.wiki).prettyName)
-            &lt;span class="activityWiki">($!{escapetool.xml($wikiPrettyName)})&lt;/span>
+            &lt;span class="activityWiki"&gt;($!{escapetool.xml($wikiPrettyName)})&lt;/span&gt;
           #end
         #end
       #else
         $xwiki.getUserName($!event.user)
       #end
-    &lt;/span>
+    &lt;/span&gt;
     #if(!$isFirstEntry || $isPageEntryExpandable)
-      &lt;span class="activityAction">
+      &lt;span class="activityAction"&gt;
         #isAttachmentEvent($event)
         #if ($isPageEntryExpandable)## display entry summary
           $!services.localization.render('xe.activity.action.summary', [$events.size(), $eventUsers.size()])
@@ -1494,13 +1514,13 @@ $xwiki.ssx.use('Main.Activity')##
           $!services.localization.render("xe.activity.action.${event.type}", [$relatedEventsNo])
           #if ($event.type == 'update' &amp;&amp; $event.version != '1.1')
             #set ($pageFullName = "$!{event.wiki}:$!{pageName}")
-            &amp;#183; &lt;a href="$xwiki.getDocument($pageFullName).getURL('view', "viewer=changes&amp;rev2=${event.version}")">$services.localization.render('xe.activity.action.seechanges')&lt;/a>
+            &amp;#183; &lt;a href="$xwiki.getDocument($pageFullName).getURL('view', "viewer=changes&amp;rev2=${event.version}")"&gt;$services.localization.render('xe.activity.action.seechanges')&lt;/a&gt;
           #end
         #end
-      &lt;/span>
+      &lt;/span&gt;
     #end
     #if ("$!timeAgoMsg" != '')
-      &lt;span class='activityTime' title="$eventFullDate">$!timeAgoMsg&lt;/span>
+      &lt;span class='activityTime' title="$eventFullDate"&gt;$!timeAgoMsg&lt;/span&gt;
     #end
     #if ($isPageEntryExpandable)
       #toolExpand('')
@@ -1513,7 +1533,7 @@ $xwiki.ssx.use('Main.Activity')##
     #if (($event.application == 'MessageStream') &amp;&amp; $isFirstEntry &amp;&amp; ($xwiki.getDocument("$!{event.user}").prefixedFullName == $xwiki.getDocument("$!{xcontext.user}").prefixedFullName))
        #toolDelete($event.getEventId())
     #end
-  &lt;/div>
+  &lt;/div&gt;
 #end
 #**
   * Display the list of events for the current page
@@ -1532,41 +1552,41 @@ $xwiki.ssx.use('Main.Activity')##
     ## -------------------------------------------------------------------
     #if ($isToday &amp;&amp; $displayToday)
       #if ($closeList)## there are events from the future
-        &lt;/ul>
+        &lt;/ul&gt;
       #else
         #set ($closeList = true)## a new list will be opened
       #end
-      &lt;h2>$services.localization.render('timeAgo.today')&lt;/h2>&lt;ul class='activityList'>  ## display 'Today' message
+      &lt;h2&gt;$services.localization.render('timeAgo.today')&lt;/h2&gt;&lt;ul class='activityList'&gt;  ## display 'Today' message
       #set ($displayToday = false)
     #elseif ($isYesterday &amp;&amp; $displayYesterday)## display 'Yesterday' message
       #if ($closeList)## there are events today
-        &lt;/ul>
+        &lt;/ul&gt;
       #else
         #set ($closeList = true)## a new list will be opened
       #end
-      &lt;h2>$services.localization.render('timeAgo.yesterday')&lt;/h2>&lt;ul class='activityList'>
+      &lt;h2&gt;$services.localization.render('timeAgo.yesterday')&lt;/h2&gt;&lt;ul class='activityList'&gt;
       #set ($displayYesterday = false)
     #elseif (!$isToday &amp;&amp; !$isYesterday &amp;&amp; $iterationDate != $displayDate)## display date message
       #set ($displayDate = $iterationDate)
       #if ($closeList)## there are events today or/and yesterday
-        &lt;/ul>
+        &lt;/ul&gt;
       #else
         #set ($closeList = true)## a new list will be opened
       #end
-      &lt;h2>$!iterationDate&lt;/h2>&lt;ul class='activityList'>
+      &lt;h2&gt;$!iterationDate&lt;/h2&gt;&lt;ul class='activityList'&gt;
     #end
     ##
     ## Open event list + Display first event
     ## -------------------------------------------------------------------
     #if ($velocityCount == 1)
-      &lt;li class="activityItem activityPage #if($isPageEntryExpandable)collapsed#end">
+      &lt;li class="activityItem activityPage #if($isPageEntryExpandable)collapsed#end"&gt;
         #displayActivityListItemHeader($isPageEntryExpandable true false)
         #if (!$isPageEntryExpandable)
           ## single entry
           #set($timeAgoMsg = '')
         #end
-        &lt;div class="activityContent">
-          &lt;ul class="activityList">
+        &lt;div class="activityContent"&gt;
+          &lt;ul class="activityList"&gt;
     #end
     ##
     ## Display other events (inside the expanded list)
@@ -1576,9 +1596,9 @@ $xwiki.ssx.use('Main.Activity')##
     ## Close page event list
     ## -------------------------------------------------------------------
     #if ($velocityCount == $events.size())
-          &lt;/ul>
-        &lt;/div>
-      &lt;/li>
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
     #end
   #end
 #end
@@ -1596,7 +1616,7 @@ $xwiki.ssx.use('Main.Activity')##
   ## Get distinct pages with activity
   ## -------------------------------------------------------------------
   #set ($pages = $xwiki.activitystream.searchDailyPages("$!filterClause", $filterParameters, $aEntries, 0))
-  #if ($pages.size() > 0)
+  #if ($pages.size() &gt; 0)
     #foreach ($page in $pages)
       ##
       ## Extract page name and event date
@@ -1617,7 +1637,7 @@ $xwiki.ssx.use('Main.Activity')##
         #set ($subqueryParameters = [$pageWiki, $pageName])
         #set ($discard = $subqueryParameters.addAll($filterParameters))
         #set ($events= $xwiki.activitystream.searchEvents("$!whereClause", false, 0, 0, $subqueryParameters))
-        #if ($events.size() > 0)
+        #if ($events.size() &gt; 0)
           ##
           ## Initialize page event vars
           ## -------------------------------------------------------------------
@@ -1629,10 +1649,10 @@ $xwiki.ssx.use('Main.Activity')##
       #end
     #end
     #if ($closeList)## close the last event list
-      &lt;/ul>
+      &lt;/ul&gt;
     #end
   #else
-    &lt;span class="noitems">$services.localization.render('xe.activity.noentries')&lt;/span>
+    &lt;span class="noitems"&gt;$services.localization.render('xe.activity.noentries')&lt;/span&gt;
   #end
   ##
   ## Display RSS URL
@@ -1685,21 +1705,21 @@ $xwiki.ssx.use('Main.Activity')##
         #end
       #else
         {{html}}
-        &lt;form action="$doc.getURL($xcontext.action, $!request.queryString))">
-          &lt;div class='xdialog-box xdialog-box-confirmation'>
-            &lt;div class='xdialog-content'>
-              &lt;div class='question'>$services.localization.render('xe.activity.messages.delete.confirm')&lt;/div>
-              &lt;div class='buttons'>
-                &lt;input type='hidden' name='confirm' value='1'/>
-                &lt;input type='hidden' name='xaction' value='deleteMessage'/>
-                &lt;input type='hidden' name='id' value="$!request.id"/>
-                &lt;input type='hidden' name='xredirect' value="$!request.xredirect"/>
-                &lt;span class='xbuttonwrapper'>&lt;input type='submit' value="$services.localization.render('core.widgets.confirmationBox.button.yes')" class='button'/>&lt;/span>
-                &lt;a class='secondary button' href="$!request.xredirect"/>$services.localization.render('core.widgets.confirmationBox.button.no')&lt;/a>
-              &lt;/div>
-            &lt;/div>
-          &lt;/div>
-        &lt;/form>
+        &lt;form action="$doc.getURL($xcontext.action, $!request.queryString))"&gt;
+          &lt;div class='xdialog-box xdialog-box-confirmation'&gt;
+            &lt;div class='xdialog-content'&gt;
+              &lt;div class='question'&gt;$services.localization.render('xe.activity.messages.delete.confirm')&lt;/div&gt;
+              &lt;div class='buttons'&gt;
+                &lt;input type='hidden' name='confirm' value='1'/&gt;
+                &lt;input type='hidden' name='xaction' value='deleteMessage'/&gt;
+                &lt;input type='hidden' name='id' value="$!request.id"/&gt;
+                &lt;input type='hidden' name='xredirect' value="$!request.xredirect"/&gt;
+                &lt;span class='xbuttonwrapper'&gt;&lt;input type='submit' value="$services.localization.render('core.widgets.confirmationBox.button.yes')" class='button'/&gt;&lt;/span&gt;
+                &lt;a class='secondary button' href="$!request.xredirect"/&gt;$services.localization.render('core.widgets.confirmationBox.button.no')&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
        {{/html}}
 
       #end
@@ -1720,7 +1740,7 @@ $xwiki.ssx.use('Main.Activity')##
     #end
   #end
   #set ($updateURL = $xwiki.getURL('Main.Activity', 'view', "$!{extraQueryString}&amp;xpage=plain"))
-  &lt;input type='hidden' class='updateURL' value="$updateURL" />
+  &lt;input type='hidden' class='updateURL' value="$updateURL" /&gt;
 #end
 {{/velocity}}
 
@@ -1729,17 +1749,17 @@ $xwiki.ssx.use('Main.Activity')##
 #handleMessageAction($displayUI)
 #if ($displayUI)
   {{html}}
-  &lt;div class='activity'>
+  &lt;div class='activity'&gt;
     #initDateVariables()
     #addStateHiddenInput()
     #displayActivity()
-  &lt;/div>
+  &lt;/div&gt;
   {{/html}}
 #end
 {{/velocity}}</code>
     </property>
     <property>
-      <contentDescription></contentDescription>
+      <contentDescription/>
     </property>
     <property>
       <contentType>No content</contentType>
@@ -1949,7 +1969,7 @@ $xwiki.ssx.use('Main.Activity')##
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Comma separated list of wikis to display activity for.</description>
@@ -2015,7 +2035,7 @@ $xwiki.ssx.use('Main.Activity')##
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Comma separated list of spaces to display the activity for.</description>
@@ -2081,7 +2101,7 @@ $xwiki.ssx.use('Main.Activity')##
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Comma separated list of authors whose modifications to show.</description>
@@ -2147,7 +2167,7 @@ $xwiki.ssx.use('Main.Activity')##
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Comma separated list of tags to display activity for.</description>

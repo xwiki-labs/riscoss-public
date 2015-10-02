@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiUserProfileSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1262856167000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -43,13 +63,13 @@
 ##
 {{html clean='false' wiki='true'}}
 #if (!$inEditMode)
-  &lt;div class="vcard">
-  &lt;span class="fn hidden">$xwiki.getUserName($doc.fullName, false)&lt;/span>
+  &lt;div class="vcard"&gt;
+  &lt;span class="fn hidden"&gt;$xwiki.getUserName($doc.fullName, false)&lt;/span&gt;
 #end
-  &lt;div class="#if($xcontext.action == 'view')half #{else}full #{end}column xform">
-    &lt;div class='userInfo'>
+  &lt;div class="#if($xcontext.action == 'view')half #{else}full #{end}column xform"&gt;
+    &lt;div class='userInfo'&gt;
     #if($xcontext.action == 'view' &amp;&amp; $hasEdit)
-      &lt;div class='editProfileCategory'>&lt;a href="$doc.getURL('edit', 'editor=inline&amp;amp;category=profile')">&lt;span class='hidden'>$services.localization.render('platform.core.profile.category.profile.edit')&lt;/span>&lt;/a>&lt;/div>
+      &lt;div class='editProfileCategory'&gt;&lt;a href="$doc.getURL('edit', 'editor=inline&amp;amp;category=profile')"&gt;&lt;span class='hidden'&gt;$services.localization.render('platform.core.profile.category.profile.edit')&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
     #end
     ## Please do not insert extra empty lines here (as it affects the validity of the rendered xhtml)
     #set ($sectionsObject = $sheetDocument.getObject($sectionsObjectClassName))
@@ -70,9 +90,9 @@
       #end
       #set ($sectionPropertiesString = $sectionObject.getProperty('properties').value)
       #set ($sectionProperties = $sectionPropertiesString.split('\s+'))
-      #if ($sectionProperties &amp;&amp; $sectionProperties.size() > 0)
-        &lt;h1>$sectionName&lt;/h1>
-        &lt;dl>
+      #if ($sectionProperties &amp;&amp; $sectionProperties.size() &gt; 0)
+        &lt;h1&gt;$sectionName&lt;/h1&gt;
+        &lt;dl&gt;
         #foreach ($sectionProperty in $sectionProperties)
           #set ($vCardData = $sectionProperty.split(':'))
           #set ($vCardProperty = '')
@@ -81,43 +101,43 @@
             #set ($sectionProperty = $vCardData[1])
           #end
           #if ("$!sectionProperty" != '' &amp;&amp; $xwikiUsersClass.get($sectionProperty))
-          &lt;dt class='label'>
-            &lt;label #if($inEditMode)for="${xwikiUsersClassName}_${obj.number}_${sectionProperty}"#{end}>$doc.displayPrettyName("${sectionProperty}")&lt;/label>
-          &lt;/dt>
-          &lt;dd #if("$!vCardProperty" != '' &amp;&amp; !$inEditMode)class="$vCardProperty"#{end}>$doc.display($sectionProperty)&lt;/dd>
+          &lt;dt class='label'&gt;
+            &lt;label #if($inEditMode)for="${xwikiUsersClassName}_${obj.number}_${sectionProperty}"#{end}&gt;$doc.displayPrettyName("${sectionProperty}")&lt;/label&gt;
+          &lt;/dt&gt;
+          &lt;dd #if("$!vCardProperty" != '' &amp;&amp; !$inEditMode)class="$vCardProperty"#{end}&gt;$doc.display($sectionProperty)&lt;/dd&gt;
           #end
         #end
-        &lt;/dl>
+        &lt;/dl&gt;
       #end
     #end
-    &lt;/div>
-  &lt;/div>
+    &lt;/div&gt;
+  &lt;/div&gt;
   #if (!$inEditMode)
-    &lt;div class='half column'>
+    &lt;div class='half column'&gt;
       #if (!$isGuest)
-      &lt;div class='userMessage profile-section'>
-        &lt;h1>$services.localization.render('platform.core.profile.section.sendMessage')&lt;/h1>
+      &lt;div class='userMessage profile-section'&gt;
+        &lt;h1&gt;$services.localization.render('platform.core.profile.section.sendMessage')&lt;/h1&gt;
 
           {{messageSender /}}
 
-      &lt;/div>
+      &lt;/div&gt;
       #end
-      &lt;div class='userRecentChanges'>
+      &lt;div class='userRecentChanges'&gt;
       #if ($xcontext.user == $doc.fullName)
-        &lt;h1>$services.localization.render('platform.core.profile.section.activity')&lt;/h1>
+        &lt;h1&gt;$services.localization.render('platform.core.profile.section.activity')&lt;/h1&gt;
       #else
-        &lt;h1>$services.localization.render('platform.core.profile.section.activityof', [$xwiki.getUserName($doc.fullName, false)])&lt;/h1>
+        &lt;h1&gt;$services.localization.render('platform.core.profile.section.activityof', [$xwiki.getUserName($doc.fullName, false)])&lt;/h1&gt;
         #if ($hasWatch)
         $xwiki.ssx.use('XWiki.XWikiUserProfileSheet')##
-        &lt;div class='activity-follow'>
+        &lt;div class='activity-follow'&gt;
           #set ($xredirect = $doc.getURL($xcontext.action, $request.queryString))
           #if ($xwiki.watchlist.isUserWatched(${doc.prefixedFullName}))
-          &lt;span class='following'>$services.localization.render('xe.activity.messages.following')&lt;/span>
-          &lt;a class='action unfollow' href="$doc.getURL('view', "xpage=watch&amp;amp;do=removeuser&amp;amp;xredirect=${escapetool.url($xredirect)}")">$services.localization.render('xe.activity.messages.unfollow')&lt;/a>
+          &lt;span class='following'&gt;$services.localization.render('xe.activity.messages.following')&lt;/span&gt;
+          &lt;a class='action unfollow' href="$doc.getURL('view', "xpage=watch&amp;amp;do=removeuser&amp;amp;xredirect=${escapetool.url($xredirect)}")"&gt;$services.localization.render('xe.activity.messages.unfollow')&lt;/a&gt;
           #else
-          &lt;a class='action follow' href="$doc.getURL('view', "xpage=watch&amp;amp;do=adduser&amp;amp;xredirect=${escapetool.url($xredirect)}")">$services.localization.render('xe.activity.messages.follow')&lt;/a>
+          &lt;a class='action follow' href="$doc.getURL('view', "xpage=watch&amp;amp;do=adduser&amp;amp;xredirect=${escapetool.url($xredirect)}")"&gt;$services.localization.render('xe.activity.messages.follow')&lt;/a&gt;
           #end
-        &lt;/div>
+        &lt;/div&gt;
         #end
       #end
 {{/html}}
@@ -125,13 +145,13 @@
 {{activity authors="${doc.fullName},${doc.prefixedFullName}" /}}
 
 {{html clean='false'}}
-      &lt;/div>
-    &lt;/div>
+      &lt;/div&gt;
+    &lt;/div&gt;
   #end
-  &lt;div class='clearfloats'>&amp;nbsp;&lt;/div>
+  &lt;div class='clearfloats'&gt;&amp;nbsp;&lt;/div&gt;
 #if(!$inEditMode)
   ## Close the vcard
-  &lt;/div>
+  &lt;/div&gt;
 #end
 {{/html}}##
 #end

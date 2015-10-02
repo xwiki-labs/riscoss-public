@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>AnnotationCode</web>
   <name>Script</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1391621055000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -97,7 +117,7 @@
       </use>
     </class>
     <property>
-      <cache></cache>
+      <cache/>
     </property>
     <property>
       <code>var XWiki = (function (XWiki) {
@@ -275,7 +295,7 @@ XWiki.Selection = Class.create({
     if (range.startContainer.hasChildNodes()) {
         if (range.collapsed) {
             return null;
-        } else if (range.startOffset >= range.startContainer.childNodes.length) {
+        } else if (range.startOffset &gt;= range.startContainer.childNodes.length) {
             return this.getNextLeaf(range.startContainer);
         } else {
             return this.getFirstLeaf(range.startContainer.childNodes[range.startOffset]);
@@ -366,7 +386,7 @@ XWiki.Selection = Class.create({
     if (window.getSelection) {
       // set the position
       // get the offsetleft from the first highlightWrapper
-      if (this.highlightWrappers.length > 0) {
+      if (this.highlightWrappers.length &gt; 0) {
         left = this.highlightWrappers[0].cumulativeOffset().left;
         var lastWrapper = this.highlightWrappers[this.highlightWrappers.length - 1];
         top = lastWrapper.cumulativeOffset().top + lastWrapper.getHeight();
@@ -469,7 +489,7 @@ XWiki.Selection = Class.create({
 
   isUnique : function(subject, pattern) {
     var index1 = subject.indexOf(pattern);
-    if (index1 >= 0) {
+    if (index1 &gt;= 0) {
       return subject.indexOf(pattern, index1 + 1) &lt; 0;
     }
     // assume (ass of u and me) that no encounter means unique
@@ -567,7 +587,7 @@ return XWiki;
       </use>
     </class>
     <property>
-      <cache></cache>
+      <cache/>
     </property>
     <property>
       <code>## Retrieve the annotation settings from the configuration object
@@ -680,7 +700,7 @@ XWiki.Annotation = Class.create({
       // create the annotations button
       var annContainer = new Element('div', {'class': 'topmenuentry hasIcon', 'id': 'tmAnnotations'});
       var annLink = new Element('a', {'class': 'tme', 'href': '#' + this.annTabname});
-      annLink.update("&lt;strong>$services.localization.render('annotations.title')&lt;/strong>");
+      annLink.update("&lt;strong&gt;$services.localization.render('annotations.title')&lt;/strong&gt;");
       annContainer.insert({top: annLink});
       rightMenu.insert({bottom: annContainer});
 
@@ -847,7 +867,7 @@ XWiki.Annotation = Class.create({
     }
     // get all the extra fields requested and add them to the request
     var extraFields = this.getExtraFields();
-    if (extraFields.size() > 0) {
+    if (extraFields.size() &gt; 0) {
       parametersHash.set('request_field', []);
     }
     for (var i = 0; i &lt; extraFields.length; i++) {
@@ -941,7 +961,7 @@ XWiki.Annotation = Class.create({
    */
   loadAnnotatedContent : function(annotatedContent, andShow, navigateToPane, force) {
     // only load the annotated content if there are any annotations
-    if ((annotatedContent.annotations &amp;&amp; annotatedContent.annotations.size() > 0) || force) {
+    if ((annotatedContent.annotations &amp;&amp; annotatedContent.annotations.size() &gt; 0) || force) {
       this.annotatedElement.update(annotatedContent.content);
       this.addAnnotationMarkers(annotatedContent.annotations);
       // Notify the content change.
@@ -1077,7 +1097,7 @@ XWiki.Annotation = Class.create({
             container.originalContentHTML = container.innerHTML;
             // Disable the button, to avoid a cascade of clicks from impatient users
             item.disabled = true;
-            // set the container as loading -> might not really work on bubble since it doesn't have fixed size
+            // set the container as loading -&gt; might not really work on bubble since it doesn't have fixed size
             container.update(new Element('div', {'class' : 'loading'}));
           },
           onSuccess : function(response) {
@@ -1381,7 +1401,7 @@ XWiki.Annotation = Class.create({
     }
     bubble.remove();
     var bubbleIndex = this.bubbles.indexOf(bubble);
-    if (bubbleIndex >= 0) {
+    if (bubbleIndex &gt;= 0) {
       // remove it
       this.bubbles.splice(bubbleIndex, 1);
     }
@@ -1430,7 +1450,7 @@ XWiki.Annotation = Class.create({
    * Closes the last opened bubble (i.e. last bubble in the this.bubbles stack).
    */
   closeOpenBubble : function() {
-    if (this.bubbles.length > 0) {
+    if (this.bubbles.length &gt; 0) {
       // get the last one
       var lastBubble = this.bubbles[this.bubbles.length - 1];
       if (lastBubble == this.createPanel) {
@@ -1623,7 +1643,7 @@ document.observe('xwiki:dom:loaded', function() {
   #end
   var currentSpaceInExceptions = exceptions.indexOf(XWiki.currentSpace);
   // if the annotations are activated and the current space is not an exception or the annotations are not activated but the current space is an exception
-  if ((activated &amp;&amp; currentSpaceInExceptions &lt; 0) || (!activated &amp;&amp; currentSpaceInExceptions >= 0)) {
+  if ((activated &amp;&amp; currentSpaceInExceptions &lt; 0) || (!activated &amp;&amp; currentSpaceInExceptions &gt;= 0)) {
     // initialize the annotations on the xwikicontent element which is the document content by default  
     new XWiki.Annotation(displayHighlight, $('xwikicontent'), displayed);
   }

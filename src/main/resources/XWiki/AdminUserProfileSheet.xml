@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>AdminUserProfileSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1331918161000</contentUpdateDate>
   <version>1.1</version>
   <title>User Profile</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -32,58 +52,58 @@
 #set ($formToken = $services.csrf.getToken())
 ##
 {{html clean='false' wiki='true'}}
-  &lt;form action="$sheetDocument.getURL('save')" method='post'>
+  &lt;form action="$sheetDocument.getURL('save')" method='post'&gt;
   ## When in edit mode, the form above gets overriden so we need a div with class xform to cover all cases.
-  &lt;div class='xform half'>
+  &lt;div class='xform half'&gt;
     #set ($sectionsObject = $sheetDocument.getObject($sectionsObjectClassName))
-    &lt;h2>$services.localization.render('platform.user.profileConfigureSectionsTitle')&lt;/h2>
-    &lt;dl>
-      &lt;dt>
-        &lt;label for="${sectionsObjectClassName}_${sectionsObject.number}_sections">$services.localization.render('platform.user.profileConfigureSectionsLabel')&lt;/label>
-        &lt;span class='xHint'>$services.localization.render('platform.user.profileConfigureSectionsHint')&lt;/span>
-      &lt;/dt>
-      &lt;dd>$sheetDocument.display('sections', 'edit', $sectionsObject)&lt;/dd>
-    &lt;/dl>
-    &lt;h2>$services.localization.render('platform.user.profileConfigureSectionsAllTitle')&lt;/h2>
-    &lt;dl>
-      &lt;dt>
-        &lt;a class='hasIcon icon-button add-button' href="$sheetDocument.getURL('objectadd', "classname=${sectionObjectClassName}&amp;amp;xredirect=$escapetool.url(${xredirect})&amp;amp;form_token=${formToken}")">$services.localization.render('platform.user.profileConfigureSectionAddButtonLabel')&lt;/a>
-      &lt;/dt>
+    &lt;h2&gt;$services.localization.render('platform.user.profileConfigureSectionsTitle')&lt;/h2&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;
+        &lt;label for="${sectionsObjectClassName}_${sectionsObject.number}_sections"&gt;$services.localization.render('platform.user.profileConfigureSectionsLabel')&lt;/label&gt;
+        &lt;span class='xHint'&gt;$services.localization.render('platform.user.profileConfigureSectionsHint')&lt;/span&gt;
+      &lt;/dt&gt;
+      &lt;dd&gt;$sheetDocument.display('sections', 'edit', $sectionsObject)&lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;h2&gt;$services.localization.render('platform.user.profileConfigureSectionsAllTitle')&lt;/h2&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;
+        &lt;a class='hasIcon icon-button add-button' href="$sheetDocument.getURL('objectadd', "classname=${sectionObjectClassName}&amp;amp;xredirect=$escapetool.url(${xredirect})&amp;amp;form_token=${formToken}")"&gt;$services.localization.render('platform.user.profileConfigureSectionAddButtonLabel')&lt;/a&gt;
+      &lt;/dt&gt;
     #set ($sectionObjects = $sheetDocument.getObjects($sectionObjectClassName))
     #foreach ($sectionObject in $sectionObjects)
-      &lt;dt>
-        &lt;a class='hasIcon icon-button remove-button' href="$sheetDocument.getURL('objectremove', "classname=${sectionObjectClassName}&amp;amp;classid=${sectionObject.number}&amp;amp;xredirect=$escapetool.url(${xredirect})&amp;amp;form_token=${formToken}")">$services.localization.render('platform.user.profileConfigureSectionRemoveButtonLabel')&lt;/a>
-        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_id">$services.localization.render('platform.user.profileConfigureSectionIdLabel')&lt;/label>
-        &lt;span class='xHint'>$services.localization.render('platform.user.profileConfigureSectionIdHint')&lt;/span>
-      &lt;/dt>
-      &lt;dd>$sheetDocument.display('id', 'edit', $sectionObject)&lt;/dd>
+      &lt;dt&gt;
+        &lt;a class='hasIcon icon-button remove-button' href="$sheetDocument.getURL('objectremove', "classname=${sectionObjectClassName}&amp;amp;classid=${sectionObject.number}&amp;amp;xredirect=$escapetool.url(${xredirect})&amp;amp;form_token=${formToken}")"&gt;$services.localization.render('platform.user.profileConfigureSectionRemoveButtonLabel')&lt;/a&gt;
+        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_id"&gt;$services.localization.render('platform.user.profileConfigureSectionIdLabel')&lt;/label&gt;
+        &lt;span class='xHint'&gt;$services.localization.render('platform.user.profileConfigureSectionIdHint')&lt;/span&gt;
+      &lt;/dt&gt;
+      &lt;dd&gt;$sheetDocument.display('id', 'edit', $sectionObject)&lt;/dd&gt;
 
-      &lt;dt>
-        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_name">$services.localization.render('platform.user.profileConfigureSectionNameLabel')&lt;/label>
-        &lt;span class='xHint'>$services.localization.render('platform.user.profileConfigureSectionNameHint', ['http://platform.xwiki.org/xwiki/bin/view/DevGuide/InternationalizingApplications'])&lt;/span>
-      &lt;/dt>
-      &lt;dd>$sheetDocument.display('name', 'edit', $sectionObject)&lt;/dd>
+      &lt;dt&gt;
+        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_name"&gt;$services.localization.render('platform.user.profileConfigureSectionNameLabel')&lt;/label&gt;
+        &lt;span class='xHint'&gt;$services.localization.render('platform.user.profileConfigureSectionNameHint', ['http://platform.xwiki.org/xwiki/bin/view/DevGuide/InternationalizingApplications'])&lt;/span&gt;
+      &lt;/dt&gt;
+      &lt;dd&gt;$sheetDocument.display('name', 'edit', $sectionObject)&lt;/dd&gt;
 
-      &lt;dt>
-        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_properties">$services.localization.render('platform.user.profileConfigureSectionPropertiesLabel')&lt;/label>
-        &lt;span class='xHint'>$services.localization.render('platform.user.profileConfigureSectionPropertiesHint', ['XWiki.XWikiUsers'])&lt;/span>
-      &lt;/dt>
-      &lt;dd>$sheetDocument.display('properties', 'edit', $sectionObject)&lt;/dd>
+      &lt;dt&gt;
+        &lt;label for="${sectionObjectClassName}_${sectionObject.number}_properties"&gt;$services.localization.render('platform.user.profileConfigureSectionPropertiesLabel')&lt;/label&gt;
+        &lt;span class='xHint'&gt;$services.localization.render('platform.user.profileConfigureSectionPropertiesHint', ['XWiki.XWikiUsers'])&lt;/span&gt;
+      &lt;/dt&gt;
+      &lt;dd&gt;$sheetDocument.display('properties', 'edit', $sectionObject)&lt;/dd&gt;
     #end
     ## Avoid duplicating the save button for edit mode.
     #if ($xcontext.action != 'edit' &amp;&amp; $xcontext.action != 'inline')
-      &lt;dt>
-        &lt;br/>
-        &lt;span class='buttonwrapper'>
-          &lt;input class='button' type='submit' name='save' value="$services.localization.render('platform.user.profileConfigureSaveButtonLabel')"/>
-        &lt;/span>
-        &lt;input type='hidden' name='xredirect' value="$xredirect" />
-        &lt;input type='hidden' name='form_token' value="$formToken" />
-      &lt;/dt>
+      &lt;dt&gt;
+        &lt;br/&gt;
+        &lt;span class='buttonwrapper'&gt;
+          &lt;input class='button' type='submit' name='save' value="$services.localization.render('platform.user.profileConfigureSaveButtonLabel')"/&gt;
+        &lt;/span&gt;
+        &lt;input type='hidden' name='xredirect' value="$xredirect" /&gt;
+        &lt;input type='hidden' name='form_token' value="$formToken" /&gt;
+      &lt;/dt&gt;
     #end
-    &lt;/dl>
-  &lt;/div>
-  &lt;/form>
+    &lt;/dl&gt;
+  &lt;/div&gt;
+  &lt;/form&gt;
 {{/html}}
 {{/velocity}}</content>
   <object>
@@ -115,7 +135,7 @@
       </sheet>
     </class>
     <property>
-      <sheet></sheet>
+      <sheet/>
     </property>
   </object>
   <object>
@@ -203,7 +223,7 @@
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>0</parse>

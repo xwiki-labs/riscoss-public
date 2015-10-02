@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Invitation</web>
   <name>InvitationMemberActions</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1274346351000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -80,7 +100,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 ##
 #set($action = [])
 #getUserAction($request.getParameterMap(), $action)
-#if($action.size() > 0 &amp;&amp; $request.getMethod().toLowerCase() == 'post')
+#if($action.size() &gt; 0 &amp;&amp; $request.getMethod().toLowerCase() == 'post')
   #set($action = $action.get(0))
   #doUserActionOnMultipleMessages($request.getParameterValues('messageID'),
                                   $action,
@@ -119,7 +139,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  * 'group' -------- View all messages in group
  * 'groupAsAdmin' - View all messages in group as admin
  *
- * $mail (Map&lt;String, XObject>) map of messages by their ID.
+ * $mail (Map&lt;String, XObject&gt;) map of messages by their ID.
  *
  * $inspect the code for what the user wants to do.
  *
@@ -176,7 +196,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
     #else
       #displayMessageTableInDiv($myMailInGroup, ['sentDate', 'recipient', 'status', '_history'], false, '')
     #end
-    #if($myMailInGroup.size() > 0)
+    #if($myMailInGroup.size() &gt; 0)
       #displayMessage($myMailInGroup.get(0))
     #end
   #elseif($inspect == 'groupAsAdmin' &amp;&amp; $isAdmin)
@@ -191,7 +211,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
                                true,
                                '',
                                ['notSpam'])
-    #if($mailInGroup.size() > 0)
+    #if($mailInGroup.size() &gt; 0)
       #displayMessage($mailInGroup.get(0))
     #end
   ## NOTE: we are not checking for admin status to view history as an admin. If the user knows the messageID then they
@@ -245,7 +265,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  * notSpam - must be admin and message status must be 'reported'
  * else - unknown
  *
- * $messageIDs (List&lt;String>) the unique IDs of the invitations to cancel.
+ * $messageIDs (List&lt;String&gt;) the unique IDs of the invitations to cancel.
  *
  * $action (String) the sction to do to the invitations.
  *
@@ -258,7 +278,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
  *
  * $isAdmin (Boolean) is the current user a mail administrator?
  *
- * $mail (Map&lt;String, XObject>) the map of stored messages by their id.
+ * $mail (Map&lt;String, XObject&gt;) the map of stored messages by their id.
  *
  * $emailContainer (Document) the document to save after changing objects.
  *###
@@ -290,7 +310,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       #end
       {{/error}})))
     #elseif($messages.size() != $messageIDs.size())
-      #if($messages.size() > $messageIDs.size())
+      #if($messages.size() &gt; $messageIDs.size())
         ## this should not happen.
         Internal error: Too many messages for the number of ids given. In #doUserActionOnMultipleMessages
       #else
@@ -378,7 +398,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
                                      $services.localization.render('xe.invitation.doUserActionOnMultipleMessages.notSpam.memoLabel'),
                                      $services.localization.render('xe.invitation.doUserActionOnMultipleMessages.notSpam.confirmLabel'),
                                      {'inspect': $inspect})
-      #if($messages.size() > 0)
+      #if($messages.size() &gt; 0)
         ## should always be true.
         #displayMessage($messages.get(0))
       #end
@@ -397,14 +417,14 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Display a table of messages, in a div class="invitation" html element.
  *
- * $mail (Collection&lt;XObject>) the messages to view.
+ * $mail (Collection&lt;XObject&gt;) the messages to view.
  *
- * $fieldsToDisplay (List&lt;String>) fields which should be displayed.
+ * $fieldsToDisplay (List&lt;String&gt;) fields which should be displayed.
  *   Options include: sendingUser, subjectLine, status, memo, recipient
  *
  * $isAdmin (Boolean) should the links point to displaying for admin or user (NOT FOR SECURITY)
  *
- * $numberOfRecipientsByMessage (Map&lt;Integer, XObject>) the number of recipients for a given message (Optional)
+ * $numberOfRecipientsByMessage (Map&lt;Integer, XObject&gt;) the number of recipients for a given message (Optional)
  *                                                      if specified and recipient field is set in $fieldsToDisplay
  *                                                      then messages with multiple recipients will say "X recipients".
  *###
@@ -425,17 +445,17 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Display a table of messages, in a form class="invitation" html element.
  *
- * $mail (Collection&lt;XObject>) the messages to view.
+ * $mail (Collection&lt;XObject&gt;) the messages to view.
  *
- * $fieldsToDisplay (List&lt;String>) fields which should be displayed.
+ * $fieldsToDisplay (List&lt;String&gt;) fields which should be displayed.
  *   Options include: sendingUser, subjectLine, status, memo, recipient
  *
  * $isAdmin (Boolean) should the links point to displaying for admin or user (NOT FOR SECURITY)
  *
- * $numberOfRecipientsByMessage (Map&lt;Integer, XObject>) the number of recipients for a given message (Optional)
+ * $numberOfRecipientsByMessage (Map&lt;Integer, XObject&gt;) the number of recipients for a given message (Optional)
  *                                                      if specified and recipient field is set in $fieldsToDisplay
  *                                                      then messages with multiple recipients will say "X recipients".
- * $formOptions (List&lt;String>) the options which should be presented to the user. 
+ * $formOptions (List&lt;String&gt;) the options which should be presented to the user. 
  *                                   Options include: "cancel", "notSpam", "noClass"
  *###
 #macro(displayMessageTableInForm, $mail, $fieldsToDisplay, $isAdmin, $numberOfRecipientsByMessage, $formOptions)
@@ -450,25 +470,25 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       #if(!$formOptions.contains('noClass'))
         class="invitation" ##
       #end
-      action="$doc.getURL()" method="POST">
+      action="$doc.getURL()" method="POST"&gt;
       #displayMessageTable($mail, $fieldsToDisplay, $isAdmin,  $numberOfRecipientsByMessage)##
 
-      #if($formOptions &amp;&amp; $formOptions.size() > 0)
+      #if($formOptions &amp;&amp; $formOptions.size() &gt; 0)
         #set($validOptions = ['cancel', 'notSpam'])
-        &lt;div class="bottombuttons">
-         &lt;div class="buttons">
+        &lt;div class="bottombuttons"&gt;
+         &lt;div class="buttons"&gt;
           #foreach($option in $formOptions)
-            &lt;span class="buttonwrapper">
+            &lt;span class="buttonwrapper"&gt;
              #if($validOptions.contains($option))
                &lt;input type="submit" class="button" name="doAction_$option" ##
-                   value="$services.localization.render("xe.invitation.displayMessageTableInForm.buttonLabel.${option}")"/>
+                   value="$services.localization.render("xe.invitation.displayMessageTableInForm.buttonLabel.${option}")"/&gt;
              #end
-            &lt;/span>
+            &lt;/span&gt;
           #end
-         &lt;/div>
-        &lt;/div>
+         &lt;/div&gt;
+        &lt;/div&gt;
       #end
-     &lt;/form>
+     &lt;/form&gt;
     {{/html}}
   #end
 
@@ -477,11 +497,11 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Get only messages of unique groups. If one message in a group is marked as spam it will be the one included.
  *
- * $mail (Collection&lt;XObject>) the messages to search through.
+ * $mail (Collection&lt;XObject&gt;) the messages to search through.
  *
- * $mailOut (Map&lt;Integer, XObject>) Message from each group by how many messages in that group.
+ * $mailOut (Map&lt;Integer, XObject&gt;) Message from each group by how many messages in that group.
  *
- * $numberOfMessagesByGroupOut (Map&lt;Integer, Integer>) Populated with numbers of messages in each group by group number.
+ * $numberOfMessagesByGroupOut (Map&lt;Integer, Integer&gt;) Populated with numbers of messages in each group by group number.
  *###
 #macro(getMessagesOfUniqueGroups, $mail, $mailOut, $numberOfMessagesByGroupOut)
   #set($messageByGroup = {})
@@ -507,11 +527,11 @@ $xwiki.get('ssx').use($config.get('commonPage'))
 #*
  * Get only messages of given group.
  *
- * $mail (Collection&lt;XObject>) the messages to search though.
+ * $mail (Collection&lt;XObject&gt;) the messages to search though.
  *
  * $groupID (Double) the ID of the group to get messages from.
  *
- * $mailOut (List&lt;XObject>) will be populated with messages which are from that group and found in $mail
+ * $mailOut (List&lt;XObject&gt;) will be populated with messages which are from that group and found in $mail
  *###
 #macro(getMessagesInGroup, $mail, $groupID, $mailOut)
   #foreach($message in $mail)
@@ -601,7 +621,7 @@ $xwiki.get('ssx').use($config.get('commonPage'))
       <levels>view</levels>
     </property>
     <property>
-      <users></users>
+      <users/>
     </property>
   </object>
 </xwikidoc>
