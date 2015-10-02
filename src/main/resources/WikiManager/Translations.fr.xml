@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>WikiManager</web>
   <name>Translations</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1307189790000</contentUpdateDate>
   <version>1.1</version>
   <title>Translations</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -85,9 +105,9 @@ platform.wiki.delete.confirmation.no=Non
 platform.wiki.delete.confirmation.yes=Oui
 platform.wiki.delete.success=L''utilisateur {0}{1}{2} a supprimé avec succès le wiki "{3}".
 platform.wiki.dependencies.applicationmanager.missing=Le {0}plug-in Application Manager{1} n''est pas installé. Veuillez l''installer puis de ré-essayer.
-platform.wiki.dependencies.template.missing=Le composant Java "Wiki Template" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki Template API" et "Wiki Template Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-template-api-&lt;version>.jar' et 'xwiki-platform-wiki-template-script-&lt;version>.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
-platform.wiki.dependencies.user.missing=Le composant Java "Wiki User" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki User API" et "Wiki User Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-user-api-&lt;version>.jar' et 'xwiki-platform-wiki-user-script-&lt;version>.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
-platform.wiki.dependencies.wiki.missing=Le composant Java "Wiki" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki API" et "Wiki Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-api-&lt;version>.jar' et 'xwiki-platform-wiki-script-&lt;version>.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
+platform.wiki.dependencies.template.missing=Le composant Java "Wiki Template" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki Template API" et "Wiki Template Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-template-api-&lt;version&gt;.jar' et 'xwiki-platform-wiki-template-script-&lt;version&gt;.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
+platform.wiki.dependencies.user.missing=Le composant Java "Wiki User" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki User API" et "Wiki User Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-user-api-&lt;version&gt;.jar' et 'xwiki-platform-wiki-user-script-&lt;version&gt;.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
+platform.wiki.dependencies.wiki.missing=Le composant Java "Wiki" n'est pas installé. Sans lui, cette page ne peut pas fonctionner correctement. Vérifiez que les extensions "Wiki API" et "Wiki Script" sont installés (via l'Extension Manager) ou que les fichiers 'xwiki-platform-wiki-api-&lt;version&gt;.jar' et 'xwiki-platform-wiki-script-&lt;version&gt;.jar'sont présents dans le répertoire 'WEB-INF/lib/' de l'application (dans le cas d'une installation manuelle). 
 platform.wiki.error.exceptionWithMessage=Exception\: {0}
 platform.wiki.error.oneParameterNotSpecified=Le paramètre ''{0}'' n''a pas été spécifié. 
 platform.wiki.error.parameterAcceptsMultipleValues=Plusieurs valeur acceptées. 

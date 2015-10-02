@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>AdminPresentationSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1299707414000</contentUpdateDate>
   <version>1.1</version>
   <title>AdminPresentationSheet</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -114,7 +134,7 @@ $xwiki.jsx.use('XWiki.AdminPresentationSheet')
     var input = button.up('dt').next('dd').down('input,select');
     input.observe('change', function() {
       var dotPosition = input.value.indexOf('.');
-      if (dotPosition > 0) {
+      if (dotPosition &gt; 0) {
         button.removeClassName('hidden');
         button.href = new XWiki.Document(input.value.substring(dotPosition + 1), input.value.substring(0, dotPosition)).getURL(button.__action);
       } else {

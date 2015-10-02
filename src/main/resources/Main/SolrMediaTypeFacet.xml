@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>SolrMediaTypeFacet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1393242399000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -62,7 +82,7 @@
         #end
       #end
     #end
-    #if ($group.count > 0)
+    #if ($group.count &gt; 0)
       ## Compute the filter value.
       #joinMediaTypes($entry.value $escapedFilterValue)
       #set ($discard = $group.put('name', $escapedFilterValue))
@@ -70,7 +90,7 @@
     #end
   #end
   #set ($discard = $mediaTypes.removeAll($groupedMediaTypes))
-  #if ($groupRemainingMediaTypes &amp;&amp; $mediaTypes &amp;&amp; $mediaTypes.size() > 0)
+  #if ($groupRemainingMediaTypes &amp;&amp; $mediaTypes &amp;&amp; $mediaTypes.size() &gt; 0)
     #set ($other = {
       'id': 'other',
       'count': 0,
@@ -100,7 +120,7 @@
   #foreach ($mediaType in $mediaTypes)
     ## Escape the characters that have special meaning in the filter query.
     #set ($escapedMediaType = $mediaType.replaceAll('([/.+\-])', '\\$1'))
-    #if ($mediaType.indexOf('/') > 0)
+    #if ($mediaType.indexOf('/') &gt; 0)
       ## Prefix.
       #set ($escapedMediaType = "$escapedMediaType*")
     #else
@@ -120,10 +140,10 @@
     #set ($categoryLimit = $solrConfig.facetPaginationStep)
   #end
   #set ($categoryLimit = $mathtool.max($mathtool.min($categoryLimit, $categories.size()), 0))
-  &lt;ul class="mediaTypes">
+  &lt;ul class="mediaTypes"&gt;
     #foreach ($category in $categories)
       #if ($foreach.index &lt; $categoryLimit)
-        &lt;li>
+        &lt;li&gt;
           ## Backup the selected values to be able to restore them afterwards.
           #set ($facetRequestValuesBackup = $facetRequestValues)
           ## When an entire category is selected we need to remove the values that were selected from that category.
@@ -133,7 +153,7 @@
               $facetRequestValuesBackup.size())))
             #set ($discard = $facetRequestValues.removeAll($category.mediaTypes))
           #end
-          &lt;div class="mediaTypeCategory">#displaySearchFacetValue($category {} 'displaySearchFacetValue_mediaType')&lt;/div>
+          &lt;div class="mediaTypeCategory"&gt;#displaySearchFacetValue($category {} 'displaySearchFacetValue_mediaType')&lt;/div&gt;
           ## When a media type is selected, it's category should be unselected.
           #set ($facetRequestValues = [])
           #if ($facetRequestValuesBackup)
@@ -141,18 +161,18 @@
               $facetRequestValuesBackup.size())))
             #set ($discard = $facetRequestValues.remove($category.name))
           #end
-          &lt;ul>#displaySearchFacetValuesLimited($category.mediaTypesWithCounts {} 'displaySearchFacetValue_mediaType')&lt;/ul>
+          &lt;ul&gt;#displaySearchFacetValuesLimited($category.mediaTypesWithCounts {} 'displaySearchFacetValue_mediaType')&lt;/ul&gt;
           ## Restore the selected values.
           #set ($facetRequestValues = $facetRequestValuesBackup)
-        &lt;/li>
+        &lt;/li&gt;
       #else
         #extendQueryString($url {$limitRequestParameter: [$mathtool.add($categoryLimit, $solrConfig.facetPaginationStep)]})
-        &lt;li>&lt;a href="$url" class="more">&amp;hellip; $escapetool.xml($services.localization.render(
-          'solr.facets.moreValues', [$mathtool.sub($categories.size(), $categoryLimit)]))&lt;/a>&lt;/li>
+        &lt;li&gt;&lt;a href="$url" class="more"&gt;&amp;hellip; $escapetool.xml($services.localization.render(
+          'solr.facets.moreValues', [$mathtool.sub($categories.size(), $categoryLimit)]))&lt;/a&gt;&lt;/li&gt;
         #break
       #end
     #end
-  &lt;/ul>
+  &lt;/ul&gt;
 #end
 
 #macro (displaySearchFacetValue_mediaType $mediaType)
@@ -177,7 +197,7 @@
       ## Probably a file extension (or acronym).
       #set ($prettyName = $prettyName.toUpperCase())
     #end
-    &lt;span title="$mediaType">$prettyName&lt;/span>
+    &lt;span title="$mediaType"&gt;$prettyName&lt;/span&gt;
   #end
 #end
 {{/velocity}}
@@ -295,7 +315,7 @@
 })();</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>0</parse>
@@ -391,7 +411,7 @@
 }
 
 /* Don't highlight the entire media type category. */
-.search-facet-body ul.mediaTypes > li:hover {
+.search-facet-body ul.mediaTypes &gt; li:hover {
   background-color: transparent;
 }
 .search-facet-body .mediaTypeCategory:hover {
@@ -414,7 +434,7 @@
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

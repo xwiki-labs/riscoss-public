@@ -1,87 +1,107 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformLayerManagerCode</web>
   <name>Translations</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1430839817000</creationDate>
   <parent>RISCOSSPlatformLayerManagerCode.WebHome</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1442972336000</date>
   <contentUpdateDate>1442972336000</contentUpdateDate>
-  <version>1.42</version>
+  <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
-  <minorEdit>true</minorEdit>
+  <comment/>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
-  <content>riscossPlatform.layerManager=Layer manager&#xd;
-riscossPlatform.layerManager.newLayer=New layer&#xd;
-riscossPlatform.layerManager.newEntity=New entity&#xd;
-riscossPlatform.layerManager.layerIndex=Layer index&#xd;
-riscossPlatform.layerManager.entityIndex=Entity index&#xd;
-riscossPlatform.layerManager.rdids=Target IDs for risk data&#xd;
-riscossPlatform.layerManager.layer=Layer&#xd;
-riscossPlatform.layerManager.layerName=Layer name&#xd;
-riscossPlatform.layerManager.addEntityChildren=Add children&#xd;
-riscossPlatform.layerManager.children=Children&#xd;
-&#xd;
-riscossPlatform.layerManager.child=Child&#xd;
-riscossPlatform.layerManager.properties=Properties&#xd;
-riscossPlatform.layerManager.layersList.title=RISCOSS Platform Layers&#xd;
-riscossPlatform.layerManager.entitiesList.title=RISCOSS Platform Entities&#xd;
-&#xd;
-riscossPlatform.layerManager.layersTable.layer=Layer name&#xd;
-riscossPlatform.layerManager.layersTable.child=Child&#xd;
-riscossPlatform.layerManager.layersTable.createEntityLink=&#xd;
-&#xd;
-riscossPlatform.layerManager.entitiesTable.entity=Entity name&#xd;
-riscossPlatform.layerManager.entitiesTable.author=Author&#xd;
-riscossPlatform.layerManager.entitiesTable.ranking=Ranking&#xd;
-riscossPlatform.layerManager.entitiesTable.score=Score&#xd;
-riscossPlatform.layerManager.entitiesTable.description=Description&#xd;
-riscossPlatform.layerManager.entitiesTable.reevaluate=Re-evaluate&#xd;
-riscossPlatform.layerManager.entitiesTable.enabledisable=Enable/Disable&#xd;
-riscossPlatform.layerManager.entitiesTable.analysisstatus=Analysis status&#xd;
-riscossPlatform.layerManager.entitiesTable.project=Project&#xd;
-riscossPlatform.layerManager.entitiesTable.layer=Layer&#xd;
-riscossPlatform.layerManager.entitiesTable.emptyvalue=None&#xd;
-&#xd;
-riscossPlatform.layerManager.createLayer.title=Create layer&#xd;
-riscossPlatform.layerManager.createLayer.layerId=Layer ID&#xd;
-riscossPlatform.layerManager.createLayer.layerName=Layer Name&#xd;
-riscossPlatform.layerManager.createLayer.layerIdMissingMessage=Please provide a layer ID&#xd;
-riscossPlatform.layerManager.createLayer.layerNameMissingMessage=Please provide a layer name&#xd;
-riscossPlatform.layerManager.createLayer.layerPropertyDefinition=Property definitions for entities in layer {0}&#xd;
-&#xd;
-riscossPlatform.layerManager.createEntity.title=Create entity&#xd;
-riscossPlatform.layerManager.createEntity.entityId={0} ID&#xd;
-riscossPlatform.layerManager.createEntity.entityName={0} Name&#xd;
-riscossPlatform.layerManager.createEntity.entityIdMissingMessage=Please provide an entity ID&#xd;
-riscossPlatform.layerManager.createEntity.entityNameMissingMessage=Please provide an entity name&#xd;
-&#xd;
-riscossPlatform.githubprojects.privatepage.myprojects=My projects&#xd;
-riscossPlatform.githubprojects.projectpage.allprojects=All projects&#xd;
-riscossPlatform.githubprojects.projectpage.projectranking=Project ranking&#xd;
-riscossPlatform.githubprojects.projectpage.projectscore=Project score&#xd;
-riscossPlatform.githubprojects.projectpage.tweetthisscore=Tweet this score&#xd;
-riscossPlatform.githubprojects.projectpage.analysisinprogress=Analysis in progress&#xd;
-&#xd;
-riscossPlatform.collecteddata.contributors=Contributors&#xd;
-riscossPlatform.collecteddata.size=Size&#xd;
-riscossPlatform.collecteddata.watchers=Watchers&#xd;
-riscossPlatform.collecteddata.openIssuesCount=Number of open issues&#xd;
-riscossPlatform.collecteddata.hasWiki=Has wiki&#xd;
-riscossPlatform.collecteddata.stargazersCount=Number of stargazers&#xd;
-riscossPlatform.collecteddata.subscribersCount=Number of subscribers&#xd;
-riscossPlatform.collecteddata.createdAt=Created at&#xd;
-riscossPlatform.collecteddata.license=License&#xd;
-riscossPlatform.collecteddata.updatedAt=Updated at&#xd;
-riscossPlatform.collecteddata.forksCount=Number of forks&#xd;
-riscossPlatform.collecteddata.closedIssues=Number of closed issues&#xd;
+  <content>riscossPlatform.layerManager=Layer manager
+riscossPlatform.layerManager.newLayer=New layer
+riscossPlatform.layerManager.newEntity=New entity
+riscossPlatform.layerManager.layerIndex=Layer index
+riscossPlatform.layerManager.entityIndex=Entity index
+riscossPlatform.layerManager.rdids=Target IDs for risk data
+riscossPlatform.layerManager.layer=Layer
+riscossPlatform.layerManager.layerName=Layer name
+riscossPlatform.layerManager.addEntityChildren=Add children
+riscossPlatform.layerManager.children=Children
+
+riscossPlatform.layerManager.child=Child
+riscossPlatform.layerManager.properties=Properties
+riscossPlatform.layerManager.layersList.title=RISCOSS Platform Layers
+riscossPlatform.layerManager.entitiesList.title=RISCOSS Platform Entities
+
+riscossPlatform.layerManager.layersTable.layer=Layer name
+riscossPlatform.layerManager.layersTable.child=Child
+riscossPlatform.layerManager.layersTable.createEntityLink=
+
+riscossPlatform.layerManager.entitiesTable.entity=Entity name
+riscossPlatform.layerManager.entitiesTable.author=Author
+riscossPlatform.layerManager.entitiesTable.ranking=Ranking
+riscossPlatform.layerManager.entitiesTable.score=Score
+riscossPlatform.layerManager.entitiesTable.description=Description
+riscossPlatform.layerManager.entitiesTable.reevaluate=Re-evaluate
+riscossPlatform.layerManager.entitiesTable.enabledisable=Enable/Disable
+riscossPlatform.layerManager.entitiesTable.analysisstatus=Analysis status
+riscossPlatform.layerManager.entitiesTable.project=Project
+riscossPlatform.layerManager.entitiesTable.layer=Layer
+riscossPlatform.layerManager.entitiesTable.emptyvalue=None
+
+riscossPlatform.layerManager.createLayer.title=Create layer
+riscossPlatform.layerManager.createLayer.layerId=Layer ID
+riscossPlatform.layerManager.createLayer.layerName=Layer Name
+riscossPlatform.layerManager.createLayer.layerIdMissingMessage=Please provide a layer ID
+riscossPlatform.layerManager.createLayer.layerNameMissingMessage=Please provide a layer name
+riscossPlatform.layerManager.createLayer.layerPropertyDefinition=Property definitions for entities in layer {0}
+
+riscossPlatform.layerManager.createEntity.title=Create entity
+riscossPlatform.layerManager.createEntity.entityId={0} ID
+riscossPlatform.layerManager.createEntity.entityName={0} Name
+riscossPlatform.layerManager.createEntity.entityIdMissingMessage=Please provide an entity ID
+riscossPlatform.layerManager.createEntity.entityNameMissingMessage=Please provide an entity name
+
+riscossPlatform.githubprojects.privatepage.myprojects=My projects
+riscossPlatform.githubprojects.projectpage.allprojects=All projects
+riscossPlatform.githubprojects.projectpage.projectranking=Project ranking
+riscossPlatform.githubprojects.projectpage.projectscore=Project score
+riscossPlatform.githubprojects.projectpage.tweetthisscore=Tweet this score
+riscossPlatform.githubprojects.projectpage.analysisinprogress=Analysis in progress
+
+riscossPlatform.collecteddata.contributors=Contributors
+riscossPlatform.collecteddata.size=Size
+riscossPlatform.collecteddata.watchers=Watchers
+riscossPlatform.collecteddata.openIssuesCount=Number of open issues
+riscossPlatform.collecteddata.hasWiki=Has wiki
+riscossPlatform.collecteddata.stargazersCount=Number of stargazers
+riscossPlatform.collecteddata.subscribersCount=Number of subscribers
+riscossPlatform.collecteddata.createdAt=Created at
+riscossPlatform.collecteddata.license=License
+riscossPlatform.collecteddata.updatedAt=Updated at
+riscossPlatform.collecteddata.forksCount=Number of forks
+riscossPlatform.collecteddata.closedIssues=Number of closed issues
 riscossPlatform.collecteddata.ciLink=Ci link</content>
   <object>
     <name>RISCOSSPlatformLayerManagerCode.Translations</name>

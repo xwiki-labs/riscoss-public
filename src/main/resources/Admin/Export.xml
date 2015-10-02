@@ -1,20 +1,40 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Admin</web>
   <name>Export</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <creator>xwiki:XWiki.superadmin</creator>
+  <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1435247027000</creationDate>
   <parent>Admin.WebHome</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1435247027000</date>
   <contentUpdateDate>1435247027000</contentUpdateDate>
   <version>1.1</version>
   <title>Export</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/1.0</syntaxId>
   <hidden>true</hidden>
@@ -23,21 +43,21 @@
 $response.setContentType("text/xml")
 #set($space = $request.spacename)
 {pre}
-&lt;response>
+&lt;response&gt;
   #set($docs = $xwiki.searchDocuments("where doc.space='$escapetool.sql($space)' order by doc.date desc"))
   #foreach ($docname in $docs)
-    &lt;value>$escapetool.xml("${docname}")&lt;/value>
+    &lt;value&gt;$escapetool.xml("${docname}")&lt;/value&gt;
   #end
-&lt;/response>
+&lt;/response&gt;
 {/pre}
 #elseif ($action == "getPackageList")
   $response.setContentType("text/xml")
   #set($alist = $doc.getAttachmentList())
-&lt;response>
+&lt;response&gt;
   #foreach ($oAttach in $alist)
-    &lt;value>$oAttach.getFilename()&lt;/value>
+    &lt;value&gt;$oAttach.getFilename()&lt;/value&gt;
   #end
-&lt;/response>
+&lt;/response&gt;
 #elseif ($action == "preexport")
   #set($ToExport = $request.getParameterValues("toExport"))
   #set($session = $request.getSession(false))
@@ -82,7 +102,7 @@ OK
   $export.export()
 #else
 {pre}
-&lt;style type="text/css">
+&lt;style type="text/css"&gt;
 .main table tr td.td-docSelectorColumn, .main table tr td.td-selectedColumn,, .main table tr td.td-packageColumn {
  vertical-align: top;
 }
@@ -90,76 +110,76 @@ OK
  height: 400px;
  overflow-y: scroll;
 }
-&lt;/style>
-&lt;div id="exportApp">
-&lt;table style="width:100%; border-color:blue; border-spacing: 0; " border="0">
-&lt;tr>
-&lt;td class="td-docSelectorColumn">&lt;h3 style="text-align:center;" id="firstColumnTitle">Your Wiki&lt;/h3>
-&lt;span id="spaceSelectorEl">  
+&lt;/style&gt;
+&lt;div id="exportApp"&gt;
+&lt;table style="width:100%; border-color:blue; border-spacing: 0; " border="0"&gt;
+&lt;tr&gt;
+&lt;td class="td-docSelectorColumn"&gt;&lt;h3 style="text-align:center;" id="firstColumnTitle"&gt;Your Wiki&lt;/h3&gt;
+&lt;span id="spaceSelectorEl"&gt;  
  Select a Space: 
   #set($spaces = $xwiki.getSpaces())
-  &lt;select name="spaceSelector" id="spaceSelector">
-  &lt;option value="---">---&lt;/option>
+  &lt;select name="spaceSelector" id="spaceSelector"&gt;
+  &lt;option value="---"&gt;---&lt;/option&gt;
   #foreach ($space in $spaces)
-    &lt;option value="$escapetool.html($space)">$escapetool.html($space)&lt;/option>
+    &lt;option value="$escapetool.html($space)"&gt;$escapetool.html($space)&lt;/option&gt;
   #end
-  &lt;/select>
-  &lt;br />
+  &lt;/select&gt;
+  &lt;br /&gt;
   #set($script = $xwiki.getURL("Admin.ExportSpaceSuggest", "view", "xpage=rdf"))
- &lt;form action="" onsubmit="setSpace(this.space.value); return false;">
- Search space: &lt;input type="text" name="space" value="" size="20"  onfocus="new XWiki.widgets.Suggest(this, {script:'${script}&amp;amp;', varname: 'input', seps:'', offsety: 13});" />
-  &lt;input type="submit" value="Go" />
- &lt;/form>
-  &lt;br />
-&lt;span class="selectDocsActions">Select &lt;a onclick="selectItems('checkedDoc', false);" class="Exportlink">none&lt;/a>, &lt;a onclick="selectItems('checkedDoc', true);" class="Exportlink">all&lt;/a>&lt;/span>&lt;/span>
-&lt;/td>
-&lt;td class="td-selectedColumn">&lt;h3 style="text-align:center;" id="secondColumnTitle">Your Package&lt;/h3>
-&lt;span class="selectDocsActions">Select &lt;a onclick="selectItems('selCheckedDoc', false);" class="Exportlink">none&lt;/a>, &lt;a onclick="selectItems('selCheckedDoc', true);" class="Exportlink">all&lt;/a>&lt;/span>
-&lt;/td>
-&lt;td class="td-packageColumn">
-&lt;h3 style="text-align:center;" id="secondColumnTitle">Package Info&lt;/h3>
-&lt;/td>
-&lt;/tr>
+ &lt;form action="" onsubmit="setSpace(this.space.value); return false;"&gt;
+ Search space: &lt;input type="text" name="space" value="" size="20"  onfocus="new XWiki.widgets.Suggest(this, {script:'${script}&amp;amp;', varname: 'input', seps:'', offsety: 13});" /&gt;
+  &lt;input type="submit" value="Go" /&gt;
+ &lt;/form&gt;
+  &lt;br /&gt;
+&lt;span class="selectDocsActions"&gt;Select &lt;a onclick="selectItems('checkedDoc', false);" class="Exportlink"&gt;none&lt;/a&gt;, &lt;a onclick="selectItems('checkedDoc', true);" class="Exportlink"&gt;all&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/td&gt;
+&lt;td class="td-selectedColumn"&gt;&lt;h3 style="text-align:center;" id="secondColumnTitle"&gt;Your Package&lt;/h3&gt;
+&lt;span class="selectDocsActions"&gt;Select &lt;a onclick="selectItems('selCheckedDoc', false);" class="Exportlink"&gt;none&lt;/a&gt;, &lt;a onclick="selectItems('selCheckedDoc', true);" class="Exportlink"&gt;all&lt;/a&gt;&lt;/span&gt;
+&lt;/td&gt;
+&lt;td class="td-packageColumn"&gt;
+&lt;h3 style="text-align:center;" id="secondColumnTitle"&gt;Package Info&lt;/h3&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
 ## ROW 2
-&lt;tr>
-&lt;td class="td-docSelectorColumn">
-&lt;div id="docSelectorColumn">
-  &lt;div id="spaceDocs">
-  &lt;span id="noSelectedSpace">&lt;br />&lt;br />Start by choosing a space to list documents&lt;/span>
-  &lt;/div>
-&lt;/div>
-&lt;/td>
-&lt;td class="td-selectedColumn">
-&lt;div id="selectedColumn">
-  &lt;div id="spaceDocs">
-  &lt;table>
-   &lt;tbody  id="selectedDocsTable">
-   &lt;/tbody>
-  &lt;/table>
-  &lt;/div>
-&lt;/div>
-&lt;/td>
-&lt;td class="td-packageColumn">
-&lt;label for="appName">&lt;i>Package Name&lt;/i>&lt;/label>&lt;br />&lt;input type="text" name="appName" id="appName" value="package">&lt;br />&lt;br />
-&lt;label for="appDesc">&lt;i>Description&lt;/i>&lt;/label>&lt;br />&lt;textarea name="appDesc" id="appDesc">&lt;/textarea>&lt;br />&lt;br />
-&lt;label for="appLicence">&lt;i>Licence&lt;/i>&lt;/label>&lt;br />&lt;input type="text" name="appLicence" id="appLicence" value="LGPL">&lt;br />&lt;br />
-&lt;label for="appAuthor">&lt;i>Author&lt;/i>&lt;/label>&lt;br />&lt;input type="text" name="appAuthor" id="appAuthor" value="$context.user">&lt;br />&lt;br />
-&lt;label for="appVersion">&lt;i>Version&lt;/i>&lt;/label>&lt;br />&lt;input type="text" name="appVersion" id="appVersion" value="">&lt;br />&lt;br />
-&lt;span id="historyEls">
-&lt;label for="appWithHistory">&lt;i>Add history&lt;/i>&lt;input type="checkbox" name="appWithHistory" id="appWithHistory" value="true">&lt;/label>
-&lt;br />&lt;br />
-&lt;/span>
-&lt;/td>
-&lt;/tr>
+&lt;tr&gt;
+&lt;td class="td-docSelectorColumn"&gt;
+&lt;div id="docSelectorColumn"&gt;
+  &lt;div id="spaceDocs"&gt;
+  &lt;span id="noSelectedSpace"&gt;&lt;br /&gt;&lt;br /&gt;Start by choosing a space to list documents&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="td-selectedColumn"&gt;
+&lt;div id="selectedColumn"&gt;
+  &lt;div id="spaceDocs"&gt;
+  &lt;table&gt;
+   &lt;tbody  id="selectedDocsTable"&gt;
+   &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="td-packageColumn"&gt;
+&lt;label for="appName"&gt;&lt;i&gt;Package Name&lt;/i&gt;&lt;/label&gt;&lt;br /&gt;&lt;input type="text" name="appName" id="appName" value="package"&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;label for="appDesc"&gt;&lt;i&gt;Description&lt;/i&gt;&lt;/label&gt;&lt;br /&gt;&lt;textarea name="appDesc" id="appDesc"&gt;&lt;/textarea&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;label for="appLicence"&gt;&lt;i&gt;Licence&lt;/i&gt;&lt;/label&gt;&lt;br /&gt;&lt;input type="text" name="appLicence" id="appLicence" value="LGPL"&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;label for="appAuthor"&gt;&lt;i&gt;Author&lt;/i&gt;&lt;/label&gt;&lt;br /&gt;&lt;input type="text" name="appAuthor" id="appAuthor" value="$context.user"&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;label for="appVersion"&gt;&lt;i&gt;Version&lt;/i&gt;&lt;/label&gt;&lt;br /&gt;&lt;input type="text" name="appVersion" id="appVersion" value=""&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;span id="historyEls"&gt;
+&lt;label for="appWithHistory"&gt;&lt;i&gt;Add history&lt;/i&gt;&lt;input type="checkbox" name="appWithHistory" id="appWithHistory" value="true"&gt;&lt;/label&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
 ## ROW 3
-&lt;tr>
-&lt;td class="td-docSelectorColumn" style="text-align: center;">&lt;input type="button" onclick="addDocs();" id="bttAdd" value="Add to my package &amp;gt;&amp;gt;" class="button" />&lt;/td>
-&lt;td class="td-selectedColumn" style="text-align: center;">&lt;input type="button" onclick="deleteDocs();" id="bttRemove" value="&amp;lt;&amp;lt; Remove from my package" class="button" />&lt;/td>
-&lt;td class="td-packageColumn" style="text-align: center;">&lt;input type="button" id="bttExport" onclick="bttExport()" value="Export" class="button" />&lt;/td>
-&lt;/tr>
-&lt;/table>
-&lt;/div>
-&lt;script type="text/javascript">
+&lt;tr&gt;
+&lt;td class="td-docSelectorColumn" style="text-align: center;"&gt;&lt;input type="button" onclick="addDocs();" id="bttAdd" value="Add to my package &amp;gt;&amp;gt;" class="button" /&gt;&lt;/td&gt;
+&lt;td class="td-selectedColumn" style="text-align: center;"&gt;&lt;input type="button" onclick="deleteDocs();" id="bttRemove" value="&amp;lt;&amp;lt; Remove from my package" class="button" /&gt;&lt;/td&gt;
+&lt;td class="td-packageColumn" style="text-align: center;"&gt;&lt;input type="button" id="bttExport" onclick="bttExport()" value="Export" class="button" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
 Ajax.XWikiRequest = Class.create(Ajax.Request, {
     initialize: function($super, space, docName, options, action) {
     this.transport = Ajax.getTransport();
@@ -256,16 +276,16 @@ Ajax.XWikiRequest = Class.create(Ajax.Request, {
 
 
       function createTable(id, parent){
-         $(parent).innerHTML = "&lt;table id=" + id + ">&lt;/table>";
+         $(parent).innerHTML = "&lt;table id=" + id + "&gt;&lt;/table&gt;";
       }
 
 
       function insertTableRow(id, name, type) {
          name = name.escapeHTML().replace(/"/g,'&amp;quot;').replace(/'/g,'&amp;#39;');
          if (type == "doc")
-           new Insertion.Bottom(id, "&lt;tr>&lt;td>" + name + "&lt;/td>&lt;td>&lt;input type='checkbox' value='"+name+"' class='checkedDoc'/>&lt;/td>&lt;/tr>");
+           new Insertion.Bottom(id, "&lt;tr&gt;&lt;td&gt;" + name + "&lt;/td&gt;&lt;td&gt;&lt;input type='checkbox' value='"+name+"' class='checkedDoc'/&gt;&lt;/td&gt;&lt;/tr&gt;");
          else if (type == "pack")
-           new Insertion.Bottom(id, "&lt;tr>&lt;td>&lt;a onclick='selectPackage(\""+ name +"\")' class='Exportlink'>" + name + "&lt;/a>&lt;/td>&lt;/tr>");
+           new Insertion.Bottom(id, "&lt;tr&gt;&lt;td&gt;&lt;a onclick='selectPackage(\""+ name +"\")' class='Exportlink'&gt;" + name + "&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;");
       }
 
       function insertNewSelectedDoc(id, value)
@@ -276,14 +296,14 @@ Ajax.XWikiRequest = Class.create(Ajax.Request, {
       function insertNewDoc(id, value)
       {
          value = value.escapeHTML().replace(/"/g,'&amp;quot;').replace(/'/g,'&amp;#39;');
-         new Insertion.Bottom(id, "&lt;tr class='selCheckedTR' id='tr_" + value + "'>&lt;td>&lt;input type='checkBox' value='" + value + "' class='selCheckedDoc' />&lt;span id='" + value + "' class='exportDocName'>" + value + "&lt;/span>&lt;/td>&lt;/tr>");
+         new Insertion.Bottom(id, "&lt;tr class='selCheckedTR' id='tr_" + value + "'&gt;&lt;td&gt;&lt;input type='checkBox' value='" + value + "' class='selCheckedDoc' /&gt;&lt;span id='" + value + "' class='exportDocName'&gt;" + value + "&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;");
       }
 
       function deleteDocs()
       {
         var docs = document.getElementsByClassName("selCheckedDoc");
         var i;
-        for (i = docs.length-1; i >= 0; i--)
+        for (i = docs.length-1; i &gt;= 0; i--)
          {
              var doc = docs[i];
              if (doc.checked)
@@ -341,13 +361,13 @@ Ajax.XWikiRequest = Class.create(Ajax.Request, {
       function getXmlValue(tag, xml)
       {
         var nodes = xml.getElementsByTagName(tag);
-        if (nodes.length > 0 &amp;&amp; nodes[0].firstChild)
+        if (nodes.length &gt; 0 &amp;&amp; nodes[0].firstChild)
           return nodes[0].firstChild.data;
         else
           return "";
       }
 
-&lt;/script>
+&lt;/script&gt;
 {/pre}
 #end</content>
 </xwikidoc>

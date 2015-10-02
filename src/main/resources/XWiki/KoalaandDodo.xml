@@ -1,21 +1,41 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>KoalaandDodo</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <creator>xwiki:XWiki.superadmin</creator>
+  <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1443523148000</creationDate>
   <parent>XWiki.XWikiUsers</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443536355000</date>
   <contentUpdateDate>1443536355000</contentUpdateDate>
-  <version>1.6</version>
+  <version>1.1</version>
   <title/>
-  <comment>Updated WatchList</comment>
-  <minorEdit>true</minorEdit>
+  <comment/>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
   <content>{{include document="XWiki.XWikiUserSheet"/}}</content>
@@ -149,13 +169,13 @@
       <interval>Scheduler.WatchListDailyNotifier</interval>
     </property>
     <property>
-      <spaces></spaces>
+      <spaces/>
     </property>
     <property>
-      <users></users>
+      <users/>
     </property>
     <property>
-      <wikis></wikis>
+      <wikis/>
     </property>
   </object>
   <object>
@@ -232,7 +252,7 @@
       <allow>1</allow>
     </property>
     <property>
-      <groups></groups>
+      <groups/>
     </property>
     <property>
       <levels>edit</levels>
@@ -451,14 +471,14 @@
 #if ($xcontext.action == 'inline' || $xcontext.action == 'edit')
   {{html}}
     #if($xwiki.jodatime)
-      &lt;select id='$prefix$name' name='$prefix$name'>
-        &lt;option value="" #if($value == $tz)selected="selected"#end>$services.localization.render('XWiki.XWikiPreferences_timezone_default')&lt;/option>
+      &lt;select id='$prefix$name' name='$prefix$name'&gt;
+        &lt;option value="" #if($value == $tz)selected="selected"#end&gt;$services.localization.render('XWiki.XWikiPreferences_timezone_default')&lt;/option&gt;
         #foreach($tz in $xwiki.jodatime.getServerTimezone().getAvailableIDs())
-          &lt;option value="$tz" #if($value == $tz)selected="selected"#end>$tz&lt;/option>
+          &lt;option value="$tz" #if($value == $tz)selected="selected"#end&gt;$tz&lt;/option&gt;
         #end
-      &lt;/select>
+      &lt;/select&gt;
     #else
-      &lt;input id='$prefix$name' name='$prefix$name' type="text" value="$!value"/>
+      &lt;input id='$prefix$name' name='$prefix$name' type="text" value="$!value"/&gt;
     #end
   {{/html}}
 #else
@@ -507,25 +527,25 @@
       <active>0</active>
     </property>
     <property>
-      <address></address>
+      <address/>
     </property>
     <property>
-      <avatar></avatar>
+      <avatar/>
     </property>
     <property>
-      <blog></blog>
+      <blog/>
     </property>
     <property>
-      <blogfeed></blogfeed>
+      <blogfeed/>
     </property>
     <property>
-      <comment></comment>
+      <comment/>
     </property>
     <property>
-      <company></company>
+      <company/>
     </property>
     <property>
-      <default_language></default_language>
+      <default_language/>
     </property>
     <property>
       <displayHiddenDocuments/>
@@ -534,31 +554,31 @@
       <editor>---</editor>
     </property>
     <property>
-      <email></email>
+      <email/>
     </property>
     <property>
-      <first_name></first_name>
+      <first_name/>
     </property>
     <property>
-      <imaccount></imaccount>
+      <imaccount/>
     </property>
     <property>
       <imtype>---</imtype>
     </property>
     <property>
-      <last_name></last_name>
+      <last_name/>
     </property>
     <property>
       <password>hash:SHA-512:c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec</password>
     </property>
     <property>
-      <phone></phone>
+      <phone/>
     </property>
     <property>
-      <skin></skin>
+      <skin/>
     </property>
     <property>
-      <timezone></timezone>
+      <timezone/>
     </property>
     <property>
       <usertype>Simple</usertype>

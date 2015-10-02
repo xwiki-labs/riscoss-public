@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>DeletedDocuments</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1301566279000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('platform.index.documentsTrash')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -43,16 +63,16 @@ $xwiki.jsx.use('XWiki.DeletedDocuments')##
 ##
 ##
 {{html wiki="true" clean="false"}}
-&lt;div class="hidden">
+&lt;div class="hidden"&gt;
 #livetable('documentsTrash' $columns $columnProperties $options)
-&lt;/div>
+&lt;/div&gt;
 {{/html}}
 ##
 ##
 ##
 
 {{html wiki="true" clean="false"}}
-&lt;noscript>
+&lt;noscript&gt;
   #set($deletedDocuments = $services.query.hql('select count(ddoc.id) from XWikiDeletedDocument as ddoc').execute().get(0))
   #if($deletedDocuments == 0)
 
@@ -62,24 +82,24 @@ $xwiki.jsx.use('XWiki.DeletedDocuments')##
   #macro(displayDeletedDoc $id)
     #set($ddoc = $xwiki.getDeletedDocument('', '', "$id"))
     #set($originalDocument = $ddoc.getDocument())
-    &lt;tr>
-      &lt;td>&lt;a href="$originalDocument.getURL('view', "viewer=recyclebin&amp;amp;id=${id}")">$escapetool.xml($ddoc.fullName)&lt;/a>&lt;/td>
-      &lt;td>$escapetool.xml($originalDocument.plainTitle)&lt;/td>
-      &lt;td>$xwiki.formatDate($ddoc.getDate(), $dateFormat)&lt;/td>
-      &lt;td>$xwiki.getUserName($ddoc.getDeleter())&lt;/td>
-      &lt;td class="itemActions">
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href="$originalDocument.getURL('view', "viewer=recyclebin&amp;amp;id=${id}")"&gt;$escapetool.xml($ddoc.fullName)&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;$escapetool.xml($originalDocument.plainTitle)&lt;/td&gt;
+      &lt;td&gt;$xwiki.formatDate($ddoc.getDate(), $dateFormat)&lt;/td&gt;
+      &lt;td&gt;$xwiki.getUserName($ddoc.getDeleter())&lt;/td&gt;
+      &lt;td class="itemActions"&gt;
         #if($xwiki.getDocument($ddoc.fullName).isNew())
           #if($ddoc.canUndelete())
-            &lt;a href="${originalDocument.getURL('undelete', "id=${id}")}" class="tool restore" title="$services.localization.render('platform.index.trashDocumentsActionsRestoreTooltip')">$services.localization.render('platform.index.trashDocumentsActionsRestoreText')&lt;/a>
+            &lt;a href="${originalDocument.getURL('undelete', "id=${id}")}" class="tool restore" title="$services.localization.render('platform.index.trashDocumentsActionsRestoreTooltip')"&gt;$services.localization.render('platform.index.trashDocumentsActionsRestoreText')&lt;/a&gt;
           #end
         #else
-          &lt;a href="${originalDocument.getURL()}" class="tool cannot-restore" title="$services.localization.render('platform.index.trashDocumentsActionsCannotRestoreTooltip')">$services.localization.render('platform.index.trashDocumentsActionsCannotRestoreText')&lt;/a>
+          &lt;a href="${originalDocument.getURL()}" class="tool cannot-restore" title="$services.localization.render('platform.index.trashDocumentsActionsCannotRestoreTooltip')"&gt;$services.localization.render('platform.index.trashDocumentsActionsCannotRestoreText')&lt;/a&gt;
         #end
         #if($ddoc.canDelete())
-          &lt;a href="${originalDocument.getURL('delete', "id=${id}&amp;amp;xredirect=$escapetool.url($!request.getRequestURI())?$escapetool.url($!request.getQueryString())")}" class="tool delete" title="$services.localization.render('platform.index.trashDocumentsActionsDeleteTooltip')">$services.localization.render('platform.index.trashDocumentsActionsDeleteText')&lt;/a>
+          &lt;a href="${originalDocument.getURL('delete', "id=${id}&amp;amp;xredirect=$escapetool.url($!request.getRequestURI())?$escapetool.url($!request.getQueryString())")}" class="tool delete" title="$services.localization.render('platform.index.trashDocumentsActionsDeleteTooltip')"&gt;$services.localization.render('platform.index.trashDocumentsActionsDeleteText')&lt;/a&gt;
         #end
-      &lt;/td>
-    &lt;/tr>
+      &lt;/td&gt;
+    &lt;/tr&gt;
   #end
 ##
   #if("$!{request.view}" == '')
@@ -93,25 +113,25 @@ $xwiki.jsx.use('XWiki.DeletedDocuments')##
     'url' : $doc.getURL('view', $queryParams)
   })
   #pagination($paginationParameters)
-  &lt;table id="searchResults" class="xwiki-livetable xwiki-livetable-display">
-    &lt;thead class="xwiki-livetable-display-header">&lt;tr>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text selected asc">$services.localization.render('platform.index.trashDocuments.ddoc.fullName')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashDocuments.ddoc.title')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashDocuments.ddoc.date')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashDocuments.ddoc.deleter')&lt;/th>
-      &lt;th scope="col" class="xwiki-livetable-display-header-text">$services.localization.render('platform.index.trashDocuments.actions')&lt;/th>
-    &lt;/tr>&lt;/thead>
-    &lt;tbody class="xwiki-livetable-display-body">
+  &lt;table id="searchResults" class="xwiki-livetable xwiki-livetable-display"&gt;
+    &lt;thead class="xwiki-livetable-display-header"&gt;&lt;tr&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text selected asc"&gt;$services.localization.render('platform.index.trashDocuments.ddoc.fullName')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashDocuments.ddoc.title')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashDocuments.ddoc.date')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashDocuments.ddoc.deleter')&lt;/th&gt;
+      &lt;th scope="col" class="xwiki-livetable-display-header-text"&gt;$services.localization.render('platform.index.trashDocuments.actions')&lt;/th&gt;
+    &lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody class="xwiki-livetable-display-body"&gt;
     #set ($statement = 'select ddoc.id from XWikiDeletedDocument as ddoc order by ddoc.fullName asc')
     #foreach ($item in $services.query.hql($statement).setLimit($paginationParameters.itemsPerPage).setOffset($paginationParameters.firstItem).execute())
       #displayDeletedDoc($item)
     #end
-    &lt;/tbody>
-  &lt;/table>
+    &lt;/tbody&gt;
+  &lt;/table&gt;
   #set($discard = $paginationParameters.put('position', 'bottom'))
   #pagination($paginationParameters)
   #end ## deletedDocuments.size
-&lt;/noscript>
+&lt;/noscript&gt;
 {{/html}}##
 #end## hasProgramR
 {{/velocity}}</content>
@@ -303,7 +323,7 @@ XWiki.index.trash.documents.confirmDelete = function(event, table, rowIdx) {
   }
 }
 /*
- * The livetable is hidden when javascript is disabled, so that an alternative &lt;noscript> table is displayed.
+ * The livetable is hidden when javascript is disabled, so that an alternative &lt;noscript&gt; table is displayed.
  * Re-display it when the document loads and Javascript is available.
  */
 document.observe('xwiki:dom:loaded', function() {
@@ -313,7 +333,7 @@ document.observe('xwiki:dom:loaded', function() {
 });</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -461,7 +481,7 @@ document.observe('xwiki:dom:loaded', function() {
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

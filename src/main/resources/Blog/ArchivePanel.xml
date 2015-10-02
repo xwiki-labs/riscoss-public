@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Blog</web>
   <name>ArchivePanel</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1373016402000</contentUpdateDate>
   <version>1.1</version>
   <title>Blog Archive Panel</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -136,17 +156,17 @@
   #if ("$!{firstYear}" != '') ## At least one entry exists
     #foreach ($year in [$firstYear..$lastYear])
       #set ($yearArticleCount = $services.query.hql("${query} and year(publishDate.value) = $year").bindValues($queryParams).count())
-      #if ($yearArticleCount > 0)
+      #if ($yearArticleCount &gt; 0)
         #set ($queryString = "space=$escapetool.url($blogDoc.space)&amp;year=${year}")
-        * [[$year (% class="itemCount" %)(${yearArticleCount})(%%)>>Blog.Archive||queryString="${queryString}"]]
+        * [[$year (% class="itemCount" %)(${yearArticleCount})(%%)&gt;&gt;Blog.Archive||queryString="${queryString}"]]
         #if ($year == $currentYear)
           #foreach ($month in [1..12])
             #set ($statement = "${query} and year(publishDate.value) = $year and month(publishDate.value) = $month")
             #set ($monthArticleCount = $services.query.hql($statement).bindValues($queryParams).count())
-            #if ($monthArticleCount > 0)
+            #if ($monthArticleCount &gt; 0)
               $tempDate.setMonthOfYear($month)##
               #set($queryString = "space=${escapetool.url($blogDoc.space)}&amp;year=${year}&amp;month=${month}")
-              ** [[$monthFormatter.print($tempDate) (% class="itemCount" %)(${monthArticleCount})(%%)>>Blog.Archive||queryString="${queryString}"]]
+              ** [[$monthFormatter.print($tempDate) (% class="itemCount" %)(${monthArticleCount})(%%)&gt;&gt;Blog.Archive||queryString="${queryString}"]]
             #end
           #end
         #end

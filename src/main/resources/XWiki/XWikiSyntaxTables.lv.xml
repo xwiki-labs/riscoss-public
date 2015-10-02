@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiSyntaxTables</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1301497989000</contentUpdateDate>
   <version>1.1</version>
   <title>XWikiSyntaxTables</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -38,18 +58,18 @@ Viki tabulas ļauj vienkāršā veidā attēlot saturu tabulas formā.
 |1. vārds|2. vārds
 )))
 |Tabula ar parametriem|(((
-{{{&lt;table style="background-color:red;align:center">
-&lt;tbody>
-&lt;tr>
-&lt;td>1. Virsraksts&lt;/td>
-&lt;td style="background-color:yellow">2. Virsraksts&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>1. vārds&lt;/td>
-&lt;td>2. vārds&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>}}}
+{{{&lt;table style="background-color:red;align:center"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1. Virsraksts&lt;/td&gt;
+&lt;td style="background-color:yellow"&gt;2. Virsraksts&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1. vārds&lt;/td&gt;
+&lt;td&gt;2. vārds&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;}}}
 )))|(((
 (% style="background-color:red;align=center" %)
 |=1. Virsraksts|=(% style="background-color:yellow" %)2. Virsraksts
@@ -59,20 +79,20 @@ Viki tabulas ļauj vienkāršā veidā attēlot saturu tabulas formā.
 {{{
 $xwiki.ssfx.use("js/xwiki/table/table.css")
 $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
-&lt;table id="table1id" class="grid sortable filterable doOddEven">
-&lt;tr class="sortHeader">
-&lt;th>1. virsraksts&lt;/th>
-&lt;th&gt;2. virsraksts&lt;/th>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 11&lt;/td>
-&lt;td>Šūna 12&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 21&lt;/td>
-&lt;td>Šūna 22&lt;/td>
-&lt;/tr>
-&lt;/table>
+&lt;table id="table1id" class="grid sortable filterable doOddEven"&gt;
+&lt;tr class="sortHeader"&gt;
+&lt;th&gt;1. virsraksts&lt;/th&gt;
+&lt;th&gt;2. virsraksts&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 11&lt;/td&gt;
+&lt;td&gt;Šūna 12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 21&lt;/td&gt;
+&lt;td&gt;Šūna 22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 }}}
 )))|(((
 {{velocity}}
@@ -81,20 +101,20 @@ $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
 {{/velocity}}
 
 {{html}}
-&lt;table id="table1id" class="grid sortable filterable doOddEven">
-&lt;tr class="sortHeader">
-&lt;th>1. virsraksts&lt;/th>
-&lt;th>2. virsraksts&lt;/th>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 11&lt;/td>
-&lt;td>Šūna 12&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 21&lt;/td>
-&lt;td>Šūna 22&lt;/td>
-&lt;/tr>
-&lt;/table>
+&lt;table id="table1id" class="grid sortable filterable doOddEven"&gt;
+&lt;tr class="sortHeader"&gt;
+&lt;th&gt;1. virsraksts&lt;/th&gt;
+&lt;th&gt;2. virsraksts&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 11&lt;/td&gt;
+&lt;td&gt;Šūna 12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 21&lt;/td&gt;
+&lt;td&gt;Šūna 22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 {{/html}}
 )))
 
@@ -131,20 +151,20 @@ $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
 {{/velocity}}
 
 {{html}}
-&lt;table id="tableid" class="grid sortable filterable doOddEven">
-&lt;tr class="sortHeader">
-&lt;th>1. virsraksts&lt;/th>
-&lt;th>2. virsraksts&lt;/th>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 11&lt;/td>
-&lt;td>Šūna 12&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 21&lt;/td>
-&lt;td>Šūna 22&lt;/td>
-&lt;/tr>
-&lt;/table>
+&lt;table id="tableid" class="grid sortable filterable doOddEven"&gt;
+&lt;tr class="sortHeader"&gt;
+&lt;th&gt;1. virsraksts&lt;/th&gt;
+&lt;th&gt;2. virsraksts&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 11&lt;/td&gt;
+&lt;td&gt;Šūna 12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 21&lt;/td&gt;
+&lt;td&gt;Šūna 22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 {{/html}}
 }}}
 )))|(((
@@ -154,20 +174,20 @@ $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
 {{/velocity}}
 
 {{html}}
-&lt;table id="tableid" class="grid sortable filterable doOddEven">
-&lt;tr class="sortHeader">
-&lt;th>1. virsraksts&lt;/th>
-&lt;th>2. virsraksts&lt;/th>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 11&lt;/td>
-&lt;td>Šūna 12&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Šūna 21&lt;/td>
-&lt;td>Šūna 22&lt;/td>
-&lt;/tr>
-&lt;/table>
+&lt;table id="tableid" class="grid sortable filterable doOddEven"&gt;
+&lt;tr class="sortHeader"&gt;
+&lt;th&gt;1. virsraksts&lt;/th&gt;
+&lt;th&gt;2. virsraksts&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 11&lt;/td&gt;
+&lt;td&gt;Šūna 12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Šūna 21&lt;/td&gt;
+&lt;td&gt;Šūna 22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 {{/html}}
 )))
 </content>

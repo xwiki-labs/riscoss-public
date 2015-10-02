@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Invitation</web>
   <name>InvitationCommon</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1274346990000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -47,12 +67,12 @@
  *
  * $mail (XObject representing email message) the message to view
  *
- * $recipients (List&lt;String>) (Optional) the list of email addresses to override the list provided by $mail
+ * $recipients (List&lt;String&gt;) (Optional) the list of email addresses to override the list provided by $mail
  *                                       used for preview because createMailFromTemplate will exclude addresses
  *                                       which are invalid and we want to show the invalid addresses to the
  *                                       user to tell them that they need to correct them.
  *
- * $invalidAddresses (List&lt;String>) (Optional) List of invalid email addresses in recipients. Needed if you want to
+ * $invalidAddresses (List&lt;String&gt;) (Optional) List of invalid email addresses in recipients. Needed if you want to
  *                                             show the user that they made a mistake on some addresses.
  *                                             For each email in $invalidEmails, if it is also in $recipients, then it
  *                                             will be marked but left in the same order, emails in $invlaidEmails but
@@ -61,9 +81,9 @@
 #macro(displayMessage, $mail, $recipients, $invalidAddresses)
 
   {{html wiki=false clean=false}}
-  &lt;div id="invitation-displaymessage" class="invitation">
-   &lt;strong>$services.localization.render('xe.invitation.previewLabel')&lt;/strong>
-   &lt;div class="invitation invitation-preview">
+  &lt;div id="invitation-displaymessage" class="invitation"&gt;
+   &lt;strong&gt;$services.localization.render('xe.invitation.previewLabel')&lt;/strong&gt;
+   &lt;div class="invitation invitation-preview"&gt;
     #set($recips = [])
     #set($invalid = [])
     ## get the lists of valid and invalid email addresses.
@@ -81,50 +101,50 @@
     #end
     ## Print the email addresses to be sent to.
     ## To:
-    &lt;strong>$services.localization.render('xe.invitation.toLabel')&lt;/strong>
-    &lt;div id="preview-to-field" class="invitation-preview field">
+    &lt;strong&gt;$services.localization.render('xe.invitation.toLabel')&lt;/strong&gt;
+    &lt;div id="preview-to-field" class="invitation-preview field"&gt;
      #foreach($recip in $recips)
        #if($invalid.contains($recip))
-         &lt;span class="invalid-address">$!escapetool.xml($!recip)&lt;/span> ##
+         &lt;span class="invalid-address"&gt;$!escapetool.xml($!recip)&lt;/span&gt; ##
          #set($discard = $invalid.remove($recip))
        #else
-         &lt;span class="valid-address">$!escapetool.xml($!recip)&lt;/span> ##
+         &lt;span class="valid-address"&gt;$!escapetool.xml($!recip)&lt;/span&gt; ##
        #end
      #end
      #foreach($recip in $invalid)
-       &lt;span class="invalid-address">$!escapetool.xml($!recip)&lt;/span> ##
+       &lt;span class="invalid-address"&gt;$!escapetool.xml($!recip)&lt;/span&gt; ##
      #end
      &amp;nbsp; ## used to make the field the correct size if it's empty.
-    &lt;/div>
+    &lt;/div&gt;
     ## Tell the user that some of the email addresses are invalid.
-    #if($invalidAddresses &amp;&amp; $invalidAddresses.size() > 0)
-      &lt;p class="invalid-address-message">
-       &lt;span class="errormessage">
+    #if($invalidAddresses &amp;&amp; $invalidAddresses.size() &gt; 0)
+      &lt;p class="invalid-address-message"&gt;
+       &lt;span class="errormessage"&gt;
         #if($recips.size() == 1)
           ## The email address given is invalid and will not be sent to.
           $services.localization.render('xe.invitation.displayMessage.theAddressIsInvalid')
         #else
-          #if($invalid.size() > 1)
+          #if($invalid.size() &gt; 1)
             $services.localization.render('xe.invitation.displayMessage.someAddressesAreInvalid', [$invalidAddresses.size()])
           #else
             $services.localization.render('xe.invitation.displayMessage.anAddressesIsInvalid')
           #end
         #end
-       &lt;/span>
-      &lt;/p>
+       &lt;/span&gt;
+      &lt;/p&gt;
     #end
      ## Subject:
-     &lt;strong>$services.localization.render('xe.invitation.subjectLabel')&lt;/strong>
-    &lt;div id="preview-subjectline-field" class="invitation-preview field">
+     &lt;strong&gt;$services.localization.render('xe.invitation.subjectLabel')&lt;/strong&gt;
+    &lt;div id="preview-subjectline-field" class="invitation-preview field"&gt;
      $escapetool.xml($mail.getProperty('subjectLine').getValue())
-    &lt;/div>
+    &lt;/div&gt;
     ## Message:
-    &lt;strong>$services.localization.render('xe.invitation.contentLabel')&lt;/strong>
-    &lt;div id="preview-messagebody-field" class="invitation-preview field">
+    &lt;strong&gt;$services.localization.render('xe.invitation.contentLabel')&lt;/strong&gt;
+    &lt;div id="preview-messagebody-field" class="invitation-preview field"&gt;
      $mail.getProperty('messageBody').getValue()
-    &lt;/div>
-   &lt;/div>
-  &lt;/div>
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
   {{/html}}
 
 #end
@@ -134,7 +154,7 @@
  * Only works if the script calling this macro has permission to view InvitationConfig 
  * (or create it if it doesn't exist)
  *
- * $config (Map&lt;String, String>) will be populated with invitation configuration.
+ * $config (Map&lt;String, String&gt;) will be populated with invitation configuration.
  *
  * $configDocName (String) (Optional) will load configuration from this document, if not specified will use
  *                                    'InvitationConfig' in the same space as $doc.
@@ -247,11 +267,11 @@
 #**
  * Load mail from mail containing document.
  *
- * $config (Map&lt;String, String>) will be used to get the name of the email class.
+ * $config (Map&lt;String, String&gt;) will be used to get the name of the email class.
  *
  * $emailContainer (Document) the document to get the email from.
  *
- * $mail (Map&lt;String, XObject>) will be populated with email message XObjects by their messageID.
+ * $mail (Map&lt;String, XObject&gt;) will be populated with email message XObjects by their messageID.
  *###
 #macro(loadInvitationMail, $config, $emailContainer, $mail)
   ## If this doesn't already exist, it's created.
@@ -288,9 +308,9 @@
  * Get the action taken by the user.
  * This will interpret actions taken using displayActionConfirmationForm
  *
- * $parameterMap (Map&lt;String, String>) the parameter map gotten by calling getParameterMap on the servlet request.
+ * $parameterMap (Map&lt;String, String&gt;) the parameter map gotten by calling getParameterMap on the servlet request.
  *
- * $actionOutList (List&lt;String>) will be populated with a single value (the action)
+ * $actionOutList (List&lt;String&gt;) will be populated with a single value (the action)
  *###
 #macro(getUserAction, $parameterMap, $actionOutList)
   #set($actionInternal = 0)
@@ -308,7 +328,7 @@
 #*
  * Display a form allowing a user to confirm doing an action.
  *
- * $messageIDs (List&lt;String>) the unique IDs of the invitations to act upon.
+ * $messageIDs (List&lt;String&gt;) the unique IDs of the invitations to act upon.
  *
  * $action (String) the action to do.
  *
@@ -316,37 +336,37 @@
  *
  * $confirmLabel (String) what the confirm button should say.
  *
- * $additionalParameters (Map&lt;String, String>) these parameters will be xml escaped and placed in hidden input fields.
+ * $additionalParameters (Map&lt;String, String&gt;) these parameters will be xml escaped and placed in hidden input fields.
  *###
 #macro(displayActionConfirmationForm, $messageIDs, $action, $memoLabel, $confirmLabel, $additionalParameters)
   {{html wiki=false clean=false}}
-  &lt;div class="invitation action-confirm">
-   &lt;form action="$doc.getURL()" method="POST">
+  &lt;div class="invitation action-confirm"&gt;
+   &lt;form action="$doc.getURL()" method="POST"&gt;
     ##
     #foreach($id in $messageIDs)
-      &lt;input type="hidden" name="messageID" value="$escapetool.xml($id)" />
+      &lt;input type="hidden" name="messageID" value="$escapetool.xml($id)" /&gt;
     #end
-    &lt;input type="hidden" name="confirm" value="y" />
-    &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-    #if($additionalParameters &amp;&amp; $additionalParameters.size() > 0)
+    &lt;input type="hidden" name="confirm" value="y" /&gt;
+    &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    #if($additionalParameters &amp;&amp; $additionalParameters.size() &gt; 0)
       #foreach($param in $additionalParameters.keySet())
-        &lt;input type="hidden" name="$escapetool.xml($param)" value="$escapetool.xml($additionalParameters.get($param))" />
+        &lt;input type="hidden" name="$escapetool.xml($param)" value="$escapetool.xml($additionalParameters.get($param))" /&gt;
       #end
     #end
     ##
-    &lt;dl>
-     &lt;dt>&lt;label for="memo">$memoLabel&lt;/label>&lt;/dt>
-     &lt;dd>&lt;input type="text" size="54" name="memo" />&lt;/dd>
-    &lt;/dl>
-    &lt;div class="bottombuttons">
-     &lt;div class="buttons">
-      &lt;span class="buttonwrapper">
-       &lt;input type="submit" class="button" name="doAction_$escapetool.xml($action)" value="$confirmLabel" />
-      &lt;/span>
-     &lt;/div>
-    &lt;/div>
-   &lt;/form>
-  &lt;/div>
+    &lt;dl&gt;
+     &lt;dt&gt;&lt;label for="memo"&gt;$memoLabel&lt;/label&gt;&lt;/dt&gt;
+     &lt;dd&gt;&lt;input type="text" size="54" name="memo" /&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;div class="bottombuttons"&gt;
+     &lt;div class="buttons"&gt;
+      &lt;span class="buttonwrapper"&gt;
+       &lt;input type="submit" class="button" name="doAction_$escapetool.xml($action)" value="$confirmLabel" /&gt;
+      &lt;/span&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/form&gt;
+  &lt;/div&gt;
   {{/html}}
 #end
 ##
@@ -712,7 +732,7 @@
       <guestsActionsPage>Invitation.InvitationGuestActions</guestsActionsPage>
     </property>
     <property>
-      <javamail_extra_props></javamail_extra_props>
+      <javamail_extra_props/>
     </property>
     <property>
       <mainPage>Invitation.WebHome</mainPage>
@@ -741,19 +761,19 @@ $services.localization.render('xe.invitation.emailContent.userHasInvitedYouToJoi
 
 {{html clean=false}}
 #if("$!messageBody" != "")
-  &lt;p style="$bigText">
+  &lt;p style="$bigText"&gt;
   $!escapetool.xml($!messageBody)
-  &lt;/p>
+  &lt;/p&gt;
 #end
-&lt;p style="margin-top:30px">
-&lt;a href="${guestActionsURL}?doAction_accept=y&amp;amp;messageID=$messageID" style="$bigText$joinLink$linkStyle">
+&lt;p style="margin-top:30px"&gt;
+&lt;a href="${guestActionsURL}?doAction_accept=y&amp;amp;messageID=$messageID" style="$bigText$joinLink$linkStyle"&gt;
 $services.localization.render('xe.invitation.emailContent.joinLink')
-&lt;/a>
-&lt;a href="${guestActionsURL}?doAction_decline=y&amp;amp;messageID=$messageID" style="$bigText$declineLink">
+&lt;/a&gt;
+&lt;a href="${guestActionsURL}?doAction_decline=y&amp;amp;messageID=$messageID" style="$bigText$declineLink"&gt;
  $services.localization.render('xe.invitation.emailContent.declineLink')
-&lt;/a>&lt;/p>
-&lt;hr style="clear:both" />
-$services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;a href=$escapetool.getQ()${guestActionsURL}?doAction_report=y&amp;amp;messageID=$messageID$escapetool.getQ() style=$escapetool.getQ()$linkStyle$escapetool.getQ()>", "&lt;/a>"])
+&lt;/a&gt;&lt;/p&gt;
+&lt;hr style="clear:both" /&gt;
+$services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;a href=$escapetool.getQ()${guestActionsURL}?doAction_report=y&amp;amp;messageID=$messageID$escapetool.getQ() style=$escapetool.getQ()$linkStyle$escapetool.getQ()&gt;", "&lt;/a&gt;"])
 {{/html}}
 {{/velocity}}</messageBodyTemplate>
     </property>
@@ -768,10 +788,10 @@ $services.localization.render('xe.invitation.emailContent.reportMessage', ["&lt;
       <smtp_server>localhost</smtp_server>
     </property>
     <property>
-      <smtp_server_password></smtp_server_password>
+      <smtp_server_password/>
     </property>
     <property>
-      <smtp_server_username></smtp_server_username>
+      <smtp_server_username/>
     </property>
     <property>
       <subjectLineTemplate>{{velocity}}$services.localization.render('xe.invitation.emailContent.subjectLine', [$xcontext.getUser().replaceAll("^[^\.]*.", ""), $xwiki.getRequestURL().replaceAll("https?://([^/:]*).*$", "$1"), $!subjectLine]){{/velocity}}</subjectLineTemplate>

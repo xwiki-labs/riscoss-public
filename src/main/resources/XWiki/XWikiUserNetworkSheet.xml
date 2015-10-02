@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiUserNetworkSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1300232375000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -31,7 +51,7 @@
     #set($followedUsers = $xwiki.watchlist.getWatchedUsers())
     ## FIXME: This is an ugly workaround for an even uglier bug in the watchlist
     ##        plugin: the first item in the list is an empty string
-    #if ($followedUsers.size() > 0 &amp;&amp; "$!followedUsers.get(0)" == '')
+    #if ($followedUsers.size() &gt; 0 &amp;&amp; "$!followedUsers.get(0)" == '')
       #set ($discard = $followedUsers.remove(0))
     #end
     {{html clean="false" wiki="true"}}
@@ -39,14 +59,14 @@
     $xwiki.ssx.use("XWiki.XWikiUserSheet")##
     $xwiki.ssx.use("XWiki.XWikiUserProfileSheet")##
     $xwiki.jsx.use("XWiki.XWikiUserNetworkSheet")##
-    &lt;div class="half column">
-      &lt;div class="following profile-section highlighted-profile-section">
+    &lt;div class="half column"&gt;
+      &lt;div class="following profile-section highlighted-profile-section"&gt;
         ## Please do not insert extra empty lines here (as it affects the validity of the rendered xhtml)
-        &lt;h1>$services.localization.render('platform.core.profile.section.following')&lt;/h1>
+        &lt;h1&gt;$services.localization.render('platform.core.profile.section.following')&lt;/h1&gt;
         #if (!$followedUsers || $followedUsers.size() == 0)
           $services.localization.render('platform.core.profile.section.following.none')
         #else
-          &lt;ul>
+          &lt;ul&gt;
           #foreach ($followedUser in $followedUsers)
             #set ($authorsParam = $services.model.serialize($services.model.resolveDocument($xcontext.user), 'default'))
             #set ($userDocument = $xwiki.getDocument($followedUser))
@@ -54,34 +74,34 @@
             ## (do it here to avoid another foreach loop later)
             #set ($authorsParam = "$!{authorsParam},${userDocument.fullName},${userDocument.prefixedFullName}")
             ## Display the user info
-            &lt;li class="vcard">
+            &lt;li class="vcard"&gt;
             #set ($userID = $userDocument.name)
             #smallUserAvatar($followedUser)
-            &lt;span class="user-info">&lt;span class="fn">$xwiki.getUserName($followedUser)&lt;/span> &lt;span class="user-id">($userID)&lt;/span>&lt;/span>
-            &lt;span class="userstatus-follow">
+            &lt;span class="user-info"&gt;&lt;span class="fn"&gt;$xwiki.getUserName($followedUser)&lt;/span&gt; &lt;span class="user-id"&gt;($userID)&lt;/span&gt;&lt;/span&gt;
+            &lt;span class="userstatus-follow"&gt;
               #set ($xredirect = $doc.getURL($xcontext.action, $request.queryString))
-              &lt;a class="action unfollow" href="$userDocument.getURL('view', "xpage=watch&amp;amp;do=removeuser&amp;amp;xredirect=${escapetool.url($xredirect)}")" title="$services.localization.render('xe.activity.messages.unfollow')">$services.localization.render('xe.activity.messages.unfollow')&lt;/a>
-            &lt;/span>
-            &lt;div class="clearfloats">&amp;nbsp;&lt;/div>
-            &lt;/li>
+              &lt;a class="action unfollow" href="$userDocument.getURL('view', "xpage=watch&amp;amp;do=removeuser&amp;amp;xredirect=${escapetool.url($xredirect)}")" title="$services.localization.render('xe.activity.messages.unfollow')"&gt;$services.localization.render('xe.activity.messages.unfollow')&lt;/a&gt;
+            &lt;/span&gt;
+            &lt;div class="clearfloats"&gt;&amp;nbsp;&lt;/div&gt;
+            &lt;/li&gt;
           #end
-          &lt;/ul>
+          &lt;/ul&gt;
         #end
-      &lt;/div>
-    &lt;/div>
-    #if ($followedUsers.size() > 0)
-      &lt;div class="half column">
-        &lt;div class="networkActivity profile-section">
-          &lt;h1>$services.localization.render('platform.core.profile.section.networkActivity')&lt;/h1>
+      &lt;/div&gt;
+    &lt;/div&gt;
+    #if ($followedUsers.size() &gt; 0)
+      &lt;div class="half column"&gt;
+        &lt;div class="networkActivity profile-section"&gt;
+          &lt;h1&gt;$services.localization.render('platform.core.profile.section.networkActivity')&lt;/h1&gt;
     {{/html}}
 
 {{activity authors="$!{authorsParam}" /}}
 
     {{html clean="false"}}
-        &lt;/div>
-      &lt;/div>
-    #end## $followedUsers.size() > 0
-    &lt;div class="clearfloats">&amp;nbsp;&lt;/div>
+        &lt;/div&gt;
+      &lt;/div&gt;
+    #end## $followedUsers.size() &gt; 0
+    &lt;div class="clearfloats"&gt;&amp;nbsp;&lt;/div&gt;
     {{/html}}##
   #end## isMyProfile &amp;&amp; $isMessageStreamActive &amp;&amp; $hasWatch
 #end## User object exists
@@ -222,7 +242,7 @@
 });</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

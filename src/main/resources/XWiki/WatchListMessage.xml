@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>WatchListMessage</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197402000</date>
   <contentUpdateDate>1429197402000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -22,7 +42,7 @@
 </content>
   <attachment>
     <filename>arrowup.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1256570420000</date>
     <version>1.1</version>
     <comment/>
@@ -31,7 +51,7 @@
   </attachment>
   <attachment>
     <filename>attach.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251901626000</date>
     <version>1.1</version>
     <comment/>
@@ -40,7 +60,7 @@
   </attachment>
   <attachment>
     <filename>boolean.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -49,7 +69,7 @@
   </attachment>
   <attachment>
     <filename>class.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251901480000</date>
     <version>1.1</version>
     <comment/>
@@ -58,7 +78,7 @@
   </attachment>
   <attachment>
     <filename>date.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -67,7 +87,7 @@
   </attachment>
   <attachment>
     <filename>dblist.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -76,7 +96,7 @@
   </attachment>
   <attachment>
     <filename>dbtreelist.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -85,7 +105,7 @@
   </attachment>
   <attachment>
     <filename>document.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251111875000</date>
     <version>1.1</version>
     <comment/>
@@ -94,7 +114,7 @@
   </attachment>
   <attachment>
     <filename>groups.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -103,7 +123,7 @@
   </attachment>
   <attachment>
     <filename>levels.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -112,7 +132,7 @@
   </attachment>
   <attachment>
     <filename>metadata.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251902071000</date>
     <version>1.1</version>
     <comment/>
@@ -121,7 +141,7 @@
   </attachment>
   <attachment>
     <filename>number.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -130,7 +150,7 @@
   </attachment>
   <attachment>
     <filename>object.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251901489000</date>
     <version>1.1</version>
     <comment/>
@@ -139,7 +159,7 @@
   </attachment>
   <attachment>
     <filename>password.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -148,7 +168,7 @@
   </attachment>
   <attachment>
     <filename>space.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251111875000</date>
     <version>1.1</version>
     <comment/>
@@ -157,7 +177,7 @@
   </attachment>
   <attachment>
     <filename>staticlist.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -166,7 +186,7 @@
   </attachment>
   <attachment>
     <filename>string.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -175,7 +195,7 @@
   </attachment>
   <attachment>
     <filename>textarea.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -184,7 +204,7 @@
   </attachment>
   <attachment>
     <filename>users.png</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251992318000</date>
     <version>1.1</version>
     <comment/>
@@ -193,7 +213,7 @@
   </attachment>
   <attachment>
     <filename>wiki.gif</filename>
-    <author>XWiki.Admin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1251111875000</date>
     <version>1.1</version>
     <comment/>
@@ -279,7 +299,7 @@
 #set($rightColumnTitleStyle = "margin:0;")
 
 #macro(displayhtmldiff $html)
-  #set($result = $html.replaceAll('\&lt;div class="diff"\>\&lt;/div\>', "").trim())
+  #set($result = $html.replaceAll('\&lt;div class="diff"\&gt;\&lt;/div\&gt;', "").trim())
   #set($result = $result.replaceAll('class="diffaddword"', 'style="font-weight:bold;background-color:#99FF99;"'))
   #set($result = $result.replaceAll('class="diffremoveword"', 'style="text-decoration: line-through;background-color:#FF9999;"'))
   #set($prefix = "WATCHLIST_STYLE_DIFF_")
@@ -295,54 +315,54 @@
   #set($suffix = "_WATCHLIST_IMG_PLACEHOLDER")
   ## Escape nested quotes by using the double quote syntax in Velocity (new in Velocity 1.7)
   #foreach($totransform in ["attach", "object", "class", "metadata"])
-    #set($result = $result.replaceAll("${totransform}${suffix}", "&lt;img src=""cid:${totransform}.gif"" style=""${iconStyle}"" ${iconAttrs}>&lt;/img>"))
+    #set($result = $result.replaceAll("${totransform}${suffix}", "&lt;img src=""cid:${totransform}.gif"" style=""${iconStyle}"" ${iconAttrs}&gt;&lt;/img&gt;"))
   #end
   #foreach($totransform in ["boolean", "date", "dblist", "dbtreelist", "groups", "levels", "number", "password", "staticlist", "string", "textarea", "users"])
-    #set($result = $result.replaceAll("${totransform}${suffix}", "&lt;img src=""cid:${totransform}.png"" style=""${iconStyle}"" ${iconAttrs}>&lt;/img>"))
+    #set($result = $result.replaceAll("${totransform}${suffix}", "&lt;img src=""cid:${totransform}.png"" style=""${iconStyle}"" ${iconAttrs}&gt;&lt;/img&gt;"))
   #end
   $result
 #end
 
-&lt;div style="$containerStyle">
-&lt;div style="$rightColumnStyle">
-&lt;h2 style="$rightColumnTitleStyle">$services.localization.render('watchlist.notification.email.contents')&lt;a name="nav">&lt;span>&amp;nbsp;&lt;/span>&lt;/a>&lt;/h2>
+&lt;div style="$containerStyle"&gt;
+&lt;div style="$rightColumnStyle"&gt;
+&lt;h2 style="$rightColumnTitleStyle"&gt;$services.localization.render('watchlist.notification.email.contents')&lt;a name="nav"&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
 #set($firstEntry = true)
 #set($previousEvent = "")
 #set($previousDoc = "")
-&lt;ul style="$rightColumnUlStyle">
+&lt;ul style="$rightColumnUlStyle"&gt;
 #foreach ($event in $events)
   #set($prefixedFullName = $event.getPrefixedFullName())
   #set($newWiki = ($event.getWiki() != $previousEvent.getWiki()))
   #if ($newWiki)
-    #if (!$firstEntry) &lt;/ul>&lt;/li>&lt;/ul>&lt;/li> #else #set($firstEntry = false) #end
+    #if (!$firstEntry) &lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt; #else #set($firstEntry = false) #end
     #set($previousEvent = "")
     #set($wikiName = "$!xwiki.wikimanager.getWikiDocument($event.getWiki()).getWikiPrettyName()")
     #if($wikiName == "")
       #set($wikiName = $event.getWiki())
     #end
-    &lt;li>&lt;a href="#$event.getWiki()" style="$rightColumnAStyle">$wikiName&lt;/a>
-    &lt;ul style="$rightColumnUlStyle">
+    &lt;li&gt;&lt;a href="#$event.getWiki()" style="$rightColumnAStyle"&gt;$wikiName&lt;/a&gt;
+    &lt;ul style="$rightColumnUlStyle"&gt;
   #end
   #set($newSpace = ($event.getSpace() != $previousEvent.getSpace()))
   #if ($newSpace)
-    #if (!$firstEntry &amp;&amp; !$newWiki) &lt;/ul>&lt;/li> #end
+    #if (!$firstEntry &amp;&amp; !$newWiki) &lt;/ul&gt;&lt;/li&gt; #end
     #set($previousEvent = "")
-    &lt;li>&lt;a href="#${event.getWiki()}:$event.getSpace()" style="$rightColumnAStyle">$event.getSpace()&lt;/a>
-    &lt;ul style="$rightColumnUlStyle">
+    &lt;li&gt;&lt;a href="#${event.getWiki()}:$event.getSpace()" style="$rightColumnAStyle"&gt;$event.getSpace()&lt;/a&gt;
+    &lt;ul style="$rightColumnUlStyle"&gt;
   #end
   #set($newDocument = $prefixedFullName != $previousDoc.getPrefixedFullName())
   #if($newDocument)
     #set($currentDoc = $xwiki.getDocument($prefixedFullName))
-    &lt;li>&lt;a href="#$prefixedFullName" style="$rightColumnAStyle">$currentDoc.getDisplayTitle()&lt;/a>&lt;/li>
+    &lt;li&gt;&lt;a href="#$prefixedFullName" style="$rightColumnAStyle"&gt;$currentDoc.getDisplayTitle()&lt;/a&gt;&lt;/li&gt;
   #end
   #set($previousEvent = $event)
   #set($previousDoc = $currentDoc)
 #end
-&lt;/ul>&lt;/li>&lt;/ul>&lt;/li>
-&lt;/ul>
-&lt;/div>
+&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 
-$services.localization.render('watchlist.notification.email.greeting', [$first_name])&lt;br>&lt;br>
+$services.localization.render('watchlist.notification.email.greeting', [$first_name])&lt;br&gt;&lt;br&gt;
 
 #if($modifiedDocuments.size() == 1)
 $services.localization.render('watchlist.notification.email.singleUpdate.intro')
@@ -357,33 +377,33 @@ $services.localization.render('watchlist.notification.email.multipleUpdates.intr
   #set($prefixedFullName = $event.getPrefixedFullName())
   #set($newWiki = ($event.getWiki() != $previousEvent.getWiki()))  
   #if ($newWiki)
-    #if (!$firstEntry) &lt;/div>&lt;/div>&lt;/div> #else #set($firstEntry = false) #end
+    #if (!$firstEntry) &lt;/div&gt;&lt;/div&gt;&lt;/div&gt; #else #set($firstEntry = false) #end
     #set($previousEvent = "")
     #set($wikiName = "$!xwiki.wikimanager.getWikiDocument($event.getWiki()).getWikiPrettyName()")
     #if($wikiName == "")
       #set($wikiName = $event.getWiki())
     #end
-    &lt;div class="wiki" style="$wikiDivStyle">
-    &lt;h1 style="$h1Style">&lt;img src="cid:wiki.gif" style="$iconStyle" ${iconAttrs} />&lt;a name="$event.getWiki()">&lt;span>&amp;nbsp;&lt;/span>&lt;/a>$wikiName&lt;/h1>
+    &lt;div class="wiki" style="$wikiDivStyle"&gt;
+    &lt;h1 style="$h1Style"&gt;&lt;img src="cid:wiki.gif" style="$iconStyle" ${iconAttrs} /&gt;&lt;a name="$event.getWiki()"&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/a&gt;$wikiName&lt;/h1&gt;
   #end
   #set($newSpace = ($event.getSpace() != $previousEvent.getSpace()))
   #if ($newSpace)
-    #if (!$firstEntry &amp;&amp; !$newWiki) &lt;/div>&lt;/div> #end
+    #if (!$firstEntry &amp;&amp; !$newWiki) &lt;/div&gt;&lt;/div&gt; #end
     #set($previousEvent = "")
-    &lt;div class="space" style="$spaceDivStyle">
-    &lt;h2 style="$h2Style">&lt;img src="cid:space.gif" style="$iconStyle" ${iconAttrs} />&lt;a name="${event.getWiki()}:$event.getSpace()">&lt;span>&amp;nbsp;&lt;/span>&lt;/a>$event.getSpace()&lt;/h2>
+    &lt;div class="space" style="$spaceDivStyle"&gt;
+    &lt;h2 style="$h2Style"&gt;&lt;img src="cid:space.gif" style="$iconStyle" ${iconAttrs} /&gt;&lt;a name="${event.getWiki()}:$event.getSpace()"&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/a&gt;$event.getSpace()&lt;/h2&gt;
   #end
   #set($newDocument = $prefixedFullName != $previousDoc.getPrefixedFullName())
   #if($newDocument)
-    #if (!$firstEntry &amp;&amp; !$newWiki &amp;&amp; !$newSpace) &lt;/div> #end
-    &lt;div class="document" style="$documentDivStyle">
+    #if (!$firstEntry &amp;&amp; !$newWiki &amp;&amp; !$newSpace) &lt;/div&gt; #end
+    &lt;div class="document" style="$documentDivStyle"&gt;
     #set($currentDoc = $xwiki.getDocument($prefixedFullName))
-    &lt;h3 style="$h3Style">&lt;img src="cid:document.gif" style="$iconStyle" ${iconAttrs} />&lt;a name="$prefixedFullName" href="$event.getUrl()">&lt;span>$currentDoc.getDisplayTitle()&lt;/span>&lt;/a> &lt;a href="#nav" style="text-decoration:none;padding-top:8px;">&lt;img src="cid:arrowup.gif" style="border:0;" width="16px" height="16px"/>&lt;/a>&lt;/h3>
-    &lt;span style="$h3BaselineStyle">$event.getFullName()&lt;/span>&lt;br/>&lt;br/>
+    &lt;h3 style="$h3Style"&gt;&lt;img src="cid:document.gif" style="$iconStyle" ${iconAttrs} /&gt;&lt;a name="$prefixedFullName" href="$event.getUrl()"&gt;&lt;span&gt;$currentDoc.getDisplayTitle()&lt;/span&gt;&lt;/a&gt; &lt;a href="#nav" style="text-decoration:none;padding-top:8px;"&gt;&lt;img src="cid:arrowup.gif" style="border:0;" width="16px" height="16px"/&gt;&lt;/a&gt;&lt;/h3&gt;
+    &lt;span style="$h3BaselineStyle"&gt;$event.getFullName()&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;
   #end
-  &lt;div style="$eventStyle">
+  &lt;div style="$eventStyle"&gt;
     #if(!$event.isComposite())
-      &lt;h4 style="$h4Style">$services.localization.render("watchlist.event.${event.getType()}", [$xwiki.formatDate($event.getDate()), $xwiki.getLocalUserName($event.getAuthor(), false)])&lt;/h4>
+      &lt;h4 style="$h4Style"&gt;$services.localization.render("watchlist.event.${event.getType()}", [$xwiki.formatDate($event.getDate()), $xwiki.getLocalUserName($event.getAuthor(), false)])&lt;/h4&gt;
     #else
       #set($authors = "")
       #foreach($author in $event.getAuthors())
@@ -394,25 +414,25 @@ $services.localization.render('watchlist.notification.email.multipleUpdates.intr
       #end
       #set($firstDateIndex = $event.getDates().size() - 1)
       #set($firstDate = $xwiki.formatDate($event.getDates().get($firstDateIndex)))
-      &lt;h4 style="$h4Style">$services.localization.render('watchlist.event.update.multiple', [$firstDate, $xwiki.formatDate($event.getDate()), $event.getVersions().size(), $event.getAuthors().size(), $authors])&lt;/h4>
+      &lt;h4 style="$h4Style"&gt;$services.localization.render('watchlist.event.update.multiple', [$firstDate, $xwiki.formatDate($event.getDate()), $event.getVersions().size(), $event.getAuthors().size(), $authors])&lt;/h4&gt;
     #end
     #if ($event.getType() == "update" || $event.getType() == "create")
       #set ($htmlDiff = $event.getHTMLDiff())
       ## If the HTML Diff failed, display some error message
       #if(!$htmlDiff)
-        &lt;div>$services.localization.render('watchlist.diff.error')&lt;/div>
+        &lt;div&gt;$services.localization.render('watchlist.diff.error')&lt;/div&gt;
       #else
-        &lt;div class="diff">
+        &lt;div class="diff"&gt;
           #displayhtmldiff($htmlDiff)
-        &lt;/div>
+        &lt;/div&gt;
       #end
     #end
-  &lt;/div>
+  &lt;/div&gt;
   #set($previousEvent = $event)
   #set($previousDoc = $currentDoc)
 #end
-&lt;/div>&lt;/div>&lt;/div>
-&lt;/div>
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;!--
 We want to be able to use attached images in the HTML part of the email but we don't want them to be listed as attachments. We use a little trick here to make the mailsender plugin consider that we use all the attached images in this mail even if we don't (some images are used very rarely).
 
@@ -436,7 +456,7 @@ src='cid:levels.png'
 src='cid:password.png'
 src='cid:object.gif'
 src='cid:arrowup.gif'
---></html>
+--&gt;</html>
     </property>
     <property>
       <language>en</language>

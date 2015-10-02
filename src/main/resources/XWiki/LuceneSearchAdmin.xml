@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>LuceneSearchAdmin</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1357918882000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('search.admin.lucene.title')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -57,7 +77,7 @@
   ##
   #if ($startindex)
     #set ($errorcode = $lucene.startIndex($wikis, $hqlFilter, $clearIndex, $onlyNew))
-    #if ($errorcode > 0)
+    #if ($errorcode &gt; 0)
       {{info}}$services.localization.render('search.admin.lucene.indexing.message.started'){{/info}}
     #elseif ($errorcode == -1)
       {{error}}$services.localization.render('needadminrights').{{/error}}
@@ -87,51 +107,51 @@
 {{velocity}}
 #if ($hasAdmin)
 {{html}}
-&lt;form action="$xwiki.requestURL" enctype="multipart/form-data" method="post">
-&lt;fieldset>
-&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
+&lt;form action="$xwiki.requestURL" enctype="multipart/form-data" method="post"&gt;
+&lt;fieldset&gt;
+&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
 
   ## Does not really make sense to reindex the whole farm from a subwiki
   #if ($xcontext.isMainWiki())
-&lt;p>
-    &lt;label for="indexfarm">&lt;input id="indexfarm" name="action" type="radio" value="indexfarm" #if (!$request.action || $request.action == 'indexfarm')checked="checked" #end/> $services.localization.render('search.admin.lucene.indexing.action.indexfarm')&lt;/label>
-&lt;/p>
+&lt;p&gt;
+    &lt;label for="indexfarm"&gt;&lt;input id="indexfarm" name="action" type="radio" value="indexfarm" #if (!$request.action || $request.action == 'indexfarm')checked="checked" #end/&gt; $services.localization.render('search.admin.lucene.indexing.action.indexfarm')&lt;/label&gt;
+&lt;/p&gt;
   #end
 
-&lt;p>
-  &lt;label for="indexcurrentwiki">&lt;input id="indexcurrentwiki" name="action" type="radio" value="indexcurrentwiki" #if((!$xcontext.isMainWiki() &amp;&amp; !$request.action) || $request.action == 'indexcurrentwiki'))checked="checked" #end/> $services.localization.render('search.admin.lucene.indexing.action.indexcurrentwiki')&lt;/label>
-&lt;/p>
+&lt;p&gt;
+  &lt;label for="indexcurrentwiki"&gt;&lt;input id="indexcurrentwiki" name="action" type="radio" value="indexcurrentwiki" #if((!$xcontext.isMainWiki() &amp;&amp; !$request.action) || $request.action == 'indexcurrentwiki'))checked="checked" #end/&gt; $services.localization.render('search.admin.lucene.indexing.action.indexcurrentwiki')&lt;/label&gt;
+&lt;/p&gt;
 
   ## Needs programming right because it takes a custom HQL query which could be dangerous
-&lt;p>
-  &lt;label for="indexcustom">&lt;input id="indexcustom" name="action" type="radio" value="indexcustom" #if ($request.action == 'indexcustom')checked="checked" #end/> $services.localization.render('search.admin.lucene.indexing.action.indexcustom')&lt;/label>
-&lt;/p>
+&lt;p&gt;
+  &lt;label for="indexcustom"&gt;&lt;input id="indexcustom" name="action" type="radio" value="indexcustom" #if ($request.action == 'indexcustom')checked="checked" #end/&gt; $services.localization.render('search.admin.lucene.indexing.action.indexcustom')&lt;/label&gt;
+&lt;/p&gt;
 
-&lt;p>
+&lt;p&gt;
   #if ($xcontext.isMainWiki())
-    &lt;label for="indexcustom_wikis">$services.localization.render('search.admin.lucene.indexing.action.indexcustom.wikis')&lt;/label> &lt;input id="indexcustom_wikis" name="wikis" type="text" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.wikis.title'))" value="$!wikisString" />
+    &lt;label for="indexcustom_wikis"&gt;$services.localization.render('search.admin.lucene.indexing.action.indexcustom.wikis')&lt;/label&gt; &lt;input id="indexcustom_wikis" name="wikis" type="text" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.wikis.title'))" value="$!wikisString" /&gt;
   #else
-    &lt;input id="indexcustom_wikis" name="wikis" value="${xcontext.database}" type="hidden" value="$!wikisString" />
+    &lt;input id="indexcustom_wikis" name="wikis" value="${xcontext.database}" type="hidden" value="$!wikisString" /&gt;
   #end
-&lt;/p>
+&lt;/p&gt;
 
   #if ($hasProgramming)
-&lt;p>
-    &lt;label for="indexcustom_hqlFilter">$services.localization.render('search.admin.lucene.indexing.action.indexcustom.hqlfilter')&lt;/label> &lt;input id="indexcustom_hqlFilter" name="hqlFilter" type="text" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.hqlfilter.title'))" #if($request.hqlFilter)value="${escapetool.xml($request.hqlFilter)}"#end />
-&lt;/p>
+&lt;p&gt;
+    &lt;label for="indexcustom_hqlFilter"&gt;$services.localization.render('search.admin.lucene.indexing.action.indexcustom.hqlfilter')&lt;/label&gt; &lt;input id="indexcustom_hqlFilter" name="hqlFilter" type="text" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.hqlfilter.title'))" #if($request.hqlFilter)value="${escapetool.xml($request.hqlFilter)}"#end /&gt;
+&lt;/p&gt;
   #end
 
-&lt;p>
-  &lt;label for="indexcustom_clearIndex">&lt;input id="indexcustom_clearIndex" name="clearIndex" type="checkbox" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.clearindex.title'))" #if($clearIndex)checked="checked" #end/> $services.localization.render('search.admin.lucene.indexing.action.indexcustom.clearindex')&lt;/label>
-&lt;/p>
-&lt;p>
-  &lt;label for="indexcustom_onlyNew">&lt;input id="indexcustom_onlyNew" name="onlyNew" type="checkbox" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.onlynew.title'))" #if($onlyNew)checked="checked" #end/> $services.localization.render('search.admin.lucene.indexing.action.indexcustom.onlynew')&lt;/label>
-&lt;/p>
+&lt;p&gt;
+  &lt;label for="indexcustom_clearIndex"&gt;&lt;input id="indexcustom_clearIndex" name="clearIndex" type="checkbox" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.clearindex.title'))" #if($clearIndex)checked="checked" #end/&gt; $services.localization.render('search.admin.lucene.indexing.action.indexcustom.clearindex')&lt;/label&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;label for="indexcustom_onlyNew"&gt;&lt;input id="indexcustom_onlyNew" name="onlyNew" type="checkbox" title="$escapetool.xml($services.localization.render('search.admin.lucene.indexing.action.indexcustom.onlynew.title'))" #if($onlyNew)checked="checked" #end/&gt; $services.localization.render('search.admin.lucene.indexing.action.indexcustom.onlynew')&lt;/label&gt;
+&lt;/p&gt;
 
-&lt;span class="buttonwrapper">&lt;input type="submit" value="$services.localization.render('search.admin.lucene.indexing.button')" class="button"/>&lt;/span>
+&lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="$services.localization.render('search.admin.lucene.indexing.button')" class="button"/&gt;&lt;/span&gt;
 
-&lt;/fieldset>
-&lt;/form>
+&lt;/fieldset&gt;
+&lt;/form&gt;
 {{/html}}
 #else## !$hasAdmin
   {{error}}$services.localization.render('needadminrights').{{/error}}
@@ -207,7 +227,7 @@
       </scope>
     </class>
     <property>
-      <content></content>
+      <content/>
     </property>
     <property>
       <extensionPointId>org.xwiki.platform.search</extensionPointId>

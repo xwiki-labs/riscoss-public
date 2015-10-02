@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>EditModes</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1194558497000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -108,13 +128,13 @@
 ###
 ###
 {{html}}
-&lt;ul>
-&lt;li id="xwikieditwysiwyg"#if ("$!editor" == 'wysiwyg') class="active"#end>&lt;a href="$doc.getURL('edit', "editor=wysiwyg&amp;amp;$param")" onclick="if (checkAdvancedContent('$services.localization.render('checkadvancedcontent')')==false) return false; return Try.these(function() {document.forms.${formname}.action='$doc.getURL('edit', "editor=wysiwyg&amp;amp;$languageparams&amp;amp;$param")'; document.forms.${formname}.submit(); return false;});">$services.localization.render('editVisual')&lt;/a>&lt;/li>
-&lt;li id="xwikieditwiki"#if ("$!editor" == 'wiki') class="active"#end>&lt;a href="$doc.getURL('edit', "editor=wiki&amp;amp;$param")" onclick="return Try.these(function() {document.forms.${formname}.action='$doc.getURL('edit', "editor=wiki&amp;amp;$languageparams&amp;amp;$param")'; document.forms.${formname}.submit(); return false;});">$services.localization.render('editWiki')&lt;/a>&lt;/li>
-#if ($isAdvancedUser)&lt;li id="xwikieditobject"#if ("$!editor" == 'object') class="active"#end>&lt;a href="$doc.getURL('edit', "editor=object&amp;amp;$param")">$services.localization.render('editObject')&lt;/a>&lt;/li>#end
-#if ($isAdvancedUser)&lt;li id="xwikieditclass"#if ("$!editor" == 'class') class="active"#end>&lt;a href="$doc.getURL('edit', "editor=class&amp;amp;$param")">$services.localization.render('editClass')&lt;/a>&lt;/li>#end
-&lt;li id="xwikieditrights"#if ("$!editor" == 'rights') class="active"#end>&lt;a href="$doc.getURL('edit', "editor=rights&amp;amp;$param")">$services.localization.render('editRights')&lt;/a>&lt;/li>
-&lt;/ul>
+&lt;ul&gt;
+&lt;li id="xwikieditwysiwyg"#if ("$!editor" == 'wysiwyg') class="active"#end&gt;&lt;a href="$doc.getURL('edit', "editor=wysiwyg&amp;amp;$param")" onclick="if (checkAdvancedContent('$services.localization.render('checkadvancedcontent')')==false) return false; return Try.these(function() {document.forms.${formname}.action='$doc.getURL('edit', "editor=wysiwyg&amp;amp;$languageparams&amp;amp;$param")'; document.forms.${formname}.submit(); return false;});"&gt;$services.localization.render('editVisual')&lt;/a&gt;&lt;/li&gt;
+&lt;li id="xwikieditwiki"#if ("$!editor" == 'wiki') class="active"#end&gt;&lt;a href="$doc.getURL('edit', "editor=wiki&amp;amp;$param")" onclick="return Try.these(function() {document.forms.${formname}.action='$doc.getURL('edit', "editor=wiki&amp;amp;$languageparams&amp;amp;$param")'; document.forms.${formname}.submit(); return false;});"&gt;$services.localization.render('editWiki')&lt;/a&gt;&lt;/li&gt;
+#if ($isAdvancedUser)&lt;li id="xwikieditobject"#if ("$!editor" == 'object') class="active"#end&gt;&lt;a href="$doc.getURL('edit', "editor=object&amp;amp;$param")"&gt;$services.localization.render('editObject')&lt;/a&gt;&lt;/li&gt;#end
+#if ($isAdvancedUser)&lt;li id="xwikieditclass"#if ("$!editor" == 'class') class="active"#end&gt;&lt;a href="$doc.getURL('edit', "editor=class&amp;amp;$param")"&gt;$services.localization.render('editClass')&lt;/a&gt;&lt;/li&gt;#end
+&lt;li id="xwikieditrights"#if ("$!editor" == 'rights') class="active"#end&gt;&lt;a href="$doc.getURL('edit', "editor=rights&amp;amp;$param")"&gt;$services.localization.render('editRights')&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 {{/html}}
 #panelfooter()
 {{/velocity}}</content>

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>TagCloud</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1297363518000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render("xe.tag.tagcloud")</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -328,7 +348,7 @@ $xwiki.ssx.use('XWiki.TagCloud')##
 #set ($tagCount = $xwiki.tag.getTagCount("$!tagCloudSpace"))
 ##
 ## Only build popularity map if at least one tag exists
-#if ($tagCount.size() > 0)
+#if ($tagCount.size() &gt; 0)
   ##
   ## Store the minimum and maximum number of occurrences.
   #set ($sortedTagCounts = $sorttool.sort($tagCount.values()))
@@ -353,7 +373,7 @@ $xwiki.ssx.use('XWiki.TagCloud')##
   #set ($intervalSize = $firstHalfIntervalSize)
   #set ($halfPassed = false)
   #foreach ($popularityLevel in $popularityLevels)
-    #if ($velocityCount > $levelsHalf &amp;&amp; !$halfPassed)
+    #if ($velocityCount &gt; $levelsHalf &amp;&amp; !$halfPassed)
       #set ($intervalSize = $secondHalfIntervalSize)
       #set ($halfPassed = true)
     #end
@@ -368,34 +388,34 @@ $xwiki.ssx.use('XWiki.TagCloud')##
 ##
 ## Display tag cloud.
 {{html}}
-#if ($tagCount.size() > 0)
-  &lt;ol class="tagCloud">
+#if ($tagCount.size() &gt; 0)
+  &lt;ol class="tagCloud"&gt;
   #foreach ($tagEntry in $tagCount.entrySet())
     #foreach ($popularityEntry in $popularityMap.entrySet())
-      #if ($popularityEntry.Key >= $tagEntry.Value)
+      #if ($popularityEntry.Key &gt;= $tagEntry.Value)
         #set ($liClass = $popularityEntry.Value)
         #break
       #end
     #end
-    &lt;li class="$liClass">
-      &lt;a class="tag" href="$xwiki.getURL('Main.Tags', 'view', "do=viewTag&amp;amp;tag=$escapetool.url($tagEntry.Key)")" title="$services.localization.render('xe.tag.tooltip', ["$tagEntry.Value"])">$escapetool.xml($tagEntry.Key)&lt;/a>
-    &lt;/li>
+    &lt;li class="$liClass"&gt;
+      &lt;a class="tag" href="$xwiki.getURL('Main.Tags', 'view', "do=viewTag&amp;amp;tag=$escapetool.url($tagEntry.Key)")" title="$services.localization.render('xe.tag.tooltip', ["$tagEntry.Value"])"&gt;$escapetool.xml($tagEntry.Key)&lt;/a&gt;
+    &lt;/li&gt;
   #end
-  &lt;/ol>
+  &lt;/ol&gt;
 #else
-  &lt;p class="noitems">
+  &lt;p class="noitems"&gt;
   #if("$!tagCloudSpace" == "")
     $services.localization.render('xe.tag.notags')
   #else
     $services.localization.render('xe.tag.notagsforspace', ["$tagCloudSpace"])
   #end
-  &lt;/p>
+  &lt;/p&gt;
 #end
 {{/html}}
 {{/velocity}}</code>
     </property>
     <property>
-      <contentDescription></contentDescription>
+      <contentDescription/>
     </property>
     <property>
       <contentType>No content</contentType>
@@ -473,7 +493,7 @@ $xwiki.ssx.use('XWiki.TagCloud')##
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>The space to display the tag cloud for. If missing, the tags in the whole wiki will be displayed.</description>

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Blog</web>
   <name>RssCode</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1229907556000</contentUpdateDate>
   <version>1.1</version>
   <title>Macros for displaying Blog-related RSS feeds</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -111,8 +131,8 @@
  * Print the start of the RSS: XML declaration and open root element.
  *###
 #macro(printBlogRssHeader)
-  &lt;?xml version="1.0" encoding="$xwiki.encoding" ?>
-  &lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  &lt;?xml version="1.0" encoding="$xwiki.encoding" ?&gt;
+  &lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/"&gt;
 #end
 ##
 ##
@@ -124,30 +144,30 @@
  * @param entries The entries to display. Usually, these are the last entries belonging to the blog.
  *###
 #macro(printBlogRssChannelDescription $blogDoc $entries)
-  &lt;channel rdf:about="$blogDoc.getURL()">
+  &lt;channel rdf:about="$blogDoc.getURL()"&gt;
     #getBlogTitle($blogDoc $title)
-    &lt;title>$title&lt;/title>
-    &lt;link>$blogDoc.getExternalURL()&lt;/link>
+    &lt;title&gt;$title&lt;/title&gt;
+    &lt;link&gt;$blogDoc.getExternalURL()&lt;/link&gt;
     ## TODO: Add a Description field in the blog class
-    &lt;description>Most recent blog posts in the $blogDoc.space space&lt;/description>
+    &lt;description&gt;Most recent blog posts in the $blogDoc.space space&lt;/description&gt;
     #getWikiLogo($logoUrl)
-    &lt;image rdf:resource="$logoUrl"/>
-    &lt;dc:language>$blogDoc.defaultLanguage&lt;/dc:language>
-    &lt;dc:rights>$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights>
+    &lt;image rdf:resource="$logoUrl"/&gt;
+    &lt;dc:language&gt;$blogDoc.defaultLanguage&lt;/dc:language&gt;
+    &lt;dc:rights&gt;$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights&gt;
     ## TODO: Usually this is not something meaningful. Maybe add some Blog object properties for these.
-    ## &lt;dc:publisher>$escapetool.xml($xwiki.getUserName($blogDoc.author, false))&lt;/dc:publisher>
-    ## &lt;dc:creator>$escapetool.xml($xwiki.getUserName($blogDoc.creator, false))&lt;/dc:creator>
-    &lt;items>
-      &lt;rdf:Seq>
+    ## &lt;dc:publisher&gt;$escapetool.xml($xwiki.getUserName($blogDoc.author, false))&lt;/dc:publisher&gt;
+    ## &lt;dc:creator&gt;$escapetool.xml($xwiki.getUserName($blogDoc.creator, false))&lt;/dc:creator&gt;
+    &lt;items&gt;
+      &lt;rdf:Seq&gt;
       ## This is just a list of blog entries, which are detailed below.
       #foreach ($entryDoc in $entries)
         #if($xwiki.hasAccessLevel('view', ${entryDoc.fullName}))
-        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" />
+        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" /&gt;
         #end
       #end
-      &lt;/rdf:Seq>
-    &lt;/items>
-  &lt;/channel>
+      &lt;/rdf:Seq&gt;
+    &lt;/items&gt;
+  &lt;/channel&gt;
 #end
 ##
 ##
@@ -159,26 +179,26 @@
  *###
 #macro(printGlobalBlogRssChannelDescription $entries)
   #set ($mainDoc = $xwiki.getDocument($services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI'))))
-  &lt;channel rdf:about="$mainDoc.getExternalURL()">
-    &lt;title>$escapetool.xml($mainDoc.plainTitle)&lt;/title>
-    &lt;link>$mainDoc.getExternalURL()&lt;/link>
+  &lt;channel rdf:about="$mainDoc.getExternalURL()"&gt;
+    &lt;title&gt;$escapetool.xml($mainDoc.plainTitle)&lt;/title&gt;
+    &lt;link&gt;$mainDoc.getExternalURL()&lt;/link&gt;
     ## TODO: Add a Description field in the blog class
-    &lt;description>Most recent blog posts in the wiki&lt;/description>
+    &lt;description&gt;Most recent blog posts in the wiki&lt;/description&gt;
     #getWikiLogo($logoUrl)
-    &lt;image rdf:resource="$logoUrl"/>
-    &lt;dc:rights>$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights>
-    &lt;dc:publisher>XWiki&lt;/dc:publisher>
-    &lt;items>
-      &lt;rdf:Seq>
+    &lt;image rdf:resource="$logoUrl"/&gt;
+    &lt;dc:rights&gt;$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights&gt;
+    &lt;dc:publisher&gt;XWiki&lt;/dc:publisher&gt;
+    &lt;items&gt;
+      &lt;rdf:Seq&gt;
       ## This is just a list of blog entries, which are detailed below.
       #foreach ($entryDoc in $entries)
         #if($xwiki.hasAccessLevel('view', ${entryDoc.fullName}))
-        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" />
+        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" /&gt;
         #end
       #end
-      &lt;/rdf:Seq>
-    &lt;/items>
-  &lt;/channel>
+      &lt;/rdf:Seq&gt;
+    &lt;/items&gt;
+  &lt;/channel&gt;
 #end
 ##
 ##
@@ -190,23 +210,23 @@
  * @param entries The entries to display. Usually, these are the last entries belonging to the blog.
  *###
 #macro(printBlogCategoryRssChannelDescription $categoryDoc $entries)
-  &lt;channel rdf:about="$categoryDoc.getURL()">
-    &lt;title>$categoryDoc.display('name')&lt;/title>
-    &lt;link>$categoryDoc.getExternalURL()&lt;/link>
+  &lt;channel rdf:about="$categoryDoc.getURL()"&gt;
+    &lt;title&gt;$categoryDoc.display('name')&lt;/title&gt;
+    &lt;link&gt;$categoryDoc.getExternalURL()&lt;/link&gt;
     ## TODO: Add a Description field in the blog class
-    &lt;description>Most recent blog posts in the $categoryDoc.display('name') category&lt;/description>
-    &lt;dc:rights>$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights>
-    &lt;items>
-      &lt;rdf:Seq>
+    &lt;description&gt;Most recent blog posts in the $categoryDoc.display('name') category&lt;/description&gt;
+    &lt;dc:rights&gt;$escapetool.xml($xwiki.spaceCopyright)&lt;/dc:rights&gt;
+    &lt;items&gt;
+      &lt;rdf:Seq&gt;
       ## This is just a list of blog entries, which are detailed below.
       #foreach ($entryDoc in $entries)
         #if($xwiki.hasAccessLevel('view', ${entryDoc.fullName}))
-        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" />
+        &lt;rdf:li rdf:resource="$entryDoc.getExternalURL('view', "language=${entryDoc.realLanguage}")" /&gt;
         #end
       #end
-      &lt;/rdf:Seq>
-    &lt;/items>
-  &lt;/channel>
+      &lt;/rdf:Seq&gt;
+    &lt;/items&gt;
+  &lt;/channel&gt;
 #end
 ##
 ##
@@ -218,11 +238,11 @@
  *###
 #macro(printBlogRssImage $blogDoc)
   #getWikiLogo($logoUrl)
-  &lt;image rdf:about="$logoUrl">
-    &lt;title>Wiki Logo&lt;/title>
-    &lt;url>$logoUrl&lt;/url>
-    &lt;link>$blogDoc.getExternalURL()&lt;/link>
-  &lt;/image>
+  &lt;image rdf:about="$logoUrl"&gt;
+    &lt;title&gt;Wiki Logo&lt;/title&gt;
+    &lt;url&gt;$logoUrl&lt;/url&gt;
+    &lt;link&gt;$blogDoc.getExternalURL()&lt;/link&gt;
+  &lt;/image&gt;
 #end
 ##
 ##
@@ -260,23 +280,23 @@
     #set($desc = $entryDoc.getRenderedContent($entryContent, $entryDoc.getSyntax().toIdString()))
   #end
   #set($desc = $escapetool.xml($desc))
-  &lt;item rdf:about="$entryUrl">
-    &lt;title>$escapetool.xml($entryDoc.display("title", "view", $entryObj))&lt;/title>
-    &lt;link>$entryUrl&lt;/link>
-    &lt;description>$desc&lt;/description>
+  &lt;item rdf:about="$entryUrl"&gt;
+    &lt;title&gt;$escapetool.xml($entryDoc.display("title", "view", $entryObj))&lt;/title&gt;
+    &lt;link&gt;$entryUrl&lt;/link&gt;
+    &lt;description&gt;$desc&lt;/description&gt;
     ## Some metadata, using the Dublin Core extension to RSS.
     ## TODO: Display this in a better way.
-    &lt;dc:subject>$escapetool.xml($entryObj.display('category', 'view'))&lt;/dc:subject>
-    &lt;dc:date>$dateFormatter.print($entryDoc.date.time)&lt;/dc:date>
-    &lt;dc:creator>$escapetool.xml($xwiki.getUserName($entryDoc.creator, false))&lt;/dc:creator>
+    &lt;dc:subject&gt;$escapetool.xml($entryObj.display('category', 'view'))&lt;/dc:subject&gt;
+    &lt;dc:date&gt;$dateFormatter.print($entryDoc.date.time)&lt;/dc:date&gt;
+    &lt;dc:creator&gt;$escapetool.xml($xwiki.getUserName($entryDoc.creator, false))&lt;/dc:creator&gt;
     #if($entryDoc.creator != $entryDoc.author)
-      &lt;dc:contributor>
-        &lt;rdf:Description link="$xwiki.getURL($entryDoc.author)">
-          &lt;rdf:value>$escapetool.xml($xwiki.getUserName($entryDoc.author, false))&lt;/rdf:value>
-        &lt;/rdf:Description>
-      &lt;/dc:contributor>
+      &lt;dc:contributor&gt;
+        &lt;rdf:Description link="$xwiki.getURL($entryDoc.author)"&gt;
+          &lt;rdf:value&gt;$escapetool.xml($xwiki.getUserName($entryDoc.author, false))&lt;/rdf:value&gt;
+        &lt;/rdf:Description&gt;
+      &lt;/dc:contributor&gt;
     #end
-  &lt;/item>
+  &lt;/item&gt;
 #end
 ##
 ##
@@ -285,7 +305,7 @@
  * Print the end of the RSS: close the root element.
  *###
 #macro(printBlogRssFooter)
-  &lt;/rdf:RDF>
+  &lt;/rdf:RDF&gt;
 #end
 ##
 ##

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>AppWithinMinutes</web>
   <name>WizardStep</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1322394959000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -28,11 +48,11 @@
 
     (% class="steps" %)
     #foreach($index in [1,2,3])
-      #set($extraClassName = "#if($stepNumber == $index) active#elseif($stepNumber > $index) done#end")
-      * (% class="number$extraClassName" %)#if($stepNumber > $index)&amp;${escapetool.h}10004;#else$index#end(%%) (% class="name$extraClassName" %)$services.localization.render("platform.appwithinminutes.wizardStep${index}Name")
+      #set($extraClassName = "#if($stepNumber == $index) active#elseif($stepNumber &gt; $index) done#end")
+      * (% class="number$extraClassName" %)#if($stepNumber &gt; $index)&amp;${escapetool.h}10004;#else$index#end(%%) (% class="name$extraClassName" %)$services.localization.render("platform.appwithinminutes.wizardStep${index}Name")
     #end
 
-    &lt;div class="clearfloats">&lt;/div>
+    &lt;div class="clearfloats"&gt;&lt;/div&gt;
   )))
   {{/html}}
 #end
@@ -51,9 +71,9 @@
       #set($previousURL = $xwiki.getURL('AppWithinMinutes.CreateApplication'))
     #end
     #if($previousURL)##
-      &lt;span class="buttonwrapper left">&lt;a href="$previousURL" title="$escapetool.xml($services.localization.render('platform.appwithinminutes.wizardStepPreviousButtonTip'))" class="button secondary">$escapetool.xml($services.localization.render('platform.appwithinminutes.wizardStepPreviousButtonLabel'))&lt;/a>&lt;/span>##
+      &lt;span class="buttonwrapper left"&gt;&lt;a href="$previousURL" title="$escapetool.xml($services.localization.render('platform.appwithinminutes.wizardStepPreviousButtonTip'))" class="button secondary"&gt;$escapetool.xml($services.localization.render('platform.appwithinminutes.wizardStepPreviousButtonLabel'))&lt;/a&gt;&lt;/span&gt;##
     #end
-    &lt;span class="buttonwrapper">&lt;input type="submit" id="wizard-next" name="xaction_save" value="$escapetool.xml($nextLabel)" title="$escapetool.xml($nextTip)" class="button"/>&lt;/span>
+    &lt;span class="buttonwrapper"&gt;&lt;input type="submit" id="wizard-next" name="xaction_save" value="$escapetool.xml($nextLabel)" title="$escapetool.xml($nextTip)" class="button"/&gt;&lt;/span&gt;
   )))
   {{/html}}
 #end

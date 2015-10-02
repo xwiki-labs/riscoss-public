@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>GoogleAnalyticsCode</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197394000</date>
   <contentUpdateDate>1429197394000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title>$services.localization.render('admin.analytics')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -72,30 +92,30 @@
 #displayAnalyticsStatus()
 
 {{html}}
-&lt;form action="$xwiki.requestURL" enctype="multipart/form-data" method="post" class="xform half">
-	&lt;dl>
-		&lt;dt>
-			&lt;label for="analytics_method">$!methodPropertyClass.translatedPrettyName&lt;/label>
-			&lt;span class="xHint">$services.localization.render('admin.analytics.method.description', 'xhtml/1.0')&lt;/span>
-		&lt;/dt>
-		&lt;dd>
+&lt;form action="$xwiki.requestURL" enctype="multipart/form-data" method="post" class="xform half"&gt;
+	&lt;dl&gt;
+		&lt;dt&gt;
+			&lt;label for="analytics_method"&gt;$!methodPropertyClass.translatedPrettyName&lt;/label&gt;
+			&lt;span class="xHint"&gt;$services.localization.render('admin.analytics.method.description', 'xhtml/1.0')&lt;/span&gt;
+		&lt;/dt&gt;
+		&lt;dd&gt;
 			$analyticsConfigDoc.displayEdit($methodPropertyClass, 'analytics_', $analyticsObj)
-		&lt;/dd>
-		&lt;dt>
-			&lt;label for="analytics_account">$!accountPropertyClass.translatedPrettyName&lt;/label>
-			&lt;span class="xHint">$services.localization.render('admin.analytics.account.description', 'xhtml/1.0')&lt;/span>
-		&lt;/dt>
-		&lt;dd>
+		&lt;/dd&gt;
+		&lt;dt&gt;
+			&lt;label for="analytics_account"&gt;$!accountPropertyClass.translatedPrettyName&lt;/label&gt;
+			&lt;span class="xHint"&gt;$services.localization.render('admin.analytics.account.description', 'xhtml/1.0')&lt;/span&gt;
+		&lt;/dt&gt;
+		&lt;dd&gt;
 			$analyticsConfigDoc.displayEdit($accountPropertyClass, 'analytics_', $analyticsObj)
-		&lt;/dd>
-	&lt;/dl>
-	&lt;p>
-		&lt;input type="hidden" name="action" value="save"/>
-		&lt;span class="buttonwrapper">
-			&lt;input type="submit" value="${services.localization.render('save')}" class="button" />
-		&lt;/span>
-	&lt;/p>
-&lt;/form>
+		&lt;/dd&gt;
+	&lt;/dl&gt;
+	&lt;p&gt;
+		&lt;input type="hidden" name="action" value="save"/&gt;
+		&lt;span class="buttonwrapper"&gt;
+			&lt;input type="submit" value="${services.localization.render('save')}" class="button" /&gt;
+		&lt;/span&gt;
+	&lt;/p&gt;
+&lt;/form&gt;
 {{/html}}
 
 {{/velocity}}</content>
@@ -278,7 +298,7 @@
       <codeToExecute>{{include reference='XWiki.GoogleAnalyticsCode' /}}</codeToExecute>
     </property>
     <property>
-      <configurationClass></configurationClass>
+      <configurationClass/>
     </property>
     <property>
       <configureGlobally>1</configureGlobally>
@@ -287,13 +307,13 @@
       <displayInSection>analytics</displayInSection>
     </property>
     <property>
-      <heading></heading>
+      <heading/>
     </property>
     <property>
       <iconAttachment>analytics.png</iconAttachment>
     </property>
     <property>
-      <linkPrefix></linkPrefix>
+      <linkPrefix/>
     </property>
     <property>
       <propertiesToShow/>
@@ -390,7 +410,7 @@
 #end 
 #end
 #end
-#if($accounts.size() > 0)
+#if($accounts.size() &gt; 0)
 #if($method == 'universal')
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -399,7 +419,7 @@
 
 #foreach($account in $accounts)
 #set($accountName = '')
-#if($foreach.index > 0)
+#if($foreach.index &gt; 0)
 #set($accountName = 't' + $foreach.index)
   ga('create', '$account', {'name': '$accountName'});
   ga('${accountName}.send', 'pageview');
@@ -412,7 +432,7 @@
   var _gaq = _gaq || [];
 #foreach($account in $accounts)
 #set($analyticsPrefix = '')
-#if($foreach.index > 0)
+#if($foreach.index &gt; 0)
 #set($analyticsPrefix = 't' + $foreach.index + '.')
 #end
   _gaq.push(['${analyticsPrefix}_setAccount', '$account']);

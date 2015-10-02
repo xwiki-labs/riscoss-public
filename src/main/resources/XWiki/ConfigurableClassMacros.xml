@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>ConfigurableClassMacros</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1373028868000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('xe.admin.configurable.macros.title')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -185,47 +205,47 @@
   #if(!$headingAlreadyShowing)
     #set($headingAlreadyShowing = true)
 
-    = {{translation key="admin.customize"/}} __[[$appName>>$appName]]__: =
+    = {{translation key="admin.customize"/}} __[[$appName&gt;&gt;$appName]]__: =
   #end
 #end
 
 #define($formHtml)
-  #if ($objClass.getPropertyNames().size() > 0)
-    &lt;dl>
+  #if ($objClass.getPropertyNames().size() &gt; 0)
+    &lt;dl&gt;
     #foreach($propName in $objClass.getPropertyNames())
-      #if($propertiesToShow.size() > 0 &amp;&amp; !$propertiesToShow.contains($propName))
+      #if($propertiesToShow.size() &gt; 0 &amp;&amp; !$propertiesToShow.contains($propName))
         ## Silently skip over this property.
       #else
         #set($prettyName = "#evaluate($app.displayPrettyName($propName, $obj))")
         ##
         ## Further processing of the field display HTML is needed.
-        ## Step 1: Strip &lt;pre> tags which $obj.display inserts, this won't affect content because it's escaped.
-        #set($out = $obj.display($propName, 'edit').replaceAll('&lt;[/]?+pre>', ''))
-        ## Step 2: Select only content between first &lt; and last > because $obj.display inserts html macros.
+        ## Step 1: Strip &lt;pre&gt; tags which $obj.display inserts, this won't affect content because it's escaped.
+        #set($out = $obj.display($propName, 'edit').replaceAll('&lt;[/]?+pre&gt;', ''))
+        ## Step 2: Select only content between first &lt; and last &gt; because $obj.display inserts html macros.
         ##         Careful not to remove html macros from the content because they are not escaped!
-        #set ($out = $out.substring($out.indexOf('&lt;'), $mathtool.add(1, $out.lastIndexOf('>'))))
+        #set ($out = $out.substring($out.indexOf('&lt;'), $mathtool.add(1, $out.lastIndexOf('&gt;'))))
         ## Step 3: Prepend app name to all ID and FOR attributes to prevent id collision with multiple apps on one page.
         #set ($out = $out.replaceAll(
             " id='$objClass.getName()_$obj.getNumber()_$propName", " id='${escapedAppName}_$objClass.getName()_$obj.getNumber()_$propName").replaceAll(
             " for='$objClass.getName()_$obj.getNumber()_$propName", " for='${escapedAppName}_$objClass.getName()_$obj.getNumber()_$propName"))
         ## App Name is prepended to for= to make label work with id which is modified to prevent collisions.
-        &lt;dt>&lt;label for="${escapedAppName}_$objClass.getName()_$obj.getNumber()_$propName">
+        &lt;dt&gt;&lt;label for="${escapedAppName}_$objClass.getName()_$obj.getNumber()_$propName"&gt;
         #if ($out.indexOf('type=''checkbox''') != -1)
           $out
         #end
         $escapetool.xml($prettyName)
-        &lt;/label>
+        &lt;/label&gt;
         #if($linkPrefix != '')
           #set($linkScript = "$linkPrefix$propName")
-          &lt;a href="$escapetool.xml("#evaluate($linkScript)")" class="xHelp" title="$services.localization.render('admin.documentation')">$services.localization.render('admin.documentation')&lt;/a>
+          &lt;a href="$escapetool.xml("#evaluate($linkScript)")" class="xHelp" title="$services.localization.render('admin.documentation')"&gt;$services.localization.render('admin.documentation')&lt;/a&gt;
         #end
-        &lt;/dt>
+        &lt;/dt&gt;
         #if ($out.indexOf('type=''checkbox''') == -1)
-          &lt;dd>$out&lt;/dd>
+          &lt;dd&gt;$out&lt;/dd&gt;
         #end
       #end## If property is in propertiesToShow
     #end## Foreach property in this class
-    &lt;/dl>
+    &lt;/dl&gt;
   #end
 #end## define $formHtml
 {{/velocity}}</content>

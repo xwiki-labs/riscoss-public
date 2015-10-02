@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>XWikiUserSheet</name>
@@ -12,9 +32,9 @@
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1429197402000</date>
   <contentUpdateDate>1429197402000</contentUpdateDate>
-  <version>2.1</version>
+  <version>1.1</version>
   <title>#set($userName="$!doc.getValue('first_name') $!doc.getValue('last_name')")#if($userName==' ')#set($userName=$doc.name)#{end}$services.localization.render('platform.core.profile.title', [$userName])</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -122,13 +142,13 @@
 #########################
 {{html clean="false"}}
   #if($xcontext.action == 'edit' || $xcontext.action == 'inline')
-    &lt;input type='hidden' name='category' value="$!{escapetool.xml($currentCategory)}" />
+    &lt;input type='hidden' name='category' value="$!{escapetool.xml($currentCategory)}" /&gt;
   #end
-  &lt;div class="clearfloats">&amp;nbsp;&lt;/div>
+  &lt;div class="clearfloats"&gt;&amp;nbsp;&lt;/div&gt;
   #if($request.get('xpage'))
-    &lt;script type="text/javascript">
+    &lt;script type="text/javascript"&gt;
       document.fire('lightbox:userprofile:loaded');
-    &lt;/script>
+    &lt;/script&gt;
   #end
 {{/html}}
 {{/velocity}}</content>
@@ -268,14 +288,14 @@ Object.extend(XWiki, {
 
     updateField : function (fieldName, value) {
       var element = $$('input[name=' + fieldName + ']');
-      if (element &amp;&amp; element.size() > 0) {
+      if (element &amp;&amp; element.size() &gt; 0) {
         element[0].value = value;
       }
     },
 
     handleCancelAction : function() {
       var elements = $$('form .buttons input[type=submit][name=action_cancel]');
-      if (elements &amp;&amp; elements.size() > 0) {
+      if (elements &amp;&amp; elements.size() &gt; 0) {
         var button = elements[0];
         Event.stopObserving(button, 'click');
         button.observe('click', function(event){

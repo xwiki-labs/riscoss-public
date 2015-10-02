@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformRiskAnalysisManagerCode</web>
   <name>SetRiskAnalysisSessionData</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>0</contentUpdateDate>
   <version>1.1</version>
   <title>Set '$request.targetName' risk analysis session data</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
@@ -23,30 +43,30 @@
   {{error}} Missing parameter {{/error}}
 #else
 {{html}}
-&lt;form action="$xwiki.getURL('RISCOSSPlatformRiskAnalysisManagerCode.CreateRiskAnalysisSession')" method="POST" class="xform third">
-  &lt;input type="hidden" name="sessionSpace" value="$request.targetSpace"/>
-  &lt;input type="hidden" name="sessionName" value="$request.targetName"/>
-  &lt;dl>
-    &lt;dt>&lt;label for="name">Session name&lt;/label>&lt;dt>
-    &lt;dd>$request.targetName&lt;/dd>
-  &lt;/dl>
-  &lt;dl>
-    &lt;dt>&lt;label for="name">Target entity&lt;/label>&lt;dt>
-    &lt;dd>&lt;input type="text" id="targetEntity" name="targetEntity"/>&lt;/dd>
-  &lt;/dl>
-  &lt;dl>
-    &lt;dt>&lt;label for="name">Risk configurations&lt;/label>&lt;dt>
-    &lt;dd>&lt;input type="text" id="riskConfigurations" name="riskConfigurations"/>&lt;/dd>
-  &lt;/dl>
-  &lt;div class="buttons">
-    &lt;span class="buttonwrapper">
-      &lt;input type="submit" value="$services.localization.render("create")" class="button"/>
-    &lt;/span>
-    &lt;span class="buttonwrapper">
-      &lt;a class="secondary button" href="#">$services.localization.render("cancel")&lt;/a>
-    &lt;/span>
-  &lt;/div>
-&lt;/form>
+&lt;form action="$xwiki.getURL('RISCOSSPlatformRiskAnalysisManagerCode.CreateRiskAnalysisSession')" method="POST" class="xform third"&gt;
+  &lt;input type="hidden" name="sessionSpace" value="$request.targetSpace"/&gt;
+  &lt;input type="hidden" name="sessionName" value="$request.targetName"/&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;&lt;label for="name"&gt;Session name&lt;/label&gt;&lt;dt&gt;
+    &lt;dd&gt;$request.targetName&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;&lt;label for="name"&gt;Target entity&lt;/label&gt;&lt;dt&gt;
+    &lt;dd&gt;&lt;input type="text" id="targetEntity" name="targetEntity"/&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;&lt;label for="name"&gt;Risk configurations&lt;/label&gt;&lt;dt&gt;
+    &lt;dd&gt;&lt;input type="text" id="riskConfigurations" name="riskConfigurations"/&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+  &lt;div class="buttons"&gt;
+    &lt;span class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$services.localization.render("create")" class="button"/&gt;
+    &lt;/span&gt;
+    &lt;span class="buttonwrapper"&gt;
+      &lt;a class="secondary button" href="#"&gt;$services.localization.render("cancel")&lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 #end
 
@@ -149,7 +169,7 @@
 }(XWiki || {}))</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -292,28 +312,28 @@
       <date>2015-05-05 17:29:57.678</date>
     </property>
     <property>
-      <highlight></highlight>
+      <highlight/>
     </property>
     <property>
-      <originalSelection></originalSelection>
+      <originalSelection/>
     </property>
     <property>
       <replyto/>
     </property>
     <property>
-      <selection></selection>
+      <selection/>
     </property>
     <property>
-      <selectionLeftContext></selectionLeftContext>
+      <selectionLeftContext/>
     </property>
     <property>
-      <selectionRightContext></selectionRightContext>
+      <selectionRightContext/>
     </property>
     <property>
-      <state></state>
+      <state/>
     </property>
     <property>
-      <target></target>
+      <target/>
     </property>
   </object>
 </xwikidoc>

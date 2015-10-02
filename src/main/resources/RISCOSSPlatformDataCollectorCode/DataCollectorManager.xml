@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformDataCollectorCode</web>
   <name>DataCollectorManager</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1357696926000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
@@ -107,7 +127,7 @@ $outConf.put("collectors", $collectors)
 {{/velocity}}
 {{velocity}}## Data Collector Output, this is picked up by the jsx javascript.
 {{html clean="false"}}
-&lt;div class="data-collectors" style="display:none;">$escapetool.url($jsontool.serialize($outConf))&lt;/div>
+&lt;div class="data-collectors" style="display:none;"&gt;$escapetool.url($jsontool.serialize($outConf))&lt;/div&gt;
 {{/html}}{{/velocity}}
 </content>
   <object>
@@ -214,7 +234,7 @@ $outConf.put("collectors", $collectors)
   var uid = function () { return 'uid-' + Math.random().toString(32).substring(2); };
   var appendElem = function ($container, type, id) {
     id = id || uid();
-    $container.append("&lt;"+type+" id="+id+">&lt;/"+type+">");
+    $container.append("&lt;"+type+" id="+id+"&gt;&lt;/"+type+"&gt;");
     return $('#'+id);
   };
 
@@ -279,7 +299,7 @@ $outConf.put("collectors", $collectors)
     $input.remove();
     $freqDD.append(freqEdit);
     var name = $freqDD.find('select').attr('name').replace(/_frequency$/, '_collectorName');
-    $freqDD.append('&lt;input type="hidden" name="' + name + '" value="' + col.fullName + '">');
+    $freqDD.append('&lt;input type="hidden" name="' + name + '" value="' + col.fullName + '"&gt;');
     $freqDD.find('select').attr('id', inputId).attr('class', 'post-input');
     $freqDD.find('input').attr('class', 'post-input');
 
@@ -318,7 +338,7 @@ $outConf.put("collectors", $collectors)
     $updateOrCreate.attr('name', 'objectPolicy');
 
     var $dl = appendElem($elem, 'dl');
-    $dl.append('&lt;dt>'+MESSAGES.dataCollectors+'&lt;/dt>');
+    $dl.append('&lt;dt&gt;'+MESSAGES.dataCollectors+'&lt;/dt&gt;');
     var $dd = appendElem($dl, 'dd');
     for (var i = 0; i &lt; config.collectors.length; i++) {
       editCollector(config.collectors[i], $dd, config);
@@ -360,7 +380,7 @@ $outConf.put("collectors", $collectors)
     if (!config.canEdit) { return (lastRun === MESSAGES.running); }
 
     $td = appendElem($tr, 'td');
-    $td.append('&lt;center>&lt;img style="cursor: pointer;" src="'+RERUN_ICON+'">&lt;/img>&lt;/center>');
+    $td.append('&lt;center&gt;&lt;img style="cursor: pointer;" src="'+RERUN_ICON+'"&gt;&lt;/img&gt;&lt;/center&gt;');
     $td.find('img').click(function () {
       var inProgress = new XWiki.widgets.Notification(MESSAGES.rerunningCollector, "inprogress");
       var showError = function (error) {
@@ -395,7 +415,7 @@ $outConf.put("collectors", $collectors)
 
   var view = function (config, $elem) {
     if (!config.collectors.length) { return; }
-    $elem.append('&lt;h1>'+MESSAGES.dataCollectors+'&lt;/h1>');
+    $elem.append('&lt;h1&gt;'+MESSAGES.dataCollectors+'&lt;/h1&gt;');
     var $table = appendElem($elem, 'table');
     var $tbody = appendElem($table, 'tbody');
     var $headerTr = appendElem($tbody, 'tr');
@@ -422,7 +442,7 @@ $outConf.put("collectors", $collectors)
   var config = parseData($elem);
   $elem.text('');
   $elem.removeAttr('style');
-  $elem.append('&lt;hr />');
+  $elem.append('&lt;hr /&gt;');
 
   if (XWiki.contextaction === 'edit') {
     edit(config, $elem);
@@ -433,7 +453,7 @@ $outConf.put("collectors", $collectors)
 </code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>0</parse>

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>SharePage</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1289519863000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -119,7 +139,7 @@
     // @Override
     displayItem: function(suggestion) {
       var targetInfo = new Element('span').update(suggestion.info).insert(this.createDeleteTool());
-      var targetClass = 'target-item ' + (suggestion.value.indexOf('@') > 0 ? 'target-email' : 'target-user');
+      var targetClass = 'target-item ' + (suggestion.value.indexOf('@') &gt; 0 ? 'target-email' : 'target-user');
       return new Element('li', {'class': targetClass}).insert(targetInfo).insert(this.createItemInput(suggestion));
     }
   });
@@ -187,7 +207,7 @@
       event.stop();
       if (!this.form.down('.target-item') &amp;&amp; this.input.value.strip().length == 0) {
         this.input.addClassName('xErrorField');
-        this.input.insert({'after' : '&lt;div class="xErrorMsg">$services.localization.render('core.viewers.share.error.missingRecipient')&lt;/div>'});
+        this.input.insert({'after' : '&lt;div class="xErrorMsg"&gt;$services.localization.render('core.viewers.share.error.missingRecipient')&lt;/div&gt;'});
         return;
       }
       var params = this.form.serialize();
@@ -209,7 +229,7 @@
     }
   });
 
-  var loading = new Element('div', {'class' : 'imgcenter'}).update("&lt;img src=\"$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')\"/>");
+  var loading = new Element('div', {'class' : 'imgcenter'}).update("&lt;img src=\"$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')\"/&gt;");
   var dialog;
 
   document.observe('xwiki:dom:loaded', function() {
@@ -236,7 +256,7 @@
 }(XWiki || {}));</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -299,33 +319,33 @@
       </text>
     </class>
     <property>
-      <html>&lt;p>Hello ${recipientName},&lt;/p>
+      <html>&lt;p&gt;Hello ${recipientName},&lt;/p&gt;
 
-&lt;p>&lt;strong>${xwiki.getUserName($xcontext.user)}&lt;/strong> thought you might be interested in the document &lt;a href="${doc.getExternalURL()}">$!{escapetool.xml(${doc.displayTitle})}&lt;/a> on &lt;a href="${xwiki.getDocument($services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI'))).getExternalURL()}">${request.getServerName()}&lt;/a>.&lt;/p>
+&lt;p&gt;&lt;strong&gt;${xwiki.getUserName($xcontext.user)}&lt;/strong&gt; thought you might be interested in the document &lt;a href="${doc.getExternalURL()}"&gt;$!{escapetool.xml(${doc.displayTitle})}&lt;/a&gt; on &lt;a href="${xwiki.getDocument($services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI'))).getExternalURL()}"&gt;${request.getServerName()}&lt;/a&gt;.&lt;/p&gt;
 
 #if ("$!{message}" != '')
-&lt;p>Here is their message:&lt;/p>
+&lt;p&gt;Here is their message:&lt;/p&gt;
 
-&lt;pre style="border: 1px solid #000; padding: 10px; font-size: 130%;">
+&lt;pre style="border: 1px solid #000; padding: 10px; font-size: 130%;"&gt;
 $!{escapetool.xml($message)}
-&lt;/pre>
+&lt;/pre&gt;
 #end
-&lt;p>To visit this document online, open &lt;a href="${doc.getExternalURL()}">${doc.getExternalURL()}&lt;/a> in your browser.&lt;/p>
+&lt;p&gt;To visit this document online, open &lt;a href="${doc.getExternalURL()}"&gt;${doc.getExternalURL()}&lt;/a&gt; in your browser.&lt;/p&gt;
 
 #if ($display == 'inline')
 
-&lt;p>Here is the current version of the document:&lt;/p>
+&lt;p&gt;Here is the current version of the document:&lt;/p&gt;
 
-&lt;h1>${doc.displayTitle}&lt;/h1>
-&lt;div style="border: 1px solid #000; padding: 10px;">
+&lt;h1&gt;${doc.displayTitle}&lt;/h1&gt;
+&lt;div style="border: 1px solid #000; padding: 10px;"&gt;
 
   $doc.getRenderedContent()
-&lt;/div>
+&lt;/div&gt;
 
 #end
 
-&lt;hr />
-&lt;p>This message was generated by XWiki at ${request.serverName} on behalf of ${xwiki.getUserName($xcontext.user)}.&lt;/p></html>
+&lt;hr /&gt;
+&lt;p&gt;This message was generated by XWiki at ${request.serverName} on behalf of ${xwiki.getUserName($xcontext.user)}.&lt;/p&gt;</html>
     </property>
     <property>
       <language>en</language>
@@ -415,33 +435,33 @@ This message was generated by XWiki at ${request.serverName} on behalf of ${xwik
       </text>
     </class>
     <property>
-      <html>&lt;p>Bonjour ${recipientName},&lt;/p>
+      <html>&lt;p&gt;Bonjour ${recipientName},&lt;/p&gt;
 
-&lt;p>&lt;strong>${xwiki.getUserName($xcontext.user)}&lt;/strong> a pensé que vous pourriez être intéressé par le document &lt;a href="${doc.getExternalURL()}">$!{escapetool.xml(${doc.displayTitle})}&lt;/a> sur &lt;a href="${xwiki.getDocument($services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI'))).getExternalURL()}">${request.getServerName()}&lt;/a>.&lt;/p>
+&lt;p&gt;&lt;strong&gt;${xwiki.getUserName($xcontext.user)}&lt;/strong&gt; a pensé que vous pourriez être intéressé par le document &lt;a href="${doc.getExternalURL()}"&gt;$!{escapetool.xml(${doc.displayTitle})}&lt;/a&gt; sur &lt;a href="${xwiki.getDocument($services.model.resolveDocument('', 'default', $doc.documentReference.extractReference('WIKI'))).getExternalURL()}"&gt;${request.getServerName()}&lt;/a&gt;.&lt;/p&gt;
 
 #if ("$!{message}" != '')
-&lt;p>Voici son message :&lt;/p>
+&lt;p&gt;Voici son message :&lt;/p&gt;
 
-&lt;pre style="border: 1px solid #000; padding: 10px; font-size: 130%;">
+&lt;pre style="border: 1px solid #000; padding: 10px; font-size: 130%;"&gt;
 $!{escapetool.xml($message)}
-&lt;/pre>
+&lt;/pre&gt;
 #end
-&lt;p>Pour consulter le document, cliquez sur ce lien &lt;a href="${doc.getExternalURL()}">${doc.getExternalURL()}&lt;/a> (ou faites un copier / coller dans votre navigateur).&lt;/p>
+&lt;p&gt;Pour consulter le document, cliquez sur ce lien &lt;a href="${doc.getExternalURL()}"&gt;${doc.getExternalURL()}&lt;/a&gt; (ou faites un copier / coller dans votre navigateur).&lt;/p&gt;
 
 #if ($display == 'inline')
 
-&lt;p>Voici le contenu du document :&lt;/p>
+&lt;p&gt;Voici le contenu du document :&lt;/p&gt;
 
-&lt;h1>${doc.displayTitle}&lt;/h1>
-&lt;div style="border: 1px solid #000; padding: 10px;">
+&lt;h1&gt;${doc.displayTitle}&lt;/h1&gt;
+&lt;div style="border: 1px solid #000; padding: 10px;"&gt;
 
   $doc.getRenderedContent()
-&lt;/div>
+&lt;/div&gt;
 
 #end
 
-&lt;hr />
-&lt;p>Ce message a été généré par XWiki depuis ${request.serverName} au nom de ${xwiki.getUserName($xcontext.user)}.&lt;/p></html>
+&lt;hr /&gt;
+&lt;p&gt;Ce message a été généré par XWiki depuis ${request.serverName} au nom de ${xwiki.getUserName($xcontext.user)}.&lt;/p&gt;</html>
     </property>
     <property>
       <language>fr</language>

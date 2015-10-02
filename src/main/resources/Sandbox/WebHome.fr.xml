@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Sandbox</web>
   <name>WebHome</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1252454400000</contentUpdateDate>
   <version>1.1</version>
   <title>Sandbox</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
@@ -24,9 +44,9 @@
 
 Vous avez trois pages de test sur lesquelles expérimenter:
 
-* [[Page de Test 1>>Sandbox.TestPage1]]
-* [[Page de Test 2>>Sandbox.TestPage2]]
-* [[Page de Test 3>>Sandbox.TestPage3]]
+* [[Page de Test 1&gt;&gt;Sandbox.TestPage1]]
+* [[Page de Test 2&gt;&gt;Sandbox.TestPage2]]
+* [[Page de Test 3&gt;&gt;Sandbox.TestPage3]]
 
 = Titres =
 
@@ -99,11 +119,11 @@ Vous pouvez créer des tableaux simples directement dans vos pages wiki:
 
 XWiki vous permet de créer des liens vers d'autres documents wiki ou vers des pages Web:
 
-* [[WebHome]] -> lien vers la page d'accueil de l'espace courant
-* [[Sandbox Home>>WebHome]] -> les liens peuvent contenir des titres
-* [[Wiki Home>>Main.WebHome]] -> un lien peut utiliser le format NomEspace.NomPage pour référer une page d'un autre espace. 
-* [[http://www.xwiki.org]] -> vous pouvez également référer des pages wiki ou des sites Web externes
-* [[XWiki.org Website>>http://www.xwiki.org]] -> les titres des liens s'appliquent également pour les liens externes.
+* [[WebHome]] -&gt; lien vers la page d'accueil de l'espace courant
+* [[Sandbox Home&gt;&gt;WebHome]] -&gt; les liens peuvent contenir des titres
+* [[Wiki Home&gt;&gt;Main.WebHome]] -&gt; un lien peut utiliser le format NomEspace.NomPage pour référer une page d'un autre espace. 
+* [[http://www.xwiki.org]] -&gt; vous pouvez également référer des pages wiki ou des sites Web externes
+* [[XWiki.org Website&gt;&gt;http://www.xwiki.org]] -&gt; les titres des liens s'appliquent également pour les liens externes.
 
 = Images =
 

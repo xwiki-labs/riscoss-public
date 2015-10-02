@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>MessageSenderMacro</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1337867576000</contentUpdateDate>
   <version>1.1</version>
   <title>Message Sender Macro</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -118,7 +138,7 @@ var CustomUserPicker = Class.create(XWiki.widgets.UserPicker, {
     // Overwrite the way the selected item is displayed.
     selectionManager.displayItem = function(suggestion) {
       var targetInfo = new Element('span').update(suggestion.info).insert(this.createDeleteTool());
-      var targetClass = this.suggest.sources[0].script.indexOf('uorg=group') > 0 ? 'target-group' : 'target-user';
+      var targetClass = this.suggest.sources[0].script.indexOf('uorg=group') &gt; 0 ? 'target-group' : 'target-user';
       return new Element('li', {'class': targetClass}).insert(targetInfo).insert(this.createItemInput(suggestion));
     }.bind(selectionManager);
     return selectionManager;
@@ -507,14 +527,14 @@ return XWiki;
   * Display user avatar and action message
   *#
 #macro(activitySnapshot $eventUser $eventType)
-  &lt;span class='activitySnapshot'>
+  &lt;span class='activitySnapshot'&gt;
     #if ($eventUser != 'XWiki.XWikiGuest')
-      &lt;a href="$xwiki.getURL($eventUser)">#smallUserAvatar("$!eventUser")&lt;/a>
+      &lt;a href="$xwiki.getURL($eventUser)"&gt;#smallUserAvatar("$!eventUser")&lt;/a&gt;
     #else
       #smallUserAvatar("$!eventUser")
     #end
-    &lt;img class='activityActionAvatar' src="$xwiki.getSkinFile($activityActionsMap.get($eventType), true)" alt="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" title="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" />
-  &lt;/span>
+    &lt;img class='activityActionAvatar' src="$xwiki.getSkinFile($activityActionsMap.get($eventType), true)" alt="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" title="$services.localization.render("xe.activity.action.${eventType}", [$relatedEventsNo])" /&gt;
+  &lt;/span&gt;
 #end
 ##
 #* Duplicate code END *#
@@ -600,21 +620,21 @@ return XWiki;
     #set ($actionQueryString = "xredirect=$escapetool.url($xredirect)")
     {{html}}
     ## Wrap the form in a div so that the layout is preserved in inline mode (where the form is stripped by the rendering).
-    &lt;div class='messagestream activityUser xform'>
+    &lt;div class='messagestream activityUser xform'&gt;
     #if (!$inEditMode)
-    &lt;form action="${xwiki.getURL('Main.MessageSenderMacro', 'view', $!{actionQueryString})}" method='post'>
+    &lt;form action="${xwiki.getURL('Main.MessageSenderMacro', 'view', $!{actionQueryString})}" method='post'&gt;
     #end
-      &lt;div class='activityContent'>
+      &lt;div class='activityContent'&gt;
         #if(!$inEditMode)
           ## CSRF prevention
-          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-          &lt;input type='hidden' name='xaction' value='postMessage' />
+          &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+          &lt;input type='hidden' name='xaction' value='postMessage' /&gt;
         #end
         #activitySnapshot($xcontext.user, 'personalMessage')
-        &lt;div class='messagestream-data'>
-          &lt;textarea name='messagestream_message' rows='3' cols='40'#if($inEditMode) disabled='disabled'#end>&lt;/textarea>
-        &lt;/div>
-        &lt;div class='messagestream-tools'>
+        &lt;div class='messagestream-data'&gt;
+          &lt;textarea name='messagestream_message' rows='3' cols='40'#if($inEditMode) disabled='disabled'#end&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;div class='messagestream-tools'&gt;
           #set ($possibleTargets = $xcontext.macro.params.get('visibilityOptions').split('\s*,\s*'))
           #if (!$possibleTargets)
             #set ($possibleTargets = $configClass.get('visibilityLevel').getListValues())
@@ -638,39 +658,39 @@ return XWiki;
               #set ($defaultTarget = 'everyone')
             #end
           #end
-          &lt;label>$services.localization.render('xe.activity.messages.visibility')
-            &lt;select name='visibilityLevel'#if($inEditMode) disabled='disabled'#end>
+          &lt;label&gt;$services.localization.render('xe.activity.messages.visibility')
+            &lt;select name='visibilityLevel'#if($inEditMode) disabled='disabled'#end&gt;
             #foreach ($target in $possibleTargets)
-              &lt;option value="${target}"#if ($defaultTarget == $target) selected='selected'#end>$services.localization.render("XWiki.MessageStreamConfig_visibilityLevel_${target}")&lt;/option>
+              &lt;option value="${target}"#if ($defaultTarget == $target) selected='selected'#end&gt;$services.localization.render("XWiki.MessageStreamConfig_visibilityLevel_${target}")&lt;/option&gt;
             #end
-            &lt;/select>
-          &lt;/label>
-          &lt;label for="targetName$!{targetNameCounter}">
-            &lt;span class='hidden'>Name:&lt;/span>
+            &lt;/select&gt;
+          &lt;/label&gt;
+          &lt;label for="targetName$!{targetNameCounter}"&gt;
+            &lt;span class='hidden'&gt;Name:&lt;/span&gt;
             &lt;input type="text" name="targetName" id="targetName$!targetNameCounter" class="targetName withTip useTitleAsTip" value="$!targetName" size="15"
-              title="$services.localization.render('xe.activity.messages.visibility.targetName.tip')" #if ($inEditMode) disabled="disabled"#end/>
-          &lt;/label>
+              title="$services.localization.render('xe.activity.messages.visibility.targetName.tip')" #if ($inEditMode) disabled="disabled"#end/&gt;
+          &lt;/label&gt;
           #if (!$targetNameCounter)
             #set ($targetNameCounter = 1)
           #else
             #set ($targetNameCounter = $targetNameCounter + 1)
           #end
-        &lt;/div>
-        &lt;div class='messagestream-buttons'>
-          &lt;span class='butonwrapper'>&lt;input type='submit' value="$services.localization.render('xe.activity.messages.submit')" class='button'#if($inEditMode) disabled='disabled'#end/>&lt;/span>
-        &lt;/div>
-      &lt;/div>
+        &lt;/div&gt;
+        &lt;div class='messagestream-buttons'&gt;
+          &lt;span class='butonwrapper'&gt;&lt;input type='submit' value="$services.localization.render('xe.activity.messages.submit')" class='button'#if($inEditMode) disabled='disabled'#end/&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
     #if (!$inEditMode)
-    &lt;/form>
+    &lt;/form&gt;
     #end
-    &lt;/div>
+    &lt;/div&gt;
     {{/html}}
   #end
 #end
 {{/velocity}}</code>
     </property>
     <property>
-      <contentDescription></contentDescription>
+      <contentDescription/>
     </property>
     <property>
       <contentType>No content</contentType>
@@ -748,7 +768,7 @@ return XWiki;
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Default selected visibility when the macro is displayed.
@@ -818,7 +838,7 @@ Valid values are: 'everyone', 'followers', 'group' or 'user'. </description>
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Some visibility levels (like 'user' and 'group') accept a parameter. In the case of the 2 mentioned levels, the value can be a serialized reference of a user or a group document.</description>
@@ -884,7 +904,7 @@ Valid values are: 'everyone', 'followers', 'group' or 'user'. </description>
       </name>
     </class>
     <property>
-      <defaultValue></defaultValue>
+      <defaultValue/>
     </property>
     <property>
       <description>Comma separated list of visibility options that the macro should allow the user to choose from.

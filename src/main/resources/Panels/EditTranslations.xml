@@ -1,9 +1,29 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>EditTranslations</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1429197416000</creationDate>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1169801141000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -125,11 +145,11 @@
   #if (("$!tdoc.language" == '' || $tdoc.language == $doc.defaultLanguage) &amp;&amp; ($forcetrans == ''))
     (% class="important" %)
     **$services.localization.render('panels.translation.editingOriginal', [$defaultLanguage])**
-    #if ($!doc.translationList.size() > 0)
+    #if ($!doc.translationList.size() &gt; 0)
 
       $services.localization.render('panels.translation.existingTranslations')##
       #foreach ($translation in $doc.translationList) ##
-        [[$translation>>path:$doc.getURL('edit', "editor=${editor}&amp;language=${translation}")]]##
+        [[$translation&gt;&gt;path:$doc.getURL('edit', "editor=${editor}&amp;language=${translation}")]]##
       #end
 
     #end
@@ -137,13 +157,13 @@
     (% class="important" %)
     **$services.localization.render('panels.translation.editingTranslation', [${rlanguage}])**
 
-    $services.localization.render('panels.translation.editOriginalLanguage', ["[[$defaultLanguage>>path:$doc.getURL('edit', ""editor=${editor}&amp;language=${doc.defaultLanguage}"")]]"])
-    #if ($doc.translationList.size() > 1)
+    $services.localization.render('panels.translation.editOriginalLanguage', ["[[$defaultLanguage&gt;&gt;path:$doc.getURL('edit', ""editor=${editor}&amp;language=${doc.defaultLanguage}"")]]"])
+    #if ($doc.translationList.size() &gt; 1)
 
       $services.localization.render('panels.translation.otherTranslations')##
       #foreach ($translation in $doc.translationList)
         #if ($translation != $tdoc.language) ##
-          [[$translation>>path:$doc.getURL('edit', "editor=${editor}&amp;language=${translation}")]]##
+          [[$translation&gt;&gt;path:$doc.getURL('edit', "editor=${editor}&amp;language=${translation}")]]##
         #end
       #end
 
@@ -153,7 +173,7 @@
   #set ($extraTranslations = '')
   #foreach ($olang in $xwiki.getXWikiPreference('languages').split('\s*[|, ]\s*'))
     #if (!$elangs.contains($olang) &amp;&amp; $olang != $doc.defaultLanguage &amp;&amp; $olang != $forcetrans)
-      #set ($extraTranslations = "${extraTranslations}[[$olang>>path:${doc.getURL('edit', ""editor=${editor}&amp;language=${olang}"")}]] ")
+      #set ($extraTranslations = "${extraTranslations}[[$olang&gt;&gt;path:${doc.getURL('edit', ""editor=${editor}&amp;language=${olang}"")}]] ")
     #end
   #end
   #if ($extraTranslations != '')

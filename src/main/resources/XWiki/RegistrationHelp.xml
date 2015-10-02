@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>RegistrationHelp</name>
@@ -14,15 +34,15 @@
   <contentUpdateDate>1364567451000</contentUpdateDate>
   <version>1.1</version>
   <title>Registration Page Documentation</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
-  <content>The verified registration page is the new default registration method for XWiki Enterprise. It supports image captchas supplied by the captcha module it also supports validating the input fields both on the server side and in Javascript using [[LiveValidation>>http://livevalidation.com/]].
+  <content>The verified registration page is the new default registration method for XWiki Enterprise. It supports image captchas supplied by the captcha module it also supports validating the input fields both on the server side and in Javascript using [[LiveValidation&gt;&gt;http://livevalidation.com/]].
 
 {{info}}The Verified Registration page does not require programming rights to operate so you can configure it even if you are administrating a virtual wiki on a wiki farm.{{/info}}
 
-= Options you can set from the [[Registration section of the Administration Application>>XWiki.XWikiPreferences?section=Registration&amp;editor=globaladmin#HCustomizeXWikiRegistration]] =
+= Options you can set from the [[Registration section of the Administration Application&gt;&gt;XWiki.XWikiPreferences?section=Registration&amp;editor=globaladmin#HCustomizeXWikiRegistration]] =
 
 {{id name=heading/}}
 * **Registration page heading**
@@ -68,10 +88,10 @@ In XWiki.Registration, the fields are defined separately from the code which gen
 ** This is what the user is prompted with above the field for their input.
 
 * **tag** (string)
-** Usually a field is an input field but if you specify a different tag (eg: textarea) then it will not be an input type field. You can even specify non field tags such as &lt;img> or &lt;div> but it may cause invalid HTML to be generated.
+** Usually a field is an input field but if you specify a different tag (eg: textarea) then it will not be an input type field. You can even specify non field tags such as &lt;img&gt; or &lt;div&gt; but it may cause invalid HTML to be generated.
 
 * **params** (map)
-** This map corresponds to the HTML parameters of the tag. If you specify params to be { 'class' : 'someclass', 'style' : 'color:red;' } then the HTML tag will read &lt;input class="someclass" style="color:red;">
+** This map corresponds to the HTML parameters of the tag. If you specify params to be { 'class' : 'someclass', 'style' : 'color:red;' } then the HTML tag will read &lt;input class="someclass" style="color:red;"&gt;
 
 * **noReturn** (boolean)
 ** If this is specified, the field will not be filled in if there is an error and the user has to fix their registration information. If you don't want a password to be passed back in html then set this true for the password fields. Used for the captcha because it makes no sense to pass back an incorrect captcha answer.
@@ -252,7 +272,7 @@ The validate field configuration key is itself a map which allows a number of pa
       <cache>long</cache>
     </property>
     <property>
-      <code>ul > li > ul > li {
+      <code>ul &gt; li &gt; ul &gt; li {
   list-style-type: none;
 }
 ul.showCircles li {

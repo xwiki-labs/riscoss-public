@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>AnnotationCode</web>
   <name>Settings</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1271945477000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -27,24 +47,24 @@
  * @param $options map of maps with the values to display for this criterion, which contains, for each value, the value to be sent to the filter request as key and as value a map with "checked" a boolean indicating whether the value is chosen or not and "prettyName" the display string corresponding to the respective value
  *#
 #macro(displayCriterion $label $name $expanded $active $options)
- &lt;div class="criterion #if(!$expanded) collapsed #end #if($active) active #end">
-    &lt;span class="criterion-label">$label &lt;span class="details">($services.localization.render('annotations.filters.anyvalue'))&lt;/span> &lt;span class="clear">($services.localization.render('annotations.filters.clearvalue'))&lt;/span>&lt;/span>
+ &lt;div class="criterion #if(!$expanded) collapsed #end #if($active) active #end"&gt;
+    &lt;span class="criterion-label"&gt;$label &lt;span class="details"&gt;($services.localization.render('annotations.filters.anyvalue'))&lt;/span&gt; &lt;span class="clear"&gt;($services.localization.render('annotations.filters.clearvalue'))&lt;/span&gt;&lt;/span&gt;
     ## and the hidden input holding the criterion name, that allows the javascript to extract the filter from this criterion
-    &lt;input type="hidden" name="${name}" value="${name}"/>
+    &lt;input type="hidden" name="${name}" value="${name}"/&gt;
     #if ($expanded)
-    &lt;div class="criterion-options">
-      &lt;div class="criterion-option-list">
+    &lt;div class="criterion-options"&gt;
+      &lt;div class="criterion-option-list"&gt;
         #if ($options.keySet().size() == 0)
-          &lt;span class="no-option">$services.localization.render('annotations.filters.nooption', [$label])&lt;/span>
+          &lt;span class="no-option"&gt;$services.localization.render('annotations.filters.nooption', [$label])&lt;/span&gt;
         #end
         #foreach ($option in $options.keySet())
           #set($optionValue = $options.get($option))
-          &lt;label class="option #if($optionValue.checked) selected #end">&lt;input type="checkbox" value="${option}" #if($optionValue.checked) checked="checked" #end/>$optionValue.prettyName&lt;/label>
+          &lt;label class="option #if($optionValue.checked) selected #end"&gt;&lt;input type="checkbox" value="${option}" #if($optionValue.checked) checked="checked" #end/&gt;$optionValue.prettyName&lt;/label&gt;
         #end
-      &lt;/div>
-    &lt;/div>
+      &lt;/div&gt;
+    &lt;/div&gt;
     #end
-  &lt;/div>
+  &lt;/div&gt;
 #end
 
 #*
@@ -112,30 +132,30 @@
 
 {{velocity}}
 {{html clean="false"}}
-&lt;div class="annotationsettings">
+&lt;div class="annotationsettings"&gt;
   #if ("$!{request.target}" != "")
     ## check the syntax of the target (should be an annotations function called instead of a standard xwiki call)
     #set($targetDoc = $xwiki.getDocument($!request.target))
     #set($targetDocSyntax = $targetDoc.syntax)
     #if (!($targetDocSyntax.type.id == 'xwiki' &amp;&amp; $targetDocSyntax.version == '1.0'))
-      &lt;div class="box plainmessage">$services.localization.render('annotations.action.create.helpmessage', ['&lt;strong>Ctrl + M (Meta + M)&lt;/strong>'])&lt;/div>
-      &lt;input type="checkbox" name="annotationsdisplay" id="annotationsdisplay" />
-      &lt;label for="annotationsdisplay">$services.localization.render('annotations.settings.display')&lt;/label>
-      &lt;div class="annotation-filters collapsed"  id="annotation-filters">
-        &lt;div class="annotation-filters-toggler">&lt;a href="#annotation-filters">$services.localization.render('annotations.filters.show')&lt;/a>&lt;/div>
-        &lt;div class="criteria">
+      &lt;div class="box plainmessage"&gt;$services.localization.render('annotations.action.create.helpmessage', ['&lt;strong&gt;Ctrl + M (Meta + M)&lt;/strong&gt;'])&lt;/div&gt;
+      &lt;input type="checkbox" name="annotationsdisplay" id="annotationsdisplay" /&gt;
+      &lt;label for="annotationsdisplay"&gt;$services.localization.render('annotations.settings.display')&lt;/label&gt;
+      &lt;div class="annotation-filters collapsed"  id="annotation-filters"&gt;
+        &lt;div class="annotation-filters-toggler"&gt;&lt;a href="#annotation-filters"&gt;$services.localization.render('annotations.filters.show')&lt;/a&gt;&lt;/div&gt;
+        &lt;div class="criteria"&gt;
           #set($annotationsList = $services.annotations.getAnnotations($!request.target))
           #displayAnnotatorCheckboxes($annotationsList)
-        &lt;/div>
-      &lt;/div>
-      &lt;div class="clearfloats" />
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="clearfloats" /&gt;
     #else
-      &lt;div class="box infomessage">$services.localization.render('annotations.settings.error.wrongsyntax')&lt;/div>
+      &lt;div class="box infomessage"&gt;$services.localization.render('annotations.settings.error.wrongsyntax')&lt;/div&gt;
     #end
   #else
-    &lt;div class="box infomessage">$services.localization.render('annotations.settings.error.notarget')&lt;/div>
+    &lt;div class="box infomessage"&gt;$services.localization.render('annotations.settings.error.notarget')&lt;/div&gt;
   #end
-&lt;/div>
+&lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>
   <object>
@@ -215,7 +235,7 @@
       </use>
     </class>
     <property>
-      <cache></cache>
+      <cache/>
     </property>
     <property>
       <code>var XWiki = (function (XWiki) {
@@ -240,7 +260,7 @@ XWiki.AnnotationSettings = Class.create({
         var input = event.element();
         input.up().toggleClassName('selected');
         var criterion = input.up('.criterion');
-        if (criterion.select('label.selected').size() > 0) {
+        if (criterion.select('label.selected').size() &gt; 0) {
           criterion.addClassName('active');
         } else {
           criterion.removeClassName('active');
@@ -405,7 +425,7 @@ document.observe('xwiki:annotations:settings:loaded', function() {
       </use>
     </class>
     <property>
-      <cache></cache>
+      <cache/>
     </property>
     <property>
       <code>#template('colorThemeInit.vm')

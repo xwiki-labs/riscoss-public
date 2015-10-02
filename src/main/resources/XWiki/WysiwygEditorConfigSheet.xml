@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>WysiwygEditorConfigSheet</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1364562921000</contentUpdateDate>
   <version>1.1</version>
   <title>#if($doc.name == 'WysiwygEditorConfigSheet')$services.localization.render('wysiwyg.config.sheet.title')#{else}$services.localization.render('wysiwyg.config.title')#end</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -39,24 +59,24 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 ##
 
 ## Vertical form styles are applied on the label element so we have to use it.
-; &lt;label>$doc.displayPrettyName('sourceEditorEnabled', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('sourceEditorEnabled', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.sourceEditorEnabled.hint"/}}
 : $doc.display('sourceEditorEnabled', $mode)
 ##
-; &lt;label>$doc.displayPrettyName('plugins', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('plugins', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.plugins.hint"/}}
 ## TODO: Replace the DIV with a group when XRENDERING-29 is implemented.
-: &lt;div class="noScript">$doc.display('plugins', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('plugins', $mode)&lt;/div&gt;
 ##
-; &lt;label>$doc.displayPrettyName('menuBar', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('menuBar', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.menuBar.hint"/}}
-: &lt;div class="noScript">$doc.display('menuBar', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('menuBar', $mode)&lt;/div&gt;
 ##
-; &lt;label>$doc.displayPrettyName('toolBar', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('toolBar', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.toolBar.hint"/}}
-: &lt;div class="noScript">$doc.display('toolBar', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('toolBar', $mode)&lt;/div&gt;
 ##
-; &lt;label>$doc.displayPrettyName('cleanPaste', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('cleanPaste', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.cleanPaste.hint"/}}
 : $doc.display('cleanPaste', $mode)
 
@@ -68,7 +88,7 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 {{translation key="wysiwyg.admin.plugin.settings.hint" parameters="link"/}}
 )))
 
-; &lt;label>$doc.displayPrettyName('attachmentSelectionLimited', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('attachmentSelectionLimited', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.attachmentSelectionLimited.hint"/}}
 : $doc.display('attachmentSelectionLimited', $mode)
 
@@ -80,11 +100,11 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 {{translation key="wysiwyg.admin.plugin.settings.hint" parameters="image"/}}
 )))
 
-; &lt;label>$doc.displayPrettyName('externalImages', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('externalImages', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.externalImages.hint"/}}
 : $doc.display('externalImages', $mode)
 ##
-; &lt;label>$doc.displayPrettyName('imageSelectionLimited', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('imageSelectionLimited', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.imageSelectionLimited.hint"/}}
 : $doc.display('imageSelectionLimited', $mode)
 
@@ -96,13 +116,13 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 {{translation key="wysiwyg.admin.plugin.settings.hint" parameters="color"/}}
 )))
 
-; &lt;label>$doc.displayPrettyName('colorsPerRow', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('colorsPerRow', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.colorsPerRow.hint"/}}
-: &lt;div class="noScript">$doc.display('colorsPerRow', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('colorsPerRow', $mode)&lt;/div&gt;
 ##
-; &lt;label>$doc.displayPrettyName('colorPalette', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('colorPalette', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.colorPalette.hint"/}}
-: &lt;div class="noScript">$doc.display('colorPalette', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('colorPalette', $mode)&lt;/div&gt;
 
 ##
 == {{translation key="wysiwyg.admin.font"/}} ==
@@ -112,13 +132,13 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 {{translation key="wysiwyg.admin.plugin.settings.hint" parameters="font"/}}
 )))
 
-; &lt;label>$doc.displayPrettyName('fontNames', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('fontNames', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.fontNames.hint"/}}
-: &lt;div class="noScript">$doc.display('fontNames', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('fontNames', $mode)&lt;/div&gt;
 ##
-; &lt;label>$doc.displayPrettyName('fontSizes', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('fontSizes', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.fontSizes.hint"/}}
-: &lt;div class="noScript">$doc.display('fontSizes', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('fontSizes', $mode)&lt;/div&gt;
 
 ##
 == {{translation key="wysiwyg.admin.style"/}} ==
@@ -128,9 +148,9 @@ $xwiki.ssx.use('XWiki.WysiwygEditorConfigSheet')
 {{translation key="wysiwyg.admin.plugin.settings.hint" parameters="style"/}}
 )))
 
-; &lt;label>$doc.displayPrettyName('styleNames', false, false)&lt;/label>##
+; &lt;label&gt;$doc.displayPrettyName('styleNames', false, false)&lt;/label&gt;##
 (% class="xHint" %){{translation key="wysiwyg.admin.styleNames.hint"/}}
-: &lt;div class="noScript">$doc.display('styleNames', $mode)&lt;/div>
+: &lt;div class="noScript"&gt;$doc.display('styleNames', $mode)&lt;/div&gt;
 )))
 {{/html}}
 {{/velocity}}</content>
@@ -219,7 +239,7 @@ var XWiki = (function (XWiki) {
 // Start XWiki augmentation.
 XWiki.HSortableList = Class.create({
   sortableOptions : {tag:'li', overlap: 'horizontal', constraint: 'horizontal'},
-  listItemTemplate : '&lt;li>&lt;span class="value" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.sortableList.hint'))">__value__&lt;/span>&lt;span class="separator">[&lt;/span>&lt;span title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.sortableList.delete'))" class="delete">X&lt;/span>&lt;span class="separator">]&lt;/span>&lt;/li>',
+  listItemTemplate : '&lt;li&gt;&lt;span class="value" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.sortableList.hint'))"&gt;__value__&lt;/span&gt;&lt;span class="separator"&gt;[&lt;/span&gt;&lt;span title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.sortableList.delete'))" class="delete"&gt;X&lt;/span&gt;&lt;span class="separator"&gt;]&lt;/span&gt;&lt;/li&gt;',
   initialize : function(values, duplicatesAllowed) {
     this.duplicatesAllowed = !!duplicatesAllowed;
     this.list = this._createList(values);
@@ -260,7 +280,7 @@ XWiki.HSortableList = Class.create({
     return false;
   },
   addListItem : function(value) {
-    if (value.length > 0 &amp;&amp; (this.duplicatesAllowed || !this.contains(value))) {
+    if (value.length &gt; 0 &amp;&amp; (this.duplicatesAllowed || !this.contains(value))) {
       var item = $(new Element('ul').update(this.listItemTemplate).firstChild);
       item.down('.value').firstChild.nodeValue = value;
       this.list.appendChild(item);
@@ -462,8 +482,8 @@ XWiki.ColorPaletteEditor = Class.create({
     }
 
     // Recreate the color palette.
-    var rowHTML = '&lt;tr>' + new Array(columnCount + 1).join('&lt;td>&lt;div>&lt;/div>&lt;/td>') + '&lt;/tr>';
-    var tableHTML = '&lt;table class="colorPalette">&lt;tbody>' + new Array(rowCount + 1).join(rowHTML) + '&lt;/tbody>&lt;/table>';
+    var rowHTML = '&lt;tr&gt;' + new Array(columnCount + 1).join('&lt;td&gt;&lt;div&gt;&lt;/div&gt;&lt;/td&gt;') + '&lt;/tr&gt;';
+    var tableHTML = '&lt;table class="colorPalette"&gt;&lt;tbody&gt;' + new Array(rowCount + 1).join(rowHTML) + '&lt;/tbody&gt;&lt;/table&gt;';
     var newColorPalette = new Element('div').update(tableHTML).firstChild;
 
     // Fill the color palette.
@@ -511,7 +531,7 @@ XWiki.ColorPaletteEditor = Class.create({
     cell.firstChild.style.backgroundColor = this.colorPickerInput.value;
   },
   initializeColorPaletteSizeControls : function() {
-    this.sizeControls = new Element('div', {id: 'colorPaletteSizeControls'}).update('&lt;label for="colorPaletteRowCount">$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.rows')) &lt;/label>&lt;input id="colorPaletteRowCount" type="text" size="3"/> &lt;label for="colorPaletteColumnCount">$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.columns')) &lt;/label>&lt;input id="colorPaletteColumnCount" type="text" size="3"/>&lt;input type="image" class="icon" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.refresh'))" src="$xwiki.getSkinFile('icons/silk/arrow_refresh.png')" alt="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.refresh'))"/>');
+    this.sizeControls = new Element('div', {id: 'colorPaletteSizeControls'}).update('&lt;label for="colorPaletteRowCount"&gt;$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.rows')) &lt;/label&gt;&lt;input id="colorPaletteRowCount" type="text" size="3"/&gt; &lt;label for="colorPaletteColumnCount"&gt;$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.columns')) &lt;/label&gt;&lt;input id="colorPaletteColumnCount" type="text" size="3"/&gt;&lt;input type="image" class="icon" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.refresh'))" src="$xwiki.getSkinFile('icons/silk/arrow_refresh.png')" alt="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.colorPaletteEditor.refresh'))"/&gt;');
 
     var rowCountField = this.sizeControls.down('input');
     rowCountField.value = this.getRowCount();
@@ -647,9 +667,9 @@ XWiki.ListBox = Class.create({
     this.container.appendChild(this.removeButton);
   },
   _createList : function(items, size, multiple) {
-    var options = new Array(items.length + 1).join('&lt;option>__label__&lt;/option>');
+    var options = new Array(items.length + 1).join('&lt;option&gt;__label__&lt;/option&gt;');
     // Use a DIV to create the select otherwise it doesn't work in IE.
-    var select = $(new Element('div').update('&lt;select size="' + window.parseInt(size) + (!!multiple ? '" multiple="multiple">' : '">') + options + '&lt;/select>').firstChild);
+    var select = $(new Element('div').update('&lt;select size="' + window.parseInt(size) + (!!multiple ? '" multiple="multiple"&gt;' : '"&gt;') + options + '&lt;/select&gt;').firstChild);
     for(var i = 0; i &lt; items.length; i++){
       var item = items[i];
       if (typeof item == 'string') {
@@ -762,7 +782,7 @@ XWiki.FontNameListBox = Class.create(XWiki.ListBox, {
   initialize : function($super, fontNames) {
     ${super}(true, 10, fontNames.split(/\s*,\s*/).sort());
 
-    this.inputWrapper = new Element('div').update('&lt;input type="text" class="withTip"/>&lt;input type="image" class="icon" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.listBox.add'))" src="$xwiki.getSkinFile('icons/silk/add.png')" alt="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.listBox.add'))"/>');
+    this.inputWrapper = new Element('div').update('&lt;input type="text" class="withTip"/&gt;&lt;input type="image" class="icon" title="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.listBox.add'))" src="$xwiki.getSkinFile('icons/silk/add.png')" alt="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.listBox.add'))"/&gt;');
     this.inputWrapper.firstChild.value = this.inputWrapper.firstChild.defaultValue = '$escapetool.javascript($services.localization.render('wysiwyg.admin.fontNames.add.hint'))';
     $(this.inputWrapper.firstChild).observe('keydown', this._onKeyDown.bindAsEventListener(this));
     $(this.inputWrapper.lastChild).observe('click', this._onClickAdd.bindAsEventListener(this));
@@ -816,7 +836,7 @@ XWiki.StyleNameListBox = Class.create(XWiki.ListBox, {
     this.sortOptions(this.inlineStyleGroup);
   },
   _initializeInputPanel : function() {
-    this.inputPanel = new Element('div', {id: 'styleNamesInputPanel'}).update('&lt;label for="styleName">$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleName'))&lt;/label>&lt;input id="styleName" type="text"/>&lt;label for="styleLabel">$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleLabel'))&lt;/label>&lt;input id="styleLabel" type="text"/>&lt;label for="styleInline" style="float:right">&lt;input type="checkbox" id="styleInline" checked="checked"/> $escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleInline'))&lt;/label>&lt;span class="buttonwrapper">&lt;input type="submit" value="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.add'))" class="secondary button"/>&lt;/span>&lt;div class="clearfloats">&lt;/div>');
+    this.inputPanel = new Element('div', {id: 'styleNamesInputPanel'}).update('&lt;label for="styleName"&gt;$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleName'))&lt;/label&gt;&lt;input id="styleName" type="text"/&gt;&lt;label for="styleLabel"&gt;$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleLabel'))&lt;/label&gt;&lt;input id="styleLabel" type="text"/&gt;&lt;label for="styleInline" style="float:right"&gt;&lt;input type="checkbox" id="styleInline" checked="checked"/&gt; $escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.styleInline'))&lt;/label&gt;&lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="$escapetool.xml($services.localization.render('wysiwyg.admin.widgets.styleNamesEditor.add'))" class="secondary button"/&gt;&lt;/span&gt;&lt;div class="clearfloats"&gt;&lt;/div&gt;');
     this.inputPanel.down('input[type="submit"]').observe('click', this._onAddStyleName.bindAsEventListener(this));
     this.inputPanel.down('#styleName').observe('keydown', this._onKeyDown.bindAsEventListener(this));
     this.inputPanel.down('#styleLabel').observe('keydown', this._onKeyDown.bindAsEventListener(this));
@@ -828,7 +848,7 @@ XWiki.StyleNameListBox = Class.create(XWiki.ListBox, {
     parent.appendChild(new Element('div', {'class': 'clearfloats'}));
   },
   _onSelectionChange : function() {
-    if (this.selectElement.selectedIndex >= 0) {
+    if (this.selectElement.selectedIndex &gt;= 0) {
       var style = this.selectElement.options[this.selectElement.selectedIndex].value.evalJSON();
       $('styleName').value = style.name;
       $('styleLabel').value = style.label;

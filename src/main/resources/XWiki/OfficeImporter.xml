@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>XWiki</web>
   <name>OfficeImporter</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1377855795000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render('xe.officeimporter.import.title')</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
@@ -25,7 +45,7 @@
   {{error}}$services.localization.render('xe.officeimporter.notallowed'){{/error}}
 #elseif ("$!services.officemanager.serverState" != 'Connected')
   #if ($hasAdmin)
-    {{error}}$services.localization.render('xe.officeimporter.error.adminuser', ['[[', '>>http://extensions.xwiki.org/xwiki/bin/Extension/Office%20Importer%20Application]]']){{/error}}
+    {{error}}$services.localization.render('xe.officeimporter.error.adminuser', ['[[', '&gt;&gt;http://extensions.xwiki.org/xwiki/bin/Extension/Office%20Importer%20Application]]']){{/error}}
   #else
     {{error}}$services.localization.render('xe.officeimporter.error.normaluser'){{/error}}
   #end
@@ -34,17 +54,17 @@
     #set($targetdoc = $xwiki.getDocument($request.page))
   #end
 {{html}}
-&lt;div class="office_importer_box">
-  &lt;form action="$xwiki.getURL('XWiki.OfficeImporterResults','view')" enctype="multipart/form-data" method="post">
-    &lt;p class="office_importer_document">
-      &lt;label for="filepath">$services.localization.render('xe.officeimporter.import.document'): &lt;/label>
-      &lt;input id="filepath" type="file" name="filePath" value="" size="40" />
-    &lt;/p>
+&lt;div class="office_importer_box"&gt;
+  &lt;form action="$xwiki.getURL('XWiki.OfficeImporterResults','view')" enctype="multipart/form-data" method="post"&gt;
+    &lt;p class="office_importer_document"&gt;
+      &lt;label for="filepath"&gt;$services.localization.render('xe.officeimporter.import.document'): &lt;/label&gt;
+      &lt;input id="filepath" type="file" name="filePath" value="" size="40" /&gt;
+    &lt;/p&gt;
 
-    &lt;h2>$services.localization.render('xe.officeimporter.import.target')&lt;/h2>
-    &lt;p class="office_importer_target">
-      &lt;label for="targetSpaceInputId"  class="inputtext">
-        &lt;span>$services.localization.render('xe.officeimporter.import.targetspace'): &lt;/span>
+    &lt;h2&gt;$services.localization.render('xe.officeimporter.import.target')&lt;/h2&gt;
+    &lt;p class="office_importer_target"&gt;
+      &lt;label for="targetSpaceInputId"  class="inputtext"&gt;
+        &lt;span&gt;$services.localization.render('xe.officeimporter.import.targetspace'): &lt;/span&gt;
         ## Compute the target space where the document will be imported
         #set ($defaultTargetSpace = $targetdoc.space)
         #if (!$defaultTargetSpace)
@@ -52,67 +72,67 @@
           #set ($parentReference = $services.model.resolveDocument("$!request.parent", 'default'))
           #set ($defaultTargetSpace = $parentReference.lastSpaceReference.name)
         #end
-        &lt;input id="targetSpaceInputId" type="text" name="targetSpace" class="suggestSpaces suggested" value="$!defaultTargetSpace"/>
-      &lt;/label>
-      &lt;label for="targetPageInputId" class="inputtext">
-        &lt;span>$services.localization.render('xe.officeimporter.import.targetpage'): &lt;/span>
-        &lt;input id="targetPageInputId" name="targetPage" type="text" value="$!{targetdoc.name}" />
-      &lt;/label>
-      &lt;label for="appendContentInputId" id="appenContent" class="radio">
-        &lt;span>$services.localization.render('xe.officeimporter.import.appendresult'): &lt;/span>
-        &lt;input id="appendContentInputId" name="appendContent" type="checkbox" value="true" />
-      &lt;/label>
-    &lt;/p>
-    &lt;p class="help_message">$services.localization.render('xe.officeimporter.import.help.target')&lt;/p>
+        &lt;input id="targetSpaceInputId" type="text" name="targetSpace" class="suggestSpaces suggested" value="$!defaultTargetSpace"/&gt;
+      &lt;/label&gt;
+      &lt;label for="targetPageInputId" class="inputtext"&gt;
+        &lt;span&gt;$services.localization.render('xe.officeimporter.import.targetpage'): &lt;/span&gt;
+        &lt;input id="targetPageInputId" name="targetPage" type="text" value="$!{targetdoc.name}" /&gt;
+      &lt;/label&gt;
+      &lt;label for="appendContentInputId" id="appenContent" class="radio"&gt;
+        &lt;span&gt;$services.localization.render('xe.officeimporter.import.appendresult'): &lt;/span&gt;
+        &lt;input id="appendContentInputId" name="appendContent" type="checkbox" value="true" /&gt;
+      &lt;/label&gt;
+    &lt;/p&gt;
+    &lt;p class="help_message"&gt;$services.localization.render('xe.officeimporter.import.help.target')&lt;/p&gt;
 
-    &lt;h2>$services.localization.render('xe.officeimporter.import.styles')&lt;/h2>
-    &lt;p class="office_importer_styles">
-      &lt;label for="filterStylesInputId" class="radio">
+    &lt;h2&gt;$services.localization.render('xe.officeimporter.import.styles')&lt;/h2&gt;
+    &lt;p class="office_importer_styles"&gt;
+      &lt;label for="filterStylesInputId" class="radio"&gt;
         $services.localization.render('xe.officeimporter.import.filterstyles'):
-        &lt;input id="filterStylesInputId" name="filterStyles" type="checkbox" value="strict" checked="checked"/>
-      &lt;/label>
-    &lt;/p>
-    &lt;p class="help_message">$services.localization.render('xe.officeimporter.import.help.styles')&lt;/p>
+        &lt;input id="filterStylesInputId" name="filterStyles" type="checkbox" value="strict" checked="checked"/&gt;
+      &lt;/label&gt;
+    &lt;/p&gt;
+    &lt;p class="help_message"&gt;$services.localization.render('xe.officeimporter.import.help.styles')&lt;/p&gt;
 
-    &lt;h2>$services.localization.render('xe.officeimporter.import.splitting')&lt;/h2>
-    &lt;div class="office_importer_splittingcontent">
-      &lt;label for="splitDocumentInputId" class="radio">
-        &lt;span>$services.localization.render('xe.officeimporter.import.splitting.splitdocument'): &lt;/span>
-        &lt;input id="splitDocumentInputId" name="splitDocument" type="checkbox" value="true"/>
-      &lt;/label>
-      &lt;p class="office_importer_splitting">
-        &lt;label for="headingLevelsToSplitInputId" class="multipleselect">
-          &lt;span>$services.localization.render('xe.officeimporter.import.splitting.headinglevels'): &lt;/span> 
-          &lt;select id="headingLevelsToSplitInputId" size="5" multiple="multiple" name="headingLevelsToSplit" class="headingLevelsToSplit">
+    &lt;h2&gt;$services.localization.render('xe.officeimporter.import.splitting')&lt;/h2&gt;
+    &lt;div class="office_importer_splittingcontent"&gt;
+      &lt;label for="splitDocumentInputId" class="radio"&gt;
+        &lt;span&gt;$services.localization.render('xe.officeimporter.import.splitting.splitdocument'): &lt;/span&gt;
+        &lt;input id="splitDocumentInputId" name="splitDocument" type="checkbox" value="true"/&gt;
+      &lt;/label&gt;
+      &lt;p class="office_importer_splitting"&gt;
+        &lt;label for="headingLevelsToSplitInputId" class="multipleselect"&gt;
+          &lt;span&gt;$services.localization.render('xe.officeimporter.import.splitting.headinglevels'): &lt;/span&gt; 
+          &lt;select id="headingLevelsToSplitInputId" size="5" multiple="multiple" name="headingLevelsToSplit" class="headingLevelsToSplit"&gt;
           #foreach($h in [1..6])
-            &lt;option value="${h}"#if ($velocityCount == 1) selected="selected"#end>$services.localization.render('xe.officeimporter.import.splitting.heading')-${h}&lt;/option>
+            &lt;option value="${h}"#if ($velocityCount == 1) selected="selected"#end&gt;$services.localization.render('xe.officeimporter.import.splitting.heading')-${h}&lt;/option&gt;
           #end
-          &lt;/select>
-        &lt;/label>
-        &lt;label for="childPagesNamingMethodInputId" class="select">
-          &lt;span>$services.localization.render('xe.officeimporter.import.splitting.naming'): &lt;/span>
-          &lt;select id="childPagesNamingMethodInputId" name="childPagesNamingMethod">
-            &lt;option value="headingNames">$services.localization.render('xe.officeimporter.import.splitting.naming.headingnames')&lt;/option>
-            &lt;option value="mainPageNameAndHeading">$services.localization.render('xe.officeimporter.import.splitting.naming.mainpagenameandheading')&lt;/option>
-            &lt;option value="mainPageNameAndNumbering">$services.localization.render('xe.officeimporter.import.splitting.naming.mainpagenameandnumbering')&lt;/option>
-          &lt;/select>
-        &lt;/label>
-      &lt;/p>
-      &lt;p class="help_message">$services.localization.render('xe.officeimporter.import.help.splitting')&lt;/p>
+          &lt;/select&gt;
+        &lt;/label&gt;
+        &lt;label for="childPagesNamingMethodInputId" class="select"&gt;
+          &lt;span&gt;$services.localization.render('xe.officeimporter.import.splitting.naming'): &lt;/span&gt;
+          &lt;select id="childPagesNamingMethodInputId" name="childPagesNamingMethod"&gt;
+            &lt;option value="headingNames"&gt;$services.localization.render('xe.officeimporter.import.splitting.naming.headingnames')&lt;/option&gt;
+            &lt;option value="mainPageNameAndHeading"&gt;$services.localization.render('xe.officeimporter.import.splitting.naming.mainpagenameandheading')&lt;/option&gt;
+            &lt;option value="mainPageNameAndNumbering"&gt;$services.localization.render('xe.officeimporter.import.splitting.naming.mainpagenameandnumbering')&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
+      &lt;/p&gt;
+      &lt;p class="help_message"&gt;$services.localization.render('xe.officeimporter.import.help.splitting')&lt;/p&gt;
 
-      &lt;input type="hidden" name="groovyFilter" value="" />
-      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
+      &lt;input type="hidden" name="groovyFilter" value="" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
       ## Normalize the parent reference of the new document so that even in a subwiki it points to the current wiki
       #set ($normalizedParentReference = $services.model.resolveDocument("$!request.parent", 'current'))
-      &lt;input type="hidden" name="parent" value="$normalizedParentReference" />
-    &lt;/div>
-    &lt;div class="office_importer_buttons">
-      &lt;span class="buttonwrapper">
-        &lt;input type="submit" value="$services.localization.render('xe.officeimporter.import.import')" class="button"/>
+      &lt;input type="hidden" name="parent" value="$normalizedParentReference" /&gt;
+    &lt;/div&gt;
+    &lt;div class="office_importer_buttons"&gt;
+      &lt;span class="buttonwrapper"&gt;
+        &lt;input type="submit" value="$services.localization.render('xe.officeimporter.import.import')" class="button"/&gt;
       &lt;/span&gt;
-    &lt;/div>
-  &lt;/form>
-&lt;/div>
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
 {{/html}}
 #end
 {{/velocity}}</content>
@@ -205,7 +225,7 @@
 
     var fileName = XWiki.extractFileName('filepath');
     var dotIndex = fileName.lastIndexOf(".");
-    if (dotIndex >= 0) {
+    if (dotIndex &gt;= 0) {
       fileName = fileName.substring(0, dotIndex);
     }
     targetPageInput.value = fileName;
@@ -346,7 +366,7 @@
       </use>
     </class>
     <property>
-      <cache></cache>
+      <cache/>
     </property>
     <property>
       <code>.office_importer_box {
@@ -481,7 +501,7 @@ select#childPagesNamingMethod {
   font-weight: normal;
 }
 
-.office_importer_target > label > span {
+.office_importer_target &gt; label &gt; span {
   display: block;
   float: left;
   display: inline;

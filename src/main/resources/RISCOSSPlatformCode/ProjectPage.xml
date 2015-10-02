@@ -1,107 +1,127 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformCode</web>
   <name>ProjectPage</name>
   <language/>
-  <defaultLanguage>en</defaultLanguage>
+  <defaultLanguage/>
   <translation>0</translation>
-  <creator>xwiki:XWiki.superadmin</creator>
+  <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1435675874000</creationDate>
   <parent>Main.WebHome</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443437357000</date>
   <contentUpdateDate>1443437324000</contentUpdateDate>
-  <version>2.411</version>
+  <version>1.1</version>
   <title>$!xwiki.getDocument($request.project).title project page</title>
   <comment/>
-  <minorEdit>true</minorEdit>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
-  <content>{{include document="RISCOSSPlatformCode.githubProjectMacros" /}}&#xd;
-&#xd;
-{{velocity}}&#xd;
-## This page shows the risk analysis reuslts of a given project&#xd;
-&#xd;
-## Globals&#xd;
-#set($projectDocRef = $request.project)&#xd;
-#set($userName = $xwiki.getDocument($xcontext.user).name)&#xd;
-#if ("$!projectDocRef" != '' &amp;&amp; $xwiki.exists($projectDocRef))&#xd;
-   ## Get associated sessions&#xd;
-   #set($query = "from doc.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) as session where session.entity=:projectDocRef and session.riskConfiguration='RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration' and doc.space like 'RISCOSSPlatformRiskAnalysisSessions%'")&#xd;
-   #set($riskAnlysisSessions = $services.query.xwql($query).bindValue("projectDocRef","${projectDocRef}").setLimit(1).execute())&#xd;
-   #if ($riskAnlysisSessions.size() > 0)&#xd;
-      #set($RiskEvaluationViewSheet_analisysSessionDoc = $xwiki.getDocument($riskAnlysisSessions[0]))&#xd;
-      ## Calculate project score&#xd;
-      #getProjectScore($RiskEvaluationViewSheet_analisysSessionDoc)&#xd;
-      #set($projectLink = $doc.getExternalURL("view","project=${escapetool.url($projectDocRef)}"))&#xd;
-      ## Calculate the project ranking value&#xd;
-      #calculateTopTenProjectsAverageScore()&#xd;
-      #set($projectRanking = $mathtool.div($mathtool.mul($projectScore,100),$topTenProjectsScoresAverage))&#xd;
-      #set($projectRanking = $mathtool.roundTo(2,$projectRanking))&#xd;
-      #set($projectRanking = $mathtool.toInteger($projectRanking))&#xd;
-      #set($mod = $mathtool.mod($projectRanking, 10))&#xd;
-      #if($mod > 5)&#xd;
-            #set($projectRanking = $mathtool.add($projectRanking, $mathtool.sub(10, $mod)))&#xd;
-      #else&#xd;
-         #set($projectRanking = $mathtool.sub($projectRanking, $mod))&#xd;
-      #end&#xd;
-      #if($projectRanking >= 50)&#xd;
-         #if($projectRanking >= 100)&#xd;
-            #set($projectRanking = 1)&#xd;
-         #else&#xd;
-            #set($projectRanking = $mathtool.sub(100, $projectRanking))&#xd;
-         #end&#xd;
-         #set($projectRanking = "This project is in the top &lt;strong>${projectRanking}%&lt;/strong> of the best projects")   &#xd;
-      #else&#xd;
-         ##set($projectRanking = $mathtool.sub(100, $projectRanking))&#xd;
-         #set($projectRanking = "This project is in the bottom &lt;strong>${projectRanking}%&lt;/strong> of the best projects")  &#xd;
-      #end&#xd;
-      ## Project information&#xd;
-      #set($projectDoc = $xwiki.getDocument($projectDocRef))&#xd;
-      #set($obj = $projectDoc.getObject("RISCOSSPlatformLayers.OSSComponent"))&#xd;
-      {{html}}&#xd;
-      &lt;table class="analysis-res-table">&#xd;
-      &lt;tr>&lt;th>Project name&lt;/th>&lt;td>$!obj.getProperty("name").value&lt;/td>&lt;/tr>&#xd;
-      &lt;tr>&lt;th>Description&lt;/th>&lt;td>$!obj.getProperty("description").value&lt;/td>&lt;/tr>&#xd;
-      &lt;tr>&lt;th>Web site&lt;/th>&lt;td>&lt;a href="$obj.getProperty("website").value">$obj.getProperty("website").value&lt;/a>&lt;/td>&lt;/tr>&#xd;
-      &lt;/table>&#xd;
-      {{/html}}&#xd;
-&#xd;
-      ## Ranking/Twitter btn&#xd;
-      {{html}}&#xd;
-      &lt;h2 id="projectRanking">$services.localization.render("riscossPlatform.githubprojects.projectpage.projectscore") : &lt;strong>$projectScore&lt;/strong> - $projectRanking&lt;/h2>&#xd;
-      {{/html}}&#xd;
-&#xd;
-      {{info}}&#xd;
-      The total project ranking is derived from the project score that is calculated from the components of the risk analysis (Obsolescence Risk, Bug Risk, Analysability Risk, Maintenance Risk).&#xd;
-      The project ranking represents the percentage of the project's score compared to the top ten projects average score.&#xd;
-      The higher the score the better the project is ranked.&#xd;
-      {{/info}}&#xd;
-&#xd;
-      {{html}}&#xd;
-      &lt;div class="tweetScore">&lt;div class="tweetLabel">$services.localization.render("riscossPlatform.githubprojects.projectpage.tweetthisscore")&lt;/div>&lt;div class="tweetBtn">&lt;a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="${projectLink} scored ${projectScore} on #riscoss" data-size="large" data-count="none">Tweet&lt;/a>&#xd;
-      &lt;script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script>&lt;/div>&#xd;
-      &lt;/div>&#xd;
-      &lt;div style="clear:both;">&lt;/div>&#xd;
-      {{/html}}&#xd;
-      &#xd;
-      ## Display analysis results&#xd;
-      = Basic Risk Analysis =&#xd;
-      A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern but is less thorough than an Advanced Risk Analysis based on a project //and// a use case.&#xd;
-&#xd;
-      #set($displayInProjectPage = "true")&#xd;
-      {{include reference="RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet" /}}&#xd;
-   #else&#xd;
-      {{info}}&#xd;
-         $services.localization.render("riscossPlatform.githubprojects.projectpage.analysisinprogress")&#xd;
-      {{/info}}&#xd;
-   #end&#xd;
-#else&#xd;
-{{warning}}&#xd;
-$services.localization.render("riscossPlatform.githubprojects.projectpage.analysisinprogress")&#xd;
-{{/warning}}&#xd;
-#end&#xd;
+  <content>{{include document="RISCOSSPlatformCode.githubProjectMacros" /}}
+
+{{velocity}}
+## This page shows the risk analysis reuslts of a given project
+
+## Globals
+#set($projectDocRef = $request.project)
+#set($userName = $xwiki.getDocument($xcontext.user).name)
+#if ("$!projectDocRef" != '' &amp;&amp; $xwiki.exists($projectDocRef))
+   ## Get associated sessions
+   #set($query = "from doc.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) as session where session.entity=:projectDocRef and session.riskConfiguration='RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration' and doc.space like 'RISCOSSPlatformRiskAnalysisSessions%'")
+   #set($riskAnlysisSessions = $services.query.xwql($query).bindValue("projectDocRef","${projectDocRef}").setLimit(1).execute())
+   #if ($riskAnlysisSessions.size() &gt; 0)
+      #set($RiskEvaluationViewSheet_analisysSessionDoc = $xwiki.getDocument($riskAnlysisSessions[0]))
+      ## Calculate project score
+      #getProjectScore($RiskEvaluationViewSheet_analisysSessionDoc)
+      #set($projectLink = $doc.getExternalURL("view","project=${escapetool.url($projectDocRef)}"))
+      ## Calculate the project ranking value
+      #calculateTopTenProjectsAverageScore()
+      #set($projectRanking = $mathtool.div($mathtool.mul($projectScore,100),$topTenProjectsScoresAverage))
+      #set($projectRanking = $mathtool.roundTo(2,$projectRanking))
+      #set($projectRanking = $mathtool.toInteger($projectRanking))
+      #set($mod = $mathtool.mod($projectRanking, 10))
+      #if($mod &gt; 5)
+            #set($projectRanking = $mathtool.add($projectRanking, $mathtool.sub(10, $mod)))
+      #else
+         #set($projectRanking = $mathtool.sub($projectRanking, $mod))
+      #end
+      #if($projectRanking &gt;= 50)
+         #if($projectRanking &gt;= 100)
+            #set($projectRanking = 1)
+         #else
+            #set($projectRanking = $mathtool.sub(100, $projectRanking))
+         #end
+         #set($projectRanking = "This project is in the top &lt;strong&gt;${projectRanking}%&lt;/strong&gt; of the best projects")   
+      #else
+         ##set($projectRanking = $mathtool.sub(100, $projectRanking))
+         #set($projectRanking = "This project is in the bottom &lt;strong&gt;${projectRanking}%&lt;/strong&gt; of the best projects")  
+      #end
+      ## Project information
+      #set($projectDoc = $xwiki.getDocument($projectDocRef))
+      #set($obj = $projectDoc.getObject("RISCOSSPlatformLayers.OSSComponent"))
+      {{html}}
+      &lt;table class="analysis-res-table"&gt;
+      &lt;tr&gt;&lt;th&gt;Project name&lt;/th&gt;&lt;td&gt;$!obj.getProperty("name").value&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;th&gt;Description&lt;/th&gt;&lt;td&gt;$!obj.getProperty("description").value&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;th&gt;Web site&lt;/th&gt;&lt;td&gt;&lt;a href="$obj.getProperty("website").value"&gt;$obj.getProperty("website").value&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+      {{/html}}
+
+      ## Ranking/Twitter btn
+      {{html}}
+      &lt;h2 id="projectRanking"&gt;$services.localization.render("riscossPlatform.githubprojects.projectpage.projectscore") : &lt;strong&gt;$projectScore&lt;/strong&gt; - $projectRanking&lt;/h2&gt;
+      {{/html}}
+
+      {{info}}
+      The total project ranking is derived from the project score that is calculated from the components of the risk analysis (Obsolescence Risk, Bug Risk, Analysability Risk, Maintenance Risk).
+      The project ranking represents the percentage of the project's score compared to the top ten projects average score.
+      The higher the score the better the project is ranked.
+      {{/info}}
+
+      {{html}}
+      &lt;div class="tweetScore"&gt;&lt;div class="tweetLabel"&gt;$services.localization.render("riscossPlatform.githubprojects.projectpage.tweetthisscore")&lt;/div&gt;&lt;div class="tweetBtn"&gt;&lt;a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="${projectLink} scored ${projectScore} on #riscoss" data-size="large" data-count="none"&gt;Tweet&lt;/a&gt;
+      &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div style="clear:both;"&gt;&lt;/div&gt;
+      {{/html}}
+      
+      ## Display analysis results
+      = Basic Risk Analysis =
+      A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern but is less thorough than an Advanced Risk Analysis based on a project //and// a use case.
+
+      #set($displayInProjectPage = "true")
+      {{include reference="RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet" /}}
+   #else
+      {{info}}
+         $services.localization.render("riscossPlatform.githubprojects.projectpage.analysisinprogress")
+      {{/info}}
+   #end
+#else
+{{warning}}
+$services.localization.render("riscossPlatform.githubprojects.projectpage.analysisinprogress")
+{{/warning}}
+#end
 {{/velocity}}</content>
   <object>
     <name>RISCOSSPlatformCode.ProjectPage</name>
@@ -183,27 +203,27 @@ $services.localization.render("riscossPlatform.githubprojects.projectpage.analys
       <cache>long</cache>
     </property>
     <property>
-      <code>.tweetScore{&#xd;
-   margin-top: 20px;&#xd;
-}&#xd;
-.tweetScore .tweetLabel, .tweetScore .tweetBtn{&#xd;
-   float:left;&#xd;
-}&#xd;
-.tweetLabel{&#xd;
-   padding-top: 2px;&#xd;
-   padding-right: 5px;&#xd;
-   font-size: 1.5em;&#xd;
-}&#xd;
-#projectRanking{&#xd;
-   text-align: center;&#xd;
-   border: 0;&#xd;
-   background: #F3F3F3;&#xd;
-   padding: 1em;&#xd;
-   margin: 0;&#xd;
+      <code>.tweetScore{
+   margin-top: 20px;
+}
+.tweetScore .tweetLabel, .tweetScore .tweetBtn{
+   float:left;
+}
+.tweetLabel{
+   padding-top: 2px;
+   padding-right: 5px;
+   font-size: 1.5em;
+}
+#projectRanking{
+   text-align: center;
+   border: 0;
+   background: #F3F3F3;
+   padding: 1em;
+   margin: 0;
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse/>

@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Panels</web>
   <name>AddClassProperty</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1206017164000</contentUpdateDate>
   <version>1.1</version>
   <title>Add Class Property Panel</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -104,23 +124,23 @@
       <content>{{velocity}}
 #largepanelheader($services.localization.render('addproperty'))
 {{html}}
-&lt;form id="propadd" method="post" action="$doc.getURL('propadd')" onsubmit="cancelCancelEdit()">
-&lt;div class="padded">
-&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" />
-&lt;input type="hidden" name="xredirect" value="$doc.getURL('edit', 'editor=class')"/>
-&lt;label for="propname">$services.localization.render('propname'):&lt;/label>&lt;br />
-&lt;input type="text" id="propname" name="propname" value="" size="20" />&lt;br />
-&lt;label for="proptype">$services.localization.render('proptype'):&lt;/label>&lt;br />
-&lt;select id="proptype" name="proptype" size="1">
-&lt;option value="---">$services.localization.render('selectproptype')&lt;/option>
+&lt;form id="propadd" method="post" action="$doc.getURL('propadd')" onsubmit="cancelCancelEdit()"&gt;
+&lt;div class="padded"&gt;
+&lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+&lt;input type="hidden" name="xredirect" value="$doc.getURL('edit', 'editor=class')"/&gt;
+&lt;label for="propname"&gt;$services.localization.render('propname'):&lt;/label&gt;&lt;br /&gt;
+&lt;input type="text" id="propname" name="propname" value="" size="20" /&gt;&lt;br /&gt;
+&lt;label for="proptype"&gt;$services.localization.render('proptype'):&lt;/label&gt;&lt;br /&gt;
+&lt;select id="proptype" name="proptype" size="1"&gt;
+&lt;option value="---"&gt;$services.localization.render('selectproptype')&lt;/option&gt;
 #foreach($prop in $xwiki.metaclass.properties)
-&lt;option value="$prop.name">$prop.prettyName&lt;/option>
+&lt;option value="$prop.name"&gt;$prop.prettyName&lt;/option&gt;
 #end
-&lt;/select>
-&lt;span class="buttonwrapper">
-&lt;input type="submit" class="button" value="$services.localization.render('addproperty')"/>&lt;/span>
-&lt;/div>
-&lt;/form>
+&lt;/select&gt;
+&lt;span class="buttonwrapper"&gt;
+&lt;input type="submit" class="button" value="$services.localization.render('addproperty')"/&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 #panelfooter()
 {{/velocity}}</content>

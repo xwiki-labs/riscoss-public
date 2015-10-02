@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>Main</web>
   <name>DatabaseSearch</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>1298680377000</contentUpdateDate>
   <version>1.1</version>
   <title>#if("$!{request.text}" == '')$services.localization.render('search.page.database.title.noquery')#else$services.localization.render('search.page.database.title.query', [$request.text])#end</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>true</hidden>
@@ -32,17 +52,17 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
 ## Space macros
 ## ---------------
 #macro(spaceoption $space $selectedSpace)
-  &lt;option value="${space}" #if($selectedSpace == $space)selected="selected"#end>$space&lt;/option>
+  &lt;option value="${space}" #if($selectedSpace == $space)selected="selected"#end&gt;$space&lt;/option&gt;
 #end
 #macro(spaceselect $selectedSpace $spaces)
-  &lt;select name="space" title="$services.localization.render('search.page.bar.spaces.title')">
-    &lt;option value="" #if($selectedSpace == '')selected="selected"#end>$services.localization.render('search.page.bar.spaces.all')&lt;/option>
+  &lt;select name="space" title="$services.localization.render('search.page.bar.spaces.title')"&gt;
+    &lt;option value="" #if($selectedSpace == '')selected="selected"#end&gt;$services.localization.render('search.page.bar.spaces.all')&lt;/option&gt;
     #foreach($space in $spaces)
       #if (!$blacklistedSpaces.contains($space) &amp;&amp; $xwiki.hasAccessLevel('view', "${space}.DocumentReservedForInternalXWikiUsage${mathtool.random(0, 999)}"))
         #spaceoption($space $selectedSpace)
       #end
     #end
-  &lt;/select>
+  &lt;/select&gt;
 #end
 ##
 ##
@@ -53,16 +73,16 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
 ## ---------------
 #if(!$rssmode)
 {{html}}
-&lt;form action="" id="searchBar">
-  &lt;div class="centered">
-    &lt;label for="text" class="hidden">$services.localization.render('search.page.query.label')&lt;/label>
-    &lt;input type="text" id="text" name="text" class="searchQuery #if($text == '') withTip#end" #if($text == '') value="$services.localization.render('search.page.bar.query.tip')" #else value="${escapetool.xml($text)}" #end title="$services.localization.render('search.page.bar.query.title')"/>
+&lt;form action="" id="searchBar"&gt;
+  &lt;div class="centered"&gt;
+    &lt;label for="text" class="hidden"&gt;$services.localization.render('search.page.query.label')&lt;/label&gt;
+    &lt;input type="text" id="text" name="text" class="searchQuery #if($text == '') withTip#end" #if($text == '') value="$services.localization.render('search.page.bar.query.tip')" #else value="${escapetool.xml($text)}" #end title="$services.localization.render('search.page.bar.query.title')"/&gt;
     #spaceselect($selectedSpace $spaces)
-    &lt;span class='buttonwrapper'>
-      &lt;input type="submit" class="searchButton button" value="$services.localization.render('search.page.bar.submit')" title="$services.localization.render('search.page.bar.submit.title')"/>
-    &lt;/span>
-  &lt;/div>
-&lt;/form>
+    &lt;span class='buttonwrapper'&gt;
+      &lt;input type="submit" class="searchButton button" value="$services.localization.render('search.page.bar.submit')" title="$services.localization.render('search.page.bar.submit.title')"/&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 {{/html}}
 #end
 #set($space = $selectedSpace)
@@ -158,7 +178,7 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
       #set($rssURL = $xwiki.getURL($doc.fullName, 'view', "xpage=plain&amp;amp;outputSyntax=plain&amp;space=${selectedSpace}&amp;text=${utext}"))
     #end
     {{html}}
-      &lt;a href="${rssURL}" class='hasIcon iconRSS'>$services.localization.render('search.rss', ["[$escapetool.xml($text)]"])&lt;/a>
+      &lt;a href="${rssURL}" class='hasIcon iconRSS'&gt;$services.localization.render('search.rss', ["[$escapetool.xml($text)]"])&lt;/a&gt;
     {{/html}}
   #end
 #end
@@ -233,7 +253,7 @@ $xwiki.ssfx.use("uicomponents/search/search.css", true)##
       </scope>
     </class>
     <property>
-      <content></content>
+      <content/>
     </property>
     <property>
       <extensionPointId>org.xwiki.platform.search</extensionPointId>

@@ -1,60 +1,80 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformCode</web>
   <name>PrivatePage</name>
   <language/>
-  <defaultLanguage>en</defaultLanguage>
+  <defaultLanguage/>
   <translation>0</translation>
-  <creator>XWiki.mouhb</creator>
+  <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1435233966000</creationDate>
   <parent>Main.WebHome</parent>
-  <author>xwiki:XWiki.superadmin</author>
-  <contentAuthor>xwiki:XWiki.superadmin</contentAuthor>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443604464000</date>
   <contentUpdateDate>1443005041000</contentUpdateDate>
-  <version>10.138</version>
+  <version>1.1</version>
   <title>$services.localization.render("riscossPlatform.githubprojects.privatepage.myprojects")</title>
-  <comment>Upload new image ajax-loader.gif</comment>
-  <minorEdit>true</minorEdit>
+  <comment/>
+  <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
-  <content>{{velocity}}&#xd;
-#**&#xd;
-* This page lists github projects of the connected user&#xd;
-*#&#xd;
-#set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.PrivatePage"))&#xd;
-#set($discard = $xwiki.ssx.use("RISCOSSPlatformCode.PrivatePage"))&#xd;
-&#xd;
-## -*- Mode:Velocity&#xd;
-#set($columns = ['project', 'enabledisable', 'analysisstatus', 'reevaluate'])&#xd;
-#set($columnsProperties = {&#xd;
-    'project' : { 'type' : 'none', 'html' : 'true', 'sortable' : 'true', 'filterable' : 'true'},&#xd;
-    'enabledisable' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'},&#xd;
-    'analysisstatus' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'},&#xd;
-    'reevaluate' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'}&#xd;
-})&#xd;
-#set($options = {&#xd;
-   'resultPage' : 'RISCOSSPlatformCode.GitHubLiveTableResults',&#xd;
-   'rowCount' : 10,&#xd;
-   'translationPrefix' : 'riscossPlatform.layerManager.entitiesTable.',&#xd;
-   'creator': $xcontext.getUser(),&#xd;
-   'extraParams' : "&amp;action=showPrivateProjects"&#xd;
-})&#xd;
-&#xd;
-{{html}}&#xd;
-&lt;h3>Register a new project by entering its GitHub repository URL&lt;/h3>&#xd;
-&lt;label>Repository URL / Project full name (githubUser/Repo) &lt;/label>&lt;input type="text"  name="githubRepo" id="githubRepo" />&#xd;
-&lt;input type="button" value="Add project" class="button" id="addGithubPrjBtn"/>&#xd;
-&lt;span class="ajaxloader" id="ajaxloader">&lt;/span>&#xd;
-&lt;div id="gitValidationStatus">&lt;/div>&#xd;
-{{/html}}&#xd;
-&#xd;
-#livetable('projects', $columns, $columnsProperties, $options)&#xd;
-{{/velocity}}&#xd;
+  <content>{{velocity}}
+#**
+* This page lists github projects of the connected user
+*#
+#set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.PrivatePage"))
+#set($discard = $xwiki.ssx.use("RISCOSSPlatformCode.PrivatePage"))
+
+## -*- Mode:Velocity
+#set($columns = ['project', 'enabledisable', 'analysisstatus', 'reevaluate'])
+#set($columnsProperties = {
+    'project' : { 'type' : 'none', 'html' : 'true', 'sortable' : 'true', 'filterable' : 'true'},
+    'enabledisable' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'},
+    'analysisstatus' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'},
+    'reevaluate' : {'type' : 'none', 'html' : 'true', 'filterable' : 'false', 'sortable' : 'false'}
+})
+#set($options = {
+   'resultPage' : 'RISCOSSPlatformCode.GitHubLiveTableResults',
+   'rowCount' : 10,
+   'translationPrefix' : 'riscossPlatform.layerManager.entitiesTable.',
+   'creator': $xcontext.getUser(),
+   'extraParams' : "&amp;action=showPrivateProjects"
+})
+
+{{html}}
+&lt;h3&gt;Register a new project by entering its GitHub repository URL&lt;/h3&gt;
+&lt;label&gt;Repository URL / Project full name (githubUser/Repo) &lt;/label&gt;&lt;input type="text"  name="githubRepo" id="githubRepo" /&gt;
+&lt;input type="button" value="Add project" class="button" id="addGithubPrjBtn"/&gt;
+&lt;span class="ajaxloader" id="ajaxloader"&gt;&lt;/span&gt;
+&lt;div id="gitValidationStatus"&gt;&lt;/div&gt;
+{{/html}}
+
+#livetable('projects', $columns, $columnsProperties, $options)
+{{/velocity}}
 </content>
   <attachment>
     <filename>ajax-loader.gif</filename>
-    <author>xwiki:XWiki.superadmin</author>
+    <author>xwiki:XWiki.Admin</author>
     <date>1442920307000</date>
     <version>1.3</version>
     <comment/>
@@ -141,218 +161,218 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>## Globals&#xd;
-var githubProjectsActionURL = "$xwiki.getURL('RISCOSSPlatformCode.GithubAjaxActions', 'view', 'xpage=plain&amp;outputSyntax=plain')";&#xd;
-var runAnalysisURL = "$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', 'riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration')";&#xd;
-var githubApiURL = "https://api.github.com/repos/";&#xd;
-## Get RISCOSS platform configuration information&#xd;
-#set($confDoc = $xwiki.getDocument("RISCOSSPlatformCode.RISCOSSConfiguration"))&#xd;
-#set($superConf = $confDoc.getObject("RISCOSSPlatformCode.RISCOSSConfiguration"))&#xd;
-#set($clientID = $superConf.getProperty("githubAppClientID").getValue())&#xd;
-#set($clientSecret = $superConf.getProperty("githubAppClientSecret").getValue())&#xd;
-var clientID = "$clientID";&#xd;
-var clientSecret = "$clientSecret";&#xd;
-##&#xd;
-&#xd;
-// Refresh ive table&#xd;
-function refreshLiveTable(){&#xd;
-   var liveTable = window["livetable_projects"];&#xd;
-   liveTable.clearCache();&#xd;
-   liveTable.showRows(Math.max(liveTable.lastOffset, 1), liveTable.limit);&#xd;
-}&#xd;
-&#xd;
-// Check if github project URL&#xd;
-function isGithubRepoURL(s) {&#xd;
-   var regexp = /((^https:\/\/github.com{1}?)(\/([\w#!:.?+=&amp;%@!\-\/]))+)?(\.git$)/&#xd;
-   return regexp.test(s);&#xd;
-}&#xd;
-//&#xd;
-&#xd;
-require(['jquery'], function($){&#xd;
-&#xd;
-// Enable or disable entity analysis&#xd;
-function enableDisableEntityAnalysis(githubRepo, status, description){&#xd;
-   $.ajax({&#xd;
-      "url": githubProjectsActionURL + "&amp;action=enableDisableAnalysis",&#xd;
-      type: "POST",&#xd;
-      dataType: "json",&#xd;
-      data: { githubRepo: githubRepo, status: status, description: description}&#xd;
-   }).done(function(rep){&#xd;
-      if(status == "enable" &amp;&amp; rep.entityCreationStatus){&#xd;
-         // Run the data collector&#xd;
-         var entityDocRef = rep.entity;&#xd;
-         $.ajax({&#xd;
-            "url": githubProjectsActionURL + "&amp;action=runDataCollector" + "&amp;entity=" + encodeURIComponent(entityDocRef)&#xd;
-         }).done(function( rep ){&#xd;
-            // Run an analysis&#xd;
-            $.ajax({&#xd;
-               url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(entityDocRef)&#xd;
-            }).done(function( rep ) {&#xd;
-               refreshLiveTable();&#xd;
-               $("#ajaxloader").hide();&#xd;
-               $("#githubRepo").attr("disabled", false);&#xd;
-               $("#githubRepo").val("");&#xd;
-            });&#xd;
-         });&#xd;
-      }&#xd;
-      else&#xd;
-      {&#xd;
-          refreshLiveTable();&#xd;
-          $("#ajaxloader").hide();&#xd;
-          $("#githubRepo").attr("disabled", false);&#xd;
-          $("#githubRepo").val("");&#xd;
-      }&#xd;
-   });&#xd;
-}&#xd;
-&#xd;
-&#xd;
-$(function() {&#xd;
-   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"OK.", "projectExists":"The project already exists in the list of your github projects", "projectAlreadyAnalysed": "The project was already analyzed by another user"}&#xd;
-   // Initialize the add github project button   &#xd;
-   $("#addGithubPrjBtn").click(function(event) {&#xd;
-      var githubRepoURL = $("#githubRepo").val();&#xd;
-      $("#gitValidationStatus").html("");&#xd;
-      var repoOk = false;&#xd;
-      var githubUser = "";&#xd;
-      var githubRepo = "";&#xd;
-      if(isGithubRepoURL(githubRepoURL)){&#xd;
-          var str = githubRepoURL.replace("https://github.com/","").replace(".git", "");&#xd;
-          var t = str.split('/');&#xd;
-          if(t.length == 2){&#xd;
-             githubUser = t[0];&#xd;
-             githubRepo = t[1];&#xd;
-             repoOk = true;&#xd;
-          }  &#xd;
-      }&#xd;
-      else&#xd;
-      {&#xd;
-         // Check if the entered url is github project full_name&#xd;
-         var t = githubRepoURL.split('/');&#xd;
-         if(t.length == 2){&#xd;
-            githubUser = t[0];&#xd;
-            githubRepo = t[1];&#xd;
-            githubRepoURL = "https://github.com/" + githubUser + "/" + githubRepo + ".git";&#xd;
-            repoOk = true;&#xd;
-         }&#xd;
-      }&#xd;
-      if(repoOk){&#xd;
-         // Check if the github project is valid, exists and accessible&#xd;
-         $("#ajaxloader").css("display", "inline-block");&#xd;
-         $("#githubRepo").attr("disabled", true);&#xd;
-         $.ajax({&#xd;
-            url: githubApiURL + githubUser + '/' + githubRepo + '?client_id=' + clientID + '&amp;client_secret=' + clientSecret,&#xd;
-            dataType: "json"&#xd;
-         }).&#xd;
-         fail(function( jqXHR, textStatus, errorThrown ) {&#xd;
-            $("#gitValidationStatus").css("color","red");&#xd;
-            $("#gitValidationStatus").html(messages.errorMsg);&#xd;
-            $("#ajaxloader").hide();&#xd;
-            $("#githubRepo").attr("disabled", false);&#xd;
-         })&#xd;
-         .done(function(rep){&#xd;
-            $("#ajaxloader").hide();&#xd;
-            $("#githubRepo").attr("disabled", false);&#xd;
-            if(rep){&#xd;
-               // Check if the rep exists in list of users projects&#xd;
-               $("#ajaxloader").css("display", "inline-block");&#xd;
-               $("#githubRepo").attr("disabled", true);&#xd;
-               $.ajax({&#xd;
-                  url: githubProjectsActionURL + "&amp;action=checkProjectExists",&#xd;
-                  type: "POST",&#xd;
-                  dataType: "json",&#xd;
-                  data: {githubRepo: githubRepoURL}&#xd;
-               }).done(function( rep ) {&#xd;
-                  if(rep.projectExists == 1 || rep.projectExists == 2){//Project exists&#xd;
-                     $("#gitValidationStatus").css("color","red");&#xd;
-                     if(rep.projectExists == 1){&#xd;
-                        $("#gitValidationStatus").html(messages.projectExists);&#xd;
-                     }&#xd;
-                     else&#xd;
-                     {&#xd;
-                        $("#gitValidationStatus").html(messages.projectAlreadyAnalysed);&#xd;
-                     }&#xd;
-                     $("#ajaxloader").hide();&#xd;
-                     $("#githubRepo").attr("disabled", false);  &#xd;
-                  }&#xd;
-                  else&#xd;
-                  {&#xd;
-                     // Get the github user and project name from the URL&#xd;
-                     var str = githubRepoURL.replace("https://github.com/","").replace(".git", "");&#xd;
-                     var t = str.split('/');&#xd;
-                     if(t.length == 2){&#xd;
-                        var gitUser = t[0];&#xd;
-                        var gitRepo = t[1];&#xd;
-                        // Get the repository description&#xd;
-                        $.ajax({&#xd;
-                          url: githubApiURL + gitUser + '/' + gitRepo + '?client_id=' + clientID + '&amp;client_secret=' + clientSecret,&#xd;
-                          dataType: "json"&#xd;
-                        }).done(function(rep){&#xd;
-                          if(rep){&#xd;
-                              $("#ajaxloader").css("display", "inline-block");&#xd;
-                              $("#githubRepo").attr("disabled", true);&#xd;
-                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description);&#xd;
-                          }&#xd;
-                       });&#xd;
-                    }&#xd;
-                 }&#xd;
-              });&#xd;
-            }&#xd;
-            else&#xd;
-            {&#xd;
-                $("#gitValidationStatus").css("color","red");&#xd;
-                $("#gitValidationStatus").html(messages.errorMsg);&#xd;
-            }  &#xd;
-         });&#xd;
-      }&#xd;
-      else&#xd;
-      {&#xd;
-        $("#gitValidationStatus").css("color","red");&#xd;
-        $("#gitValidationStatus").html(messages.errorMsg);&#xd;
-      }&#xd;
-      event.preventDefault();&#xd;
-   });&#xd;
-&#xd;
-   // Initialize projects enable/disable checkboxs&#xd;
-   $( ".xwiki-livetable" ).on( "click", ".enabdisabchk", function() {&#xd;
-      var inputVal = $(this).val();&#xd;
-      var githubRepo = inputVal.split('|')[0];&#xd;
-      var githubProjectID = inputVal.split('|')[1];&#xd;
-      var status = 'enable';&#xd;
-      var projectDescription = "";&#xd;
-      if (!$(this).is(":checked")) {&#xd;
-         // Enable analysis&#xd;
-         status = 'disable';     &#xd;
-      }&#xd;
-      if(status == "enable"){&#xd;
-         $("#analysisstatus" + githubProjectID).html("Evaluating...");&#xd;
-         projectDescription = $("#projectDescription" + githubProjectID).val();&#xd;
-      }&#xd;
-      else&#xd;
-      {&#xd;
-         $("#analysisstatus" + githubProjectID).html("Disabling...");&#xd;
-      }&#xd;
-      enableDisableEntityAnalysis(githubRepo, status, projectDescription);&#xd;
-   });&#xd;
- &#xd;
-   // Initialize re-evaluate btns&#xd;
-   $( ".xwiki-livetable" ).on( "click", ".reevaluateBtn", function() {&#xd;
-      var projectInfo = $(this).attr('rel');&#xd;
-      var githubRepo = projectInfo.split('|')[0];&#xd;
-      var entity = projectInfo.split('|')[1];&#xd;
-      var githubProjectID = projectInfo.split('|')[2];&#xd;
-      $("#analysisstatus" + githubProjectID).html("Evaluating...");&#xd;
-      // Run an analysis&#xd;
-      $.ajax({&#xd;
-         url: runAnalysisURL + "&amp;entity=" + entity,&#xd;
-      }).done(function( rep ) {&#xd;
-         refreshLiveTable();&#xd;
-      });&#xd;
-   });&#xd;
-});&#xd;
+      <code>## Globals
+var githubProjectsActionURL = "$xwiki.getURL('RISCOSSPlatformCode.GithubAjaxActions', 'view', 'xpage=plain&amp;outputSyntax=plain')";
+var runAnalysisURL = "$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', 'riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration')";
+var githubApiURL = "https://api.github.com/repos/";
+## Get RISCOSS platform configuration information
+#set($confDoc = $xwiki.getDocument("RISCOSSPlatformCode.RISCOSSConfiguration"))
+#set($superConf = $confDoc.getObject("RISCOSSPlatformCode.RISCOSSConfiguration"))
+#set($clientID = $superConf.getProperty("githubAppClientID").getValue())
+#set($clientSecret = $superConf.getProperty("githubAppClientSecret").getValue())
+var clientID = "$clientID";
+var clientSecret = "$clientSecret";
+##
+
+// Refresh ive table
+function refreshLiveTable(){
+   var liveTable = window["livetable_projects"];
+   liveTable.clearCache();
+   liveTable.showRows(Math.max(liveTable.lastOffset, 1), liveTable.limit);
+}
+
+// Check if github project URL
+function isGithubRepoURL(s) {
+   var regexp = /((^https:\/\/github.com{1}?)(\/([\w#!:.?+=&amp;%@!\-\/]))+)?(\.git$)/
+   return regexp.test(s);
+}
+//
+
+require(['jquery'], function($){
+
+// Enable or disable entity analysis
+function enableDisableEntityAnalysis(githubRepo, status, description){
+   $.ajax({
+      "url": githubProjectsActionURL + "&amp;action=enableDisableAnalysis",
+      type: "POST",
+      dataType: "json",
+      data: { githubRepo: githubRepo, status: status, description: description}
+   }).done(function(rep){
+      if(status == "enable" &amp;&amp; rep.entityCreationStatus){
+         // Run the data collector
+         var entityDocRef = rep.entity;
+         $.ajax({
+            "url": githubProjectsActionURL + "&amp;action=runDataCollector" + "&amp;entity=" + encodeURIComponent(entityDocRef)
+         }).done(function( rep ){
+            // Run an analysis
+            $.ajax({
+               url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(entityDocRef)
+            }).done(function( rep ) {
+               refreshLiveTable();
+               $("#ajaxloader").hide();
+               $("#githubRepo").attr("disabled", false);
+               $("#githubRepo").val("");
+            });
+         });
+      }
+      else
+      {
+          refreshLiveTable();
+          $("#ajaxloader").hide();
+          $("#githubRepo").attr("disabled", false);
+          $("#githubRepo").val("");
+      }
+   });
+}
+
+
+$(function() {
+   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"OK.", "projectExists":"The project already exists in the list of your github projects", "projectAlreadyAnalysed": "The project was already analyzed by another user"}
+   // Initialize the add github project button   
+   $("#addGithubPrjBtn").click(function(event) {
+      var githubRepoURL = $("#githubRepo").val();
+      $("#gitValidationStatus").html("");
+      var repoOk = false;
+      var githubUser = "";
+      var githubRepo = "";
+      if(isGithubRepoURL(githubRepoURL)){
+          var str = githubRepoURL.replace("https://github.com/","").replace(".git", "");
+          var t = str.split('/');
+          if(t.length == 2){
+             githubUser = t[0];
+             githubRepo = t[1];
+             repoOk = true;
+          }  
+      }
+      else
+      {
+         // Check if the entered url is github project full_name
+         var t = githubRepoURL.split('/');
+         if(t.length == 2){
+            githubUser = t[0];
+            githubRepo = t[1];
+            githubRepoURL = "https://github.com/" + githubUser + "/" + githubRepo + ".git";
+            repoOk = true;
+         }
+      }
+      if(repoOk){
+         // Check if the github project is valid, exists and accessible
+         $("#ajaxloader").css("display", "inline-block");
+         $("#githubRepo").attr("disabled", true);
+         $.ajax({
+            url: githubApiURL + githubUser + '/' + githubRepo + '?client_id=' + clientID + '&amp;client_secret=' + clientSecret,
+            dataType: "json"
+         }).
+         fail(function( jqXHR, textStatus, errorThrown ) {
+            $("#gitValidationStatus").css("color","red");
+            $("#gitValidationStatus").html(messages.errorMsg);
+            $("#ajaxloader").hide();
+            $("#githubRepo").attr("disabled", false);
+         })
+         .done(function(rep){
+            $("#ajaxloader").hide();
+            $("#githubRepo").attr("disabled", false);
+            if(rep){
+               // Check if the rep exists in list of users projects
+               $("#ajaxloader").css("display", "inline-block");
+               $("#githubRepo").attr("disabled", true);
+               $.ajax({
+                  url: githubProjectsActionURL + "&amp;action=checkProjectExists",
+                  type: "POST",
+                  dataType: "json",
+                  data: {githubRepo: githubRepoURL}
+               }).done(function( rep ) {
+                  if(rep.projectExists == 1 || rep.projectExists == 2){//Project exists
+                     $("#gitValidationStatus").css("color","red");
+                     if(rep.projectExists == 1){
+                        $("#gitValidationStatus").html(messages.projectExists);
+                     }
+                     else
+                     {
+                        $("#gitValidationStatus").html(messages.projectAlreadyAnalysed);
+                     }
+                     $("#ajaxloader").hide();
+                     $("#githubRepo").attr("disabled", false);  
+                  }
+                  else
+                  {
+                     // Get the github user and project name from the URL
+                     var str = githubRepoURL.replace("https://github.com/","").replace(".git", "");
+                     var t = str.split('/');
+                     if(t.length == 2){
+                        var gitUser = t[0];
+                        var gitRepo = t[1];
+                        // Get the repository description
+                        $.ajax({
+                          url: githubApiURL + gitUser + '/' + gitRepo + '?client_id=' + clientID + '&amp;client_secret=' + clientSecret,
+                          dataType: "json"
+                        }).done(function(rep){
+                          if(rep){
+                              $("#ajaxloader").css("display", "inline-block");
+                              $("#githubRepo").attr("disabled", true);
+                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description);
+                          }
+                       });
+                    }
+                 }
+              });
+            }
+            else
+            {
+                $("#gitValidationStatus").css("color","red");
+                $("#gitValidationStatus").html(messages.errorMsg);
+            }  
+         });
+      }
+      else
+      {
+        $("#gitValidationStatus").css("color","red");
+        $("#gitValidationStatus").html(messages.errorMsg);
+      }
+      event.preventDefault();
+   });
+
+   // Initialize projects enable/disable checkboxs
+   $( ".xwiki-livetable" ).on( "click", ".enabdisabchk", function() {
+      var inputVal = $(this).val();
+      var githubRepo = inputVal.split('|')[0];
+      var githubProjectID = inputVal.split('|')[1];
+      var status = 'enable';
+      var projectDescription = "";
+      if (!$(this).is(":checked")) {
+         // Enable analysis
+         status = 'disable';     
+      }
+      if(status == "enable"){
+         $("#analysisstatus" + githubProjectID).html("Evaluating...");
+         projectDescription = $("#projectDescription" + githubProjectID).val();
+      }
+      else
+      {
+         $("#analysisstatus" + githubProjectID).html("Disabling...");
+      }
+      enableDisableEntityAnalysis(githubRepo, status, projectDescription);
+   });
+ 
+   // Initialize re-evaluate btns
+   $( ".xwiki-livetable" ).on( "click", ".reevaluateBtn", function() {
+      var projectInfo = $(this).attr('rel');
+      var githubRepo = projectInfo.split('|')[0];
+      var entity = projectInfo.split('|')[1];
+      var githubProjectID = projectInfo.split('|')[2];
+      $("#analysisstatus" + githubProjectID).html("Evaluating...");
+      // Run an analysis
+      $.ajax({
+         url: runAnalysisURL + "&amp;entity=" + entity,
+      }).done(function( rep ) {
+         refreshLiveTable();
+      });
+   });
+});
 });</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>
@@ -441,42 +461,42 @@ $(function() {&#xd;
       <cache>long</cache>
     </property>
     <property>
-      <code>.enabdisabchk{&#xd;
-   float:left;&#xd;
-}&#xd;
-&#xd;
-.analysistatus{&#xd;
-   text-align:left;&#xd;
-}&#xd;
-&#xd;
-.reevaluateBtn{&#xd;
-   background : url("$xwiki.getSkinFile('icons/silk/arrow_rotate_clockwise.png')");&#xd;
-   background-repeat: no-repeat;&#xd;
-   display: inline-block;&#xd;
-   width: 16px;&#xd;
-   height: 16px;&#xd;
-   float: left;&#xd;
-}&#xd;
-&#xd;
-td.reevaluate{&#xd;
-   text-align: left !important;&#xd;
-}&#xd;
-&#xd;
-#gitValidationStatus{&#xd;
-   padding: 1em 0;&#xd;
-}&#xd;
-&#xd;
-.ajaxloader{&#xd;
-   background : url("$doc.getAttachmentURL('ajax-loader.gif')");&#xd;
-   background-repeat: no-repeat;&#xd;
-   display: inline-block;&#xd;
-   width: 16px;&#xd;
-   height: 16px;&#xd;
-   display: none;&#xd;
+      <code>.enabdisabchk{
+   float:left;
+}
+
+.analysistatus{
+   text-align:left;
+}
+
+.reevaluateBtn{
+   background : url("$xwiki.getSkinFile('icons/silk/arrow_rotate_clockwise.png')");
+   background-repeat: no-repeat;
+   display: inline-block;
+   width: 16px;
+   height: 16px;
+   float: left;
+}
+
+td.reevaluate{
+   text-align: left !important;
+}
+
+#gitValidationStatus{
+   padding: 1em 0;
+}
+
+.ajaxloader{
+   background : url("$doc.getAttachmentURL('ajax-loader.gif')");
+   background-repeat: no-repeat;
+   display: inline-block;
+   width: 16px;
+   height: 16px;
+   display: none;
 }</code>
     </property>
     <property>
-      <name></name>
+      <name/>
     </property>
     <property>
       <parse>1</parse>

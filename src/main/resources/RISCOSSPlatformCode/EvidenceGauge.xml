@@ -1,4 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc version="1.1">
   <web>RISCOSSPlatformCode</web>
   <name>EvidenceGauge</name>
@@ -14,7 +34,7 @@
   <contentUpdateDate>0</contentUpdateDate>
   <version>1.1</version>
   <title>EvidenceGauge</title>
-  <comment>Imported from XAR</comment>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
@@ -185,7 +205,7 @@ public class EvidenceGauge extends BufferedImage {
 	
 	static double angleDiff(double a, double b) {
 		double d = b - a;
-		while (d >= 180f) { d -= 360f; }
+		while (d &gt;= 180f) { d -= 360f; }
 		while (d &lt; -180f) { d += 360f; }
 		return d;
 	}
@@ -280,15 +300,15 @@ public class EvidenceGauge extends BufferedImage {
 
 
     static class Distribution {
-	    List&lt;Double> values = new ArrayList&lt;Double>();
+	    List&lt;Double&gt; values = new ArrayList&lt;Double&gt;();
 	
-	    public void setValues( List&lt;Double> v ) {
+	    public void setValues( List&lt;Double&gt; v ) {
 		    values.clear();
 		    for( Double d : v )
 			    values.add( d );
 	    }
 	
-	    public List&lt;Double> getValues() {
+	    public List&lt;Double&gt; getValues() {
 		    return values;
 	    }
 	
