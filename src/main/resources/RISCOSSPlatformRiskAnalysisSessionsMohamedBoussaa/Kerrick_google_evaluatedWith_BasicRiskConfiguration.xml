@@ -27,6 +27,7 @@
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1443453306000</creationDate>
+  <parent>RISCOSSPlatformRiskAnalysisSessionsMohamedBoussaa.WebHome</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443453309000</date>

@@ -27,6 +27,7 @@
   <translation>0</translation>
   <creator>xwiki:XWiki.Admin</creator>
   <creationDate>1443606559000</creationDate>
+  <parent>RISCOSSPlatformRiskAnalysisSessionsgithub_cjdelisle.WebHome</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <date>1443606561000</date>
