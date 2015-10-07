@@ -94,8 +94,8 @@
       {{/html}}
 
       {{info}}
-      The total project ranking is derived from the project score that is calculated from the components of the risk analysis (Obsolescence Risk, Bug Risk, Analysability Risk, Maintenance Risk).
-      The project ranking represents the percentage of the project's score compared to the top ten projects average score.
+      The project score is a composite indicator resulting from combining individual risk results. 
+      The project ranking results from sorting the project scores. 
       The higher the score the better the project is ranked.
       {{/info}}
 
@@ -108,7 +108,7 @@
       
       ## Display analysis results
       = Basic Risk Analysis =
-      A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern but is less thorough than an Advanced Risk Analysis based on a project //and// a use case.
+      A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern. You should always balance these results with the specifics of your project and use case.
 
       #set($displayInProjectPage = "true")
       {{include reference="RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationViewSheet" /}}
