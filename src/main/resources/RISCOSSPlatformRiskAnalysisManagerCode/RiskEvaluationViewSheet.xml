@@ -563,20 +563,20 @@ formatDate = function(time) {
 }
 .analysis-risk-title::before {
     content: " c ";
-    background-color: red;
-    color: red;
+    background-color: #81bfff;
+    color: #81bfff;
 }
 .analysis-risk-title.blue::before {
-    background-color: blue;
-    color: blue;
+    background-color: #c8c8c8;
+    color: #c8c8c8;
 }
 .analysis-risk-title.green::before {
-    background-color: green;
-    color: green;
+    background-color: #f9dbf9;
+    color: #f9dbf9;
 }
 .analysis-risk-title.yellow::before {
-    background-color: yellow;
-    color: yellow;
+    background-color: #ece9a2;
+    color: #ece9a2;
 }
 #collected-data{
    width: 70%;   
