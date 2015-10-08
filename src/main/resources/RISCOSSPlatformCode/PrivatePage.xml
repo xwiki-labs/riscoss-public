@@ -227,7 +227,7 @@ function enableDisableEntityAnalysis(githubRepo, status, description){
 
 
 $(function() {
-   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"OK.", "projectExists":"The project already exists in the list of your github projects", "projectAlreadyAnalysed": "The project was already analyzed by another user"}
+   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"OK.", "projectExists":"The project already exists in the list of your github projects.", "projectAlreadyAnalysed": "The project was already analyzed by another user."}
    // Initialize the add github project button   
    $("#addGithubPrjBtn").click(function(event) {
       var githubRepoURL = $("#githubRepo").val();
@@ -291,6 +291,9 @@ $(function() {
                      {
                         $("#gitValidationStatus").html(messages.projectAlreadyAnalysed);
                      }
+                     if(rep.projectPageURL &amp;&amp; rep.projectPageURL != ""){
+                        $("#gitValidationStatus").append('&lt;div&gt;&lt;a href="' + rep.projectPageURL + '" class="viewprj"&gt;View the project analysis&lt;/a&gt;&lt;/div&gt;');
+                     } 
                      $("#ajaxloader").hide();
                      $("#githubRepo").attr("disabled", false);  
                   }
@@ -493,6 +496,11 @@ td.reevaluate{
    width: 16px;
    height: 16px;
    display: none;
+}
+
+a.viewprj, a.viewprj:link, a.viewprj:visited, a.viewprj:hover, a.viewprj:active{
+   color: blue;
+   text-decoration: underline;
 }</code>
     </property>
     <property>

@@ -173,10 +173,11 @@
                 #if($xwiki.exists($entityDocRef) &amp;&amp; $xwiki.getDocument($entityDocRef).getAuthor() != $xcontext.user)
                    #set($projectExists = 2) ## The project was already analysed by another user 
                 #end
+                #set($projectPageURL = $xwiki.getURL("RISCOSSPlatformCode.ProjectPage", "view", "project=${escapetool.url($entityDocRef)}"))
              #end
           #end
        #end
-       {"projectExists": $projectExists}
+       {"projectExists": $projectExists, "projectPageURL": "$!projectPageURL"}
     #end
 #end
 {{/velocity}}</content>
