@@ -63,7 +63,13 @@
 
 {{html}}
 &lt;h3&gt;Register a new project by entering its GitHub repository URL&lt;/h3&gt;
-&lt;label&gt;Repository URL / Project full name (githubUser/Repo) &lt;/label&gt;&lt;input type="text"  name="githubRepo" id="githubRepo" /&gt;
+&lt;label&gt;
+Please enter the URL of a GitHub repository in the form below: &lt;br/&gt;
+Example: https://github.com/octalmage/robotjs.git
+&lt;/label&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;input type="text"  name="githubRepo" id="githubRepo" /&gt;
 &lt;input type="button" value="Add project" class="button" id="addGithubPrjBtn"/&gt;
 &lt;span class="ajaxloader" id="ajaxloader"&gt;&lt;/span&gt;
 &lt;div id="gitValidationStatus"&gt;&lt;/div&gt;
