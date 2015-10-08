@@ -40,9 +40,9 @@
   <hidden>false</hidden>
   <content>{{velocity}}
 ## -*- Mode:Velocity
-#set($columns = ['entity', 'description', 'author', 'score', 'ranking'])
+#set($columns = ['project', 'description', 'author', 'score', 'ranking'])
 #set($columnsProperties = {
-    'entity' : { 'type' : 'none', 'html' : 'true', 'sortable' : 'true', 'filterable' : 'true'},
+    'project' : { 'type' : 'none', 'html' : 'true', 'sortable' : 'true', 'filterable' : 'true'},
     'description' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},
     'author' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},
     'score' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},

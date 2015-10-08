@@ -166,7 +166,7 @@
   #set($row = {})
   #set($discard = $row.put("doc_viewable", true))
   #if(!$isPublicPage)
-     #set($discard = $row.put("entity", $result[1]))
+     #set($discard = $row.put("project", $result[1]))
   #end
   #if($isPublicPage)
      #set($entityDocRef = $result[0])
@@ -178,7 +178,7 @@
      #set($entityDoc = $xwiki.getDocument($entityDocRef))
      #set($projectAuthor = $xwiki.getDocument($entityDoc.author).name)
      #set($discard = $row.put("author",$projectAuthor))
-     #set($discard = $row.put("entity", "&lt;a href='$projectPageURL' class='projectLink'&gt;$projectName&lt;/a&gt;"))
+     #set($discard = $row.put("project", "&lt;a href='$projectPageURL' class='projectLink'&gt;$projectName&lt;/a&gt;"))
      #set($entityDoc = $xwiki.getDocument($entityDocRef))
      #set($osscObj = $entityDoc.getObject("RISCOSSPlatformLayers.OSSComponent"))
      ## Get associated session
