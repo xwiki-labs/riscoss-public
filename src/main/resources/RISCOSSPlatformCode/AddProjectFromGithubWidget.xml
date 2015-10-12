@@ -44,10 +44,10 @@
 #set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.AddProjectFromGithubWidget"))
 #set($discard = $xwiki.ssx.use("RISCOSSPlatformCode.AddProjectFromGithubWidget"))
 {{html}}
-&lt;h3&gt;Register a new project by entering its GitHub repository URL&lt;/h3&gt;
+&lt;h3&gt;Create Your Own GitHub Project Analysis&lt;/h3&gt;
 &lt;label&gt;
 Please enter the URL of a GitHub repository in the form below: &lt;br/&gt;
-Example: https://github.com/octalmage/robotjs.git
+&lt;span style="font-size:80%;"&gt;Example: https://github.com/octalmage/robotjs.git&lt;/span&gt;
 &lt;/label&gt;
 &lt;br/&gt;
 &lt;br/&gt;
