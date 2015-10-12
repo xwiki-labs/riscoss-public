@@ -150,6 +150,7 @@ Example: https://github.com/octalmage/robotjs.git
       <code>## Globals
 var githubProjectsActionURL = "$xwiki.getURL('RISCOSSPlatformCode.GithubAjaxActions', 'view', 'xpage=plain&amp;outputSyntax=plain')";
 var runAnalysisURL = "$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', 'riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration')";
+var projectPageURL = "$xwiki.getURL('RISCOSSPlatformCode.ProjectPage', 'view', 'project=')";
 var githubApiURL = "https://api.github.com/repos/";
 ## Get RISCOSS platform configuration information
 #set($confDoc = $xwiki.getDocument("RISCOSSPlatformCode.RISCOSSConfiguration"))
@@ -180,7 +181,7 @@ function isGithubRepoURL(s) {
 require(['jquery'], function($){
 
 // Enable or disable entity analysis
-function enableDisableEntityAnalysis(githubRepo, status, description){
+function enableDisableEntityAnalysis(githubRepo, status, description, isExternalGithubProject){
    $.ajax({
       "url": githubProjectsActionURL + "&amp;action=enableDisableAnalysis",
       type: "POST",
@@ -201,6 +202,9 @@ function enableDisableEntityAnalysis(githubRepo, status, description){
                $("#ajaxloader").hide();
                $("#githubRepo").attr("disabled", false);
                $("#githubRepo").val("");
+               if(isExternalGithubProject){
+                  $("#gitValidationStatus").append('&lt;div&gt;The project analysis was completed successfully. &lt;a href="' + projectPageURL + encodeURIComponent(entityDocRef) + '" class="viewprj"&gt;View the project analysis&lt;/a&gt;&lt;/div&gt;'); 
+               }
             });
          });
       }
@@ -216,7 +220,22 @@ function enableDisableEntityAnalysis(githubRepo, status, description){
 
 
 $(function() {
-   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"OK.", "projectExists":"The project already exists in the list of your github projects.", "projectAlreadyAnalysed": "The project was already analyzed by another user."}
+   var messages = {errorMsg:"Please enter a valid Github repository URL.", "successMsg":"Github repository URL OK.", "projectExists":"The project already exists in the list of your github projects.", "projectAlreadyAnalysed": "The project was already analyzed by another user."}
+   // Initialize the live validation of the github URL
+   $('#githubRepo').keyup(function(e){
+     $("#gitValidationStatus").html("");
+     if($(this).val() != ""){
+        if(!isGithubRepoURL($(this).val())){
+           $("#gitValidationStatus").css("color","red");
+           $("#gitValidationStatus").html(messages.errorMsg);
+        }
+        else{
+           $("#gitValidationStatus").css("color","green");
+           $("#gitValidationStatus").html(messages.successMsg);
+        }
+     }
+   });
+   
    // Initialize the add github project button   
    $("#addGithubPrjBtn").click(function(event) {
       var githubRepoURL = $("#githubRepo").val();
@@ -302,7 +321,7 @@ $(function() {
                           if(rep){
                               $("#ajaxloader").css("display", "inline-block");
                               $("#githubRepo").attr("disabled", true);
-                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description);
+                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description, true);
                           }
                        });
                     }
@@ -343,23 +362,68 @@ $(function() {
       {
          $("#analysisstatus" + githubProjectID).html("Disabling...");
       }
-      enableDisableEntityAnalysis(githubRepo, status, projectDescription);
+      enableDisableEntityAnalysis(githubRepo, status, projectDescription, false);
    });
  
    // Initialize re-evaluate btns
    $( ".xwiki-livetable" ).on( "click", ".reevaluateBtn", function() {
       var projectInfo = $(this).attr('rel');
       var githubRepo = projectInfo.split('|')[0];
-      var entity = projectInfo.split('|')[1];
+      var entityDocRef = projectInfo.split('|')[1];
       var githubProjectID = projectInfo.split('|')[2];
       $("#analysisstatus" + githubProjectID).html("Evaluating...");
-      // Run an analysis
+      // Run the data collector
       $.ajax({
-         url: runAnalysisURL + "&amp;entity=" + entity,
-      }).done(function( rep ) {
-         refreshLiveTable();
-      });
-   });
+         "url": githubProjectsActionURL + "&amp;action=runDataCollector" + "&amp;entity=" + encodeURIComponent(entityDocRef)
+      }).done(function( rep ){
+         // Run an analysis
+         $.ajax({
+            url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(entityDocRef)
+         }).done(function( rep ) {
+            refreshLiveTable();
+         });
+     });
+  });
+
+  // Initialize the re-evaluate all project button
+  $("#evaluateAllPrjBtn").click(function(){
+     // Get all projects doc references
+     $("#ajaxloader").css("display", "inline-block");
+     $.ajax({
+        "url": githubProjectsActionURL + "&amp;action=getAllGithubProjects",
+        "dataType": "json"
+     }).done(function( projects ) {
+           if(projects){
+              $("#nbrprj").html("&lt;strong&gt;Number of projects: &lt;/strong&gt;" + projects.length);
+              if(projects.length &gt; 0){
+                 var nbrEvaluatedProjects = 0;
+                 $("#listrevalprj").show();
+                 $.each(projects, function( index, project ) {
+                    var projectDocRef = project.projectDocRef;
+                    var title = project.title;
+                    // Run the data collector
+                    $.ajax({
+                       "url": githubProjectsActionURL + "&amp;action=runDataCollector" + "&amp;entity=" + projectDocRef
+                    }).done(function( rep ){
+                       // Run an analysis
+                       $.ajax({
+                          url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(projectDocRef)
+                       }).done(function( rep ) {
+                          nbrEvaluatedProjects++;
+                          if(nbrEvaluatedProjects &lt;= (projects.length)){
+                             $("#nbrevalprj").html("&lt;strong&gt;Re-evaluated projects: &lt;/strong&gt;" + nbrEvaluatedProjects);
+                             $("#listrevalprj").append("&lt;div&gt;" + title + "&lt;/div&gt;");
+                             if(nbrEvaluatedProjects == projects.length){
+                                $("#ajaxloader").hide();
+                             }
+                          }
+                       });
+                    });
+                 });
+              }
+           }
+        });
+  });
 });
 });</code>
     </property>
