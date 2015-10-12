@@ -62,7 +62,7 @@ $xwiki.jsx.use("RISCOSSPlatformCode.ShowInDialog") ##
 #if ("$!oauthPublicKey" != '')
    #set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.GithubLogin"))
    #set($discard = $xwiki.ssx.use("RISCOSSPlatformCode.GithubLogin"))
-   [[Connect with Github&gt;&gt;||id="connectGithub"]] | [[$services.localization.render("login")&gt;&gt;$doc.getExternalURL("login")||id="loginlink"]] | [[Register&gt;&gt;RISCOSSPlatformCode.Register||id="registerlink"]]#if("$!feedbackURL" != '') | [[Feedback&gt;&gt;$feedbackURL||class="guestmenuitem"]]#end
+   [[Connect with Github&gt;&gt;||id="connectGithub"]] | [[$services.localization.render("login")&gt;&gt;$doc.getExternalURL("login")||id="loginlink"]] | [[Register&gt;&gt;RISCOSSPlatformCode.Register||id="registerlink"]]#if("$!feedbackURL" != '') | [[Feedback&gt;&gt;$feedbackURL||class="guestmenuitem"]]#end | [[About Riscoss&gt;&gt;Main.AboutRiscoss||class="guestmenuitem"]]
 #end
 #else## isGuest
 #if($currentWikiId == 'xwiki' || ($mainWikiId != $currentWikiId))
@@ -80,6 +80,7 @@ $xwiki.jsx.use("RISCOSSPlatformCode.ShowInDialog") ##
 #end
 * **[[$services.localization.render("riscossPlatform.githubprojects.projectpage.allprojects")&gt;&gt;Main.WebHome]]
 * **[[$services.localization.render("riscossPlatform.githubprojects.privatepage.myprojects")&gt;&gt;RISCOSSPlatformCode.PrivatePage]]
+* **[[About Riscoss&gt;&gt;Main.AboutRiscoss]]
 * **{{html}}&lt;span class="riscoss-user"&gt;$xwiki.getUserName($context.user)&lt;/span&gt;{{/html}}
 #if("$!feedbackURL" != "" &amp;&amp; 1!=1)
 * ** {{html}}&lt;a href="$feedbackURL" class="riscoss-feedback"&gt;User feedback&lt;/a&gt;{{/html}}
