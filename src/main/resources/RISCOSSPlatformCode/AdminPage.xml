@@ -41,7 +41,7 @@
   <hidden>false</hidden>
   <content>= Admin Page =
 {{include reference="RISCOSSPlatformCode.EvaluateAllProjects"/}}
-
+= Available Results =
 {{velocity}}
 ## -*- Mode:Velocity
 #set($discard = $xwiki.jsx.use("RISCOSSPlatformCode.AdminPage"))

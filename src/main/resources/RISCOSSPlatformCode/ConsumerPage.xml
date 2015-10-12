@@ -40,13 +40,14 @@
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
   <content>{{include reference="RISCOSSPlatformCode.AddProjectFromGithubWidget"/}}
+= Available Results =
 {{velocity}}
 ## -*- Mode:Velocity
 #set($columns = ['project', 'description', 'author', 'score', 'ranking'])
 #set($columnsProperties = {
     'project' : { 'type' : 'none', 'html' : 'true', 'sortable' : 'true', 'filterable' : 'true'},
     'description' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},
-    'author' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},
+    'author' : {'type' : 'none', 'html':true, 'filterable' : 'false', 'sortable' : 'false'},
     'score' : {'type' : 'text', 'filterable' : 'false', 'sortable' : 'false'},
     'ranking' : {'type' : 'none', 'html' : true, 'filterable' : 'false', 'sortable' : 'true'}
 })
