@@ -64,6 +64,13 @@
       ## Project information
       #set($projectDoc = $xwiki.getDocument($projectDocRef))
       #set($obj = $projectDoc.getObject("RISCOSSPlatformLayers.OSSComponent"))
+      #set($prjRanking = $projectRanking.replace("&lt;strong&gt;", "").replace("&lt;/strong&gt;", ""))
+      #set($projectName = $projectDoc.name)
+      #set($t = $projectName.split("_"))
+      #if($t.size() &gt;= 2)
+         #set($projectName = $t[$mathtool.sub($t.size(), 1)])
+      #end
+      #set($tweet = "#${projectName} ranked in the ${prjRanking} on #riscoss ${projectLink}")
       {{html}}
       &lt;table class="bigtable"&gt;
       &lt;tr&gt;
@@ -75,7 +82,7 @@
       &lt;/table&gt;
       &lt;/td&gt;
       &lt;td class="bttd"&gt;
-      &lt;div class="tweetScore"&gt;&lt;div class="tweetLabel"&gt;$services.localization.render("riscossPlatform.githubprojects.projectpage.tweetthisscore")&lt;/div&gt;&lt;div class="tweetBtn"&gt;&lt;a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="${projectLink} scored ${projectScore} on #riscoss" data-size="large" data-count="none"&gt;Tweet&lt;/a&gt;
+      &lt;div class="tweetScore"&gt;&lt;div class="tweetLabel"&gt;$services.localization.render("riscossPlatform.githubprojects.projectpage.tweetthisscore")&lt;/div&gt;&lt;div class="tweetBtn"&gt;&lt;a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="$tweet" data-size="large" data-count="none"&gt;Tweet&lt;/a&gt;
       &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/div&gt;
       &lt;/div&gt;
       &lt;div style="clear:both;"&gt;&lt;/div&gt;
@@ -95,13 +102,6 @@
       The higher the score the better the project is ranked.
       {{/info}}
 
-      {{html}}
-      &lt;div class="tweetScore"&gt;&lt;div class="tweetLabel"&gt;$services.localization.render("riscossPlatform.githubprojects.projectpage.tweetthisscore")&lt;/div&gt;&lt;div class="tweetBtn"&gt;&lt;a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="${projectLink} scored ${projectScore} on #riscoss" data-size="large" data-count="none"&gt;Tweet&lt;/a&gt;
-      &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');&lt;/script&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div style="clear:both;"&gt;&lt;/div&gt;
-      {{/html}}
-      
       ## Display analysis results
       = Basic Risk Analysis =
       A basic risk analysis is an analysis of a project without any context information about how it will be used, this can provide hints about possible areas of concern. You should always balance these results with the specifics of your project and use case.
