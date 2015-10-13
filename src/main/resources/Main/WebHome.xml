@@ -44,7 +44,7 @@
   <hidden>false</hidden>
   <content>{{html}}
 &lt;div style="background-color:#f6f6f6; padding: 1em;"&gt;
-Thank you for your interest in RISCOSS. The GitHubAnalyzer is an easy way to test the platform. Go for it!  And let us know what you think, we'd love to hear about you.
+Thank you for your interest in RISCOSS. The GitHubAnalyzer is an easy way to test the platform. Go for it!  And let us know what you think, we'd love to hear from you.
 &lt;/div&gt;
 {{/html}}
 
