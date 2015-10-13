@@ -84,6 +84,9 @@
                #set($osscObj = $entityDoc.newObject("RISCOSSPlatformLayers.OSSComponent"))
                #set($discard = $osscObj.set("name",$title))
                #set($discard = $osscObj.set("website",$githubRepo))
+               #if("$!request.isFork" != '')
+                  #set($discard = $osscObj.set("isFork",$request.isFork))
+               #end
                #if("$!request.description" != '')
                   #set($discard = $osscObj.set("description",$request.description))
                #end
@@ -182,6 +185,20 @@
           #end
        #end
        {"projectExists": $projectExists, "projectPageURL": "$!projectPageURL"}
+    #elseif($action == "getAllGithubProjects")
+       #set($xwql = "SELECT DISTINCT doc.fullName, doc.title FROM Document doc, " +
+       "doc.object(RISCOSSPlatformLayerManagerCode.EntityClass) AS entity " + 
+       " , Document doc2, doc2.object(RISCOSSPlatformRiskAnalysisManagerCode.RiskEvaluationClass) AS session" +
+       " WHERE " +
+       " session.entity=doc.fullName and session.riskConfiguration='RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration'" +  
+       " AND doc.space like 'RISCOSSPlatformEntities%' AND doc.space &lt;&gt;'RISCOSSPlatformEntities' ORDER BY doc.title")
+       #set($results = $services.query.xwql($xwql).execute())
+       #set($projects = [])
+       #foreach($r in $results)
+           #set($item = {"projectDocRef": $escapetool.url($r[0]), "title": $escapetool.url($r[1])})
+           #set($discard = $projects.add($item))
+       #end
+       $jsontool.serialize($projects)
     #end
 #end
 {{/velocity}}</content>

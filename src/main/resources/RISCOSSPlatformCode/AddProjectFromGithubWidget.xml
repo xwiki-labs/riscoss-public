@@ -181,12 +181,13 @@ function isGithubRepoURL(s) {
 require(['jquery'], function($){
 
 // Enable or disable entity analysis
-function enableDisableEntityAnalysis(githubRepo, status, description, isExternalGithubProject){
+function enableDisableEntityAnalysis(githubRepo, status, description, isFork, isExternalGithubProject){
+   isFork = isFork ? 1: 0;
    $.ajax({
       "url": githubProjectsActionURL + "&amp;action=enableDisableAnalysis",
       type: "POST",
       dataType: "json",
-      data: { githubRepo: githubRepo, status: status, description: description}
+      data: { githubRepo: githubRepo, status: status, description: description, isFork: isFork}
    }).done(function(rep){
       if(status == "enable" &amp;&amp; rep.entityCreationStatus){
          // Run the data collector
@@ -321,7 +322,7 @@ $(function() {
                           if(rep){
                               $("#ajaxloader").css("display", "inline-block");
                               $("#githubRepo").attr("disabled", true);
-                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description, true);
+                              enableDisableEntityAnalysis(githubRepoURL, "enable", rep.description, rep.fork, true);
                           }
                        });
                     }
@@ -362,7 +363,28 @@ $(function() {
       {
          $("#analysisstatus" + githubProjectID).html("Disabling...");
       }
-      enableDisableEntityAnalysis(githubRepo, status, projectDescription, false);
+      if(status == "enable"){
+         // Get the github user and project name from the URL
+         var str = githubRepo.replace("https://github.com/","").replace(".git", "");
+         var t = str.split('/');
+         if(t.length == 2){
+            var gitUser = t[0];
+            var gitRepo = t[1];
+            // Get the repository description
+            $.ajax({
+               url: githubApiURL + gitUser + '/' + gitRepo + '?client_id=' + clientID + '&amp;client_secret=' + clientSecret,
+               dataType: "json"
+            }).done(function(rep){
+               if(rep){
+                  enableDisableEntityAnalysis(githubRepo, status, projectDescription, rep.fork, false);
+               }
+            });
+         }
+      }
+      else
+      {
+         enableDisableEntityAnalysis(githubRepo, status, projectDescription, "", false);
+      }
    });
  
    // Initialize re-evaluate btns

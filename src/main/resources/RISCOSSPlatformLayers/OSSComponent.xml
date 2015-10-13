@@ -66,6 +66,20 @@ It basically contains a [[RISCOSSPlatformLayerManagerCode.LayerClass]] with a pa
       <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
     </description>
+    <isFork>
+      <customDisplay/>
+      <defaultValue/>
+      <disabled>0</disabled>
+      <displayFormType>select</displayFormType>
+      <displayType/>
+      <name>isFork</name>
+      <number>4</number>
+      <prettyName>Fork</prettyName>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+    </isFork>
     <name>
       <customDisplay/>
       <disabled>0</disabled>
