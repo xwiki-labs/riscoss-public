@@ -60,11 +60,19 @@
     {{error}}Missing "riskConfiguration" parameter{{/error}}
   #else
     ## Escape entities that have dots
-    #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
-    ###set($formatedEntity = $entity.substring(24))
-    #set($formatedEntity = $entity.substring($entitySpace.length()))
-    ##set($formatedEntity = $formatedEntity.replace(".","\."))
-    #set($formatedEntity = $entitySpace + $formatedEntity)
+    #if($hasAdmin &amp;&amp; "$!request.reevaluateAllPrj" != '')
+       #set($entityDocFullName = "")
+       #if($xwiki.exists($request.entity))
+          #set($entityDoc = $xwiki.getDocumentAsAuthor($request.entity))
+          #set($entitySpace = "${entityDoc.space}.")
+          #set($formatedEntity = $entity.substring($entitySpace.length()))
+          #set($formatedEntity = $entitySpace + $formatedEntity)
+       #end  
+    #else
+       #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
+       #set($formatedEntity = $entity.substring($entitySpace.length()))
+       #set($formatedEntity = $entitySpace + $formatedEntity)
+    #end
     $formatedEntity
     ###
     #set($sessionDoc = $analyserAPI.getSessionDoc2(
@@ -136,8 +144,15 @@ $sessionDoc
   ## Fix the issue with entities that have a dot (.) in their name
   #set($entityDocName = $entityDoc.name)
   #if("$!entity" != '')
-     #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
-     #set($entityDocName = $entity.substring($entitySpace.length())) ## (24 == "RISCOSSPlatformEntities.".length)
+     #if($hasAdmin &amp;&amp; "$!request.reevaluateAllPrj" != '')
+       #if($xwiki.exists($request.entity))
+          #set($entityD = $xwiki.getDocumentAsAuthor($request.entity))
+          #set($entitySpace = "${entityD.space}.")
+       #end  
+    #else
+       #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
+    #end
+    #set($entityDocName = $entity.substring($entitySpace.length())) ## (24 == "RISCOSSPlatformEntities.".length)
   #end
   
   #set($rdrpath = $analyserAPI.getRDRPath($xwiki))
@@ -218,7 +233,9 @@ $sessionDoc
   #elseif ("$!request.getParameter('xredirect')" != "")
     $response.sendRedirect($request.getParameter('xredirect'))
   #else
-    $response.sendRedirect($sessionDoc.getURL())
+    #if("$!request.reevaluateAllPrj" == '')
+       $response.sendRedirect($sessionDoc.getURL())
+    #end
   #end
 #end
 {{/velocity}}

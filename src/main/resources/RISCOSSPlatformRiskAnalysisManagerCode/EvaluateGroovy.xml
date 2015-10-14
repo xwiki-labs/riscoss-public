@@ -497,7 +497,17 @@ public Object getSessionDoc2(Object xwiki,
 
     def riskConfDoc = xwiki.getDocument(riskConfig);
     if (riskConfDoc.isNew()) { return "ERROR_riskConfig_nonexistant"; }
-    def escapedTargetDocFullName = escapeXWikiDocWithDots(targetName, "RISCOSSPlatformEntities" + userName + ".");
+    def escapedTargetDocFullName;
+    def entitySpace;
+    if(xwiki.getDocument(targetName).space != "RISCOSSPlatformEntities" + userName){
+       entitySpace = xwiki.getDocument(targetName).space + ".";
+       escapedTargetDocFullName = escapeXWikiDocWithDots(targetName, entitySpace);
+    }
+    else
+    {
+       entitySpace = "RISCOSSPlatformEntities" + userName + ".";
+       escapedTargetDocFullName = escapeXWikiDocWithDots(targetName, "RISCOSSPlatformEntities" + userName + ".");
+    }
     //def targetDoc = xwiki.getDocument(targetName);
     def targetDoc = xwiki.getDocument(escapedTargetDocFullName);
     if (targetDoc.isNew()) { return "ERROR_targetName_nonexistant"; }
@@ -508,7 +518,6 @@ public Object getSessionDoc2(Object xwiki,
     }
 
     //String docName = targetName.substring(targetName.lastIndexOf('.')+1);
-    def entitySpace = "RISCOSSPlatformEntities" + userName + ".";
     String docName = "";
     if(targetName.indexOf(entitySpace) != -1){
        docName = targetName.substring(entitySpace.length());//(24 == entitySpace.length)
@@ -523,8 +532,15 @@ public Object getSessionDoc2(Object xwiki,
     }
     docName += "_evaluatedWith_" +
         riskConfig.substring(riskConfig.lastIndexOf('.')+1);
-
-    def sessionDoc = xwiki.getDocument("RISCOSSPlatformRiskAnalysisSessions" + userName, docName);
+    def sessionDoc;
+    if(entitySpace != "RISCOSSPlatformEntities" + userName + "."){
+       def prefix = entitySpace.replace("RISCOSSPlatformEntities", "").replace(".", "");
+       sessionDoc = xwiki.getDocument("RISCOSSPlatformRiskAnalysisSessions" + prefix, docName);
+    }
+    else
+    {
+       sessionDoc = xwiki.getDocument("RISCOSSPlatformRiskAnalysisSessions" + userName, docName);
+    }
     // Manage entities that have dots(.) in their name
     if(docName.indexOf('.') != -1){
        sessionDoc = xwiki.getDocument("RISCOSSPlatformRiskAnalysisSessions" + userName + "." + docName.replace(".","\\."));

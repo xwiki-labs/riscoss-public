@@ -149,7 +149,7 @@ Please enter the URL of a GitHub repository in the form below: &lt;br/&gt;
     <property>
       <code>## Globals
 var githubProjectsActionURL = "$xwiki.getURL('RISCOSSPlatformCode.GithubAjaxActions', 'view', 'xpage=plain&amp;outputSyntax=plain')";
-var runAnalysisURL = "$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', 'riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration')";
+var runAnalysisURL = "$xwiki.getURL('RISCOSSPlatformCode.EvaluateComponentForUseCase', 'view', 'riskConfiguration=RISCOSSPlatformRiskConfigurations.BasicRiskConfiguration&amp;xpage=plain')";
 var projectPageURL = "$xwiki.getURL('RISCOSSPlatformCode.ProjectPage', 'view', 'project=')";
 var githubApiURL = "https://api.github.com/repos/";
 ## Get RISCOSS platform configuration information
@@ -418,7 +418,7 @@ $(function() {
      }).done(function( rep ){
         // Run an analysis
         $.ajax({
-           url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(projectDocRef)
+           url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(projectDocRef) + "&amp;reevaluateAllPrj=1"
         }).done(function( rep ) {
            nbrEvaluatedProjects++;
            if(nbrEvaluatedProjects &lt;= (nbrProjects)){
