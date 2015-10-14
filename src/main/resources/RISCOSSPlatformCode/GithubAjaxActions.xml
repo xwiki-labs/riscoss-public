@@ -123,13 +123,25 @@
    #elseif($action == "runDataCollector")
       #if("$!request.entity" != '')
          #set($userName = $xwiki.getDocument($xcontext.user).name)
-         ## Manage projects that contains dots in the name
-         #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
-         #set($entityDocFullName = $escapetool.url($request.entity).replace("%5C",""))
-         #set($entityDocName = $entityDocFullName.substring($entitySpace.length()))
-         #set($entityDocName = $entityDocName.replace(".","\."))
-         #set($entityDocFullName = $entitySpace + $entityDocName)
-         #if($xwiki.exists($entityDocFullName))
+         #if($hasAdmin &amp;&amp; "$!request.reevaluateAllPrj" != '')
+            #set($entityDocFullName = "")
+            #if($xwiki.exists($request.entity))
+               #set($entityDoc = $xwiki.getDocumentAsAuthor($request.entity))
+               #set($entitySpace = "${entityDoc.space}.")
+               #set($entityDocFullName = $escapetool.url($request.entity).replace("%5C",""))
+               #set($entityDocName = $entityDocFullName.substring($entitySpace.length()))
+               #set($entityDocName = $entityDocName.replace(".","\."))
+               #set($entityDocFullName = $entitySpace + $entityDocName)
+            #end  
+         #else
+            ## Manage projects that contains dots in the name
+            #set($entitySpace = "RISCOSSPlatformEntities${userName}.")
+            #set($entityDocFullName = $escapetool.url($request.entity).replace("%5C",""))
+            #set($entityDocName = $entityDocFullName.substring($entitySpace.length()))
+            #set($entityDocName = $entityDocName.replace(".","\."))
+            #set($entityDocFullName = $entitySpace + $entityDocName)
+         #end
+         #if($entityDocFullName != "" &amp;&amp; $xwiki.exists($entityDocFullName))
             #set($dataCollector = $xwiki.parseGroovyFromPage("RISCOSSPlatformDataCollectorCode.DataCollectorGroovy"))
             #set($discard = $dataCollector.runDataCollectorOnDemand($xcontext, $services, $xwiki, $entityDocFullName))
             $entityDocFullName

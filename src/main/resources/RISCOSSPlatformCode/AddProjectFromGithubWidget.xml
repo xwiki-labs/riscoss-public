@@ -408,9 +408,40 @@ $(function() {
   });
 
   // Initialize the re-evaluate all project button
+  function evaluateProject(projects, nbrProjects, nbrEvaluatedProjects){
+     var project = projects[nbrEvaluatedProjects];
+     var projectDocRef = project.projectDocRef;
+     var title = project.title;
+     // Run the data collector
+     $.ajax({
+        "url": githubProjectsActionURL + "&amp;action=runDataCollector&amp;reevaluateAllPrj=1" + "&amp;entity=" + encodeURIComponent(projectDocRef)
+     }).done(function( rep ){
+        // Run an analysis
+        $.ajax({
+           url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(projectDocRef)
+        }).done(function( rep ) {
+           nbrEvaluatedProjects++;
+           if(nbrEvaluatedProjects &lt;= (nbrProjects)){
+              $("#nbrevalprj").html("&lt;strong&gt;Re-evaluated projects: &lt;/strong&gt;" + nbrEvaluatedProjects);
+              $("#listrevalprj").append("&lt;div&gt;" + title + "&lt;/div&gt;");
+              if(nbrEvaluatedProjects == nbrProjects){
+                 $("#ajaxloader").hide();
+              }
+              else
+              {
+                 evaluateProject(projects, nbrProjects, nbrEvaluatedProjects);
+              }
+           }
+        });
+     });
+  }
+
   $("#evaluateAllPrjBtn").click(function(){
      // Get all projects doc references
      $("#ajaxloader").css("display", "inline-block");
+     $("#nbrprj").html("");
+     $("#nbrevalprj").html("");
+     $("#listrevalprj").html("");
      $.ajax({
         "url": githubProjectsActionURL + "&amp;action=getAllGithubProjects",
         "dataType": "json"
@@ -418,30 +449,10 @@ $(function() {
            if(projects){
               $("#nbrprj").html("&lt;strong&gt;Number of projects: &lt;/strong&gt;" + projects.length);
               if(projects.length &gt; 0){
+                 var nbrProjects = projects.length;
                  var nbrEvaluatedProjects = 0;
                  $("#listrevalprj").show();
-                 $.each(projects, function( index, project ) {
-                    var projectDocRef = project.projectDocRef;
-                    var title = project.title;
-                    // Run the data collector
-                    $.ajax({
-                       "url": githubProjectsActionURL + "&amp;action=runDataCollector" + "&amp;entity=" + projectDocRef
-                    }).done(function( rep ){
-                       // Run an analysis
-                       $.ajax({
-                          url: runAnalysisURL + "&amp;entity=" + encodeURIComponent(projectDocRef)
-                       }).done(function( rep ) {
-                          nbrEvaluatedProjects++;
-                          if(nbrEvaluatedProjects &lt;= (projects.length)){
-                             $("#nbrevalprj").html("&lt;strong&gt;Re-evaluated projects: &lt;/strong&gt;" + nbrEvaluatedProjects);
-                             $("#listrevalprj").append("&lt;div&gt;" + title + "&lt;/div&gt;");
-                             if(nbrEvaluatedProjects == projects.length){
-                                $("#ajaxloader").hide();
-                             }
-                          }
-                       });
-                    });
-                 });
+                 evaluateProject(projects, nbrProjects, nbrEvaluatedProjects);
               }
            }
         });
