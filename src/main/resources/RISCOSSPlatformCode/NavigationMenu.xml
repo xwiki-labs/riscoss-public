@@ -275,6 +275,22 @@ $xwiki.jsx.use("RISCOSSPlatformCode.ShowInDialog") ##
 .menu.menu-horizontal ul li:last-child {
   float: right;
   margin-right: 12px;
+}
+.menu-horizontal * {
+    font-size: 14px !important;
+    font-weight: 500;
+    color:#FFFFFF;
+}
+div.menu-horizontal li {
+    padding: 0.2em 0.3em;
+}
+.menu-horizontal&gt;ul&gt;li::before {
+    content: "| ";
+    margin-right: 4px;
+}
+.menu-horizontal&gt;ul&gt;li:first-child::before {
+    content: "";
+    margin-right: 0;
 }</code>
     </property>
     <property>
